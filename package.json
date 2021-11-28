@@ -1,0 +1,36 @@
+{
+  "name": "made-with-supabase",
+  "version": "1.0.0",
+  "description": "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
+  "license": "MIT",
+  "author": "zernonia",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^1.21.3",
+    "@vueuse/components": "^6.7.4",
+    "@vueuse/core": "^6.7.4",
+    "axios": "^0.21.4",
+    "dayjs": "^1.10.7",
+    "lottie-web": "^5.7.13",
+    "marked": "^3.0.2",
+    "remove-markdown": "^0.3.0",
+    "sharp": "^0.29.1",
+    "swiper": "^6.8.1"
+  },
+  "devDependencies": {
+    "@iconify/json": "^1.1.381",
+    "@types/marked": "^3.0.0",
+    "@types/remove-markdown": "^0.3.1",
+    "@types/sharp": "^0.29.1",
+    "nuxt-windicss": "^2.0.8",
+    "nuxt3": "3.0.0-27274229.29599f0",
+    "typescript": "^4.3.2",
+    "unplugin-icons": "^0.12.14",
+    "unplugin-vue-components": "^0.15.6"
+  }
+}
