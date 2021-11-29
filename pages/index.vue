@@ -2,7 +2,7 @@
   <div ref="scrollComponent">
     <CustomMeta :title="'Home ⚡ Made with Supabase'" />
 
-    <div class="mt-16 flex flex-col items-center">
+    <div class="mt-8 flex flex-col items-center">
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
       <div class="mt-2 flex flex-col md:flex-row items-center">
         <GithubBanner class="my-1 md:my-0 md:mx-1"></GithubBanner>
@@ -19,95 +19,29 @@
             height="54"
         /></a>
       </div>
-      <NuxtLink
-        class="
-          relative
-          overflow-hidden
-          mt-4
-          p-8
-          w-full
-          max-w-screen-lg
-          md:h-48
-          flex flex-col
-          md:flex-row
-          items-center
-          justify-center
-          md:justify-between
-          bg-gradient-to-tr
-          from-emerald-600
-          to-emerald-300
-          rounded-lg
-          group
-        "
-        to="/hacktoberfest"
-        id="hacktober"
-      >
-        <div
-          class="
-            absolute
-            h-100
-            w-72
-            -top-52
-            -left-60
-            group-hover:-left-50
-            transition-all
-            bg-emerald-800
-            opacity-70
-            transform
-            -rotate-40
-          "
-        ></div>
-        <div
-          class="
-            absolute
-            h-100
-            w-72
-            -top-32
-            -left-50
-            group-hover:-left-60
-            transition-all
-            bg-emerald-600
-            opacity-70
-            transform
-            -rotate-40
-          "
-        ></div>
-        <div
-          class="
-            absolute
-            h-100
-            w-72
-            -top-120
-            left-80
-            group-hover:-top-100
-            transition-all
-            bg-emerald-200
-            opacity-70
-            transform
-            -rotate-40
-          "
-        ></div>
-        <div
-          class="
-            absolute
-            h-56
-            w-72
-            -bottom-32
-            group-hover:-bottom-22
-            -right-36
-            group-hover:-right-26
-            transition-all
-            bg-emerald-800
-            opacity-70
-            transform
-            -rotate-45
-          "
-        ></div>
-        <div class="relative">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl">Hacktoberfest</h1>
-        </div>
-        <button class="relative px-6 py-3 mt-2 md:mt-0 rounded-lg bg-white text-emerald-600">Announcement 🥇</button>
-      </NuxtLink>
+      <div class="w-full max-w-screen-lg relative flex-shrink-0 pb-1/4 md:pb-1/5 mt-8 rounded-lg overflow-hidden group">
+        <a
+          href="https://supabase.com/blog/2021/11/26/supabase-launch-week-the-trilogy"
+          target="_blank"
+          rel="noopener"
+          class=""
+        >
+          <img class="absolute w-full h-full object-cover" :src="LaunchWeek" alt="" />
+          <i-twemoji:rocket
+            class="
+              w-20
+              h-20
+              absolute
+              top-full
+              group-hover:top-1/2
+              left-1/2
+              transform
+              -translate-x-1/2
+              transition transition-all
+            "
+          />
+        </a>
+      </div>
     </div>
 
     <transition name="fade" mode="out-in">
@@ -217,7 +151,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-// import { supabase } from "@/script/supabase"
+import LaunchWeek from "@/assets/launch-week-3.jpg"
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)
