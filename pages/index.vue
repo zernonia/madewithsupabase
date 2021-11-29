@@ -144,15 +144,15 @@
     <div class="mt-12 w-full flex space-x-2 items-center justify-center">
       <div>
         <NuxtLink
-          v-if="$route.query.page && +($route.query.page as string) != 1"
+          v-if="page != 0"
           class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
-          query: { page: +($route.query.page as string) -1 },
-          params: {
-            savePosition: true,
-            position: target?.offsetTop - 50,
-          },
-        }"
+            query: { page: page },
+            params: {
+              savePosition: true,
+              position: target?.offsetTop - 50,
+            },
+          }"
         >
           <i-mdi:menu-left class="w-8 h-8"></i-mdi:menu-left>
         </NuxtLink>
@@ -189,15 +189,15 @@
       </div>
       <div>
         <NuxtLink
-          v-if="+($route.query.page as string) != maxPage"
+          v-if="page != maxPage - 1"
           class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
-          query: { page: +($route.query.page as string) + 1 },
-          params: {
-            savePosition: true,
-            position: target?.offsetTop - 50,
-          },
-        }"
+            query: { page: page + 2 },
+            params: {
+              savePosition: true,
+              position: target?.offsetTop - 50,
+            },
+          }"
         >
           <i-mdi:menu-right class="w-8 h-8"></i-mdi:menu-right>
         </NuxtLink>
