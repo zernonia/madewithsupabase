@@ -5,6 +5,7 @@
     <div class="mt-16 flex flex-col items-center">
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
       <a
+        rel="noopener"
         class="mt-2"
         href="https://www.producthunt.com/posts/made-with-supabase?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-made-with-supabase"
         target="_blank"

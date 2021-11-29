@@ -35,10 +35,6 @@ export default defineNuxtConfig({
     ],
     link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
   },
-  routes: {
-    "/": { swr: "10 min" },
-    "/p/*": { swr: "10 min" }, // Once on-demand each 10 minutes (via lambda)
-  },
   vite: {
     plugins: [
       Components({

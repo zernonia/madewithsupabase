@@ -8,7 +8,7 @@
     />
     <transition name="fade" mode="out-in">
       <div class="mt-4" v-if="!pending">
-        <div v-if="routeData.id">
+        <div v-if="routeData && routeData.id">
           <div class="w-full flex items-center justify-between">
             <button
               @click="$router.back()"
@@ -28,19 +28,30 @@
 
           <div class="mt-8 flex flex-col items-center justify-center">
             <h1 class="text-center text-4xl">{{ routeData.title }}</h1>
-            <a :href="computedUrl" target="_blank" class="btn mt-2 inline-flex items-center"
+            <a :href="computedUrl" target="_blank" rel="noopener" class="btn mt-2 inline-flex items-center"
               >Visit Website <i-ic:twotone-ads-click class="ml-2"></i-ic:twotone-ads-click>
             </a>
           </div>
           <div class="mt-12 flex flex-col md:flex-row justify-between relative">
             <SVGCircle class="absolute -top-10 -left-10 z-0"></SVGCircle>
             <div
-              class="w-full md:w-2/3 p-8 flex z-10 flex-col space-y-16 rounded-xl border-5 border-dark-300 bg-dark-600"
+              class="
+                w-full
+                md:w-2/3
+                p-4
+                md:p-8
+                flex
+                z-10
+                flex-col
+                space-y-16
+                rounded-xl
+                border-5 border-dark-300
+                bg-dark-600
+              "
             >
               <div>
                 <i-mdi:information-outline class="w-8 h-8"></i-mdi:information-outline>
                 <h2 class="text-3xl mb-2">Description</h2>
-                <!-- <p class="text-light-900">{{ routeData.description }}</p> -->
                 <Marked class="break-words" :text="routeData.description"></Marked>
               </div>
 
@@ -75,6 +86,7 @@
                     v-if="routeData.github_url"
                     :href="routeData.github_url"
                     target="_blank"
+                    rel="noopener"
                     class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:github class="mr-2"></i-mdi:github> {{ routeData.github_url.split(".com/")[1] }}</a
                   >
@@ -82,6 +94,7 @@
                     v-if="routeData.twitter"
                     :href="'https://twitter.com/' + routeData.twitter"
                     target="_blank"
+                    rel="noopener"
                     class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:twitter class="mr-2"></i-mdi:twitter> {{ routeData.twitter }}</a
                   >
@@ -89,13 +102,14 @@
                     v-if="routeData.instagram"
                     :href="'https://instagram.com/' + routeData.instagram"
                     target="_blank"
+                    rel="noopener"
                     class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:instagram class="mr-2"></i-mdi:instagram> {{ routeData.instagram }}</a
                   >
                 </div>
               </div>
 
-              <a :href="tweetLink" target="_blank" class="px-6 mt-6 rounded-xl flex space-x-4">
+              <a :href="tweetLink" target="_blank" rel="noopener" class="px-6 mt-6 rounded-xl flex space-x-4">
                 <i-mdi:twitter class="w-7 h-7"></i-mdi:twitter>
                 <h2 class="text-2xl">Tweet it!</h2>
               </a>

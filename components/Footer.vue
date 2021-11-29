@@ -38,12 +38,13 @@
         <p>Created by</p>
         <a
           href="https://www.zernonia.com"
+          rel="noopener"
           target="_blank"
           class="ml-2 relative underline underline-offset-2 underline-dark-100 underline-3"
         >
           Zernonia</a
         >
-        <a href="https://twitter.com/zernonia" target="_blank">
+        <a rel="noopener" href="https://twitter.com/zernonia" target="_blank">
           <i-mdi:twitter class="ml-2"></i-mdi:twitter>
         </a>
       </div>

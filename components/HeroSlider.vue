@@ -33,6 +33,7 @@
 
       <button
         slot="container-end"
+        aria-label="slider-left"
         class="
           image-prev
           absolute
@@ -52,6 +53,7 @@
       </button>
       <button
         slot="container-end"
+        aria-label="slider-right"
         class="
           image-next
           absolute

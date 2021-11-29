@@ -8,6 +8,7 @@
     </a>
     <div class="w-1/3 flex items-center justify-end space-x-2">
       <a
+        rel="noopener"
         href="https://twitter.com/madewifsupabase"
         target="_blank"
         class="p-3 rounded-md flex items-center hover:bg-dark-300"
