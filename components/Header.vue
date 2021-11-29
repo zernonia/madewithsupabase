@@ -14,7 +14,6 @@
         class="p-3 rounded-md flex items-center hover:bg-dark-300"
         ><i-mdi:twitter class="w-6 h-6"></i-mdi:twitter
       ></a>
-      <!-- <button class="p-3 rounded-md flex items-center hover:bg-dark-300"><i-mdi:instagram class="w-6 h-6"></i-mdi:instagram></button> -->
       <NuxtLink class="btn !ml-4 hidden md:block" to="/submission"> Submit a Project </NuxtLink>
     </div>
   </header>

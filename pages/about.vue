@@ -9,12 +9,43 @@
     <br />
     <br />
     <h2 class="text-2xl">Tech Stack:</h2>
-    <ul class="list-disc">
-      <li>Vue 3 → Nuxt 3</li>
-      <li>Vite</li>
-      <li>WindiCSS</li>
-      <li>Supabase</li>
-    </ul>
+    <div class="mt-4">
+      <a
+        target="_blank"
+        href="https://v3.nuxtjs.org/"
+        rel="noopener"
+        class="text-sm rounded-md bg-dark-400 mr-2 mb-2 px-4 py-2"
+        >Vue 3 → Nuxt 3</a
+      >
+      <a
+        target="_blank"
+        href="https://vitejs.dev/"
+        rel="noopener"
+        class="text-sm rounded-md bg-dark-400 mr-2 mb-2 px-4 py-2"
+        >Vite</a
+      >
+      <a
+        target="_blank"
+        href="https://windicss.org/"
+        rel="noopener"
+        class="text-sm rounded-md bg-dark-400 mr-2 mb-2 px-4 py-2"
+        >WindiCSS</a
+      >
+      <a
+        target="_blank"
+        href="https://supabase.com/"
+        rel="noopener"
+        class="text-sm rounded-md bg-dark-400 mr-2 mb-2 px-4 py-2"
+        >Supabase</a
+      >
+      <a
+        target="_blank"
+        href="https://vercel.com/"
+        rel="noopener"
+        class="text-sm rounded-md bg-dark-400 mr-2 mb-2 px-4 py-2"
+        >Vercel</a
+      >
+    </div>
 
     <div class="mt-12">
       <router-link class="px-6 py-3 rounded-lg bg-dark-400 hover:bg-dark-500 transition" to="contact">
