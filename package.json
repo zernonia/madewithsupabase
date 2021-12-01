@@ -10,6 +10,12 @@
     "start": "node .output/server/index.mjs",
     "serve": "vite preview"
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": false
+  },
   "dependencies": {
     "@supabase/supabase-js": "^1.21.3",
     "@vueuse/components": "^6.7.4",
