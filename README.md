@@ -2,14 +2,14 @@
 <br />
 <p align="center">
   <a href="https://github.com/zernonia/madewithsupabase">
-    <img src="assets/logo.svg" alt="Logo" width="80" height="80">
+    <img src="assets/logo.svg" alt="Logo" width="80" height="80" />
   </a>
 
   <h2 align="center"><strong>Made with Supabase ⚡</strong></h2>
 
   <p align="center">
   A collection of projects made with <a href="https://supabase.io/">Supabase</a>
-    <br>
+    <br />
     Websites, Mobile Apps, SaaS, Plugins and more!
     <br />
     <br />
@@ -53,7 +53,11 @@ It turns out that this project gained a lot of attention from Supabase users, as
 
 [![Schema generated using Supabase Schema](public/schema.png)](https://supabase-schema.vercel.app/)
 
-## Table
+## Set up your Supabase tables, views, and storage buckets
+
+Run the below SQL queries in your Supabase SQL editor on https://app.supabase.io/project/sql .
+
+### Tables
 
 `products`
 
@@ -93,7 +97,7 @@ create table views (
 alter table views enable row level security;
 ```
 
-## Views
+### Views
 
 `products_view`
 
@@ -136,7 +140,7 @@ create view tags_view as
   group by s.tags;
 ```
 
-## Function
+### Functions
 
 `get_related_products`
 
@@ -176,6 +180,10 @@ begin
     select * from products_view where tag like any(supabase_features);
 end; $$
 ```
+
+### Storage
+
+Create a new public bucket called `products` on https://app.supabase.io/project/storage/buckets .
 
 # 🌎 Local Development
 
