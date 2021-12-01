@@ -63,14 +63,14 @@ create table products (
   title text,
   email text,
   description text,
-  categories ARRAY,
+  categories text ARRAY,
   url text,
   github_url text,
   twitter text,
   instagram text,
-  images ARRAY,
+  images text ARRAY,
   slug text,
-  supabase_features ARRAY,
+  supabase_features text ARRAY,
   approved boolean,
   created_at timestamp default now()
 );
@@ -98,20 +98,22 @@ alter table views enable row level security;
 `products_view`
 
 ```sql
-select products.id,
-  products.title,
-  products.description,
-  products.categories,
-  products.url,
-  products.github_url,
-  products.twitter,
-  products.instagram,
-  products.images,
-  products.slug,
-  products.supabase_features,
-  products.approved,
-  products.created_at,
-  count(views.id) as views
+create view products_view as
+  select
+    products.id,
+    products.title,
+    products.description,
+    products.categories,
+    products.url,
+    products.github_url,
+    products.twitter,
+    products.instagram,
+    products.images,
+    products.slug,
+    products.supabase_features,
+    products.approved,
+    products.created_at,
+    count(views.id) as views
   from products
     left join views on products.id = views.product_id
   where products.approved = true
@@ -121,11 +123,16 @@ select products.id,
 `tags_view`
 
 ```sql
-select s.tags,
-  count(*) as count
-  from ( select unnest(products.categories) as tags
+create view tags_view as
+  select
+    s.tags,
+    count(*) as count
+  from (
+    select
+      unnest(products.categories) as tags
     from products
-    where products.approved = true) s
+    where products.approved = true
+  ) s
   group by s.tags;
 ```
 
