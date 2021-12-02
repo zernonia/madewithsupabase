@@ -2,7 +2,7 @@
   <main class="py-8" v-if="isMounted">
     <section class="md:py-6 px-4 flex flex-col items-center">
       <a href="/">
-        <img class="w-12 sm:w-16" src="../assets/logo.svg" alt="" />
+        <img class="w-12 sm:w-16" :src="SiteLogo" alt="" />
       </a>
       <div class="px-1 mt-12 h-36 md:h-52 w-full max-w-screen-lg rounded-lg">
         <div class="relative flex h-full w-full">
@@ -225,6 +225,7 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
+import SiteLogo from "@/assets/logo.svg"
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
 
 const { $supabase } = useNuxtApp()
