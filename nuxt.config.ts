@@ -11,13 +11,15 @@ export default defineNuxtConfig({
       {
         hid: "description",
         name: "description",
-        content: "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
+        content:
+          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
       },
       { name: "og:title", content: "Showcase ⚡ Made with Supabase" },
       { name: "og:site_name", content: "Showcase ⚡ Made with Supabase" },
       {
         name: "og:description",
-        content: "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
+        content:
+          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
       },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://www.madewithsupabase.com/" },
@@ -29,9 +31,13 @@ export default defineNuxtConfig({
       { name: "twitter:title", content: "Showcase ⚡ Made with Supabase" },
       {
         name: "twitter:description",
-        content: "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
+        content:
+          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
       },
-      { name: "twitter:image", content: "https://www.madewithsupabase.com/og.png" },
+      {
+        name: "twitter:image",
+        content: "https://www.madewithsupabase.com/og.png",
+      },
     ],
     link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
   },
@@ -67,6 +73,6 @@ export default defineNuxtConfig({
   ],
   publicRuntimeConfig: {
     SUPABASE_URL: process.env.SUPABASE_URL,
-    SUPABASE_KEY: process.env.SUPABASE_KEY,
+    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
   },
 })

@@ -2,14 +2,14 @@
 <br />
 <p align="center">
   <a href="https://github.com/zernonia/madewithsupabase">
-    <img src="assets/logo.svg" alt="Logo" width="80" height="80">
+    <img src="assets/logo.svg" alt="Logo" width="80" height="80" />
   </a>
 
   <h2 align="center"><strong>Made with Supabase ⚡</strong></h2>
 
   <p align="center">
   A collection of projects made with <a href="https://supabase.io/">Supabase</a>
-    <br>
+    <br />
     Websites, Mobile Apps, SaaS, Plugins and more!
     <br />
     <br />
@@ -53,7 +53,11 @@ It turns out that this project gained a lot of attention from Supabase users, as
 
 [![Schema generated using Supabase Schema](public/schema.png)](https://supabase-schema.vercel.app/)
 
-## Table
+## Set up your Supabase tables, views, and storage buckets
+
+Run the below SQL queries in your Supabase SQL editor on https://app.supabase.io/project/sql .
+
+### Tables
 
 `products`
 
@@ -63,14 +67,14 @@ create table products (
   title text,
   email text,
   description text,
-  categories ARRAY,
+  categories text ARRAY,
   url text,
   github_url text,
   twitter text,
   instagram text,
-  images ARRAY,
+  images text ARRAY,
   slug text,
-  supabase_features ARRAY,
+  supabase_features text ARRAY,
   approved boolean,
   created_at timestamp default now()
 );
@@ -93,25 +97,27 @@ create table views (
 alter table views enable row level security;
 ```
 
-## Views
+### Views
 
 `products_view`
 
 ```sql
-select products.id,
-  products.title,
-  products.description,
-  products.categories,
-  products.url,
-  products.github_url,
-  products.twitter,
-  products.instagram,
-  products.images,
-  products.slug,
-  products.supabase_features,
-  products.approved,
-  products.created_at,
-  count(views.id) as views
+create view products_view as
+  select
+    products.id,
+    products.title,
+    products.description,
+    products.categories,
+    products.url,
+    products.github_url,
+    products.twitter,
+    products.instagram,
+    products.images,
+    products.slug,
+    products.supabase_features,
+    products.approved,
+    products.created_at,
+    count(views.id) as views
   from products
     left join views on products.id = views.product_id
   where products.approved = true
@@ -121,15 +127,20 @@ select products.id,
 `tags_view`
 
 ```sql
-select s.tags,
-  count(*) as count
-  from ( select unnest(products.categories) as tags
+create view tags_view as
+  select
+    s.tags,
+    count(*) as count
+  from (
+    select
+      unnest(products.categories) as tags
     from products
-    where products.approved = true) s
+    where products.approved = true
+  ) s
   group by s.tags;
 ```
 
-## Function
+### Functions
 
 `get_related_products`
 
@@ -170,6 +181,21 @@ begin
 end; $$
 ```
 
+### Storage
+
+- Create a new **public** bucket called `products` on https://app.supabase.io/project/storage/buckets .
+- Navigate to the storage policy settings (https://app.supabase.io/project/storage/policies)
+- Create the following policies:
+  - Give anon users READ access:
+    - Allowed operations: `SELECT`
+    - Policy definition: `(bucket_id = 'products'::text)`
+  - Give anon users INSERT access:
+    - Allowed operations: `INSERT`
+    - Policy definition: `((bucket_id = 'products'::text) AND (role() = 'anon'::text))`
+  - Deny DELETE:
+    - Allowed operations: `DELETE`
+    - Policy definition: `((bucket_id = 'products'::text) AND (role() = 'authenticated'::text))`
+
 # 🌎 Local Development
 
 ## Prerequisites
@@ -193,8 +219,8 @@ Yarn
 3. Setup your Supabase environment `.env`
    ```sh
    SUPABASE_URL=<SUPABASE_URL>
-   SUPABASE_KEY=<SUPABASE_KEY>
-   SUPABASE_SERVICE=<SUPABASE_SERVICE_KEY>
+   SUPABASE_ANON_KEY=<SUPABASE_ANON_KEY>
+   SUPABASE_SERVICE_KEY=<SUPABASE_SERVICE_KEY>
    ```
 4. Run Development instance
    ```sh
