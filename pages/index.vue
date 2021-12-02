@@ -19,33 +19,53 @@
             height="54"
         /></a>
       </div>
-      <div class="w-full max-w-screen-lg relative flex-shrink-0 pb-1/4 md:pb-1/5 mt-8 rounded-lg overflow-hidden group">
-        <a
-          href="https://supabase.com/blog/2021/11/26/supabase-launch-week-the-trilogy"
-          target="_blank"
-          rel="noopener"
-          class=""
-        >
-          <img class="absolute w-full h-full object-cover" :src="LaunchWeek" alt="" />
-          <i-twemoji:rocket
+
+      <div class="px-1 mt-12 h-36 md:h-52 w-full max-w-screen-lg rounded-lg">
+        <div class="relative flex h-full w-full">
+          <NuxtLink
+            to="/holiday-hackdays"
             class="
-              w-20
-              h-20
+              z-10
               absolute
-              top-full
-              group-hover:top-1/2
-              left-1/2
-              transform
-              -translate-x-1/2
-              transition transition-all
+              w-full
+              h-full
+              flex
+              justify-center
+              items-center
+              bg-gradient-to-br
+              from-gray-900
+              to-black
+              rounded-lg
+              overflow-hidden
             "
-          />
-        </a>
+          >
+            <img class="w-full h-full object-cover" :src="HeroImage" alt="" />
+          </NuxtLink>
+          <div
+            class="absolute w-full h-full bg-conic-gradient filter blur-xl"
+          ></div>
+          <div
+            class="
+              absolute
+              w-full
+              h-full
+              bg-conic-gradient
+              filter
+              blur-3xl
+              opacity-60
+              animate-pulse-slow
+            "
+          ></div>
+          <div class="absolute -inset-1 rounded-lg bg-conic-gradient"></div>
+        </div>
       </div>
     </div>
 
     <transition name="fade" mode="out-in">
-      <div v-if="hero && hero.length && !heroPending" class="flex flex-col items-center">
+      <div
+        v-if="hero && hero.length && !heroPending"
+        class="flex flex-col items-center"
+      >
         <HeroSlider :data="hero"></HeroSlider>
 
         <div class="mt-16 sm:mt-24">
@@ -60,14 +80,19 @@
         <Divider class="my-16 !bg-dark-700"></Divider>
 
         <div>
-          <h1 ref="target" class="text-4xl text-center mb-4 sm:mb-8">Most Viewed</h1>
+          <h1 ref="target" class="text-4xl text-center mb-4 sm:mb-8">
+            Most Viewed
+          </h1>
           <transition name="fade" mode="out-in">
             <div v-if="!pending" class="card-grid">
               <div v-for="item in latest" :key="item.id">
                 <Card :item="item"></Card>
               </div>
             </div>
-            <div v-else class="w-full h-screen flex items-center justify-center">
+            <div
+              v-else
+              class="w-full h-screen flex items-center justify-center"
+            >
               <SVGCircle class="animate-ping"></SVGCircle>
             </div>
           </transition>
@@ -82,7 +107,13 @@
       <div>
         <NuxtLink
           v-if="page != 0"
-          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
+          class="
+            text-dark-300
+            hover:text-gray-300
+            rounded-lg
+            transition
+            ease-in-out
+          "
           :to="{
             query: { page: page },
             params: {
@@ -127,7 +158,13 @@
       <div>
         <NuxtLink
           v-if="page != maxPage - 1"
-          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
+          class="
+            text-dark-300
+            hover:text-gray-300
+            rounded-lg
+            transition
+            ease-in-out
+          "
           :to="{
             query: { page: page + 2 },
             params: {
@@ -151,7 +188,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import LaunchWeek from "@/assets/launch-week-3.jpg"
+import HeroImage from "@/assets/supabase-hackathon-v2.png"
+
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)
@@ -163,7 +201,12 @@ const maxPage = computed(() => Math.ceil(itemCount.value / countPerPage))
 const route = useRoute()
 const { data: hero, pending: heroPending } = await useAsyncData(
   "hero",
-  () => $supabase.from("products_view").select("*").order("created_at", { ascending: false }).limit(3),
+  () =>
+    $supabase
+      .from("products_view")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .limit(3),
   {
     transform: (a: any) => a.data,
   }
@@ -190,7 +233,10 @@ const { data: latest, pending } = await useAsyncData(
       .from("products_view")
       .select("*", { count: "exact" })
       .order("views", { ascending: false })
-      .range(page.value * countPerPage, page.value * countPerPage + (countPerPage - 1)),
+      .range(
+        page.value * countPerPage,
+        page.value * countPerPage + (countPerPage - 1)
+      ),
   {
     transform: (a: any) => {
       itemCount.value = a.count
@@ -204,7 +250,10 @@ const fetchLatest = async () => {
     .from("products_view")
     .select("*", { count: "exact" })
     .order("views", { ascending: false })
-    .range(page.value * countPerPage, page.value * countPerPage + (countPerPage - 1))
+    .range(
+      page.value * countPerPage,
+      page.value * countPerPage + (countPerPage - 1)
+    )
   if (data) {
     latest.value = data
   }
