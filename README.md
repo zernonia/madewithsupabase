@@ -183,7 +183,18 @@ end; $$
 
 ### Storage
 
-Create a new public bucket called `products` on https://app.supabase.io/project/storage/buckets .
+- Create a new **public** bucket called `products` on https://app.supabase.io/project/storage/buckets .
+- Navigate to the storage policy settings (https://app.supabase.io/project/storage/policies)
+- Create the following policies:
+  - Give anon users READ access:
+    - Allowed operations: `SELECT`
+    - Policy definition: `(bucket_id = 'products'::text)`
+  - Give anon users INSERT access:
+    - Allowed operations: `INSERT`
+    - Policy definition: `((bucket_id = 'products'::text) AND (role() = 'anon'::text))`
+  - Deny DELETE:
+    - Allowed operations: `DELETE`
+    - Policy definition: `((bucket_id = 'products'::text) AND (role() = 'authenticated'::text))`
 
 # 🌎 Local Development
 
