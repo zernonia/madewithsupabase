@@ -11,7 +11,7 @@
           >
             <div class="relative flex h-full w-full">
               <a
-                href="https://supabase.com"
+                href="https://supabase.com/blog/2021/12/03/supabase-holiday-hackdays-hackathon"
                 rel="noopener"
                 target="_blank"
                 class="
