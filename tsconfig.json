@@ -9,11 +9,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"], 
-    "types": [
-      "@nuxt/types",
-      "nuxt-windicss",
-      "remove-markdown"
-    ]
-  },
+    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom"],
+    "types": ["@nuxt/types", "nuxt-windicss", "remove-markdown"]
+  }
 }

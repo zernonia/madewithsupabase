@@ -12,24 +12,47 @@
           <div class="w-full flex items-center justify-between">
             <button
               @click="$router.back()"
-              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+              class="
+                inline-flex
+                items-center
+                text-dark-50
+                hover:text-light-900
+                transition
+              "
             >
               <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Back
             </button>
             <button
               @click="$router.push(`/edit/${$route.params.name}`)"
-              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+              class="
+                inline-flex
+                items-center
+                text-dark-50
+                hover:text-light-900
+                transition
+              "
             >
-              <i-mdi:square-edit-outline class="mr-2 w-6 h-6"></i-mdi:square-edit-outline> Edit
+              <i-mdi:square-edit-outline
+                class="mr-2 w-6 h-6"
+              ></i-mdi:square-edit-outline>
+              Edit
             </button>
           </div>
 
-          <MySlider class="max-w-screen-lg" :images="routeData.images"></MySlider>
+          <MySlider
+            class="max-w-screen-lg"
+            :images="routeData.images"
+          ></MySlider>
 
           <div class="mt-8 flex flex-col items-center justify-center">
             <h1 class="text-center text-4xl">{{ routeData.title }}</h1>
-            <a :href="computedUrl" target="_blank" rel="noopener" class="btn mt-2 inline-flex items-center"
-              >Visit Website <i-ic:twotone-ads-click class="ml-2"></i-ic:twotone-ads-click>
+            <a
+              :href="computedUrl"
+              target="_blank"
+              rel="noopener"
+              class="btn mt-2 inline-flex items-center"
+              >Visit Website
+              <i-ic:twotone-ads-click class="ml-2"></i-ic:twotone-ads-click>
             </a>
           </div>
           <div class="mt-12 flex flex-col md:flex-row justify-between relative">
@@ -50,26 +73,41 @@
               "
             >
               <div>
-                <i-mdi:information-outline class="w-8 h-8"></i-mdi:information-outline>
+                <i-mdi:information-outline
+                  class="w-8 h-8"
+                ></i-mdi:information-outline>
                 <h2 class="text-3xl mb-2">Description</h2>
-                <Marked class="break-words" :text="routeData.description"></Marked>
+                <Marked
+                  class="break-words"
+                  :text="routeData.description"
+                ></Marked>
               </div>
 
               <div>
                 <i-mdi:lightning-bolt class="w-8 h-8"></i-mdi:lightning-bolt>
                 <h2 class="text-3xl mb-2">Supabase Features</h2>
                 <div class="prose">
-                  <ul v-if="!routeData.supabase_features || !routeData.supabase_features.length">
+                  <ul
+                    v-if="
+                      !routeData.supabase_features ||
+                      !routeData.supabase_features.length
+                    "
+                  >
                     <li class="text-light-900">Unknown</li>
                   </ul>
                   <ul v-else class="text-light-900">
-                    <li v-for="feature in routeData.supabase_features">{{ feature }}</li>
+                    <li v-for="feature in routeData.supabase_features">
+                      {{ feature }}
+                    </li>
                   </ul>
                 </div>
               </div>
 
               <div class="flex flex-wrap items-center mt-2">
-                <div class="text-sm rounded-md bg-dark-400 mr-2 mb-2" v-for="category in routeData.categories">
+                <div
+                  class="text-sm rounded-md bg-dark-400 mr-2 mb-2"
+                  v-for="category in routeData.categories"
+                >
                   <router-link :to="'/tag/' + category">
                     <p class="px-4 py-2"># {{ category }}</p>
                   </router-link>
@@ -78,8 +116,18 @@
             </div>
 
             <div class="w-full md:w-1/3 h-min mt-6 md:mt-0 md:ml-8">
-              <div class="p-8 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-xl">
-                <i-mdi:circle-multiple-outline class="w-8 h-8"></i-mdi:circle-multiple-outline>
+              <div
+                class="
+                  p-8
+                  bg-gradient-to-tr
+                  from-green-600
+                  to-emerald-400
+                  rounded-xl
+                "
+              >
+                <i-mdi:circle-multiple-outline
+                  class="w-8 h-8"
+                ></i-mdi:circle-multiple-outline>
                 <h2 class="text-3xl mb-2">Maker</h2>
                 <div class="flex flex-col space-y-1">
                   <a
@@ -87,29 +135,52 @@
                     :href="routeData.github_url"
                     target="_blank"
                     rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><i-mdi:github class="mr-2"></i-mdi:github> {{ routeData.github_url.split(".com/")[1] }}</a
+                    class="
+                      inline-flex
+                      items-center
+                      hover:underline
+                      underline-offset-1
+                    "
+                    ><i-mdi:github class="mr-2"></i-mdi:github>
+                    {{ routeData.github_url.split(".com/")[1] }}</a
                   >
                   <a
                     v-if="routeData.twitter"
                     :href="'https://twitter.com/' + routeData.twitter"
                     target="_blank"
                     rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><i-mdi:twitter class="mr-2"></i-mdi:twitter> {{ routeData.twitter }}</a
+                    class="
+                      inline-flex
+                      items-center
+                      hover:underline
+                      underline-offset-1
+                    "
+                    ><i-mdi:twitter class="mr-2"></i-mdi:twitter>
+                    {{ routeData.twitter }}</a
                   >
                   <a
                     v-if="routeData.instagram"
                     :href="'https://instagram.com/' + routeData.instagram"
                     target="_blank"
                     rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><i-mdi:instagram class="mr-2"></i-mdi:instagram> {{ routeData.instagram }}</a
+                    class="
+                      inline-flex
+                      items-center
+                      hover:underline
+                      underline-offset-1
+                    "
+                    ><i-mdi:instagram class="mr-2"></i-mdi:instagram>
+                    {{ routeData.instagram }}</a
                   >
                 </div>
               </div>
 
-              <a :href="tweetLink" target="_blank" rel="noopener" class="px-6 mt-6 rounded-xl flex space-x-4">
+              <a
+                :href="tweetLink"
+                target="_blank"
+                rel="noopener"
+                class="px-6 mt-6 rounded-xl flex space-x-4"
+              >
                 <i-mdi:twitter class="w-7 h-7"></i-mdi:twitter>
                 <h2 class="text-2xl">Tweet it!</h2>
               </a>
@@ -128,11 +199,17 @@
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
           <CustomMeta title="404 ⚡ Made with Supabase" />
 
-          <img class="w-40" src="../../assets/404.svg" />
+          <img class="w-40" :src="Logo404" />
           <h1 class="text-4xl">No project found...</h1>
           <button
             @click="$router.push('/')"
-            class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+            class="
+              inline-flex
+              items-center
+              text-dark-50
+              hover:text-light-900
+              transition
+            "
           >
             <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Home
           </button>
@@ -147,6 +224,7 @@
 </template>
 
 <script setup lang="ts">
+import Logo404 from "@/assets/404.svg"
 const { ssrContext, $supabase } = useNuxtApp()
 const notFound = ref(false)
 const route = useRoute()
@@ -157,7 +235,12 @@ const viewProduct = () => {
 
 const { data: routeData, pending } = await useAsyncData(
   "routeData",
-  () => $supabase.from("products_view").select("*").eq("slug", route.params.name).single(),
+  () =>
+    $supabase
+      .from("products_view")
+      .select("*")
+      .eq("slug", route.params.name)
+      .single(),
   {
     transform: (a: any) => a.data,
   }
@@ -182,7 +265,9 @@ viewProduct()
 
 const tweetLink = computed(() => {
   const href = "https://madewithsupabase.com" + route.fullPath
-  return `https://twitter.com/intent/tweet?original_referer=${href}&text=Check out ${routeData.value.title} ${
+  return `https://twitter.com/intent/tweet?original_referer=${href}&text=Check out ${
+    routeData.value.title
+  } ${
     routeData.value.twitter ? "by @" + routeData.value.twitter : ""
   }&url=${href}`
 })

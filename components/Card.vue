@@ -15,18 +15,47 @@
     >
       <div class="relative flex-shrink-0 pb-2/3">
         <CompressedImage v-if="item.images[0]" :src="item.images[0]" />
-        <div class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl" v-else>
-          <img class="w-24 h-24 opacity-50 filter grayscale" src="../assets/logo.svg" alt="" />
+        <div
+          class="
+            absolute
+            w-full
+            h-full
+            flex
+            justify-center
+            items-center
+            object-cover
+            rounded-xl
+          "
+          v-else
+        >
+          <img
+            class="w-24 h-24 opacity-50 filter grayscale"
+            :src="SiteLogo"
+            alt=""
+          />
         </div>
       </div>
-      <div class="p-4 sm:p-6 h-full flex flex-col justify-between border-t-5 border-dark-300">
+      <div
+        class="
+          p-4
+          sm:p-6
+          h-full
+          flex flex-col
+          justify-between
+          border-t-5 border-dark-300
+        "
+      >
         <h1 class="text-2xl">{{ item.title }}</h1>
-        <p class="break-words text-light-900 flex-1 my-4 leading-5 line-clamp-2">
+        <p
+          class="break-words text-light-900 flex-1 my-4 leading-5 line-clamp-2"
+        >
           {{ cleanse(item.description) }}
         </p>
         <div class="flex justify-between items-center">
           <div class="text-sm text-warm-gray-600 flex flex-wrap">
-            <p v-for="category in trimCategories" :key="category" class="mr-2">#{{ category }}</p>
+            <p v-for="category in trimCategories" :key="category" class="mr-2">
+              #{{ category }}
+            </p>
           </div>
           <div class="flex items-center flex-shrink-0 text-light-900">
             <p class="mr-1">{{ separator(item.views) }}</p>
@@ -40,6 +69,7 @@
 
 <script setup lang="ts">
 import removeMd from "remove-markdown"
+import SiteLogo from "@/assets/logo.svg"
 
 const prop = defineProps({
   item: {
