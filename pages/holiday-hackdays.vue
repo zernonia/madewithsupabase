@@ -68,7 +68,7 @@
           >
             <transition name="slide-fade" mode="out-in">
               <p v-if="timeOriginal">
-                3 Dec at 07:00am - to - 13 Dec at 12:59pm (PDT)
+                3 Dec at 07:00am - to - 12 Dec at 11:59pm (PT)
               </p>
               <p v-else>{{ timeString }}</p>
             </transition>
