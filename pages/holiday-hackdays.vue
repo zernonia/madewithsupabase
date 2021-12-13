@@ -68,7 +68,7 @@
           >
             <transition name="slide-fade" mode="out-in">
               <p v-if="timeOriginal">
-                3 Dec at 07:00am - to - 12 Dec at 11:59pm (PDT)
+                3 Dec at 07:00am - to - 13 Dec at 12:59pm (PDT)
               </p>
               <p v-else>{{ timeString }}</p>
             </transition>
@@ -109,7 +109,7 @@
         </section>
 
         <section
-          v-if="!submitted"
+          v-if="!submitted && !isExpired"
           ref="submitTarget"
           class="flex flex-col items-center"
         >
@@ -213,7 +213,7 @@
           </div>
         </section>
 
-        <section v-if="!submitted" class="w-full">
+        <section v-if="!submitted && !isExpired" class="w-full">
           <FormHacktoberfest @submit="completed"></FormHacktoberfest>
         </section>
       </main>
@@ -260,7 +260,7 @@ const timeString = computed(() => {
   dayjs.extend(timezone)
   // 1 Oct at 08:00am
   const start = dayjs("3 Dec 2021 07:00:00 PDT")
-  const end = dayjs("12 Dec 2021 23:59:00 PDT")
+  const end = dayjs("13 Dec 2021 00:59:00 PDT")
   // const start = `${s.getDate()} Oct 2021 ${s.getHours()}:${(s.getMinutes() < 10 ? "0" : "") + s.getMinutes()}`
   return `${start.format("D MMM")} at ${start.format(
     "hh:mma"
@@ -272,7 +272,7 @@ const timeString = computed(() => {
 const isExpired = computed(() => {
   if (dayjs) {
     dayjs.extend(isSameOrAfter)
-    const end = dayjs("12 Dec 2021 23:59:00 PDT")
+    const end = dayjs("13 Dec 2021 00:59:00 PDT")
     return dayjs(Date.now()).isSameOrAfter(end)
   } else {
     return false
