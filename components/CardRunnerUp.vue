@@ -31,7 +31,7 @@
       "
     >
       <h2 class="text-2xl md:text-4xl text-gray-300">Runner up</h2>
-      <h5 class="text-3xl md:text-5xl mt-2 text-right">{{ obj.title }}</h5>
+      <h5 class="text-3xl md:text-5xl mt-2 md:text-right">{{ obj.title }}</h5>
       <h6 class="md:text-xl">{{ obj.subtitle }} ―</h6>
     </div>
     <div class="w-full sm:w-1/2">
