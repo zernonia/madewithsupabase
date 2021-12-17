@@ -1,5 +1,16 @@
 <template>
-  <div class="w-full mt-8 md:mt-16 flex flex-col-reverse sm:flex-row items-center justify-center relative">
+  <div
+    class="
+      w-full
+      mt-8
+      md:mt-16
+      flex flex-col-reverse
+      sm:flex-row
+      items-center
+      justify-center
+      relative
+    "
+  >
     <div
       class="
         w-full
@@ -20,7 +31,7 @@
       "
     >
       <h2 class="text-2xl md:text-4xl text-gray-300">Runner up</h2>
-      <h5 class="text-3xl md:text-5xl mt-2">{{ obj.title }}</h5>
+      <h5 class="text-3xl md:text-5xl mt-2 text-right">{{ obj.title }}</h5>
       <h6 class="md:text-xl">{{ obj.subtitle }} ―</h6>
     </div>
     <div class="w-full sm:w-1/2">
@@ -55,7 +66,11 @@
           "
         >
           <div class="relative flex-shrink-0 pb-2/3">
-            <CompressedImage class="absolute inset-0 w-full h-full object-cover" :src="obj.image" alt="" />
+            <CompressedImage
+              class="absolute inset-0 w-full h-full object-cover"
+              :src="obj.image"
+              alt=""
+            />
           </div>
         </a>
       </div>
