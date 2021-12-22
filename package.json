@@ -24,6 +24,7 @@
     "dayjs": "^1.10.7",
     "lottie-web": "^5.7.13",
     "marked": "^3.0.2",
+    "nodemailer": "^6.7.2",
     "remove-markdown": "^0.3.0",
     "sharp": "^0.29.1",
     "swiper": "^6.8.1"
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@iconify/json": "^1.1.381",
     "@types/marked": "^3.0.0",
+    "@types/nodemailer": "^6.4.4",
     "@types/remove-markdown": "^0.3.1",
     "@types/sharp": "^0.29.1",
     "nuxt-windicss": "^2.0.8",
