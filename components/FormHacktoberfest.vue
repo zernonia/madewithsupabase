@@ -393,7 +393,7 @@ const pickFile = (e: any) => {
         let r = (Math.random() + 1).toString(36).substring(7)
         let index = form.value.images.length
         form.value.images[index] = result
-        const title = form.value.title + "-" + r + "-" + files[i].name
+        const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
         const { data } = await $supabase.storage
           .from("products")
           .upload(title, files[i], { upsert: true })
