@@ -4,7 +4,9 @@ import { createTransport, SendMailOptions } from "nodemailer"
 import marked from "marked"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { title, description, created_at } = await useBody(req)
+  const {
+    record: { title, description, created_at },
+  } = await useBody(req)
 
   if (title && created_at) {
     const transporter = createTransport({
@@ -20,7 +22,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       to: "zernonia@gmail.com",
       subject: "MadewithSupabase | new submission",
       html: `<h1>${title}</h1><p>${created_at}</p><br></br>${marked(
-        description
+        description ?? ""
       )}`,
     }
 
