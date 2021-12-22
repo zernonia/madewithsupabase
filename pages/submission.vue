@@ -3,20 +3,47 @@
     <form
       v-if="!isSubmitted"
       onsubmit="return false"
-      class="flex flex-col space-y-4 p-4 md:p-8 rounded-md w-full max-w-screen-lg"
+      class="
+        flex flex-col
+        space-y-4
+        p-4
+        md:p-8
+        rounded-md
+        w-full
+        max-w-screen-lg
+      "
     >
       <h1 id="form" class="text-3xl text-center mt-8">Project Submission</h1>
       <div class="flex flex-col">
         <label for="title">title *</label>
-        <input name="title" type="text" v-model="form.title" required placeholder="My Project" />
+        <input
+          name="title"
+          type="text"
+          v-model="form.title"
+          required
+          placeholder="My Project"
+        />
       </div>
       <div class="flex flex-col">
-        <label for="email" class="normal-case" required>Email (allow you to edit the project) *</label>
-        <input name="email" type="email" v-model="form.email" placeholder="madewithsupabase@gmail.com" />
+        <label for="email" class="normal-case" required
+          >Email (allow you to edit the project) *</label
+        >
+        <input
+          name="email"
+          type="email"
+          v-model="form.email"
+          placeholder="madewithsupabase@gmail.com"
+        />
       </div>
       <div class="flex flex-col">
         <label for="url">URL *</label>
-        <input name="url" type="url" v-model="form.url" required placeholder="https://www.supabase.io" />
+        <input
+          name="url"
+          type="url"
+          v-model="form.url"
+          required
+          placeholder="https://www.supabase.io"
+        />
       </div>
       <div class="flex flex-col">
         <label for="github_url">github url</label>
@@ -31,8 +58,20 @@
         <div class="flex justify-between items-center">
           <label for="description">description (Markdown Supported) * </label>
           <div class="flex space-x-2">
-            <button @click.prevent="isPreviewMd = true" class="hover:underline" v-if="!isPreviewMd">Preview</button>
-            <button @click.prevent="isPreviewMd = false" class="hover:underline" v-else>Edit</button>
+            <button
+              @click.prevent="isPreviewMd = true"
+              class="hover:underline"
+              v-if="!isPreviewMd"
+            >
+              Preview
+            </button>
+            <button
+              @click.prevent="isPreviewMd = false"
+              class="hover:underline"
+              v-else
+            >
+              Edit
+            </button>
           </div>
         </div>
         <div class="w-full">
@@ -59,7 +98,10 @@
       <div class="flex flex-col">
         <label class="normal-case" for="images">Image</label>
         <div class="h-64 flex rounded-md">
-          <div v-if="form.images.length" class="w-full h-full flex overflow-hidden overflow-x-auto">
+          <div
+            v-if="form.images.length"
+            class="w-full h-full flex overflow-hidden overflow-x-auto"
+          >
             <div
               @click="target?.click()"
               class="
@@ -75,25 +117,59 @@
             >
               <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
               <p>Click to 'Add' images</p>
-              <input class="hidden" ref="target" type="file" multiple @input="pickFile" accept="image/*" />
+              <input
+                class="hidden"
+                ref="target"
+                type="file"
+                multiple
+                @input="pickFile"
+                accept="image/*"
+              />
             </div>
-            <div v-for="(blob, index) in form.images" class="ml-2 flex-shrink-0 relative hover:children:block">
+            <div
+              v-for="(blob, index) in form.images"
+              class="ml-2 flex-shrink-0 relative hover:children:block"
+            >
               <div
                 v-if="blob.startsWith('http')"
-                class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
+                class="
+                  absolute
+                  w-full
+                  h-full
+                  center
+                  hidden
+                  hover:bg-dark-900 hover:bg-opacity-25
+                "
               >
                 <button
                   @click.prevent="removeImage(index)"
-                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
+                  class="
+                    flex flex-col
+                    items-center
+                    justify-center
+                    w-full
+                    h-full
+                    cursor-pointer
+                  "
                 >
                   <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
                   Click to 'Remove' image
                 </button>
               </div>
-              <div v-else class="absolute w-full h-full center bg-dark-900 bg-opacity-25">
+              <div
+                v-else
+                class="absolute w-full h-full center bg-dark-900 bg-opacity-25"
+              >
                 <button
                   @click.prevent=""
-                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
+                  class="
+                    flex flex-col
+                    items-center
+                    justify-center
+                    w-full
+                    h-full
+                    cursor-pointer
+                  "
                 >
                   <SVGCircle class="animate-ping w-16"></SVGCircle>
                 </button>
@@ -116,7 +192,14 @@
           >
             <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
             <p>Click to 'Add' images</p>
-            <input class="hidden" ref="target" type="file" multiple @input="pickFile" accept="image/*" />
+            <input
+              class="hidden"
+              ref="target"
+              type="file"
+              multiple
+              @input="pickFile"
+              accept="image/*"
+            />
           </div>
         </div>
       </div>
@@ -126,7 +209,13 @@
           <label for="twitter">Twitter</label>
           <div class="flex items-center">
             <span class="text-xl mr-2">@</span>
-            <input class="w-full" name="twitter" type="text" v-model="form.twitter" placeholder="madewithsupabase" />
+            <input
+              class="w-full"
+              name="twitter"
+              type="text"
+              v-model="form.twitter"
+              placeholder="madewithsupabase"
+            />
           </div>
         </div>
         <div class="flex flex-col w-1/2">
@@ -143,8 +232,16 @@
           </div>
         </div>
       </div>
-      <button :disabled="isSubmitting || isStillUploadingImage" class="btn w-min flex items-center" @click="submit">
-        Submit <SVGCircle v-if="isSubmitting" class="w-4 h-4 ml-4 animate-ping"></SVGCircle>
+      <button
+        :disabled="isSubmitting || isStillUploadingImage"
+        class="btn w-min flex items-center"
+        @click="submit"
+      >
+        Submit
+        <SVGCircle
+          v-if="isSubmitting"
+          class="w-4 h-4 ml-4 animate-ping"
+        ></SVGCircle>
       </button>
     </form>
     <div v-else class="text-center mt-12">
@@ -181,8 +278,10 @@ const slugify = (str: string) => {
   str = str.replace(/^\s+|\s+$/g, "")
   str = str.toLowerCase()
 
-  var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;"
-  var to = "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------"
+  var from =
+    "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;"
+  var to =
+    "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------"
   for (var i = 0, l = from.length; i < l; i++) {
     str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i))
   }
@@ -197,7 +296,11 @@ const slugify = (str: string) => {
 const submit = async () => {
   const regexUrl =
     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
-  if (form.value.title && form.value.url.match(regexUrl) && form.value.description) {
+  if (
+    form.value.title &&
+    form.value.url.match(regexUrl) &&
+    form.value.description
+  ) {
     isSubmitting.value = true
     form.value.slug = slugify(form.value.title)
     // const { data, error } = await fetch(`../api/function/submission`, {
@@ -234,10 +337,14 @@ const pickFile = (e: any) => {
         let r = (Math.random() + 1).toString(36).substring(7)
         let index = form.value.images.length
         form.value.images[index] = result
-        const title = form.value.title + "-" + r + "-" + files[i].name
-        const { data } = await $supabase.storage.from("products").upload(title, files[i], { upsert: true })
+        const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
+        const { data } = await $supabase.storage
+          .from("products")
+          .upload(title, files[i], { upsert: true })
         if (data) {
-          const { publicURL } = $supabase.storage.from("products").getPublicUrl(title)
+          const { publicURL } = $supabase.storage
+            .from("products")
+            .getPublicUrl(title)
           if (publicURL) {
             let newIndex = form.value.images.findIndex((i) => i == result)
             form.value.images[newIndex] = publicURL
@@ -252,13 +359,17 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = form.value.images[index].split("products/")[1]
   form.value.images.splice(index, 1)
-  const { data, error } = await $supabase.storage.from("products").remove([imageStr])
+  const { data, error } = await $supabase.storage
+    .from("products")
+    .remove([imageStr])
   if (!error) {
   }
 }
 
 const isStillUploadingImage = computed(() => {
-  return form.value.images.findIndex((i) => i.startsWith("data")) != -1 ? true : false
+  return form.value.images.findIndex((i) => i.startsWith("data")) != -1
+    ? true
+    : false
 })
 
 const isPreviewMd = ref(false)
