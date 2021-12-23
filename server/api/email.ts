@@ -4,9 +4,7 @@ import { createTransport, SendMailOptions } from "nodemailer"
 import marked from "marked"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  const {
-    record: { title, description, created_at },
-  } = await useBody(req)
+  const record: { title, description, created_at }  = await useBody(req)
 
   if (title && created_at) {
     const transporter = createTransport({
