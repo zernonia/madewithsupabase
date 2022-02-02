@@ -11,20 +11,7 @@
               href="https://supabase.com/blog/2021/12/03/supabase-holiday-hackdays-hackathon"
               rel="noopener"
               target="_blank"
-              class="
-                z-10
-                absolute
-                w-full
-                h-full
-                flex
-                justify-center
-                items-center
-                bg-gradient-to-br
-                from-gray-900
-                to-black
-                rounded-lg
-                overflow-hidden
-              "
+              class="z-10 absolute w-full h-full flex justify-center items-center bg-gradient-to-br from-gray-900 to-black rounded-lg overflow-hidden"
             >
               <img class="w-full h-full object-cover" :src="HeroImage" alt="" />
             </a>
@@ -32,16 +19,7 @@
               class="absolute w-full h-full bg-conic-gradient filter blur-xl"
             ></div>
             <div
-              class="
-                absolute
-                w-full
-                h-full
-                bg-conic-gradient
-                filter
-                blur-3xl
-                opacity-60
-                animate-pulse-slow
-              "
+              class="absolute w-full h-full bg-conic-gradient filter blur-3xl opacity-60 animate-pulse-slow"
             ></div>
             <div class="absolute -inset-1 rounded-lg bg-conic-gradient"></div>
           </div>
@@ -98,29 +76,14 @@
 
       <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
         <h2
-          class="
-            text-4xl
-            md:text-5xl
-            text-center
-            mb-4
-            sm:mb-16
-            text-emerald-400
-          "
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
         >
           Best Christmas Themed
         </h2>
         <CardWinner :obj="projects[4]">
           <template v-slot:icon>
             <i-whh:christmasstree
-              class="
-                h-24
-                md:h-36
-                w-auto
-                absolute
-                -top-10
-                -right-14
-                md:-right-24
-              "
+              class="h-24 md:h-36 w-auto absolute -top-10 -right-14 md:-right-24"
               style="color: #fcd33f"
             ></i-whh:christmasstree>
           </template>
@@ -137,29 +100,14 @@
 
       <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
         <h2
-          class="
-            text-4xl
-            md:text-5xl
-            text-center
-            mb-4
-            sm:mb-16
-            text-emerald-400
-          "
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
         >
           Most Visually Pleasing
         </h2>
         <CardWinner :obj="projects[6]">
           <template v-slot:icon>
             <i-ic:baseline-auto-awesome
-              class="
-                h-24
-                md:h-36
-                w-auto
-                absolute
-                -top-10
-                -right-14
-                md:-right-24
-              "
+              class="h-24 md:h-36 w-auto absolute -top-10 -right-14 md:-right-24"
               style="color: #fcd33f"
             ></i-ic:baseline-auto-awesome>
           </template>
@@ -178,14 +126,7 @@
     <section class="mt-12 md:mt-20">
       <div>
         <h2
-          class="
-            text-4xl
-            md:text-5xl
-            text-center
-            mb-4
-            sm:mb-16
-            text-emerald-400
-          "
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
         >
           Other Submission
         </h2>
@@ -206,17 +147,15 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  layout: "blank",
-}
-</script>
-
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import SiteLogo from "@/assets/logo.svg"
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
 const { $supabase } = useNuxtApp()
+
+definePageMeta({
+  layout: "blank",
+})
 
 const projects = ref([
   {

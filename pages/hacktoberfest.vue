@@ -4,18 +4,31 @@
       <a href="/">
         <img class="w-12 sm:w-16" src="@/assets/logo.svg" alt="" />
       </a>
-      <IconHacktoberfest class="pt-8 sm:pt-12 h-auto w-full sm:w-8/10 md:w-6/10"></IconHacktoberfest>
-      <div class="h-64 md:h-full w-64 md:w-128 transform -translate-y-20" ref="prizes"></div>
+      <IconHacktoberfest
+        class="pt-8 sm:pt-12 h-auto w-full sm:w-8/10 md:w-6/10"
+      ></IconHacktoberfest>
+      <div
+        class="h-64 md:h-full w-64 md:w-128 transform -translate-y-20"
+        ref="prizes"
+      ></div>
     </section>
 
     <section class="w-full md:py-6 flex flex-col items-center">
-      <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Best Overall Project</h2>
+      <h2
+        class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+      >
+        Best Overall Project
+      </h2>
       <CardWinner :obj="projects[0]"></CardWinner>
       <CardRunnerUp :obj="projects[1]"></CardRunnerUp>
     </section>
 
     <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
-      <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Most Visually Pleasing</h2>
+      <h2
+        class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+      >
+        Most Visually Pleasing
+      </h2>
       <CardWinner :obj="projects[2]">
         <template v-slot:icon>
           <i-fa:magic
@@ -34,7 +47,11 @@
       </CardRunnerUp>
 
       <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
-        <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Most Technically Impressive</h2>
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+        >
+          Most Technically Impressive
+        </h2>
         <CardWinner :obj="projects[4]">
           <template v-slot:icon>
             <i-heroicons-solid:chip
@@ -54,7 +71,11 @@
       </section>
 
       <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
-        <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Best mobile project</h2>
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+        >
+          Best mobile project
+        </h2>
         <CardWinner :obj="projects[6]">
           <template v-slot:icon>
             <i-simple-icons:appstore
@@ -74,21 +95,15 @@
       </section>
 
       <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
-        <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Most Spooky/Fun</h2>
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+        >
+          Most Spooky/Fun
+        </h2>
         <CardWinner :obj="projects[8]">
           <template v-slot:icon>
             <svg
-              class="
-                h-24
-                md:h-36
-                w-auto
-                absolute
-                transition-all
-                -top-0
-                group-hover:-top-14
-                -right-0
-                group-hover:-right-18 group-hover:md:-right-30
-              "
+              class="h-24 md:h-36 w-auto absolute transition-all -top-0 group-hover:-top-14 -right-0 group-hover:-right-18 group-hover:md:-right-30"
               xmlns="http://www.w3.org/2000/svg"
               width="512"
               height="512"
@@ -104,17 +119,7 @@
         <CardRunnerUp :obj="projects[9]">
           <template v-slot:icon>
             <svg
-              class="
-                h-18
-                md:h-30
-                w-auto
-                absolute
-                transition-all
-                -top-0
-                group-hover:-top-14
-                -left-0
-                group-hover:-left-12 group-hover:md:-left-26
-              "
+              class="h-18 md:h-30 w-auto absolute transition-all -top-0 group-hover:-top-14 -left-0 group-hover:-left-12 group-hover:md:-left-26"
               xmlns="http://www.w3.org/2000/svg"
               width="512"
               height="512"
@@ -132,10 +137,18 @@
 
     <section class="mt-12 md:mt-20">
       <div>
-        <h2 class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400">Other Submission</h2>
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+        >
+          Other Submission
+        </h2>
         <transition name="fade" mode="out-in">
           <div v-if="!isFetching" class="card-grid">
-            <Card v-for="item in hacktoberfestData" :key="item.id" :item="item"></Card>
+            <Card
+              v-for="item in hacktoberfestData"
+              :key="item.id"
+              :item="item"
+            ></Card>
           </div>
           <div v-else class="w-full h-screen flex items-center justify-center">
             <SVGCircle class="animate-ping"></SVGCircle>
@@ -147,9 +160,9 @@
 </template>
 
 <script lang="ts">
-export default {
+definePageMeta({
   layout: "blank",
-}
+})
 </script>
 
 <script setup lang="ts">
@@ -171,7 +184,8 @@ const projects = ref([
     title: "og:supa",
     subtitle: "@jnnksbrt",
     link: "/p/og-supa",
-    image: "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/og:supa-x2uen-ogimage.png",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/og:supa-x2uen-ogimage.png",
   },
   {
     id: "e6511092-4f14-4071-a97d-c00997107a7d",
@@ -186,7 +200,8 @@ const projects = ref([
     title: "Relm",
     subtitle: "@imsaptarshiii",
     link: "/p/relm",
-    image: "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/Relm-evfyf-cover.png",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/Relm-evfyf-cover.png",
   },
   {
     id: "c77204bb-467d-4007-8074-d0333797760e",
@@ -225,14 +240,16 @@ const projects = ref([
     title: "Spookd",
     subtitle: "@netgfx",
     link: "/p/spookd",
-    image: "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/Spookd-wu9m4-image (14).png",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/Spookd-wu9m4-image (14).png",
   },
   {
     id: "8e2789a6-8254-41af-8815-8cde592bab7e",
     title: "uwudaily",
     subtitle: "@maggie-j-liu, @sampoder, and @eilla1",
     link: "/p/uwudaily",
-    image: "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/uwudaily-l3ny0g-ogimage.png",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/uwudaily-l3ny0g-ogimage.png",
   },
 ])
 const prizes = ref()
@@ -251,7 +268,10 @@ const hacktoberfestData = ref<any>([])
 const isFetching = ref(true)
 const fetchData = async () => {
   isFetching.value = true
-  const { data, error } = await $supabase.from("hacktoberfest_view").select("*").order("views", { ascending: false })
+  const { data, error } = await $supabase
+    .from("hacktoberfest_view")
+    .select("*")
+    .order("views", { ascending: false })
   hacktoberfestData.value = data
   isFetching.value = false
 }

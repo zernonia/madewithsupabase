@@ -1,9 +1,13 @@
 <template>
   <div>
     <div>
-      <CustomMeta :key="routeName" :title="routeName + ' ⚡ Made with Supabase'" />
-
-      <NuxtPage></NuxtPage>
+      <CustomMeta
+        :key="routeName"
+        :title="routeName + ' ⚡ Made with Supabase'"
+      />
+      <NuxtLayout>
+        <NuxtPage></NuxtPage>
+      </NuxtLayout>
     </div>
   </div>
 </template>

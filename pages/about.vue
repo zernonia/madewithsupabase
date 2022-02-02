@@ -3,8 +3,9 @@
     <h1 class="text-4xl">About</h1>
     <p class="mt-8 px-4 text-xl max-w-screen-md text-center">
       Made with Supabase is made to showcase all the project that uses
-      <span> Supabase </span> as their preferred <span>Database</span>, <span> Authentication </span> or
-      <span> Storage</span>. Most importantly, that Made with Supabase is indeed, made with Supabase too!
+      <span> Supabase </span> as their preferred <span>Database</span>,
+      <span> Authentication </span> or <span> Storage</span>. Most importantly,
+      that Made with Supabase is indeed, made with Supabase too!
     </p>
     <br />
     <br />
@@ -48,7 +49,10 @@
     </div>
 
     <div class="mt-12">
-      <router-link class="px-6 py-3 rounded-lg bg-dark-400 hover:bg-dark-500 transition" to="contact">
+      <router-link
+        class="px-6 py-3 rounded-lg bg-dark-400 hover:bg-dark-500 transition"
+        to="contact"
+      >
         Contact
       </router-link>
     </div>
@@ -56,9 +60,9 @@
 </template>
 
 <script lang="ts">
-export default {
+definePageMeta({
   layout: "plain",
-}
+})
 </script>
 
 <style scoped>
