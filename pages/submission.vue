@@ -3,15 +3,7 @@
     <form
       v-if="!isSubmitted"
       onsubmit="return false"
-      class="
-        flex flex-col
-        space-y-4
-        p-4
-        md:p-8
-        rounded-md
-        w-full
-        max-w-screen-lg
-      "
+      class="flex flex-col space-y-4 p-4 md:p-8 rounded-md w-full max-w-screen-lg"
     >
       <h1 id="form" class="text-3xl text-center mt-8">Project Submission</h1>
       <div class="flex flex-col">
@@ -104,16 +96,7 @@
           >
             <div
               @click="target?.click()"
-              class="
-                h-64
-                w-64
-                text-light-900
-                cursor-pointer
-                flex flex-shrink-0 flex-col
-                items-center
-                justify-center
-                border-dark-500 border-2 border-dashed
-              "
+              class="h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-2 border-dashed"
             >
               <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
               <p>Click to 'Add' images</p>
@@ -132,25 +115,11 @@
             >
               <div
                 v-if="blob.startsWith('http')"
-                class="
-                  absolute
-                  w-full
-                  h-full
-                  center
-                  hidden
-                  hover:bg-dark-900 hover:bg-opacity-25
-                "
+                class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
               >
                 <button
                   @click.prevent="removeImage(index)"
-                  class="
-                    flex flex-col
-                    items-center
-                    justify-center
-                    w-full
-                    h-full
-                    cursor-pointer
-                  "
+                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
                   <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
                   Click to 'Remove' image
@@ -162,14 +131,7 @@
               >
                 <button
                   @click.prevent=""
-                  class="
-                    flex flex-col
-                    items-center
-                    justify-center
-                    w-full
-                    h-full
-                    cursor-pointer
-                  "
+                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
                   <SVGCircle class="animate-ping w-16"></SVGCircle>
                 </button>
@@ -180,15 +142,7 @@
           <div
             @click="target?.click()"
             v-else
-            class="
-              text-light-900
-              cursor-pointer
-              w-full
-              flex flex-col
-              items-center
-              justify-center
-              border-dark-500 border-2 border-dashed
-            "
+            class="text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-2 border-dashed"
           >
             <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
             <p>Click to 'Add' images</p>
@@ -303,15 +257,6 @@ const submit = async () => {
   ) {
     isSubmitting.value = true
     form.value.slug = slugify(form.value.title)
-    // const { data, error } = await fetch(`../api/function/submission`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     form: form.value,
-    //   }),
-    // }).then((res) => res.json())
 
     const { data, error } = (await $fetch(`/api/function/submission`, {
       method: "POST",
