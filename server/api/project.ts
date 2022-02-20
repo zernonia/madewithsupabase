@@ -17,10 +17,10 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     if (data) {
       return data
     } else {
-      res.statusCode = 404
+      res.statusCode = 500
       return error
     }
   }
-  res.statusCode = 404
+  res.statusCode = 500
   return "error"
 }

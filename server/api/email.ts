@@ -29,7 +29,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const err = await transporter.sendMail(mailOptions)
     return err
   } else {
-    res.statusCode = 404
+    res.statusCode = 500
     return "error"
   }
 }
