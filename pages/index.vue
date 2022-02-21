@@ -87,9 +87,8 @@
           v-if="page != 0"
           class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
-            query: { page: page },
+            query: { page },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -106,7 +105,6 @@
           :to="{
             query: { page: i },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -121,7 +119,6 @@
           :to="{
             query: { page: page + 2 },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -224,6 +221,6 @@ const target = ref()
 watch(route, (n) => {
   if (n.name != "index") return
   pending.value = true
-  // fetchLatest()
+  fetchLatest()
 })
 </script>
