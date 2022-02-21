@@ -190,7 +190,7 @@ const { data: routeData, pending } = await useAsyncData(
       .select("*")
       .eq("slug", route.params.name)
       .single(),
-  { lazy: true, transform: (a: any) => a.data }
+  { transform: (a: any) => a.data }
 )
 
 const related = ref(null)
