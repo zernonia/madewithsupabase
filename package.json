@@ -36,7 +36,7 @@
     "@types/remove-markdown": "^0.3.1",
     "@types/sharp": "^0.29.1",
     "nuxt-windicss": "^2.0.8",
-    "nuxt3": "^3.0.0-27396610.ed4f4f5",
+    "nuxt3": "^3.0.0-27424151.dbab979",
     "typescript": "^4.3.2",
     "unplugin-icons": "^0.12.14",
     "unplugin-vue-components": "^0.15.6"

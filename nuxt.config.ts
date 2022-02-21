@@ -48,18 +48,6 @@ export default defineNuxtConfig({
       }),
       Icons(),
     ],
-    // @ts-expect-error: vite
-    ssr: {
-      noExternal: [
-        "@supabase/supabase-js",
-        "@supabase/gotrue-js",
-        "@supabase/postgrest-js",
-        "@supabase/realtime-js",
-        "@supabase/storage-js",
-        "vue-demi",
-        "vue-supabase",
-      ],
-    },
   },
   build: {
     transpile: ["dayjs", "swiper", "node-fetch"],
