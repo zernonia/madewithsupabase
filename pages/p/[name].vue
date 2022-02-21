@@ -12,25 +12,13 @@
           <div class="w-full flex items-center justify-between">
             <button
               @click="$router.back()"
-              class="
-                inline-flex
-                items-center
-                text-dark-50
-                hover:text-light-900
-                transition
-              "
+              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
             >
               <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Back
             </button>
             <button
               @click="$router.push(`/edit/${$route.params.name}`)"
-              class="
-                inline-flex
-                items-center
-                text-dark-50
-                hover:text-light-900
-                transition
-              "
+              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
             >
               <i-mdi:square-edit-outline
                 class="mr-2 w-6 h-6"
@@ -58,19 +46,7 @@
           <div class="mt-12 flex flex-col md:flex-row justify-between relative">
             <SVGCircle class="absolute -top-10 -left-10 z-0"></SVGCircle>
             <div
-              class="
-                w-full
-                md:w-2/3
-                p-4
-                md:p-8
-                flex
-                z-10
-                flex-col
-                space-y-16
-                rounded-xl
-                border-5 border-dark-300
-                bg-dark-600
-              "
+              class="w-full md:w-2/3 p-4 md:p-8 flex z-10 flex-col space-y-16 rounded-xl border-5 border-dark-300 bg-dark-600"
             >
               <div>
                 <i-mdi:information-outline
@@ -117,13 +93,7 @@
 
             <div class="w-full md:w-1/3 h-min mt-6 md:mt-0 md:ml-8">
               <div
-                class="
-                  p-8
-                  bg-gradient-to-tr
-                  from-green-600
-                  to-emerald-400
-                  rounded-xl
-                "
+                class="p-8 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-xl"
               >
                 <i-mdi:circle-multiple-outline
                   class="w-8 h-8"
@@ -135,12 +105,7 @@
                     :href="routeData.github_url"
                     target="_blank"
                     rel="noopener"
-                    class="
-                      inline-flex
-                      items-center
-                      hover:underline
-                      underline-offset-1
-                    "
+                    class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:github class="mr-2"></i-mdi:github>
                     {{ routeData.github_url.split(".com/")[1] }}</a
                   >
@@ -149,12 +114,7 @@
                     :href="'https://twitter.com/' + routeData.twitter"
                     target="_blank"
                     rel="noopener"
-                    class="
-                      inline-flex
-                      items-center
-                      hover:underline
-                      underline-offset-1
-                    "
+                    class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:twitter class="mr-2"></i-mdi:twitter>
                     {{ routeData.twitter }}</a
                   >
@@ -163,12 +123,7 @@
                     :href="'https://instagram.com/' + routeData.instagram"
                     target="_blank"
                     rel="noopener"
-                    class="
-                      inline-flex
-                      items-center
-                      hover:underline
-                      underline-offset-1
-                    "
+                    class="inline-flex items-center hover:underline underline-offset-1"
                     ><i-mdi:instagram class="mr-2"></i-mdi:instagram>
                     {{ routeData.instagram }}</a
                   >
@@ -203,13 +158,7 @@
           <h1 class="text-4xl">No project found...</h1>
           <button
             @click="$router.push('/')"
-            class="
-              inline-flex
-              items-center
-              text-dark-50
-              hover:text-light-900
-              transition
-            "
+            class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
           >
             <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Home
           </button>
@@ -225,7 +174,7 @@
 
 <script setup lang="ts">
 import Logo404 from "@/assets/404.svg"
-const { ssrContext, $supabase } = useNuxtApp()
+const { $supabase } = useNuxtApp()
 const notFound = ref(false)
 const route = useRoute()
 
@@ -241,9 +190,7 @@ const { data: routeData, pending } = await useAsyncData(
       .select("*")
       .eq("slug", route.params.name)
       .single(),
-  {
-    transform: (a: any) => a.data,
-  }
+  { lazy: true, transform: (a: any) => a.data }
 )
 
 const related = ref(null)
