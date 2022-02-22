@@ -3,11 +3,11 @@
     <CustomMeta
       :key="routeData?.title"
       :title="routeData?.title + ' ⚡ Made with Supabase'"
-      :description="routeData?.description.split(0, 150) + '...'"
+      :description="routeData?.description.slice(0, 150) + '...'"
       :image="'https://madewithsupabase.com/api/og?slug=' + routeData?.slug"
     />
     <transition name="fade" mode="out-in">
-      <div class="mt-4" v-if="!pending">
+      <div class="mt-4" v-if="routeData || !pending">
         <div v-if="routeData && routeData.id">
           <div class="w-full flex items-center justify-between">
             <button
@@ -17,7 +17,7 @@
               <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Back
             </button>
             <button
-              @click="$router.push(`/edit/${$route.params.name}`)"
+              @click="$router.push(`/edit/${name}`)"
               class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
             >
               <i-mdi:square-edit-outline
@@ -174,23 +174,15 @@
 
 <script setup lang="ts">
 import Logo404 from "@/assets/404.svg"
+import { ProductData } from "@/script/interface"
 const { $supabase } = useNuxtApp()
 const notFound = ref(false)
 const route = useRoute()
 
-const viewProduct = () => {
-  $fetch(`/api/view?name=${route.params.name}`)
-}
-
-const { data: routeData, pending } = await useAsyncData(
-  "routeData",
-  () =>
-    $supabase
-      .from("products_view")
-      .select("*")
-      .eq("slug", route.params.name)
-      .single(),
-  { transform: (a: any) => a.data }
+const name = computed(() => route.params.name)
+const { data: routeData, pending } = await useLazyAsyncData<ProductData>(
+  `project-${name.value}`,
+  () => $fetch(`/api/project?name=${name.value}`)
 )
 
 const related = ref(null)
@@ -208,7 +200,14 @@ const fetchRelated = async () => {
   }
 }
 
-viewProduct()
+const viewProduct = () => {
+  $fetch(`/api/view?name=${name.value}`)
+}
+
+onMounted(() => {
+  viewProduct()
+  fetchRelated()
+})
 
 const tweetLink = computed(() => {
   const href = "https://madewithsupabase.com" + route.fullPath
@@ -218,8 +217,6 @@ const tweetLink = computed(() => {
     routeData.value.twitter ? "by @" + routeData.value.twitter : ""
   }&url=${href}`
 })
-
-fetchRelated()
 
 const computedUrl = computed(() => {
   let url = new URL(routeData.value.url)
