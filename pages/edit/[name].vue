@@ -2,15 +2,7 @@
   <div class="flex flex-col items-center">
     <button
       @click="$router.back()"
-      class="
-        w-full
-        mt-4
-        inline-flex
-        items-center
-        text-dark-50
-        hover:text-light-900
-        transition
-      "
+      class="w-full mt-4 inline-flex items-center text-dark-50 hover:text-light-900 transition"
     >
       <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Back
     </button>
@@ -19,15 +11,7 @@
     </h1>
     <form
       v-if="!isApproved"
-      class="
-        flex flex-col
-        space-y-4
-        p-4
-        md:p-8
-        rounded-md
-        w-full
-        max-w-screen-sm
-      "
+      class="flex flex-col space-y-4 p-4 md:p-8 rounded-md w-full max-w-screen-sm"
     >
       <p class="text-center text-dark-50">
         Verify that you are the author. Insert the email that you use when
@@ -60,15 +44,7 @@
     <form
       v-if="!isSubmitted && isApproved"
       onsubmit="return false"
-      class="
-        flex flex-col
-        space-y-4
-        p-4
-        md:p-8
-        rounded-md
-        w-full
-        max-w-screen-lg
-      "
+      class="flex flex-col space-y-4 p-4 md:p-8 rounded-md w-full max-w-screen-lg"
     >
       <div class="flex flex-col">
         <label for="title">title *</label>
@@ -149,16 +125,7 @@
           >
             <div
               @click="target?.click()"
-              class="
-                h-64
-                w-64
-                text-light-900
-                cursor-pointer
-                flex flex-shrink-0 flex-col
-                items-center
-                justify-center
-                border-dark-500 border-2 border-dashed
-              "
+              class="h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-2 border-dashed"
             >
               <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
               <p>Click to 'Add' images</p>
@@ -176,25 +143,11 @@
             >
               <div
                 v-if="blob.startsWith('http')"
-                class="
-                  absolute
-                  w-full
-                  h-full
-                  center
-                  hidden
-                  hover:bg-dark-900 hover:bg-opacity-25
-                "
+                class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
               >
                 <button
                   @click.prevent="removeImage(index)"
-                  class="
-                    flex flex-col
-                    items-center
-                    justify-center
-                    w-full
-                    h-full
-                    cursor-pointer
-                  "
+                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
                   <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
                   Click to 'Remove' image
@@ -206,14 +159,7 @@
               >
                 <button
                   @click.prevent=""
-                  class="
-                    flex flex-col
-                    items-center
-                    justify-center
-                    w-full
-                    h-full
-                    cursor-pointer
-                  "
+                  class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
                   <SVGCircle class="animate-ping w-16"></SVGCircle>
                 </button>
@@ -224,15 +170,7 @@
           <div
             @click="target?.click()"
             v-else
-            class="
-              text-light-900
-              cursor-pointer
-              w-full
-              flex flex-col
-              items-center
-              justify-center
-              border-dark-500 border-2 border-dashed
-            "
+            class="text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-2 border-dashed"
           >
             <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
             <p>Click to 'Add' images</p>
@@ -451,7 +389,7 @@ const router = useRouter()
 const fetchData = async () => {
   const data = await $fetch("/api/project", {
     method: "POST",
-    body: { slug: route.params.name },
+    body: { name: route.params.name },
   })
 
   if (data) {

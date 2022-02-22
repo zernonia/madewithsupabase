@@ -1,9 +1,15 @@
 import { supabase } from "../_lib/supabase"
 import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
+import { useBody, useQuery } from "h3"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { name } = useQuery(req)
+  let name: string | string[]
+  if (req.method == "GET") {
+    ;({ name } = useQuery(req))
+  } else if (req.method == "POST") {
+    ;({ name } = await useBody(req))
+  }
+
   if (name) {
     const { data, error } = await supabase
       .from("products")
