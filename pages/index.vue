@@ -158,7 +158,7 @@ const [
 ] = await Promise.all([
   useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
-  useAsyncData(
+  useLazyAsyncData(
     "latest",
     () =>
       $supabase
