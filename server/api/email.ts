@@ -33,17 +33,15 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       res.statusCode = 500
       return "error"
     }
-  } else if(req.method == 'GET') {
-
-      const mailOptions: SendMailOptions = {
-        from: "zernonia@gmail.com",
-        to: "zernonia@gmail.com",
-        subject: "MadewithSupabase | new submission",
-        html: "New submission **ding ding** 🔔",
-      }
-
-      const err = await transporter.sendMail(mailOptions)
-      return err
+  } else if (req.method == "GET") {
+    const mailOptions: SendMailOptions = {
+      from: "zernonia@gmail.com",
+      to: "zernonia@gmail.com",
+      subject: "MadewithSupabase | new submission",
+      html: "New submission **ding ding** 🔔",
     }
+
+    const err = await transporter.sendMail(mailOptions)
+    return err
   }
 }
