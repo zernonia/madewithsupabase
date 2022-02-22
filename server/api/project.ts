@@ -1,17 +1,16 @@
 import { supabase } from "../_lib/supabase"
 import type { IncomingMessage, ServerResponse } from "http"
-import { useBody } from "h3"
+import { useQuery } from "h3"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { slug } = await useBody(req)
-
-  if (slug) {
+  const { name } = useQuery(req)
+  if (name) {
     const { data, error } = await supabase
       .from("products")
       .select(
         "id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features"
       )
-      .eq("slug", slug)
+      .eq("slug", name)
       .single()
 
     if (data) {
