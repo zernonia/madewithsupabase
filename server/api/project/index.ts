@@ -1,4 +1,4 @@
-import { supabase } from "../_lib/supabase"
+import { supabase } from "../../_lib/supabase"
 import type { IncomingMessage, ServerResponse } from "http"
 import { useBody, useQuery } from "h3"
 
