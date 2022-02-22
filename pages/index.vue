@@ -40,10 +40,7 @@
     </div>
 
     <transition name="fade" mode="out-in">
-      <div
-        v-if="hero && hero.length && !heroPending"
-        class="flex flex-col items-center"
-      >
+      <div v-if="hero && hero.length" class="flex flex-col items-center">
         <HeroSlider :data="hero"></HeroSlider>
 
         <div class="mt-16 sm:mt-24">
@@ -151,36 +148,15 @@ const maxPage = computed(() => Math.ceil(itemCount.value / countPerPage))
 const route = useRoute()
 
 const [
-  { data: hero, pending: heroPending },
-  { data: testimonial },
+  {
+    data: {
+      value: [{ data: hero }, { data: testimonial }],
+    },
+    pending: heroPending,
+  },
   { data: latest, pending },
 ] = await Promise.all([
-  useAsyncData(
-    "hero",
-    () =>
-      $supabase
-        .from("products_view")
-        .select("*")
-        .order("created_at", { ascending: false })
-        .limit(3),
-    {
-      transform: (a: any) => a.data,
-    }
-  ),
-
-  useAsyncData(
-    "testimonial",
-    () =>
-      $supabase
-        .from("products_view")
-        .select("*")
-        .or(
-          "id.eq.c7231413-02b5-4549-ad9f-130370609f97, id.eq.da351848-1264-4925-8ee9-8c87ae8e77da, id.eq.960edf58-5994-4825-9d85-82d83d122ade"
-        ),
-    {
-      transform: (a: any) => a.data,
-    }
-  ),
+  useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
   useAsyncData(
     "latest",
