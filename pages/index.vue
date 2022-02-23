@@ -141,14 +141,7 @@ const maxPage = computed(() => Math.ceil(itemCount.value / countPerPage))
 
 const route = useRoute()
 
-const [
-  {
-    data: {
-      value: [{ data: hero }, { data: testimonial }],
-    },
-  },
-  { data: latest },
-] = await Promise.all([
+const [{ data: homeData }, { data: latest }] = await Promise.all([
   useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
   useLazyAsyncData(
@@ -170,6 +163,9 @@ const [
     }
   ),
 ])
+
+const hero = computed(() => homeData.value?.[0].data)
+const testimonial = computed(() => homeData.value?.[1].data)
 
 const pending = ref(false)
 const fetchLatest = async () => {
