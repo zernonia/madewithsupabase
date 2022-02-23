@@ -229,10 +229,6 @@ const form = ref({
 })
 const errorMsg = ref("")
 
-onMounted(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-})
-
 const slugify = (str: string) => {
   str = str.replace(/^\s+|\s+$/g, "")
   str = str.toLowerCase()
