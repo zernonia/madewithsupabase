@@ -178,7 +178,9 @@ const [
   ),
 ])
 
+const pending = ref(false)
 const fetchLatest = async () => {
+  pending.value = true
   const { data, error, count } = await $supabase
     .from("products_view")
     .select("*", { count: "exact" })
@@ -194,9 +196,11 @@ const fetchLatest = async () => {
 }
 
 const target = ref()
-watch(route, (n) => {
-  if (n.name != "index") return
-  pending.value = true
+watch(
+  () => route.query,
+  (n) => {
   fetchLatest()
+  }
+)
 })
 </script>
