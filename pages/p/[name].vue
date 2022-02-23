@@ -223,4 +223,11 @@ const computedUrl = computed(() => {
   url.searchParams.set("ref", "madewithsupabase")
   return url.href
 })
+
+definePageMeta({
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
+})
 </script>

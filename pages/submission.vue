@@ -329,4 +329,11 @@ const isStillUploadingImage = computed(() => {
 })
 
 const isPreviewMd = ref(false)
+
+definePageMeta({
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
+})
 </script>

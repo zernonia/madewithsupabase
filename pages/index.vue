@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollComponent">
+  <div>
     <CustomMeta :title="'Home ⚡ Made with Supabase'" />
 
     <div class="mt-8 flex flex-col items-center">
@@ -59,7 +59,7 @@
             Most Viewed
           </h1>
           <transition name="fade" mode="out-in">
-            <div v-if="!pending" class="card-grid">
+            <div v-if="latest && latest.length && !pending" class="card-grid">
               <div v-for="item in latest" :key="item.id">
                 <Card :item="item"></Card>
               </div>
@@ -128,12 +128,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  scrollToTop: true,
-}
-</script>
-
 <script setup lang="ts">
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
 
@@ -152,9 +146,8 @@ const [
     data: {
       value: [{ data: hero }, { data: testimonial }],
     },
-    pending: heroPending,
   },
-  { data: latest, pending },
+  { data: latest },
 ] = await Promise.all([
   useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
@@ -199,8 +192,14 @@ const target = ref()
 watch(
   () => route.query,
   (n) => {
-  fetchLatest()
+    fetchLatest()
   }
 )
+
+definePageMeta({
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
 })
 </script>
