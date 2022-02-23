@@ -115,6 +115,7 @@ const searchTags = computed(() => {
 watch(
   () => route.params.name,
   () => {
+    isSelectionOpen.value = false
     searchPlaceholder.value = route.params.name as string
   },
   { immediate: true }
