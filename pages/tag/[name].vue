@@ -1,6 +1,9 @@
 <template>
   <div>
-    <CustomMeta :key="$route.params.name" :title="'Tag: ' + $route.params.name + ' ⚡ Made with Supabase'" />
+    <CustomMeta
+      :key="$route.params.name.toString()"
+      :title="'Tag: ' + $route.params.name + ' ⚡ Made with Supabase'"
+    />
 
     <transition name="fade" mode="out-in">
       <div v-if="!isLoading" class="mt-12">
@@ -28,14 +31,11 @@
 <script setup lang="ts">
 const { $supabase } = useNuxtApp()
 
-onMounted(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-})
-
 const route = useRoute()
 const routeData = ref<any>([])
 const isLoading = ref(true)
 const fetchData = async () => {
+  isLoading.value = true
   let name = route.params.name as string
   if (name.toLowerCase().startsWith("supabase")) {
     const { data, error, count } = await $supabase
@@ -67,5 +67,12 @@ const fetchData = async () => {
   isLoading.value = false
 }
 
-fetchData()
+watch(
+  () => route.params.name,
+  () => {
+    if (!route.params.name) return
+    fetchData()
+  },
+  { immediate: true }
+)
 </script>
