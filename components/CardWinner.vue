@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-col sm:flex-row items-center justify-center relative mt-4 md:mt-10">
+  <div
+    class="w-full flex flex-col sm:flex-row items-center justify-center relative mt-4 md:mt-10"
+  >
     <div class="w-full sm:w-1/2 group relative w-full">
       <div class="w-full flex justify-end">
         <slot name="icon">
@@ -18,42 +20,21 @@
           </svg>
         </slot>
 
-        <a
-          :href="obj.link"
-          class="
-            max-w-120
-            w-full
-            h-full
-            rounded-2xl
-            block
-            border-5 border-amber-300
-            overflow-hidden
-            transition
-            transform
-            hover:scale-105
-          "
+        <NuxtLink
+          :to="obj.link"
+          class="max-w-120 w-full h-full rounded-2xl block border-5 border-amber-300 overflow-hidden transition transform hover:scale-105"
         >
           <div class="relative flex-shrink-0 pb-2/3">
-            <CompressedImage class="absolute inset-0 w-full h-full object-cover" :src="obj.image" />
+            <CompressedImage
+              class="absolute inset-0 w-full h-full object-cover"
+              :src="obj.image"
+            />
           </div>
-        </a>
+        </NuxtLink>
       </div>
     </div>
     <div
-      class="
-        w-full
-        sm:w-1/2 sm:ml-4
-        transform
-        -translate-y-8
-        sm:translate-y-0
-        md:ml-12
-        bg-dark-600
-        sm:bg-transparent
-        px-8
-        py-6
-        sm:p-0
-        rounded-xl
-      "
+      class="w-full sm:w-1/2 sm:ml-4 transform -translate-y-8 sm:translate-y-0 md:ml-12 bg-dark-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl"
     >
       <h2 class="text-2xl md:text-4xl text-amber-300">Winner</h2>
       <h5 class="text-3xl md:text-5xl mt-2">{{ obj.title }}</h5>

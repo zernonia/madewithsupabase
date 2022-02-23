@@ -1,9 +1,9 @@
 <template>
   <main class="py-8">
     <section class="md:py-6 px-4 flex flex-col items-center">
-      <a href="/">
+      <NuxtLink to="/">
         <img class="w-12 sm:w-16" src="@/assets/logo.svg" alt="" />
-      </a>
+      </NuxtLink>
       <IconHacktoberfest
         class="pt-8 sm:pt-12 h-auto w-full sm:w-8/10 md:w-6/10"
       ></IconHacktoberfest>

@@ -4,32 +4,44 @@ import { createTransport, SendMailOptions } from "nodemailer"
 import marked from "marked"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
-  const {
-    record: { title, description, created_at },
-  } = await useBody(req)
+  const transporter = createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_SMTP_USER,
+      pass: process.env.GMAIL_SMTP_PASSWORD,
+    },
+  })
 
-  if (title && created_at) {
-    const transporter = createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_SMTP_USER,
-        pass: process.env.GMAIL_SMTP_PASSWORD,
-      },
-    })
+  if (req.method == "POST") {
+    const {
+      record: { title, description, created_at },
+    } = await useBody(req)
 
+    if (title && created_at) {
+      const mailOptions: SendMailOptions = {
+        from: "zernonia@gmail.com",
+        to: "zernonia@gmail.com",
+        subject: "MadewithSupabase | new submission",
+        html: `<h1>${title}</h1><p>${created_at}</p><br></br>${marked(
+          description ?? ""
+        )}`,
+      }
+
+      const err = await transporter.sendMail(mailOptions)
+      return err
+    } else {
+      res.statusCode = 500
+      return "error"
+    }
+  } else if (req.method == "GET") {
     const mailOptions: SendMailOptions = {
       from: "zernonia@gmail.com",
       to: "zernonia@gmail.com",
       subject: "MadewithSupabase | new submission",
-      html: `<h1>${title}</h1><p>${created_at}</p><br></br>${marked(
-        description ?? ""
-      )}`,
+      html: "New submission **ding ding** 🔔",
     }
 
     const err = await transporter.sendMail(mailOptions)
     return err
-  } else {
-    res.statusCode = 404
-    return "error"
   }
 }

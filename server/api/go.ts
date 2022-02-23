@@ -5,7 +5,11 @@ import { useQuery, sendRedirect, sendError } from "h3"
 export default async (req: IncomingMessage, res: ServerResponse) => {
   const { name } = useQuery(req)
   if (name) {
-    const initialData = await supabase.from("products").select("*").eq("slug", name).single()
+    const initialData = await supabase
+      .from("products")
+      .select("*")
+      .eq("slug", name)
+      .single()
     if (!initialData.error) {
       const redirect_url = initialData.data.url + "?ref=madewithsupabase"
       res.writeHead(302, {
@@ -13,11 +17,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       })
       res.end()
     } else {
-      res.statusCode = 404
+      res.statusCode = 500
       res.end("No project found")
     }
   } else {
-    res.statusCode = 404
+    res.statusCode = 500
     res.end("No project found")
   }
 }

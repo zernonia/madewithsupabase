@@ -1,31 +1,12 @@
 <template>
-  <a :href="'/p/' + item.slug" class="h-full">
+  <NuxtLink :to="`/p/${item.slug}`" class="h-full">
     <div
-      class="
-        bg-dark-600
-        flex flex-col
-        rounded-2xl
-        h-full
-        border-5 border-dark-300
-        hover:border-gray-300 hover:shadow-gray-300 hover:shadow-lg
-        transition
-        ease-in-out
-        overflow-hidden
-      "
+      class="bg-dark-600 flex flex-col rounded-2xl h-full border-5 border-dark-300 hover:border-gray-300 hover:shadow-gray-300 hover:shadow-lg transition ease-in-out overflow-hidden"
     >
       <div class="relative flex-shrink-0 pb-2/3">
         <CompressedImage v-if="item.images[0]" :src="item.images[0]" />
         <div
-          class="
-            absolute
-            w-full
-            h-full
-            flex
-            justify-center
-            items-center
-            object-cover
-            rounded-xl
-          "
+          class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
           v-else
         >
           <img
@@ -36,14 +17,7 @@
         </div>
       </div>
       <div
-        class="
-          p-4
-          sm:p-6
-          h-full
-          flex flex-col
-          justify-between
-          border-t-5 border-dark-300
-        "
+        class="p-4 sm:p-6 h-full flex flex-col justify-between border-t-5 border-dark-300"
       >
         <h1 class="text-2xl">{{ item.title }}</h1>
         <p
@@ -64,7 +38,7 @@
         </div>
       </div>
     </div>
-  </a>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">

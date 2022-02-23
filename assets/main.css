@@ -5,8 +5,9 @@
   src: url(./fonts/CustomFont-Medium.woff2) format("woff2");
 }
 html {
-  font-family: custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
   overflow-x: hidden;
 }
 body {
@@ -96,7 +97,7 @@ code,
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 }
 
 .fade-enter-from,

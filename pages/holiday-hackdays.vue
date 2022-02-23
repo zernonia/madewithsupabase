@@ -2,9 +2,9 @@
   <div>
     <main class="py-8">
       <section class="md:py-6 px-4 flex flex-col items-center">
-        <a href="/">
+        <NuxtLink to="/">
           <img class="w-12 sm:w-16" :src="SiteLogo" alt="" />
-        </a>
+        </NuxtLink>
         <div class="px-1 mt-12 h-36 md:h-52 w-full max-w-screen-lg rounded-lg">
           <div class="relative flex h-full w-full">
             <a

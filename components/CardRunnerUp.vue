@@ -1,34 +1,9 @@
 <template>
   <div
-    class="
-      w-full
-      mt-8
-      md:mt-16
-      flex flex-col-reverse
-      sm:flex-row
-      items-center
-      justify-center
-      relative
-    "
+    class="w-full mt-8 md:mt-16 flex flex-col-reverse sm:flex-row items-center justify-center relative"
   >
     <div
-      class="
-        w-full
-        sm:w-1/2 sm:mr-4
-        md:mr-12
-        flex flex-col
-        sm:items-end
-        transform
-        -translate-y-8
-        sm:translate-y-0
-        bg-dark-600
-        sm:bg-transparent
-        px-8
-        py-6
-        sm:p-0
-        rounded-xl
-        z-10
-      "
+      class="w-full sm:w-1/2 sm:mr-4 md:mr-12 flex flex-col sm:items-end transform -translate-y-8 sm:translate-y-0 bg-dark-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl z-10"
     >
       <h2 class="text-2xl md:text-4xl text-gray-300">Runner up</h2>
       <h5 class="text-3xl md:text-5xl mt-2 md:text-right">{{ obj.title }}</h5>
@@ -52,18 +27,9 @@
           </svg>
         </slot>
 
-        <a
-          :href="obj.link"
-          class="
-            w-full
-            rounded-2xl
-            h-full
-            border-5 border-gray-300
-            overflow-hidden
-            transition
-            transform
-            group-hover:scale-105
-          "
+        <NuxtLink
+          :to="obj.link"
+          class="w-full rounded-2xl h-full border-5 border-gray-300 overflow-hidden transition transform group-hover:scale-105"
         >
           <div class="relative flex-shrink-0 pb-2/3">
             <CompressedImage
@@ -72,7 +38,7 @@
               alt=""
             />
           </div>
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </div>

@@ -13,7 +13,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   if (name) {
-    const initialData = await supabase.from("products").select("*").eq("slug", name).single()
+    const initialData = await supabase
+      .from("products")
+      .select("*")
+      .eq("slug", name)
+      .single()
     if (!initialData.error) {
       if (cache[name as string].findIndex((i: any) => i == ip) > -1) {
         res.end("cache")
@@ -26,11 +30,11 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         res.end("ok")
       }
     } else {
-      res.statusCode = 404
+      res.statusCode = 500
       res.end("error")
     }
   } else {
-    res.statusCode = 404
+    res.statusCode = 500
     res.end("error")
   }
 }

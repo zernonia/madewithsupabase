@@ -186,17 +186,21 @@
           </div>
         </div>
       </div>
-      <button
-        :disabled="isSubmitting || isStillUploadingImage"
-        class="btn w-min flex items-center"
-        @click="submit"
-      >
-        Submit
-        <SVGCircle
-          v-if="isSubmitting"
-          class="w-4 h-4 ml-4 animate-ping"
-        ></SVGCircle>
-      </button>
+      <div class="flex items-center">
+        <button
+          :disabled="isSubmitting || isStillUploadingImage"
+          class="btn w-min flex items-center"
+          @click="submit"
+        >
+          Submit
+          <SVGCircle
+            v-if="isSubmitting"
+            class="w-4 h-4 ml-4 animate-ping"
+          ></SVGCircle>
+        </button>
+
+        <span class="ml-4 text-red-500">{{ errorMsg }}</span>
+      </div>
     </form>
     <div v-else class="text-center mt-12">
       <h1 class="text-5xl">Thank you for submitting!</h1>
@@ -223,10 +227,7 @@ const form = ref({
   images: [] as string[],
   slug: "",
 })
-
-onMounted(() => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-})
+const errorMsg = ref("")
 
 const slugify = (str: string) => {
   str = str.replace(/^\s+|\s+$/g, "")
@@ -256,17 +257,27 @@ const submit = async () => {
     form.value.description
   ) {
     isSubmitting.value = true
+    errorMsg.value = ""
     form.value.slug = slugify(form.value.title)
 
-    const { data, error } = (await $fetch(`/api/function/submission`, {
+    const { data, error } = await $fetch(`/api/function/submission`, {
       method: "POST",
       body: { form: form.value },
-    })) as any
+    }).catch((err) => err.data)
 
     if (!error) {
-      isSubmitting.value = false
       isSubmitted.value = true
+    } else {
+      switch (error.code) {
+        case "23505":
+          errorMsg.value = "Title already exist. Please try another Title *"
+          break
+        default:
+          errorMsg.value = error.meesage
+          break
+      }
     }
+    isSubmitting.value = false
   }
 }
 
@@ -318,4 +329,11 @@ const isStillUploadingImage = computed(() => {
 })
 
 const isPreviewMd = ref(false)
+
+definePageMeta({
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
+})
 </script>

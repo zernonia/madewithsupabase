@@ -4,7 +4,7 @@
   >
     <div class="p-4 md:p-8 w-full h-full max-w-screen-xl flex flex-col">
       <Header></Header>
-      <slot :key="$route.fullPath"></slot>
+      <slot></slot>
       <Footer></Footer>
     </div>
   </div>

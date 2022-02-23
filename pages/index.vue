@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollComponent">
+  <div>
     <CustomMeta :title="'Home ⚡ Made with Supabase'" />
 
     <div class="mt-8 flex flex-col items-center">
@@ -24,20 +24,7 @@
         <div class="relative flex h-full w-full">
           <NuxtLink
             to="/holiday-hackdays"
-            class="
-              z-10
-              absolute
-              w-full
-              h-full
-              flex
-              justify-center
-              items-center
-              bg-gradient-to-br
-              from-gray-900
-              to-black
-              rounded-lg
-              overflow-hidden
-            "
+            class="z-10 absolute w-full h-full flex justify-center items-center bg-gradient-to-br from-gray-900 to-black rounded-lg overflow-hidden"
           >
             <img class="w-full h-full object-cover" :src="HeroImage" alt="" />
           </NuxtLink>
@@ -45,16 +32,7 @@
             class="absolute w-full h-full bg-conic-gradient filter blur-xl"
           ></div>
           <div
-            class="
-              absolute
-              w-full
-              h-full
-              bg-conic-gradient
-              filter
-              blur-3xl
-              opacity-60
-              animate-pulse-slow
-            "
+            class="absolute w-full h-full bg-conic-gradient filter blur-3xl opacity-60 animate-pulse-slow"
           ></div>
           <div class="absolute -inset-1 rounded-lg bg-conic-gradient"></div>
         </div>
@@ -62,10 +40,7 @@
     </div>
 
     <transition name="fade" mode="out-in">
-      <div
-        v-if="hero && hero.length && !heroPending"
-        class="flex flex-col items-center"
-      >
+      <div v-if="hero && hero.length" class="flex flex-col items-center">
         <HeroSlider :data="hero"></HeroSlider>
 
         <div class="mt-16 sm:mt-24">
@@ -84,7 +59,7 @@
             Most Viewed
           </h1>
           <transition name="fade" mode="out-in">
-            <div v-if="!pending" class="card-grid">
+            <div v-if="latest && latest.length && !pending" class="card-grid">
               <div v-for="item in latest" :key="item.id">
                 <Card :item="item"></Card>
               </div>
@@ -107,17 +82,10 @@
       <div>
         <NuxtLink
           v-if="page != 0"
-          class="
-            text-dark-300
-            hover:text-gray-300
-            rounded-lg
-            transition
-            ease-in-out
-          "
+          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
-            query: { page: page },
+            query: { page },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -128,26 +96,12 @@
       </div>
       <div class="flex flex-wrap justify-center">
         <router-link
-          class="
-            border-4 border-dark-300
-            hover:border-gray-300
-            mr-2
-            mb-2
-            w-12
-            h-12
-            inline-flex
-            items-center
-            justify-center
-            rounded-lg
-            transition
-            ease-in-out
-          "
+          class="border-4 border-dark-300 hover:border-gray-300 mr-2 mb-2 w-12 h-12 inline-flex items-center justify-center rounded-lg transition ease-in-out"
           :class="[page == i - 1 ? ' border-gray-300' : '']"
           v-for="i in maxPage"
           :to="{
             query: { page: i },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -158,17 +112,10 @@
       <div>
         <NuxtLink
           v-if="page != maxPage - 1"
-          class="
-            text-dark-300
-            hover:text-gray-300
-            rounded-lg
-            transition
-            ease-in-out
-          "
+          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
             query: { page: page + 2 },
             params: {
-              savePosition: true,
               position: target?.offsetTop - 50,
             },
           }"
@@ -180,12 +127,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  scrollToTop: true,
-}
-</script>
 
 <script setup lang="ts">
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
@@ -199,53 +140,36 @@ const page = computed(() => (route.query.page ? +route.query.page - 1 : 0))
 const maxPage = computed(() => Math.ceil(itemCount.value / countPerPage))
 
 const route = useRoute()
-const { data: hero, pending: heroPending } = await useAsyncData(
-  "hero",
-  () =>
-    $supabase
-      .from("products_view")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(3),
-  {
-    transform: (a: any) => a.data,
-  }
-)
 
-const { data: testimonial } = await useAsyncData(
-  "testimonial",
-  () =>
-    $supabase
-      .from("products_view")
-      .select("*")
-      .or(
-        "id.eq.c7231413-02b5-4549-ad9f-130370609f97, id.eq.da351848-1264-4925-8ee9-8c87ae8e77da, id.eq.960edf58-5994-4825-9d85-82d83d122ade"
-      ),
-  {
-    transform: (a: any) => a.data,
-  }
-)
+const [{ data: homeData }, { data: latest }] = await Promise.all([
+  useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
-const { data: latest, pending } = await useAsyncData(
-  "latest",
-  () =>
-    $supabase
-      .from("products_view")
-      .select("*", { count: "exact" })
-      .order("views", { ascending: false })
-      .range(
-        page.value * countPerPage,
-        page.value * countPerPage + (countPerPage - 1)
-      ),
-  {
-    transform: (a: any) => {
-      itemCount.value = a.count
-      return a.data
-    },
-  }
-)
+  useLazyAsyncData(
+    "latest",
+    () =>
+      $supabase
+        .from("products_view")
+        .select("*", { count: "exact" })
+        .order("views", { ascending: false })
+        .range(
+          page.value * countPerPage,
+          page.value * countPerPage + (countPerPage - 1)
+        ),
+    {
+      transform: (a: any) => {
+        itemCount.value = a.count
+        return a.data
+      },
+    }
+  ),
+])
 
+const hero = computed(() => homeData.value?.[0].data)
+const testimonial = computed(() => homeData.value?.[1].data)
+
+const pending = ref(false)
 const fetchLatest = async () => {
+  pending.value = true
   const { data, error, count } = await $supabase
     .from("products_view")
     .select("*", { count: "exact" })
@@ -261,9 +185,17 @@ const fetchLatest = async () => {
 }
 
 const target = ref()
-watch(route, (n) => {
-  if (n.name != "index") return
-  pending.value = true
-  fetchLatest()
+watch(
+  () => route.query,
+  (n) => {
+    fetchLatest()
+  }
+)
+
+definePageMeta({
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
 })
 </script>

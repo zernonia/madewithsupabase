@@ -34,11 +34,16 @@ const prop = defineProps({
   },
 })
 
-const isLoading = ref(true)
+const isLoading = ref(!process.server)
 const target = ref()
-onMounted(() => {
-  isLoading.value = !target.value.complete
-})
+
+watch(
+  target,
+  () => {
+    isLoading.value = !target.value?.complete
+  },
+  { immediate: true }
+)
 
 const compressedImage = computed(
   () =>
