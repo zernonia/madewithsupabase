@@ -4,13 +4,15 @@ export default defineNuxtPlugin(({ $router }) => {
   //@ts-ignore
   const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
     if (to.params.position) {
-      return { top: to.params.position, behavior: "smooth" }
+      return { top: to.params.position }
     } else if (savedPosition) {
       return new Promise((resolve) => {
-        setTimeout(() => resolve({ top: savedPosition.top }), 300)
+        setTimeout(() => resolve({ top: savedPosition.top }), 350)
       })
     } else {
-      return { top: 0, behavior: "smooth" }
+      return new Promise((resolve) => {
+        setTimeout(() => resolve({ top: 0 }), 250)
+      })
     }
   }
 
