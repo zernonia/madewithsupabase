@@ -58,19 +58,21 @@
           <h1 ref="target" class="text-4xl text-center mb-4 sm:mb-8">
             Most Viewed
           </h1>
-          <transition name="fade" mode="out-in">
-            <div v-if="latest && latest.length && !pending" class="card-grid">
+          <div v-if="latest" class="h-full relative">
+            <div class="card-grid">
               <div v-for="item in latest" :key="item.id">
                 <Card :item="item"></Card>
               </div>
             </div>
-            <div
-              v-else
-              class="w-full h-screen flex items-center justify-center"
-            >
-              <SVGCircle class="animate-ping"></SVGCircle>
-            </div>
-          </transition>
+            <transition name="fade" mode="out-in">
+              <div
+                v-if="pending"
+                class="absolute top-0 left-0 w-full h-full flex justify-center bg-dark-900"
+              >
+                <SVGCircle class="mt-48 animate-ping"></SVGCircle>
+              </div>
+            </transition>
+          </div>
         </div>
       </div>
       <div v-else class="w-full h-screen flex items-center justify-center">
