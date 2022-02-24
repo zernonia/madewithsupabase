@@ -87,9 +87,7 @@
           class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
             query: { page },
-            params: {
-              position: target?.offsetTop - 50,
-            },
+            params: nuxtLinkParams,
           }"
         >
           <i-mdi:menu-left class="w-8 h-8"></i-mdi:menu-left>
@@ -103,9 +101,7 @@
           v-for="i in maxPage"
           :to="{
             query: { page: i },
-            params: {
-              position: target?.offsetTop - 50,
-            },
+            params: nuxtLinkParams,
           }"
         >
           {{ i }}
@@ -117,9 +113,7 @@
           class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
           :to="{
             query: { page: page + 2 },
-            params: {
-              position: target?.offsetTop - 50,
-            },
+            params: nuxtLinkParams,
           }"
         >
           <i-mdi:menu-right class="w-8 h-8"></i-mdi:menu-right>
@@ -187,7 +181,11 @@ const fetchLatest = async () => {
 }
 
 const target = ref()
-target.value
+
+const nuxtLinkParams = computed(() => ({
+  position: target.value?.offsetTop - 50,
+}))
+
 watch(
   () => route.query,
   (n) => {
