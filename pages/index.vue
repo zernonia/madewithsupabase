@@ -187,6 +187,7 @@ const fetchLatest = async () => {
 }
 
 const target = ref()
+target.value
 watch(
   () => route.query,
   (n) => {
