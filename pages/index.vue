@@ -190,7 +190,7 @@ const target = ref()
 watch(
   () => route.query,
   (n) => {
-    fetchLatest()
+    if (route.query.page) fetchLatest()
   }
 )
 
