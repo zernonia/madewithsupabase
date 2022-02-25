@@ -1,5 +1,7 @@
 <template>
   <div>
+    <CustomMeta :title="'Holiday Hackdays Announcement | Made with Supabase'" />
+
     <main class="py-8">
       <section class="md:py-6 px-4 flex flex-col items-center">
         <NuxtLink to="/">

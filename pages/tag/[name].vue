@@ -2,7 +2,7 @@
   <div>
     <CustomMeta
       :key="$route.params.name.toString()"
-      :title="'Tag: ' + $route.params.name + ' ⚡ Made with Supabase'"
+      :title="'Tag: ' + $route.params.name + ' | Made with Supabase'"
     />
 
     <transition name="fade" mode="out-in">
