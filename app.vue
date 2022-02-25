@@ -3,7 +3,7 @@
     <div>
       <CustomMeta
         :key="routeName"
-        :title="routeName + ' ⚡ Made with Supabase'"
+        :title="routeName + ' | Made with Supabase'"
       />
       <NuxtLayout>
         <NuxtPage></NuxtPage>

@@ -2,7 +2,7 @@
   <div class="min-h-screen-md">
     <CustomMeta
       :key="routeData?.title"
-      :title="routeData?.title + ' ⚡ Made with Supabase'"
+      :title="routeData?.title + ' | Made with Supabase'"
       :description="routeData?.description.slice(0, 150) + '...'"
       :image="'https://madewithsupabase.com/api/og?slug=' + routeData?.slug"
     />

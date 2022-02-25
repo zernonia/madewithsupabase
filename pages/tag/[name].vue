@@ -2,11 +2,11 @@
   <div>
     <CustomMeta
       :key="$route.params.name.toString()"
-      :title="'Tag: ' + $route.params.name + ' ⚡ Made with Supabase'"
+      :title="'Tag: ' + $route.params.name + ' | Made with Supabase'"
     />
 
     <transition name="fade" mode="out-in">
-      <div v-if="!isLoading" class="mt-12">
+      <div v-if="routeData" class="mt-12">
         <div v-if="routeData.length" class="card-grid">
           <Card v-for="item in routeData" :item="item"></Card>
         </div>
@@ -29,50 +29,11 @@
 </template>
 
 <script setup lang="ts">
-const { $supabase } = useNuxtApp()
+import { TagData } from "~~/script/interface"
 
 const route = useRoute()
-const routeData = ref<any>([])
-const isLoading = ref(true)
-const fetchData = async () => {
-  isLoading.value = true
-  let name = route.params.name as string
-  if (name.toLowerCase().startsWith("supabase")) {
-    const { data, error, count } = await $supabase
-      .rpc(
-        "get_supabase_tags",
-        {
-          tag: route.params.name,
-        },
-        {
-          count: "exact",
-        }
-      )
-      .order("views", { ascending: false })
-    routeData.value = data
-  } else {
-    const { data, error, count } = await $supabase
-      .rpc(
-        "get_tags",
-        {
-          tag: route.params.name,
-        },
-        {
-          count: "exact",
-        }
-      )
-      .order("views", { ascending: false })
-    routeData.value = data
-  }
-  isLoading.value = false
-}
-
-watch(
-  () => route.params.name,
-  () => {
-    if (!route.params.name) return
-    fetchData()
-  },
-  { immediate: true }
+const name = computed(() => route.params.name.toString())
+const { data: routeData } = await useLazyAsyncData<TagData[]>(name.value, () =>
+  $fetch(`/api/tag?name=${name.value}`)
 )
 </script>
