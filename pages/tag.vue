@@ -58,7 +58,7 @@
         </div>
       </OnClickOutside>
     </div>
-    <router-view></router-view>
+    <NuxtPage></NuxtPage>
   </div>
 </template>
 
