@@ -16,16 +16,20 @@ body {
 }
 
 button {
+  display: block;
   @apply focus:!outline-none;
 }
 ol,
 ul {
+  display: block;
   @apply pl-4;
 }
 
 label {
+  display: block;
   @apply capitalize;
 }
+
 textarea,
 input,
 input[type="text"],
@@ -81,6 +85,7 @@ code,
 }
 
 .btn-pale {
+  display: inline-flex;
   @apply px-6 py-2 rounded-lg border-3 border-light-900  transition hover:border-gray-400 focus:border-gray-400 focus:outline-none outline-none;
 }
 
