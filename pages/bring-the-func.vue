@@ -1,5 +1,6 @@
 <template>
   <div>
+    <CustomMeta :title="'Bring the Func(🕺) | Made with Supabase'" />
     <transition name="fade">
       <main class="py-8">
         <section class="md:py-6 px-4 flex flex-col items-center">
@@ -36,10 +37,8 @@
             class="mt-8 text-center text-dark-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
           >
             <transition name="slide-fade" mode="out-in">
-              <p v-if="timeOriginal">
-                3 Dec at 07:00am - to - 12 Dec at 11:59pm (PT)
-              </p>
-              <p v-else>{{ timeString }}</p>
+              <p v-if="timeOriginal">{{ timePT }}</p>
+              <p v-else>{{ timeLocale }}</p>
             </transition>
             <button
               class="!p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
@@ -61,7 +60,7 @@
             <h2 class="text-2xl sm:text-4xl mt-1">
               {{ projectSubmitted }} Projects Submitted
             </h2>
-            <button class="w-max mt-6" @click="goTo">Submit Project</button>
+            <button class="btn mt-6" @click="goTo">Submit Project</button>
           </div>
           <div class="mt-12 flex flex-col items-center text-center" v-else>
             <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
@@ -181,6 +180,8 @@ import SiteLogo from "@/assets/logo.svg"
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
 
 const { $supabase } = useNuxtApp()
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 definePageMeta({
   layout: "blank",
@@ -200,17 +201,20 @@ const goTo = () => {
   })
 }
 
+const startDate = dayjs("1 April 2022 09:00:00 UTC")
+const endDate = dayjs("8 April 2022 23:59:00 UTC")
 const timeOriginal = ref(true)
-const timeString = computed(() => {
-  dayjs.extend(utc)
-  dayjs.extend(timezone)
-  // 1 Oct at 08:00am
-  const start = dayjs("3 Dec 2021 07:00:00 PDT")
-  const end = dayjs("13 Dec 2021 00:59:00 PDT")
-  // const start = `${s.getDate()} Oct 2021 ${s.getHours()}:${(s.getMinutes() < 10 ? "0" : "") + s.getMinutes()}`
-  return `${start.format("D MMM")} at ${start.format(
+const timePT = computed(() => {
+  return `${startDate
+    .tz("America/Los_Angeles")
+    .format("D MMM")} at ${startDate.format("hh:mma")} - to - ${endDate
+    .tz("America/Los_Angeles")
+    .format("D MMM")} at ${endDate.format("hh:mma")} (PT)`
+})
+const timeLocale = computed(() => {
+  return `${startDate.format("D MMM")} at ${startDate.format(
     "hh:mma"
-  )} - to - ${end.format("D MMM")} at ${end.format(
+  )} - to - ${endDate.format("D MMM")} at ${endDate.format(
     "hh:mma"
   )} (${dayjs.tz.guess()})`
 })
@@ -218,8 +222,7 @@ const timeString = computed(() => {
 const isExpired = computed(() => {
   if (dayjs) {
     dayjs.extend(isSameOrAfter)
-    const end = dayjs("13 Dec 2021 00:59:00 PDT")
-    return dayjs(Date.now()).isSameOrAfter(end)
+    return dayjs(Date.now()).isSameOrAfter(endDate)
   } else {
     return false
   }
@@ -273,4 +276,11 @@ const fetchProjectSubmitted = async () => {
   if (data) projectSubmitted.value = data as number
 }
 fetchProjectSubmitted()
+
+const formCustomLabel = {
+  url: "Demo URL",
+  github_url: "(Public) Github URL",
+  email: "Team Captain's Email",
+  twitter: "Team Captain's Twitter handle",
+}
 </script>

@@ -75,6 +75,7 @@ const submit = async () => {
 
     if (!error) {
       isSubmitted.value = true
+      emit("submit", form.value.slug)
     } else {
       switch (error.code) {
         case "23505":
@@ -85,7 +86,6 @@ const submit = async () => {
           break
       }
     }
-    emit("submit", form.value.slug)
     isSubmitting.value = false
   }
 }
@@ -140,7 +140,7 @@ const isStillUploadingImage = computed(() => {
 const isPreviewMd = ref(false)
 
 onMounted(() => {
-  if (props.defaultCategories.length) {
+  if (props.defaultCategories?.length) {
     form.value.categories = props.defaultCategories
   }
 })
@@ -169,7 +169,7 @@ onMounted(() => {
     </div>
     <div class="flex flex-col">
       <label for="email" class="normal-case" required
-        >Email (allow you to edit the project) *</label
+        >{{ label?.email ?? "Email (allow you to edit the project)" }} *</label
       >
       <input
         name="email"
@@ -202,18 +202,10 @@ onMounted(() => {
         <label for="description">description (Markdown Supported) * </label>
         <div class="flex space-x-2">
           <button
-            @click.prevent="isPreviewMd = true"
-            class="hover:underline"
-            v-if="!isPreviewMd"
+            @click.prevent="isPreviewMd = !isPreviewMd"
+            class="hover:underline border-3 border-transparent px-2 rounded-lg focus:border-green-600 focus:outline-none"
           >
-            Preview
-          </button>
-          <button
-            @click.prevent="isPreviewMd = false"
-            class="hover:underline"
-            v-else
-          >
-            Edit
+            {{ isPreviewMd ? "Edit" : "Preview" }}
           </button>
         </div>
       </div>
@@ -315,7 +307,7 @@ onMounted(() => {
 
     <div class="flex items-center justify-between">
       <div class="flex flex-col w-1/2 mr-4">
-        <label for="twitter">Twitter</label>
+        <label for="twitter">{{ label?.twitter ?? "Twitter" }}</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
           <input
@@ -327,7 +319,7 @@ onMounted(() => {
           />
         </div>
       </div>
-      <div class="flex flex-col w-1/2">
+      <div v-if="!isHackathon" class="flex flex-col w-1/2">
         <label for="instagram">instagram</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
