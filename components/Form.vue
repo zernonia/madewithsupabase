@@ -242,8 +242,10 @@ onMounted(() => {
           class="w-full h-full flex overflow-hidden overflow-x-auto"
         >
           <div
+            tabindex="0"
+            @keypress.enter="target?.click()"
             @click="target?.click()"
-            class="h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-2 border-dashed"
+            class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
           >
             <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
             <p>Click to 'Add' images</p>
@@ -287,9 +289,11 @@ onMounted(() => {
           </div>
         </div>
         <div
+          tabindex="0"
+          @keypress.enter="target?.click()"
           @click="target?.click()"
           v-else
-          class="text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-2 border-dashed"
+          class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
         >
           <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
           <p>Click to 'Add' images</p>
