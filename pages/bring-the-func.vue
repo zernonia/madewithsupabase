@@ -184,15 +184,17 @@ const goTo = () => {
   })
 }
 
-const startDate = dayjs("1 April 2022 09:00:00 UTC")
-const endDate = dayjs("8 April 2022 23:59:00 UTC")
+const startDate = dayjs("1 April 2022 09:00:00 PDT")
+const endDate = dayjs("10 April 2022 23:59:00 PDT")
 const timeOriginal = ref(true)
 const timePT = computed(() => {
-  return `${startDate
+  return `${startDate.tz("America/Los_Angeles").format("D MMM")} at ${startDate
     .tz("America/Los_Angeles")
-    .format("D MMM")} at ${startDate.format("hh:mma")} - to - ${endDate
+    .format("hh:mma")} - to - ${endDate
     .tz("America/Los_Angeles")
-    .format("D MMM")} at ${endDate.format("hh:mma")} (PT)`
+    .format("D MMM")} at ${endDate
+    .tz("America/Los_Angeles")
+    .format("hh:mma")} (PT)`
 })
 const timeLocale = computed(() => {
   return `${startDate.format("D MMM")} at ${startDate.format(
