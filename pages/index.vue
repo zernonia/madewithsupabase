@@ -6,6 +6,10 @@
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
     </div>
 
+    <NuxtLink to="/bring-the-func" class="mt-4 w-full flex justify-center">
+      <img class="w-full md:w-128" :src="HeroImage" alt="" />
+    </NuxtLink>
+
     <transition name="fade" mode="out-in">
       <div v-if="hero && hero.length" class="flex flex-col items-center">
         <HeroSlider :data="hero"></HeroSlider>
@@ -92,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import HeroImage from "@/assets/supabase-hackathon-v2.png"
+import HeroImage from "@/assets/fx.svg"
 
 const { $supabase } = useNuxtApp()
 

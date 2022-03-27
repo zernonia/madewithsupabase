@@ -4,11 +4,15 @@
     <transition name="fade">
       <main class="py-8">
         <section class="md:py-6 px-4 flex flex-col items-center">
-          <a href="/">
-            <img class="w-12 sm:w-16" :src="SiteLogo" alt="" />
+          <a
+            href="/"
+            class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
+          >
+            <i-mdi:chevron-left></i-mdi:chevron-left>
           </a>
 
           <!-- Fx -->
+          <img class="w-full md:w-128" :src="HeroImage" alt="" />
 
           <div
             v-if="!submitted"
@@ -156,8 +160,7 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
-import SiteLogo from "@/assets/logo.svg"
-import HeroImage from "@/assets/supabase-hackathon-v2.png"
+import HeroImage from "@/assets/fx.svg"
 
 const { $supabase } = useNuxtApp()
 dayjs.extend(utc)
