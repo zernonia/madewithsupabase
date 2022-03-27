@@ -47,7 +47,21 @@
           </div>
           <div class="mt-12 flex flex-col items-center text-center" v-else>
             <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
+            <p class="mt-2 text-light-900">
+              Stay tuned for the Medal Ceremony <br />
+              You can edit your submission here before too late!
+            </p>
+            <div class="flex items-center mt-4">
+              <input
+                class="!rounded-r-none"
+                type="text"
+                disabled
+                :value="text"
+              />
+              <button @click="copy()" class="btn !rounded-l-none !p-2.5">
+                <i-mdi:content-copy></i-mdi:content-copy>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -244,7 +258,7 @@ watch(rulesIsVisible, () => {
   }
 })
 
-const submitted = ref(false)
+const submitted = ref(true)
 const editingLink = ref("https://www.madewithsupabase.com/edit/supabase-schema")
 const completed = (slug: string) => {
   submitted.value = true
