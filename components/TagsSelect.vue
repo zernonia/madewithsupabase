@@ -36,12 +36,21 @@ const prop = defineProps({
     default: [],
   },
 })
-const inputList = ref(["Supabase Auth", "Supabase Database", "Supabase Storage", "Supabase Realtime"])
+const inputList = ref([
+  "Supabase Auth",
+  "Supabase Database",
+  "Supabase Function",
+  "Supabase Storage",
+  "Supabase Realtime",
+])
 const inputText = ref("")
 const append = (e: Event) => {
   e.preventDefault()
   if (!inputText.value) return
-  if (!prop.modelValue.includes(inputText.value) && inputList.value.includes(inputText.value)) {
+  if (
+    !prop.modelValue.includes(inputText.value) &&
+    inputList.value.includes(inputText.value)
+  ) {
     prop.modelValue.push(inputText.value)
     inputText.value = ""
   }
