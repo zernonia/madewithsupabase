@@ -151,7 +151,13 @@
         </section>
 
         <section v-if="!submitted && !isExpired" class="w-full">
-          <FormHacktoberfest @submit="completed"></FormHacktoberfest>
+          <Form
+            @submit="completed"
+            :label="formCustomLabel"
+            title="Submission"
+            :defaultCategories="['Bring the Func(🕺)']"
+            isHackathon
+          ></Form>
         </section>
       </main>
     </transition>
