@@ -22,13 +22,18 @@
               <p v-if="timeOriginal">{{ timePT }}</p>
               <p v-else>{{ timeLocale }}</p>
             </transition>
-            <button
-              class="!p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
-              :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
-              @click="timeOriginal = !timeOriginal"
+            <span
+              class="text-base flex items-center ml-2"
+              v-tooltip="'Toggle local time'"
             >
-              <i-ic:twotone-change-circle></i-ic:twotone-change-circle>
-            </button>
+              <button
+                class="text-2xl !p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
+                :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
+                @click="timeOriginal = !timeOriginal"
+              >
+                <i-ic:twotone-change-circle></i-ic:twotone-change-circle>
+              </button>
+            </span>
           </div>
           <div
             class="mt-12 flex flex-col items-center text-center"
@@ -56,7 +61,7 @@
                 class="!rounded-r-none"
                 type="text"
                 disabled
-                :value="text"
+                v-model="editingLink"
               />
               <button @click="copy()" class="btn !rounded-l-none !p-2.5">
                 <i-mdi:content-copy></i-mdi:content-copy>
@@ -258,7 +263,7 @@ watch(rulesIsVisible, () => {
   }
 })
 
-const submitted = ref(true)
+const submitted = ref(false)
 const editingLink = ref("https://www.madewithsupabase.com/edit/supabase-schema")
 const completed = (slug: string) => {
   submitted.value = true
