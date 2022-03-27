@@ -55,9 +55,13 @@ const slugify = (str: string) => {
 const submit = async () => {
   const regexUrl =
     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
+  if (props.isHackathon) {
+    if (!terms.value.acknowledge || !terms.value.accept) return
+  }
   if (
     form.value.title &&
     form.value.url.match(regexUrl) &&
+    form.value.email &&
     form.value.description
   ) {
     isSubmitting.value = true
