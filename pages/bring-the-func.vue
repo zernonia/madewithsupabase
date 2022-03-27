@@ -7,31 +7,9 @@
           <a href="/">
             <img class="w-12 sm:w-16" :src="SiteLogo" alt="" />
           </a>
-          <div
-            class="px-1 mt-12 h-36 md:h-52 w-full max-w-screen-lg rounded-lg"
-          >
-            <div class="relative flex h-full w-full">
-              <a
-                href="https://supabase.com/blog/2021/12/03/supabase-holiday-hackdays-hackathon"
-                rel="noopener"
-                target="_blank"
-                class="z-10 absolute w-full h-full flex justify-center items-center bg-gradient-to-br from-gray-900 to-black rounded-lg overflow-hidden"
-              >
-                <img
-                  class="w-full h-full object-cover"
-                  :src="HeroImage"
-                  alt=""
-                />
-              </a>
-              <div
-                class="absolute w-full h-full bg-conic-gradient filter blur-xl"
-              ></div>
-              <div
-                class="absolute w-full h-full bg-conic-gradient filter blur-3xl opacity-60 animate-pulse-slow"
-              ></div>
-              <div class="absolute -inset-1 rounded-lg bg-conic-gradient"></div>
-            </div>
-          </div>
+
+          <!-- Fx -->
+
           <div
             v-if="!submitted"
             class="mt-8 text-center text-dark-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
@@ -58,7 +36,8 @@
           </div>
           <div class="mt-8 flex flex-col items-center" v-else-if="!submitted">
             <h2 class="text-2xl sm:text-4xl mt-1">
-              {{ projectSubmitted }} Projects Submitted
+              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
+              Projects Submitted
             </h2>
             <button class="btn mt-6" @click="goTo">Submit Project</button>
           </div>
@@ -154,7 +133,7 @@
             @submit="completed"
             :label="formCustomLabel"
             title="Submission"
-            :defaultCategories="['Bring the Func(🕺)']"
+            :defaultCategories="['Bring the Func']"
             isHackathon
           ></Form>
         </section>
@@ -172,6 +151,7 @@ export default {
 <script setup lang="ts">
 import lottie from "lottie-web"
 import { useElementVisibility, useClipboard } from "@vueuse/core"
+import { animate } from "motion"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
@@ -267,13 +247,23 @@ const completed = (slug: string) => {
 }
 const { text, copy, copied } = useClipboard({ source: editingLink })
 
+const projectSubmittedRef = ref<HTMLElement>()
 const projectSubmitted = ref(0)
 const fetchProjectSubmitted = async () => {
   const { data, error } = await $supabase.rpc("submission_count", {
     tag: "Bring the Func",
   })
 
-  if (data) projectSubmitted.value = data as number
+  if (data && projectSubmittedRef.value) {
+    projectSubmitted.value = 100 as number
+    animate(
+      (progress) =>
+        (projectSubmittedRef.value.innerHTML = String(
+          Math.round(progress * 100)
+        )),
+      { duration: 1.5, easing: "ease-in-out" }
+    )
+  }
 }
 fetchProjectSubmitted()
 
