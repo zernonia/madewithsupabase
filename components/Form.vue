@@ -223,7 +223,11 @@ onMounted(() => {
           required
           placeholder="Write some description about your project"
         />
-        <Marked class="max-w-none" v-else :text="form.description"></Marked>
+        <Marked
+          class="max-w-none px-4 py-2 border-3 border-transparent"
+          v-else
+          :text="form.description"
+        ></Marked>
       </div>
     </div>
     <div class="flex flex-col">

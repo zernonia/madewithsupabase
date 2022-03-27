@@ -53,10 +53,7 @@
                   class="w-8 h-8"
                 ></i-mdi:information-outline>
                 <h2 class="text-3xl mb-2">Description</h2>
-                <Marked
-                  class="break-words"
-                  :text="routeData.description"
-                ></Marked>
+                <Marked :text="routeData.description"></Marked>
               </div>
 
               <div>
