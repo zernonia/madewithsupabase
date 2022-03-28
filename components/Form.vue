@@ -310,7 +310,10 @@ onMounted(() => {
     </div>
 
     <div class="flex items-center justify-between">
-      <div class="flex flex-col w-1/2 mr-4">
+      <div
+        class="flex flex-col mr-4"
+        :class="[isHackathon ? 'w-full' : 'w-1/2']"
+      >
         <label for="twitter">{{ label?.twitter ?? "Twitter" }}</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
