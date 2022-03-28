@@ -6,21 +6,7 @@
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
     </div>
 
-    <NuxtLink
-      to="/bring-the-func"
-      class="group mt-4 p-6 h-84 w-full flex justify-center items-center transition bg-dark-600 rounded-3xl relative"
-    >
-      <img
-        class="w-full md:w-128 group-hover:w-84 transform group-hover:-translate-x-48 transition-all"
-        :src="HeroImage"
-        alt=""
-      />
-      <h2
-        class="text-4xl absolute top-1/2 -translate-y-1/2 translate-x-0 opacity-0 transform group-hover:opacity-100 group-hover:translate-x-48 delay-100 transition-all"
-      >
-        Bring the Func(🕺)
-      </h2>
-    </NuxtLink>
+    <Banner></Banner>
 
     <transition name="fade" mode="out-in">
       <div v-if="hero && hero.length" class="flex flex-col items-center">
@@ -108,8 +94,6 @@
 </template>
 
 <script setup lang="ts">
-import HeroImage from "@/assets/fx.svg"
-
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)
