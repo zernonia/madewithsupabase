@@ -36,7 +36,7 @@ onMounted(() => {
       class="group p-6 lg:h-84 w-full flex flex-col justify-center items-center transition bg-dark-600 rounded-3xl relative overflow-hidden"
     >
       <img
-        class="z-10 w-full max-h-40 md:max-h-none md:w-128 lg:group-hover:w-84 transform lg:group-hover:-translate-x-48 transition-all"
+        class="z-10 w-full h-40 md:h-full md:max-h-none md:w-128 lg:group-hover:w-84 transform lg:group-hover:-translate-x-48 transition-all"
         :src="HeroImage"
         alt=""
       />
@@ -48,7 +48,7 @@ onMounted(() => {
       <h2 class="z-10 text-3xl mt-2 lg:hidden">Bring the Func(🕺)</h2>
 
       <svg
-        class="absolute h-82 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        class="absolute h-60 md:h-82 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
         width="1961"
         height="707"
         viewBox="0 0 1961 707"
