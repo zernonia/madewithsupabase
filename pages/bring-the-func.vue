@@ -175,10 +175,10 @@ export default {
 import lottie from "lottie-web"
 import { useElementVisibility, useClipboard } from "@vueuse/core"
 import { animate } from "motion"
-import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
+import dayjs from "dayjs/esm/index.js"
+import utc from "dayjs/esm/plugin/utc"
+import timezone from "dayjs/esm/plugin/timezone"
+import isSameOrAfter from "dayjs/esm/plugin/isSameOrAfter"
 import HeroImage from "@/assets/fx.svg"
 
 const { $supabase } = useNuxtApp()

@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     ],
   },
   build: {
-    transpile: ["swiper", "node-fetch"],
+    transpile: ["dayjs", "swiper", "node-fetch"],
   },
   buildModules: ["nuxt-windicss"],
   css: [
