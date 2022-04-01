@@ -4,40 +4,9 @@
 
     <div class="mt-8 flex flex-col items-center">
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
-      <div class="mt-2 flex flex-col md:flex-row items-center">
-        <GithubBanner class="my-1 md:my-0 md:mx-1"></GithubBanner>
-        <a
-          class=""
-          rel="noopener"
-          href="https://www.producthunt.com/posts/made-with-supabase?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-made-with-supabase"
-          target="_blank"
-          ><img
-            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=313981&theme=light"
-            alt="Made with Supabase - A collection of projects made with Supabase ⚡ | Product Hunt"
-            style="width: 250px; height: 54px"
-            width="250"
-            height="54"
-        /></a>
-      </div>
-
-      <div class="px-1 mt-12 h-36 md:h-52 w-full max-w-screen-lg rounded-lg">
-        <div class="relative flex h-full w-full">
-          <NuxtLink
-            to="/holiday-hackdays"
-            class="z-10 absolute w-full h-full flex justify-center items-center bg-gradient-to-br from-gray-900 to-black rounded-lg overflow-hidden"
-          >
-            <img class="w-full h-full object-cover" :src="HeroImage" alt="" />
-          </NuxtLink>
-          <div
-            class="absolute w-full h-full bg-conic-gradient filter blur-xl"
-          ></div>
-          <div
-            class="absolute w-full h-full bg-conic-gradient filter blur-3xl opacity-60 animate-pulse-slow"
-          ></div>
-          <div class="absolute -inset-1 rounded-lg bg-conic-gradient"></div>
-        </div>
-      </div>
     </div>
+
+    <Banner></Banner>
 
     <transition name="fade" mode="out-in">
       <div v-if="hero && hero.length" class="flex flex-col items-center">
@@ -125,8 +94,6 @@
 </template>
 
 <script setup lang="ts">
-import HeroImage from "@/assets/supabase-hackathon-v2.png"
-
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)

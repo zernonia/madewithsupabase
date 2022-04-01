@@ -78,6 +78,9 @@ const supabaseTags = ref([
     tags: "Supabase Database",
   },
   {
+    tags: "Supabase Function",
+  },
+  {
     tags: "Supabase Storage",
   },
   {
