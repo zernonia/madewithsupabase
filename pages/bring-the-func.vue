@@ -151,7 +151,10 @@
           </div>
         </section>
 
-        <section v-if="!submitted && !isExpired" class="w-full">
+        <section
+          v-if="!submitted && !isExpired"
+          class="w-full flex justify-center"
+        >
           <Form
             @submit="completed"
             :label="formCustomLabel"
