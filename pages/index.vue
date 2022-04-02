@@ -71,7 +71,7 @@ const [{ data: homeData }, { data: latest }] = await Promise.all([
         .from("products_view")
         .select("*", { count: "exact" })
         .order("views", { ascending: false })
-        .range(page.value, page.value + 11),
+        .range(page.value * 12, page.value * 12 + 11),
     {
       transform: (a: any) => {
         itemCount.value = a.count
