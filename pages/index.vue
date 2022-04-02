@@ -57,7 +57,7 @@
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)
-const page = computed(() => +route.query.page)
+const page = computed(() => (route.query.page ? +route.query.page - 1 : 0))
 
 const route = useRoute()
 

@@ -19,6 +19,26 @@ const nuxtLinkParams = computed(() => ({
 const countPerPage = 12
 const page = computed(() => (route.query.page ? +route.query.page - 1 : 0))
 const maxPage = computed(() => Math.ceil(props.count / countPerPage))
+const pageArray = computed(() => {
+  let showPage = 5
+  if (page.value == 0 || page.value == 1) return [1, 2, 3, 4, 5]
+  if (page.value == maxPage.value - 1 || page.value == maxPage.value - 2)
+    return [
+      maxPage.value - 4,
+      maxPage.value - 3,
+      maxPage.value - 2,
+      maxPage.value - 1,
+      maxPage.value,
+    ]
+  else
+    return [
+      page.value - 1,
+      page.value,
+      page.value + 1,
+      page.value + 2,
+      page.value + 3,
+    ]
+})
 </script>
 
 <template>
@@ -37,17 +57,17 @@ const maxPage = computed(() => Math.ceil(props.count / countPerPage))
       <div v-else class="w-8 h-8"></div>
     </div>
     <div class="flex flex-wrap justify-center">
-      <router-link
+      <NuxtLink
         class="border-4 border-dark-300 hover:border-gray-300 mr-2 mb-2 w-12 h-12 inline-flex items-center justify-center rounded-lg transition ease-in-out"
         :class="[page == i - 1 ? ' border-gray-300' : '']"
-        v-for="i in maxPage"
+        v-for="i in pageArray"
         :to="{
           query: { page: i },
           params: nuxtLinkParams,
         }"
       >
         {{ i }}
-      </router-link>
+      </NuxtLink>
     </div>
     <div>
       <NuxtLink
