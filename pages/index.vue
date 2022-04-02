@@ -49,47 +49,7 @@
       </div>
     </transition>
 
-    <div class="mt-12 w-full flex space-x-2 items-center justify-center">
-      <div>
-        <NuxtLink
-          v-if="page != 0"
-          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
-          :to="{
-            query: { page },
-            params: nuxtLinkParams,
-          }"
-        >
-          <i-mdi:menu-left class="w-8 h-8"></i-mdi:menu-left>
-        </NuxtLink>
-        <div v-else class="w-8 h-8"></div>
-      </div>
-      <div class="flex flex-wrap justify-center">
-        <router-link
-          class="border-4 border-dark-300 hover:border-gray-300 mr-2 mb-2 w-12 h-12 inline-flex items-center justify-center rounded-lg transition ease-in-out"
-          :class="[page == i - 1 ? ' border-gray-300' : '']"
-          v-for="i in maxPage"
-          :to="{
-            query: { page: i },
-            params: nuxtLinkParams,
-          }"
-        >
-          {{ i }}
-        </router-link>
-      </div>
-      <div>
-        <NuxtLink
-          v-if="page != maxPage - 1"
-          class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
-          :to="{
-            query: { page: page + 2 },
-            params: nuxtLinkParams,
-          }"
-        >
-          <i-mdi:menu-right class="w-8 h-8"></i-mdi:menu-right>
-        </NuxtLink>
-        <div v-else class="w-8 h-8"></div>
-      </div>
-    </div>
+    <Pagination :count="itemCount" :target="target"></Pagination>
   </div>
 </template>
 
@@ -97,10 +57,7 @@
 const { $supabase } = useNuxtApp()
 
 let itemCount = useState("item-count", () => 0)
-
-const countPerPage = 12
-const page = computed(() => (route.query.page ? +route.query.page - 1 : 0))
-const maxPage = computed(() => Math.ceil(itemCount.value / countPerPage))
+const page = computed(() => +route.query.page)
 
 const route = useRoute()
 
@@ -114,10 +71,7 @@ const [{ data: homeData }, { data: latest }] = await Promise.all([
         .from("products_view")
         .select("*", { count: "exact" })
         .order("views", { ascending: false })
-        .range(
-          page.value * countPerPage,
-          page.value * countPerPage + (countPerPage - 1)
-        ),
+        .range(page.value, page.value + 11),
     {
       transform: (a: any) => {
         itemCount.value = a.count
@@ -126,6 +80,7 @@ const [{ data: homeData }, { data: latest }] = await Promise.all([
     }
   ),
 ])
+const target = ref()
 
 const hero = computed(() => homeData.value?.[0].data)
 const testimonial = computed(() => homeData.value?.[1].data)
@@ -137,21 +92,12 @@ const fetchLatest = async () => {
     .from("products_view")
     .select("*", { count: "exact" })
     .order("views", { ascending: false })
-    .range(
-      page.value * countPerPage,
-      page.value * countPerPage + (countPerPage - 1)
-    )
+    .range(+page.value * 12, +page.value * 12 + (12 - 1))
   if (data) {
     latest.value = data
   }
   pending.value = false
 }
-
-const target = ref()
-
-const nuxtLinkParams = computed(() => ({
-  position: target.value?.offsetTop - 50,
-}))
 
 watch(
   () => route.query,
