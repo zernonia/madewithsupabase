@@ -12,7 +12,12 @@
           </a>
 
           <!-- Fx -->
-          <img class="w-full md:w-128" :src="HeroImage" alt="" />
+          <a
+            href="https://supabase.com/blog/2022/04/01/hackathon-bring-the-func"
+            target="_blank"
+          >
+            <img class="w-full md:w-128" :src="HeroImage" alt="" />
+          </a>
 
           <div
             v-if="!submitted"
