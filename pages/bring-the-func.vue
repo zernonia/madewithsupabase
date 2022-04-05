@@ -51,7 +51,7 @@
           <div class="mt-8 flex flex-col items-center" v-else-if="!submitted">
             <h2 class="text-2xl sm:text-4xl mt-1">
               <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-              Projects Submitted
+              Trees Planted 🌲
             </h2>
             <button class="btn mt-6" @click="goTo">Submit Project</button>
           </div>
