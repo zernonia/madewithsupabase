@@ -103,7 +103,8 @@ watch(
   () => route.query,
   (n) => {
     if (route.query.page) fetchLatest()
-  }
+  },
+  { immediate: true }
 )
 
 definePageMeta({
