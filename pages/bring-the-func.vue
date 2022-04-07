@@ -288,10 +288,13 @@ const fetchProjectSubmitted = async () => {
 
   if (data && projectSubmittedRef.value) {
     projectSubmitted.value = data as number
+
     animate(
       (progress) =>
-        (projectSubmittedRef.value.innerHTML = String(Math.round(progress))),
-      { duration: 1.5, easing: "ease-in-out" }
+        (projectSubmittedRef.value.innerHTML = String(
+          Math.round(progress * projectSubmitted.value)
+        )),
+      { duration: 1, easing: "ease-in-out" }
     )
   }
 }
