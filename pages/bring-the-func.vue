@@ -44,6 +44,10 @@
             class="mt-12 flex flex-col items-center text-center"
             v-if="isExpired"
           >
+            <h2 class="text-2xl sm:text-4xl mt-1 mb-12">
+              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
+              Trees Planted 🌲
+            </h2>
             <h1 class="text-2xl sm:text-4xl">Time is up! ⌚</h1>
             <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
             <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
