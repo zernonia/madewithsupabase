@@ -1,9 +1,12 @@
 <template>
   <main class="py-8">
     <section class="md:py-6 px-4 flex flex-col items-center">
-      <NuxtLink to="/">
-        <img class="w-12 sm:w-16" src="@/assets/logo.svg" alt="" />
-      </NuxtLink>
+      <a
+        href="/"
+        class="fixed left-0 top-10 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
+      >
+        <i-mdi:chevron-left></i-mdi:chevron-left>
+      </a>
       <a
         href="https://supabase.com/blog/2022/04/01/hackathon-bring-the-func"
         target="_blank"

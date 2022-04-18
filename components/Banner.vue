@@ -33,8 +33,11 @@ onMounted(() => {
   <div class="mt-4 w-full h-full max-w-screen-lg mx-auto">
     <NuxtLink
       to="/bring-the-func"
-      class="group p-6 lg:h-84 w-full flex flex-col justify-center items-center transition bg-dark-600 rounded-3xl relative overflow-hidden"
+      class="group relative p-6 lg:h-84 w-full flex flex-col justify-center items-center transition bg-dark-600 rounded-3xl relative overflow-hidden"
     >
+      <div
+        class="w-10 h-10 animate-ping animate-duration-1500 absolute top-0 right-0 transform -translate-y-5 bg-white rounded-full"
+      ></div>
       <img
         class="z-10 w-full h-40 md:h-full md:max-h-none md:w-128 lg:group-hover:w-84 transform lg:group-hover:-translate-x-48 transition-all"
         :src="HeroImage"
@@ -43,9 +46,9 @@ onMounted(() => {
       <h2
         class="z-10 md:text-4xl lg:text-5xl hidden lg:block lg:absolute top-1/2 -translate-y-1/2 translate-x-0 lg:opacity-0 transform group-hover:opacity-100 lg:group-hover:translate-x-48 delay-100 transition-all"
       >
-        Bring the Func(🕺)
+        Winners!
       </h2>
-      <h2 class="z-10 text-3xl mt-2 lg:hidden">Bring the Func(🕺)</h2>
+      <h2 class="z-10 text-3xl mt-2 lg:hidden">Winners!</h2>
 
       <svg
         class="absolute h-60 md:h-82 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
