@@ -1,313 +1,192 @@
 <template>
-  <div>
-    <CustomMeta :title="'Bring the Func(🕺) | Made with Supabase'" />
-    <transition name="fade">
-      <main class="py-8">
-        <section class="md:py-6 px-4 flex flex-col items-center">
-          <a
-            href="/"
-            class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
-          >
-            <i-mdi:chevron-left></i-mdi:chevron-left>
-          </a>
+  <main class="py-8">
+    <section class="md:py-6 px-4 flex flex-col items-center">
+      <a
+        href="/"
+        class="fixed left-0 top-10 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
+      >
+        <i-mdi:chevron-left></i-mdi:chevron-left>
+      </a>
+      <a
+        href="https://supabase.com/blog/2022/04/01/hackathon-bring-the-func"
+        target="_blank"
+      >
+        <img class="w-full md:w-128" :src="HeroImage" alt="" />
+      </a>
+    </section>
 
-          <!-- Fx -->
-          <a
-            href="https://supabase.com/blog/2022/04/01/hackathon-bring-the-func"
-            target="_blank"
-          >
-            <img class="w-full md:w-128" :src="HeroImage" alt="" />
-          </a>
+    <section class="w-full md:py-6 flex flex-col items-center">
+      <h2
+        class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+      >
+        Most impressive <br />
+        GraphQL project
+      </h2>
+      <CardWinner :obj="projects[0]">
+        <template v-slot:icon>
+          <i-simple-icons:graphql
+            class="h-24 md:h-36 w-auto absolute -top-10 -right-10 md:-right-24"
+            style="color: #fcd33f"
+          ></i-simple-icons:graphql>
+        </template>
+      </CardWinner>
+      <CardRunnerUp :obj="projects[1]">
+        <template v-slot:icon>
+          <i-simple-icons:graphql
+            class="h-18 md:h-30 w-auto absolute -top-10 -left-6 md:-left-22"
+            style="color: #d1d5db"
+          ></i-simple-icons:graphql>
+        </template>
+      </CardRunnerUp>
+    </section>
 
-          <div
-            v-if="!submitted"
-            class="mt-8 text-center text-dark-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
-          >
-            <transition name="slide-fade" mode="out-in">
-              <p v-if="timeOriginal">{{ timePT }}</p>
-              <p v-else>{{ timeLocale }}</p>
-            </transition>
-            <span
-              class="text-base flex items-center ml-2"
-              v-tooltip="'Toggle local time'"
-            >
-              <button
-                class="text-2xl !p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
-                :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
-                @click="timeOriginal = !timeOriginal"
-              >
-                <i-ic:twotone-change-circle></i-ic:twotone-change-circle>
-              </button>
-            </span>
-          </div>
-          <div
-            class="mt-12 flex flex-col items-center text-center"
-            v-if="isExpired"
-          >
-            <h2 class="text-2xl sm:text-4xl mt-1 mb-12">
-              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-              Trees Planted 🌲
-            </h2>
-            <h1 class="text-2xl sm:text-4xl">Time is up! ⌚</h1>
-            <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
-          </div>
-          <div class="mt-8 flex flex-col items-center" v-else-if="!submitted">
-            <h2 class="text-2xl sm:text-4xl mt-1">
-              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-              Trees Planted 🌲
-            </h2>
-            <button class="btn mt-6" @click="goTo">Submit Project</button>
-          </div>
-          <div class="mt-12 flex flex-col items-center text-center" v-else>
-            <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900">
-              Stay tuned for the Medal Ceremony <br />
-              You can edit your submission here before too late!
-            </p>
-            <div class="flex items-center mt-4">
-              <input
-                class="!rounded-r-none"
-                type="text"
-                disabled
-                v-model="editingLink"
-              />
-              <button @click="copy()" class="btn !rounded-l-none !p-2.5">
-                <i-mdi:content-copy></i-mdi:content-copy>
-              </button>
-            </div>
-          </div>
-        </section>
+    <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
+      <h2
+        class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
+      >
+        Most interesting usage <br />
+        of Edge Functions
+      </h2>
+      <CardWinner :obj="projects[2]">
+        <template v-slot:icon>
+          <i-mdi:function-variant
+            class="h-24 md:h-36 w-auto absolute -top-10 -right-10 md:-right-24"
+            style="color: #fcd33f"
+          ></i-mdi:function-variant>
+        </template>
+      </CardWinner>
+      <CardRunnerUp :obj="projects[3]">
+        <template v-slot:icon>
+          <i-mdi:function-variant
+            class="h-18 md:h-30 w-auto absolute -top-10 -left-6 md:-left-22"
+            style="color: #d1d5db"
+          ></i-mdi:function-variant>
+        </template>
+      </CardRunnerUp>
 
-        <section
-          v-if="!submitted && !isExpired"
-          ref="submitTarget"
-          class="flex flex-col items-center"
+      <section class="w-full md:py-6 mt-12 md:mt-20 flex flex-col items-center">
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
         >
-          <div
-            class="flex flex-col flex-col-reverse md:flex-row items-center max-w-screen-md mx-auto"
-          >
-            <div class="mt-6 md:py-16 px-4 sm:px-8 rounded-2xl flex flex-col">
-              <h1
-                class="text-4xl sm:text-5xl text-emerald-300 text-center md:text-left"
-              >
-                Checklist
-              </h1>
+          Most fun/visually pleasing <br />
+          (get creative)
+        </h2>
+        <CardWinner :obj="projects[4]">
+          <template v-slot:icon>
+            <i-ph:heart-duotone
+              class="h-24 md:h-36 w-auto absolute -top-10 -right-14 md:-right-24"
+              style="color: #fcd33f"
+            ></i-ph:heart-duotone>
+          </template>
+        </CardWinner>
+        <CardRunnerUp :obj="projects[5]">
+          <template v-slot:icon>
+            <i-ph:heart-duotone
+              class="h-18 md:h-30 w-auto absolute -top-10 -left-8 md:-left-22"
+              style="color: #d1d5db"
+            ></i-ph:heart-duotone>
+          </template>
+        </CardRunnerUp>
+      </section>
+    </section>
 
-              <p class="mt-8 text-xl">
-                README in GitHub (or similar) should include:
-              </p>
-              <ul class="text-lg list-disc ml-4 text-light-900">
-                <li>link to hosted demo (if applicable)</li>
-                <li>
-                  list of team members github handles (and twitter if they have
-                  one) - any demo videos, instructions, or memes
-                </li>
-                <li>
-                  a brief description of how you used Supabase:
-                  <ul class="list-circle ml-4">
-                    <li>to store data?</li>
-                    <li>realtime?</li>
-                    <li>auth?</li>
-                    <li>storage?</li>
-                  </ul>
-                </li>
-                <li>
-                  any other info you want the judges to know
-                  (motivations/ideas/process)
-                </li>
-                <li>*optional* team photo</li>
-              </ul>
-            </div>
-            <div class="h-64 md:h-full w-64 md:w-128" ref="checklist"></div>
-          </div>
-
-          <div
-            id="checklist"
-            class="mt-18 md:mt-0 flex flex-col md:flex-row items-center max-w-screen-md mx-auto"
-          >
-            <div class="h-56 md:h-full w-56 md:w-160" ref="rules"></div>
-
-            <div class="mt-6 md:py-16 px-4 sm:px-8 rounded-2xl flex flex-col">
-              <h1
-                class="text-4xl sm:text-5xl text-emerald-300 text-center md:text-left"
-              >
-                Rules
-              </h1>
-              <ul class="text-lg list-disc ml-4 text-light-900">
-                <li>
-                  Team size 1-5 (all team members on winning teams will receive
-                  a prize)
-                </li>
-                <li>You cannot be in multiple teams</li>
-                <li>
-                  All design elements, code, etc. for your project/feature must
-                  be created during the event
-                </li>
-                <li>
-                  All entries must be Open Source (link to source code required
-                  in entry)
-                </li>
-                <li>Must use Supabase in some capacity</li>
-                <li>Can be any language or framework</li>
-                <li>
-                  You can continue to make updates to your project after the
-                  submission deadline, but there is no guarantee that the judges
-                  will see additions made after the submission time.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section
-          v-if="!submitted && !isExpired"
-          class="w-full flex justify-center"
+    <section class="mt-12 md:mt-20">
+      <div>
+        <h2
+          class="text-4xl md:text-5xl text-center mb-4 sm:mb-16 text-emerald-400"
         >
-          <Form
-            @submit="completed"
-            :label="formCustomLabel"
-            title="Submission"
-            :defaultCategories="['Bring the Func']"
-            isHackathon
-          ></Form>
-        </section>
-      </main>
-    </transition>
-  </div>
+          Other Submission
+        </h2>
+        <transition name="fade" mode="out-in">
+          <div v-if="!isFetching" class="card-grid">
+            <Card
+              v-for="item in hacktoberfestData"
+              :key="item.id"
+              :item="item"
+            ></Card>
+          </div>
+          <div v-else class="w-full h-screen flex items-center justify-center">
+            <SVGCircle class="animate-ping"></SVGCircle>
+          </div>
+        </transition>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script lang="ts">
-export default {
-  layout: "blank",
-}
-</script>
-
-<script setup lang="ts">
-import lottie from "lottie-web"
-import { useElementVisibility, useClipboard } from "@vueuse/core"
-import { animate } from "motion"
-import dayjs from "dayjs/esm/index.js"
-import utc from "dayjs/esm/plugin/utc"
-import timezone from "dayjs/esm/plugin/timezone"
-import isSameOrAfter from "dayjs/esm/plugin/isSameOrAfter"
-import HeroImage from "@/assets/fx.svg"
-
-const { $supabase } = useNuxtApp()
-dayjs.extend(utc)
-dayjs.extend(timezone)
-
 definePageMeta({
   layout: "blank",
 })
+</script>
 
-const step = ref(0)
-watch(step, () => {
-  goTo()
-})
+<script setup lang="ts">
+import { ref, onMounted } from "vue"
+import HeroImage from "@/assets/fx.svg"
+const { $supabase } = useNuxtApp()
 
-const submitTarget = ref()
-const goTo = () => {
-  let d = submitTarget.value as HTMLDivElement
-  document.documentElement.scrollTo({
-    top: d.offsetTop,
-    behavior: "smooth",
-  })
+const projects = ref([
+  {
+    id: "67db71ab-867e-403d-8885-991760c29386",
+    title: "mintbaseXsupabase",
+    subtitle: "@Flowolfpro",
+    link: "/p/mintbasexsupabase",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/mintbasexsupabase-1dttd-162639349-3f334480-f8a9-4b58-88b1-0a6688a16ffapng",
+  },
+  {
+    id: "80889e84-06ed-44ee-a6d6-637975fa523c",
+    title: "Pgm Dictionary",
+    subtitle: "@n4ze3m",
+    link: "/p/pgm-dictionary",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/pgm-26sp1-screenzy-1649267250672png",
+  },
+  {
+    id: "6cf421d5-3a2c-45c2-a220-37d771e24deb",
+    title: "Wen NFT",
+    subtitle: "@gbibeaul",
+    link: "/p/wen-nft",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/wen-nft-37xz7-screenshot-2022-04-03-at-19-31-44-web3-fullstackpng",
+  },
+  {
+    id: "68b1d4d6-3bbf-43b9-85e3-fabadce1655d",
+    title: "DocuPool - Document Sharing Platform",
+    subtitle: "@emilioschepis",
+    link: "/p/docupool-document-sharing-platform",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/docupool-document-sharing-platform-svuxo-screen-shot-2022-04-10-at-222753png",
+  },
+  {
+    id: "4f482a70-3a46-44f8-b791-ba7325d5f22b",
+    title: "AbileneX",
+    subtitle: "@okeziechiedozie",
+    link: "/p/abilenex-the-revolutionary-idea-feedback-tool",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/abilenex-the-revolutionary-idea-feedback-tool-7iaib-cover-imagepng",
+  },
+  {
+    id: "827679e3-feb7-4615-ad67-f07eecb1b540",
+    title: "Kardow",
+    subtitle: "@SimonGingras18",
+    link: "/p/kardow",
+    image:
+      "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/kardow-1ust9-kardow-templatepng",
+  },
+])
+
+// get other submission
+const hacktoberfestData = ref<any>([])
+const isFetching = ref(true)
+const fetchData = async () => {
+  isFetching.value = true
+  const { data, error } = await $supabase
+    .from("bring_the_func_view")
+    .select("*")
+    .order("views", { ascending: false })
+  hacktoberfestData.value = data
+  isFetching.value = false
 }
-
-const startDate = dayjs("1 April 2022 09:00:00 PDT")
-const endDate = dayjs("10 April 2022 23:59:00 PDT")
-const timeOriginal = ref(true)
-const timePT = computed(() => {
-  return `${startDate.tz("America/Los_Angeles").format("D MMM")} at ${startDate
-    .tz("America/Los_Angeles")
-    .format("hh:mma")} - to - ${endDate
-    .tz("America/Los_Angeles")
-    .format("D MMM")} at ${endDate
-    .tz("America/Los_Angeles")
-    .format("hh:mma")} (PT)`
-})
-const timeLocale = computed(() => {
-  return `${startDate.format("D MMM")} at ${startDate.format(
-    "hh:mma"
-  )} - to - ${endDate.format("D MMM")} at ${endDate.format(
-    "hh:mma"
-  )} (${dayjs.tz.guess()})`
-})
-
-const isExpired = computed(() => {
-  if (dayjs) {
-    dayjs.extend(isSameOrAfter)
-    return dayjs(Date.now()).isSameOrAfter(endDate)
-  } else {
-    return false
-  }
-})
-
-// Checklist -- step 0
-const checklist = ref()
-const checklistIsVisible = useElementVisibility(checklist)
-
-watch(checklistIsVisible, () => {
-  if (!checklist.value?.children.length) {
-    lottie.loadAnimation({
-      container: checklist.value,
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "./checklist.json",
-    })
-  }
-})
-
-const rules = ref()
-const rulesIsVisible = useElementVisibility(rules)
-
-watch(rulesIsVisible, () => {
-  if (!rules.value?.children.length) {
-    lottie.loadAnimation({
-      container: rules.value,
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "./rules.json",
-    })
-  }
-})
-
-const submitted = ref(false)
-const editingLink = ref("https://www.madewithsupabase.com/edit/supabase-schema")
-const completed = (slug: string) => {
-  submitted.value = true
-  editingLink.value = "https://www.madewithsupabase.com/edit/" + slug
-}
-const { text, copy, copied } = useClipboard({ source: editingLink })
-
-const projectSubmittedRef = ref<HTMLElement>()
-const projectSubmitted = ref(0)
-const fetchProjectSubmitted = async () => {
-  const { data, error } = await $supabase.rpc("submission_count", {
-    tag: "Bring the Func",
-  })
-
-  if (data && projectSubmittedRef.value) {
-    projectSubmitted.value = data as number
-
-    animate(
-      (progress) =>
-        (projectSubmittedRef.value.innerHTML = String(
-          Math.round(progress * projectSubmitted.value)
-        )),
-      { duration: 1, easing: "ease-in-out" }
-    )
-  }
-}
-fetchProjectSubmitted()
-
-const formCustomLabel = {
-  url: "Demo URL",
-  github_url: "(Public) Github URL",
-  email: "Team Captain's Email",
-  twitter: "Team Captain's Twitter handle",
-}
+fetchData()
 </script>
