@@ -98,7 +98,7 @@
           Other Submission
         </h2>
         <transition name="fade" mode="out-in">
-          <div v-if="!isFetching" class="card-grid">
+          <div v-if="!isPending" class="card-grid">
             <Card
               v-for="item in hacktoberfestData"
               :key="item.id"
@@ -113,12 +113,6 @@
     </section>
   </main>
 </template>
-
-<script lang="ts">
-definePageMeta({
-  layout: "blank",
-})
-</script>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
@@ -177,16 +171,22 @@ const projects = ref([
 ])
 
 // get other submission
-const hacktoberfestData = ref<any>([])
-const isFetching = ref(true)
-const fetchData = async () => {
-  isFetching.value = true
-  const { data, error } = await $supabase
-    .from("bring_the_func_view")
-    .select("*")
-    .order("views", { ascending: false })
-  hacktoberfestData.value = data
-  isFetching.value = false
-}
-fetchData()
+const { data: hacktoberfestData, pending: isPending } = useLazyAsyncData(
+  "other_submission",
+  async () => {
+    const { data } = await $supabase
+      .from("bring_the_func_view")
+      .select("*")
+      .order("views", { ascending: false })
+    return data
+  }
+)
+
+definePageMeta({
+  layout: "blank",
+  pageTransition: {
+    name: "fade",
+    mode: "out-in",
+  },
+})
 </script>
