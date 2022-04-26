@@ -64,21 +64,16 @@ const route = useRoute()
 const [{ data: homeData }, { data: latest }] = await Promise.all([
   useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
-  useLazyAsyncData(
-    "latest",
-    () =>
-      $supabase
-        .from("products_view")
-        .select("*", { count: "exact" })
-        .order("views", { ascending: false })
-        .range(page.value * 12, page.value * 12 + 11),
-    {
-      transform: (a: any) => {
-        itemCount.value = a.count
-        return a.data
-      },
-    }
-  ),
+  useLazyAsyncData("latest", async () => {
+    const { data, count } = await $supabase
+      .from("products_view")
+      .select("*", { count: "exact" })
+      .order("views", { ascending: false })
+      .range(page.value * 12, page.value * 12 + 11)
+
+    itemCount.value = count
+    return data
+  }),
 ])
 const target = ref()
 
