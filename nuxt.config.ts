@@ -8,36 +8,6 @@ export default defineNuxtConfig({
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "description",
-        content:
-          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
-      },
-      { name: "og:title", content: "Showcase ⚡ Made with Supabase" },
-      { name: "og:site_name", content: "Showcase ⚡ Made with Supabase" },
-      {
-        name: "og:description",
-        content:
-          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
-      },
-      { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://www.madewithsupabase.com/" },
-      { name: "og:image", content: "https://www.madewithsupabase.com/og.png" },
-
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@madewifsupabase" },
-      { name: "twitter:creator", content: "@madewifsupabase" },
-      { name: "twitter:title", content: "Showcase ⚡ Made with Supabase" },
-      {
-        name: "twitter:description",
-        content:
-          "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
-      },
-      {
-        name: "twitter:image",
-        content: "https://www.madewithsupabase.com/og.png",
-      },
     ],
     link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
   },
