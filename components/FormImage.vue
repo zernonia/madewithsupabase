@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-import { slugify } from "~~/functions/slugify"
+import { slugify, movePosition } from "~~/functions"
 const { $supabase } = useNuxtApp()
 
 const props = defineProps({
@@ -53,6 +53,12 @@ const removeImage = async (index: number) => {
   if (!error) {
   }
 }
+
+const changePosition = (index: number, direction: "left" | "right") => {
+  let images = props.modelValue
+  movePosition(images, index, direction == "left" ? index - 1 : index + 1)
+  emits("update:modelValue", images)
+}
 </script>
 
 <template>
@@ -82,17 +88,42 @@ const removeImage = async (index: number) => {
         v-for="(blob, index) in modelValue"
         class="ml-2 flex-shrink-0 relative hover:children:block"
       >
+        <span class="absolute bottom-2 left-2 px-2 rounded-lg bg-dark-200">{{
+          index == 0 ? "Cover" : index + 1
+        }}</span>
         <div
           v-if="blob.startsWith('http')"
           class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
         >
           <button
             @click.prevent="removeImage(index)"
-            class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
+            class="absolute bottom-2 right-2 flex items-center justify-center p-1 rounded-lg bg-red-500 hover:bg-red-600"
           >
-            <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
-            Click to 'Remove' image
+            <i-mdi:trash-can class="w-5 h-5"></i-mdi:trash-can>
           </button>
+
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center space-x-2"
+          >
+            <button
+              @click.prevent="changePosition(index, 'left')"
+              v-if="index != 0"
+              class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
+            >
+              <i-ic:baseline-arrow-left
+                class="w-8 h-8"
+              ></i-ic:baseline-arrow-left>
+            </button>
+            <button
+              @click.prevent="changePosition(index, 'right')"
+              v-if="index != modelValue.length - 1"
+              class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
+            >
+              <i-ic:baseline-arrow-right
+                class="w-8 h-8"
+              ></i-ic:baseline-arrow-right>
+            </button>
+          </div>
         </div>
         <div
           v-else
@@ -100,7 +131,7 @@ const removeImage = async (index: number) => {
         >
           <button
             @click.prevent=""
-            class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
+            class="flex flex-col items-center justify-center w-full h-full"
           >
             <SVGCircle class="animate-ping w-16"></SVGCircle>
           </button>

@@ -72,7 +72,7 @@ const submit = async () => {
 }
 
 const isStillUploadingImage = computed(() => {
-  return form.value.images.findIndex((i) => i.startsWith("data")) != -1
+  return form.value.images?.findIndex((i) => i.startsWith("data")) != -1
     ? true
     : false
 })
