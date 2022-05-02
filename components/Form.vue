@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-const { $supabase } = useNuxtApp()
+import { slugify } from "~~/functions/slugify"
 
 const props = defineProps({
   title: { type: String, default: "Project Submission" },
@@ -32,25 +32,6 @@ const terms = ref({
   accept: false,
 })
 const errorMsg = ref("")
-
-const slugify = (str: string) => {
-  str = str.replace(/^\s+|\s+$/g, "")
-  str = str.toLowerCase()
-
-  var from =
-    "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;"
-  var to =
-    "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------"
-  for (var i = 0, l = from.length; i < l; i++) {
-    str = str.replace(new RegExp(from.charAt(i), "g"), to.charAt(i))
-  }
-
-  str = str
-    .replace(/[^a-z0-9 -]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-  return str
-}
 
 const submit = async () => {
   const regexUrl =
@@ -87,47 +68,6 @@ const submit = async () => {
       }
     }
     isSubmitting.value = false
-  }
-}
-
-const target = ref<HTMLInputElement>()
-const pickFile = (e: any) => {
-  let files = target.value?.files as FileList
-
-  if (files.length) {
-    for (let i = 0; i < files.length; i++) {
-      let reader = new FileReader()
-      reader.onload = async (e) => {
-        const result = e.target?.result as string
-        let r = (Math.random() + 1).toString(36).substring(7)
-        let index = form.value.images.length
-        form.value.images[index] = result
-        const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
-          .from("products")
-          .upload(title, files[i], { upsert: true })
-        if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
-            let newIndex = form.value.images.findIndex((i) => i == result)
-            form.value.images[newIndex] = publicURL
-          }
-        }
-      }
-      reader.readAsDataURL(files[i])
-    }
-  }
-}
-
-const removeImage = async (index: number) => {
-  let imageStr = form.value.images[index].split("products/")[1]
-  form.value.images.splice(index, 1)
-  const { data, error } = await $supabase.storage
-    .from("products")
-    .remove([imageStr])
-  if (!error) {
   }
 }
 
@@ -236,77 +176,7 @@ onMounted(() => {
     </div>
     <div class="flex flex-col">
       <label class="normal-case" for="images">Image</label>
-      <div class="h-64 flex rounded-md">
-        <div
-          v-if="form.images.length"
-          class="w-full h-full flex overflow-hidden overflow-x-auto"
-        >
-          <div
-            tabindex="0"
-            @keypress.enter="target?.click()"
-            @click="target?.click()"
-            class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
-          >
-            <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
-            <p>Click to 'Add' images</p>
-            <input
-              class="hidden"
-              ref="target"
-              type="file"
-              multiple
-              @input="pickFile"
-              accept="image/*"
-            />
-          </div>
-          <div
-            v-for="(blob, index) in form.images"
-            class="ml-2 flex-shrink-0 relative hover:children:block"
-          >
-            <div
-              v-if="blob.startsWith('http')"
-              class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
-            >
-              <button
-                @click.prevent="removeImage(index)"
-                class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
-              >
-                <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
-                Click to 'Remove' image
-              </button>
-            </div>
-            <div
-              v-else
-              class="absolute w-full h-full center bg-dark-900 bg-opacity-25"
-            >
-              <button
-                @click.prevent=""
-                class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
-              >
-                <SVGCircle class="animate-ping w-16"></SVGCircle>
-              </button>
-            </div>
-            <img :src="blob" class="h-full w-auto rounded-md" />
-          </div>
-        </div>
-        <div
-          tabindex="0"
-          @keypress.enter="target?.click()"
-          @click="target?.click()"
-          v-else
-          class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
-        >
-          <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
-          <p>Click to 'Add' images</p>
-          <input
-            class="hidden"
-            ref="target"
-            type="file"
-            multiple
-            @input="pickFile"
-            accept="image/*"
-          />
-        </div>
-      </div>
+      <FormImage v-model="form.images" :title="form.title"></FormImage>
     </div>
 
     <div class="flex items-center justify-between">
