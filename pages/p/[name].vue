@@ -3,7 +3,9 @@
     <CustomMeta
       :key="routeData?.title"
       :title="routeData?.title + ' | Made with Supabase'"
-      :description="routeData?.description.slice(0, 150) + '...'"
+      :description="
+        routeData?.description.replace(/<|>/gi, '').slice(0, 150) + '...'
+      "
       :image="'https://madewithsupabase.com/api/og?slug=' + routeData?.slug"
     />
     <transition name="fade" mode="out-in">
@@ -53,7 +55,9 @@
                   class="w-8 h-8"
                 ></i-mdi:information-outline>
                 <h2 class="text-3xl mb-2">Description</h2>
-                <Marked :text="routeData.description"></Marked>
+                <Marked
+                  :text="routeData.description.replace(/<|>/gi, '')"
+                ></Marked>
               </div>
 
               <div>
