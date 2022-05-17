@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["dayjs", "swiper", "node-fetch"],
   },
-  buildModules: ["nuxt-windicss"],
+  modules: ["nuxt-windicss"],
   css: [
     "@/assets/main.css",
     "swiper/swiper.min.css",
