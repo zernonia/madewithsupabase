@@ -2,7 +2,7 @@
   <div>
     <CustomMeta
       :key="$route.params.slug.toString()"
-      :title="'Month: ' + $route.params.slug + ' | Made with Supabase'"
+      :title="getMonthName($route.params.slug) + ' | Made with Supabase'"
     />
 
     <transition name="fade" mode="out-in">
@@ -29,7 +29,9 @@
 </template>
 
 <script setup lang="ts">
+import dayjs from "dayjs/esm"
 const { $supabase } = useNuxtApp()
+
 const route = useRoute()
 const month = computed(() => +route.params.slug)
 const { data: routeData } = await useLazyAsyncData(
@@ -43,4 +45,10 @@ const { data: routeData } = await useLazyAsyncData(
     return data
   }
 )
+
+const getMonthName = (mth: number | string | string[]) => {
+  return dayjs()
+    .month(+mth - 1)
+    .format("MMMM")
+}
 </script>
