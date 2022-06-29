@@ -9,6 +9,13 @@
         <NuxtPage></NuxtPage>
       </NuxtLayout>
     </div>
+
+    <Script
+      src="https://www.himaker.io/scripts/embed.min.js"
+      async
+      defer
+      data-widget-id="fmbp30ep"
+    ></Script>
   </div>
 </template>
 
