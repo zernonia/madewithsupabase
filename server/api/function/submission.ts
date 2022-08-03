@@ -16,7 +16,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       body: {
         content: `**New submission** 
   Title: ${data.title}
-  Description: ${data.description}
+  Description: ${data.description.substring(0, 200)}
   URL: ${data.url}
   GitHub url: ${data.github_url}
   Twitter: ${data.twitter}
