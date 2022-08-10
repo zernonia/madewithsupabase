@@ -6,8 +6,7 @@ import GoldenTicket2 from "@/assets/golden-ticket-2.png"
 <template>
   <div class="mt-4 w-full h-full max-w-screen-lg mx-auto">
     <NuxtLink
-      to="https://supabase.com/launch-week"
-      target="_blank"
+      to="/launch-week-5"
       class="group relative border-3 border-yellow-400 p-6 h-48 sm:h-64 lg:h-84 w-full flex flex-col justify-center items-center transition bg-dark-600 rounded-3xl relative overflow-hidden"
     >
       <div
@@ -19,9 +18,7 @@ import GoldenTicket2 from "@/assets/golden-ticket-2.png"
           >
             Launch week
           </h2>
-          <h3 class="opacity-50 text-sm md:text-base">
-            August 15 - 19 8:00 PT | 11:00 ET
-          </h3>
+          <h2 class="mt-1 text-3xl md:text-4xl">Hackathon</h2>
         </div>
         <div
           class="text-3xl md:text-6xl w-12 md:w-20 h-12 md:h-20 flex items-center justify-center rounded-xl bg-white text-[#3d8189]"
