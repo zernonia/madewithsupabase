@@ -1,6 +1,9 @@
 <template>
   <div>
-    <CustomMeta :title="'Launch Week 5 Hackathon | Made with Supabase'" />
+    <CustomMeta
+      :title="'Launch Week 5 Hackathon | Made with Supabase'"
+      :image="HeroImage"
+    />
     <transition name="fade">
       <main class="py-8">
         <section class="md:py-6 px-4 flex flex-col items-center">
@@ -13,13 +16,13 @@
 
           <div class="relative group">
             <NuxtLink
-              to="https://supabase.com/blog/2022-08-08-launch-week-5-hackathon"
+              to="https://supabase.com/blog/launch-week-5-hackathon"
               target="_blank"
             >
               <img
-                class="w-full max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
+                class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
                 :src="HeroImage"
-                alt=""
+                alt="Supabase Launch Week 5 Hackathon"
               />
             </NuxtLink>
             <p
@@ -201,7 +204,7 @@ import dayjs from "dayjs/esm/index.js"
 import utc from "dayjs/esm/plugin/utc"
 import timezone from "dayjs/esm/plugin/timezone"
 import isSameOrAfter from "dayjs/esm/plugin/isSameOrAfter"
-import HeroImage from "@/assets/launch-week-5-hackathon.png"
+import HeroImage from "@/assets/launch-week-5-hackathon.jpeg"
 
 const { $supabase } = useNuxtApp()
 dayjs.extend(utc)
