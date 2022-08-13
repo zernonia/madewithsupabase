@@ -228,7 +228,7 @@ const goTo = () => {
   })
 }
 
-const startDate = dayjs("12 August 2022 09:00:00 PDT")
+const startDate = dayjs("12 August 2022 08:00:00 PDT")
 const endDate = dayjs("21 August 2022 23:59:00 PDT")
 const timeOriginal = ref(true)
 const timePT = computed(() => {
