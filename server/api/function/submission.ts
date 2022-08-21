@@ -1,26 +1,30 @@
 import { supabase } from "../../_lib/supabase"
 import type { IncomingMessage, ServerResponse } from "http"
 import { useBody } from "h3"
-import marked from "marked"
 
 export default async (req: IncomingMessage, res: ServerResponse) => {
   const { form } = await useBody(req)
-  const cfg = useRuntimeConfig()
-  const discord_webhook_url = cfg.public.DISCORD_WEBHOOK_URL
+  const simplelog_token = process.env.SIMPLELOG_TOKEN
   form.approved = false
 
   const { data, error } = await supabase.from("products").insert(form).single()
   if (!error) {
-    await $fetch(discord_webhook_url, {
+    await $fetch("https://simple-log.vercel.app/api/v1/log", {
       method: "POST",
+      headers: {
+        Authorization: "Bearer " + simplelog_token,
+      },
       body: {
-        content: `**New submission** 
-  Title: ${data.title}
-  Description: ${data.description.substring(0, 200)}
-  URL: ${data.url}
-  GitHub url: ${data.github_url}
-  Twitter: ${data.twitter}
-      `,
+        project: "simple-log",
+        channel: "submission",
+        event: "New Submission",
+        description: `Title: ${data.title}
+Description: ${data.description.substring(0, 200)}
+URL: ${data.url}
+GitHub url: ${data.github_url}
+Twitter: ${data.twitter}`,
+        icon: "✨",
+        notify: true,
       },
     })
     return { success: true }
