@@ -69,7 +69,6 @@ const { data, pending, refresh } = useAsyncData(
       .from("launch_week_5_view")
       .select("*")
       .order("views", { ascending: false })
-      .range(40, 100)
 
     return data
   },
