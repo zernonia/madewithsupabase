@@ -58,7 +58,7 @@ const trimCategories = computed(() => {
 
 const cleanse = (text: string) => {
   let t = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
-  return removeMd(t)
+  return removeMd(t).slice(0, 100)
 }
 
 const separator = (number: number) => {
