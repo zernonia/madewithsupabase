@@ -7,19 +7,19 @@ export default defineNuxtPlugin(() => {
   }
   const options = { ...moduleOptions }
 
-    if (!process.dev) {
-      loadScript(options)
-    }
+  // if (!process.dev) {
+  //   loadScript(options)
+  // }
 })
 
 function loadScript(options: any) {
-    const head = document.head || document.getElementsByTagName("head")[0]
-    const script = document.createElement("script")
+  const head = document.head || document.getElementsByTagName("head")[0]
+  const script = document.createElement("script")
 
-    script.async = true
-    script.defer = true
-    script.dataset.websiteId = options.websiteId
-    script.src = options.scriptUrl
+  script.async = true
+  script.defer = true
+  script.dataset.websiteId = options.websiteId
+  script.src = options.scriptUrl
 
-    head.appendChild(script)
+  head.appendChild(script)
 }
