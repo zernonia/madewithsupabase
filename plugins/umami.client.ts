@@ -7,9 +7,9 @@ export default defineNuxtPlugin(() => {
   }
   const options = { ...moduleOptions }
 
-  // if (!process.dev) {
-  //   loadScript(options)
-  // }
+  if (!process.dev) {
+    loadScript(options)
+  }
 })
 
 function loadScript(options: any) {
