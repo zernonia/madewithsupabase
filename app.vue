@@ -13,9 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "@vercel/analytics"
-
-onMounted(() => inject())
 const route = useRoute()
 
 const capitalizeFirstLetter = (string: string) => {
