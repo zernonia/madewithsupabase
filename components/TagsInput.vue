@@ -9,7 +9,7 @@
         <p>
           {{ item }}
         </p>
-        <i-mdi:close class="ml-2"></i-mdi:close>
+        <div class="i-mdi:close ml-2"></div>
       </div>
     </ul>
     <div class="flex flex-col sm:flex-row items-center mt-2">
@@ -53,9 +53,12 @@ const remove = (index: number) => {
 
 const dataCategory = ref<any[]>([])
 const fetchTags = async () => {
-  const { data, error } = await $supabase.from("tags_view").select("*").order("count", {
-    ascending: false,
-  })
+  const { data, error } = await $supabase
+    .from("tags_view")
+    .select("*")
+    .order("count", {
+      ascending: false,
+    })
   if (data) {
     dataCategory.value = data
   }

@@ -17,7 +17,8 @@
             @click="$router.push('/')"
             class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
           >
-            <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Home
+            <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
+            Home
           </button>
         </div>
       </div>

@@ -1,9 +1,7 @@
 import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { form } = await useBody(req)
+export default defineEventHandler(async (event) => {
+  const { form } = await readBody(event)
   const simplelog_token = process.env.SIMPLELOG_TOKEN
   form.approved = false
 
@@ -29,7 +27,7 @@ Twitter: ${data.twitter}`,
     })
     return { success: true }
   } else {
-    res.statusCode = 500
+    event.res.statusCode = 500
     return { error }
   }
-}
+})

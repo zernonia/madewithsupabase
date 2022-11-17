@@ -1,10 +1,9 @@
 import sharp from "sharp"
 import axios from "axios"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { w, h, link } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  const { res } = event
+  const { w, h, link } = getQuery(event)
 
   if (link) {
     const url =
@@ -53,7 +52,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.setHeader("Content-Type", "text/html")
     res.end("<h1>Internal Error</h1><p>Sorry, there was a problem</p>")
   }
-}
+})
 
 const isGif = (buffer: Buffer) => {
   if (!buffer || buffer.length < 3) {

@@ -33,7 +33,7 @@
           </div>
           <div class="flex items-center flex-shrink-0 text-light-900">
             <p class="mr-1">{{ separator(item.views) }}</p>
-            <i-ic:twotone-ads-click></i-ic:twotone-ads-click>
+            <div class="i-ic:twotone-ads-click"></div>
           </div>
         </div>
       </div>

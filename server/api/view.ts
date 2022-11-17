@@ -1,10 +1,9 @@
 import { supabase } from "../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
 
 let cache: any = {}
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { name } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  const { name } = getQuery(event)
+  const { res, req } = event
 
   const ip = req.headers["x-forwarded-for"] || "::1"
 
@@ -37,4 +36,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.statusCode = 500
     res.end("error")
   }
-}
+})

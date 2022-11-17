@@ -1,22 +1,31 @@
 import axios from "axios"
 import { supabase } from "../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { slug } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  const { res } = event
+  const { slug } = getQuery(event)
 
   if (slug) {
-    const { data, error } = await supabase.from("products").select("*").eq("slug", slug).single()
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("slug", slug)
+      .single()
 
     if (data) {
-      const url = `https://social-saas.vercel.app/api/template/FViQTcv7mzE?text=${data.title}&image=${
-        data.images[0]
-      }&author=${data.twitter ? "by " + data.twitter : "_"}`
-      const buffer = (await axios({ url, responseType: "arraybuffer" })).data as Buffer
+      const url = `https://social-saas.vercel.app/api/template/FViQTcv7mzE?text=${
+        data.title
+      }&image=${data.images[0]}&author=${
+        data.twitter ? "by " + data.twitter : "_"
+      }`
+      const buffer = (await axios({ url, responseType: "arraybuffer" }))
+        .data as Buffer
 
       res.statusCode = 200
-      res.setHeader("Cache-Control", `public, immutable, no-transform, s-maxage=604800, max-age=604800`)
+      res.setHeader(
+        "Cache-Control",
+        `public, immutable, no-transform, s-maxage=604800, max-age=604800`
+      )
       res.setHeader("Content-Type", "image/png")
       res.end(buffer)
     } else {
@@ -29,4 +38,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.setHeader("Content-Type", "text/html")
     res.end("<h1>Internal Error</h1><p>Sorry, there was a problem</p>")
   }
-}
+})

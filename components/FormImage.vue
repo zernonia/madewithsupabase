@@ -73,7 +73,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
         @click="target?.click()"
         class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
       >
-        <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+        <div class="w-12 h-12 i-mdi:plus"></div>
         <p>Click to 'Add' images</p>
         <input
           class="hidden"
@@ -99,7 +99,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
             @click.prevent="removeImage(index)"
             class="absolute bottom-2 right-2 flex items-center justify-center p-1 rounded-lg bg-red-500 hover:bg-red-600"
           >
-            <i-mdi:trash-can class="w-5 h-5"></i-mdi:trash-can>
+            <div class="i-mdi:trash-can w-5 h-5"></div>
           </button>
 
           <div
@@ -110,18 +110,14 @@ const changePosition = (index: number, direction: "left" | "right") => {
               v-if="index != 0"
               class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
             >
-              <i-ic:baseline-arrow-left
-                class="w-8 h-8"
-              ></i-ic:baseline-arrow-left>
+              <div class="i-ic:baseline-arrow-left w-8 h-8"></div>
             </button>
             <button
               @click.prevent="changePosition(index, 'right')"
               v-if="index != modelValue.length - 1"
               class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
             >
-              <i-ic:baseline-arrow-right
-                class="w-8 h-8"
-              ></i-ic:baseline-arrow-right>
+              <div class="i-ic:baseline-arrow-right w-8 h-8"></div>
             </button>
           </div>
         </div>
@@ -146,7 +142,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
       v-else
       class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
     >
-      <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+      <div class="w-12 h-12 i-mdi:plus"></div>
       <p>Click to 'Add' images</p>
       <input
         class="hidden"

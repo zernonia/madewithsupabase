@@ -1,6 +1,6 @@
 // tooltip
 import "@/assets/tooltip.css"
-import { App, DirectiveBinding } from "vue"
+import { DirectiveBinding } from "vue"
 
 function init(el: Element, binding: DirectiveBinding) {
   let position = binding.arg || "top"
@@ -9,8 +9,8 @@ function init(el: Element, binding: DirectiveBinding) {
   el.setAttribute("tooltip", tooltipText)
 }
 
-export default function (app: App) {
-  app.directive("tooltip", {
+export default defineNuxtPlugin((nuxt) => {
+  nuxt.vueApp.directive("tooltip", {
     mounted(el, binding) {
       init(el, binding)
     },
@@ -18,4 +18,4 @@ export default function (app: App) {
       init(el, binding)
     },
   })
-}
+})

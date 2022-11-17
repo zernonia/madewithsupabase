@@ -1,8 +1,6 @@
 import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody, useQuery } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler(async (event) => {
   const data = Promise.all([
     supabase
       .from("products_view")
@@ -20,7 +18,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   if (data) {
     return data
   } else {
-    res.statusCode = 500
+    event.res.statusCode = 500
     return
   }
-}
+})

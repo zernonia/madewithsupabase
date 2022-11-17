@@ -1,18 +1,9 @@
 <template>
-  <footer class="text-center mt-16 sm:mt-36 mb-4 flex flex-col items-center justify-center">
+  <footer
+    class="text-center mt-16 sm:mt-36 mb-4 flex flex-col items-center justify-center"
+  >
     <div
-      class="
-        relative
-        rounded-lg
-        bg-gradient-to-tr
-        from-green-600
-        to-emerald-400
-        w-full
-        p-8
-        inline-flex
-        flex-col
-        space-y-2
-      "
+      class="relative rounded-lg bg-gradient-to-tr from-green-600 to-emerald-400 w-full p-8 inline-flex flex-col space-y-2"
     >
       <p class="text-2xl"># madewithsupabase</p>
       <h1 class="text-4xl">Collection of projects made with Supabase</h1>
@@ -24,12 +15,17 @@
         Feel free to submit your project ya!
         <br />
       </p>
-      <NuxtLink class="!mt-8 btn-pale hover:bg-dark-900 self-center" to="/submission">
+      <NuxtLink
+        class="!mt-8 btn-pale hover:bg-dark-900 self-center"
+        to="/submission"
+      >
         Join us! Submit a Project 🚀
       </NuxtLink>
       <SVGCircle class="absolute -right-10 -bottom-10"></SVGCircle>
     </div>
-    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 items-center mt-16">
+    <div
+      class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 items-center mt-16"
+    >
       <NuxtLink to="/about">About</NuxtLink>
       <p class="px-2 hidden sm:block">|</p>
       <NuxtLink to="/contact">Contact</NuxtLink>
@@ -45,7 +41,7 @@
           Zernonia</a
         >
         <a rel="noopener" href="https://twitter.com/zernonia" target="_blank">
-          <i-mdi:twitter class="ml-2"></i-mdi:twitter>
+          <div class="i-mdi:twitter ml-2"></div>
         </a>
       </div>
     </div>

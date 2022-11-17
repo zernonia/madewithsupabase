@@ -1,13 +1,12 @@
 import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody, useQuery } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  let name: string | string[]
+export default defineEventHandler(async (event) => {
+  const { req, res } = event
+  let name: string
   if (req.method == "GET") {
-    ;({ name } = useQuery(req))
+    ;({ name } = getQuery(event))
   } else if (req.method == "POST") {
-    ;({ name } = await useBody(req))
+    ;({ name } = await readBody(event))
   }
 
   if (name) {
@@ -28,4 +27,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
   res.statusCode = 500
   return "error"
-}
+})

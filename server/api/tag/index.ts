@@ -1,9 +1,8 @@
 import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  let { name } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  let { name } = getQuery(event)
+  const { res } = event
   let rpc = "get_tags"
   if (name.toString().toLowerCase().startsWith("supabase")) {
     rpc = "get_supabase_tags"
@@ -22,4 +21,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
   res.statusCode = 500
   return "error"
-}
+})

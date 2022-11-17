@@ -32,18 +32,14 @@
         aria-label="slider-left"
         class="image-prev absolute flex rounded-full z-20 left-4 top-1/2 -mt-6 w-12 h-auto bg-opacity-50 bg-dark-900 hover:bg-opacity-100"
       >
-        <i-ic:baseline-arrow-left
-          class="w-full h-auto"
-        ></i-ic:baseline-arrow-left>
+        <div class="i-ic:baseline-arrow-left w-full h-auto"></div>
       </button>
       <button
         slot="container-end"
         aria-label="slider-right"
         class="image-next absolute flex rounded-full z-20 right-4 top-1/2 -mt-6 w-12 h-auto bg-opacity-50 bg-dark-900 hover:bg-opacity-100"
       >
-        <i-ic:baseline-arrow-right
-          class="w-full h-auto"
-        ></i-ic:baseline-arrow-right>
+        <div class="i-ic:baseline-arrow-right w-full h-auto"></div>
       </button>
     </Swiper>
     <SVGCircle

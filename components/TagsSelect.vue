@@ -9,7 +9,7 @@
         <p>
           {{ item }}
         </p>
-        <i-mdi:close class="ml-2"></i-mdi:close>
+        <div class="i-mdi:close ml-2"></div>
       </div>
     </ul>
     <div class="flex flex-col sm:flex-row items-center mt-2">
