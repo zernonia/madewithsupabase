@@ -184,6 +184,7 @@ const { data: routeData, pending } = await useLazyAsyncData<ProductData>(
 
 const related = ref(null)
 const relatedData = ref<any[]>([])
+
 const fetchRelated = async () => {
   if (process.client && routeData.value) {
     const { data, error } = await $supabase
@@ -196,6 +197,9 @@ const fetchRelated = async () => {
     error ? (notFound.value = true) : (notFound.value = false)
   }
 }
+watch(routeData, (n) => {
+  if (n) fetchRelated()
+})
 
 const viewProduct = () => {
   $fetch(`/api/view?name=${name.value}`)
