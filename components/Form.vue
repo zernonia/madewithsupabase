@@ -143,7 +143,7 @@ onMounted(() => {
         <div class="flex space-x-2">
           <button
             @click.prevent="isPreviewMd = !isPreviewMd"
-            class="hover:underline border-3 border-transparent px-2 rounded-lg focus:border-green-600 focus:outline-none"
+            class="hover:underline border-3 border-transparent px-2 rounded-lg focus:border-emerald-600 focus:outline-none"
           >
             {{ isPreviewMd ? "Edit" : "Preview" }}
           </button>

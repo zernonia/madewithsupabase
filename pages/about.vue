@@ -67,6 +67,6 @@ definePageMeta({
 
 <style scoped>
 span {
-  @apply text-green-400;
+  @apply text-emerald-400;
 }
 </style>

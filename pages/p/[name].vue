@@ -91,7 +91,7 @@
 
             <div class="w-full md:w-1/3 h-min mt-6 md:mt-0 md:ml-8">
               <div
-                class="p-8 bg-gradient-to-tr from-green-600 to-emerald-400 rounded-xl"
+                class="p-8 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-xl"
               >
                 <div class="i-mdi:circle-multiple-outline w-8 h-8"></div>
                 <h2 class="text-3xl mb-2">Maker</h2>

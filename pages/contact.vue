@@ -12,7 +12,7 @@
       <span> feedback </span>, <span> ideas </span>, or
       <span> collaboration opportunity </span>, feel free to reach out to us at
       <a
-        class="text-green-400 underline underline-offset-2 underline-green-400"
+        class="text-emerald-400 underline underline-offset-2 underline-emerald-400"
         href="mailto:admin@madewithsupabase.com"
         >admin@madewithsupabase.com</a
       >!
@@ -41,6 +41,6 @@ definePageMeta({
 
 <style scoped>
 span {
-  @apply text-green-400;
+  @apply text-emerald-400;
 }
 </style>

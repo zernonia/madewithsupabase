@@ -71,7 +71,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
         tabindex="0"
         @keypress.enter="target?.click()"
         @click="target?.click()"
-        class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
+        class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
       >
         <div class="w-12 h-12 i-mdi:plus"></div>
         <p>Click to 'Add' images</p>
@@ -140,7 +140,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
       @keypress.enter="target?.click()"
       @click="target?.click()"
       v-else
-      class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
+      class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
     >
       <div class="w-12 h-12 i-mdi:plus"></div>
       <p>Click to 'Add' images</p>

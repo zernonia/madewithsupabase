@@ -20,7 +20,7 @@
             alt=""
           />
           <h1
-            class="absolute left-0 bottom-4 p-4 text-xl sm:text-4xl bg-gradient-to-tr from-green-600 to-emerald-400 rounded-r-xl"
+            class="absolute left-0 bottom-4 p-4 text-xl sm:text-4xl bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-r-xl"
           >
             {{ data[index].title }}
           </h1>

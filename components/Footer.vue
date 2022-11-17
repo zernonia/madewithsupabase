@@ -3,7 +3,7 @@
     class="text-center mt-16 sm:mt-36 mb-4 flex flex-col items-center justify-center"
   >
     <div
-      class="relative rounded-lg bg-gradient-to-tr from-green-600 to-emerald-400 w-full p-8 inline-flex flex-col space-y-2"
+      class="relative rounded-lg bg-gradient-to-tr from-emerald-600 to-emerald-400 w-full p-8 inline-flex flex-col space-y-2"
     >
       <p class="text-2xl"># madewithsupabase</p>
       <h1 class="text-4xl">Collection of projects made with Supabase</h1>

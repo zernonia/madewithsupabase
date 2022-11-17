@@ -36,7 +36,7 @@ input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
-  @apply px-4 py-2 bg-dark-600 text-white font-thin rounded-lg placeholder-dark-50 border-3 border-dark-300 focus:ring-green-400 focus:outline-none focus:border-green-500;
+  @apply px-4 py-2 bg-dark-600 text-white font-thin rounded-lg placeholder-dark-50 border-3 border-dark-300 focus:ring-emerald-400 focus:outline-none focus:border-emerald-500;
 }
 
 input[type="color"] {
@@ -81,7 +81,7 @@ code,
 }
 
 .btn {
-  @apply px-6 py-2 rounded-lg bg-green-500 border-3 border-green-500 transition hover:bg-green-600 hover:border-green-600 focus:border-green-600 focus:outline-none outline-none disabled:bg-green-400 disabled:cursor-not-allowed;
+  @apply px-6 py-2 rounded-lg bg-emerald-500 border-3 border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
 }
 
 .btn-pale {
