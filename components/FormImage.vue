@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
 import { slugify, movePosition } from "~~/functions"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const props = defineProps({
-  modelValue: Object as PropType<string[]>,
+  modelValue: { type: Object as PropType<string[]>, default: () => [] },
   title: String,
 })
 
@@ -20,21 +20,21 @@ const pickFile = (e: any) => {
       reader.onload = async (e) => {
         const result = e.target?.result as string
         let r = (Math.random() + 1).toString(36).substring(7)
-        let index = props.modelValue.length
+        let index = props.modelValue.length ?? 0
         let images = props.modelValue
         images[index] = result
         emits("update:modelValue", images)
         const title = slugify(props.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
+        const { data } = await client.storage
           .from("products")
           .upload(title, files[i], { upsert: true })
         if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
+          const {
+            data: { publicUrl },
+          } = client.storage.from("products").getPublicUrl(title)
+          if (publicUrl) {
             let newIndex = props.modelValue.findIndex((i) => i == result)
-            images[newIndex] = publicURL
+            images[newIndex] = publicUrl
             emits("update:modelValue", images)
           }
         }
@@ -47,7 +47,7 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = props.modelValue[index].split("products/")[1]
   props.modelValue.splice(index, 1)
-  const { data, error } = await $supabase.storage
+  const { data, error } = await client.storage
     .from("products")
     .remove([imageStr])
   if (!error) {

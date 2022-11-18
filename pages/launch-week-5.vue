@@ -21,7 +21,7 @@
             >
               <img
                 class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
-                :src="HeroImage"
+                src="~~/assets/launch-week-5-hackathon.jpeg"
                 alt="Supabase Launch Week 5 Hackathon"
               />
             </NuxtLink>
@@ -58,14 +58,12 @@ export default {
 </script>
 
 <script setup lang="ts">
-import HeroImage from "@/assets/launch-week-5-hackathon.jpeg"
-
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const { data, pending, refresh } = useAsyncData(
   "launch-week-5-submission",
   async () => {
-    const { data, error } = await $supabase
+    const { data, error } = await client
       .from("launch_week_5_view")
       .select("*")
       .order("views", { ascending: false })

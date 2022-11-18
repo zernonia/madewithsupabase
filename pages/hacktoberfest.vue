@@ -168,7 +168,7 @@ definePageMeta({
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import lottie from "lottie-web"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const projects = ref([
   {
@@ -268,7 +268,7 @@ const hacktoberfestData = ref<any>([])
 const isFetching = ref(true)
 const fetchData = async () => {
   isFetching.value = true
-  const { data, error } = await $supabase
+  const { data, error } = await client
     .from("hacktoberfest_view")
     .select("*")
     .order("views", { ascending: false })

@@ -172,7 +172,7 @@
 <script setup lang="ts">
 import Logo404 from "@/assets/404.svg"
 import { ProductData } from "@/script/interface"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 const notFound = ref(false)
 const route = useRoute()
 
@@ -187,7 +187,7 @@ const relatedData = ref<any[]>([])
 
 const fetchRelated = async () => {
   if (process.client && routeData.value) {
-    const { data, error } = await $supabase
+    const { data, error } = await client
       .rpc("get_related_products", {
         parent_id: routeData.value.id,
       })

@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 let itemCount = useState("item-count", () => 0)
 const page = computed(() => (route.query.page ? +route.query.page - 1 : 0))
@@ -65,14 +65,14 @@ const [{ data: homeData }, { data: latest }] = await Promise.all([
   useLazyAsyncData("hero testimonial", () => $fetch("/api/project/home")),
 
   useLazyAsyncData("latest", async () => {
-    const { data, count } = await $supabase
+    const { data, count } = await client
       .from("products_view")
       .select("*", { count: "exact" })
       .order("views", { ascending: false })
       .range(page.value * 12, page.value * 12 + 11)
 
-    itemCount.value = count
-    return data
+    itemCount.value = count ?? 0
+    return data?.filter((i) => i.id)
   }),
 ])
 const target = ref()
@@ -83,7 +83,7 @@ const testimonial = computed(() => homeData.value?.[1].data)
 const pending = ref(false)
 const fetchLatest = async () => {
   pending.value = true
-  const { data, error, count } = await $supabase
+  const { data, error, count } = await client
     .from("products_view")
     .select("*", { count: "exact" })
     .order("views", { ascending: false })

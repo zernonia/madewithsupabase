@@ -232,8 +232,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
-
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
@@ -350,15 +349,15 @@ const pickFile = (e: any) => {
         let index = form.value.images.length
         form.value.images[index] = result
         const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
+        const { data } = await client.storage
           .from("products")
           .upload(title, files[i])
         if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
-            form.value.images[index] = publicURL
+          const {
+            data: { publicUrl },
+          } = client.storage.from("products").getPublicUrl(title)
+          if (publicUrl) {
+            form.value.images[index] = publicUrl
           }
         }
       }
@@ -370,7 +369,7 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = form.value.images[index].split("products/")[1]
   form.value.images.splice(index, 1)
-  const { data, error } = await $supabase.storage
+  const { data, error } = await client.storage
     .from("products")
     .remove([imageStr])
   if (!error) {

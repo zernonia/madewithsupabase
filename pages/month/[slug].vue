@@ -31,14 +31,14 @@
 
 <script setup lang="ts">
 import dayjs from "dayjs/esm"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const route = useRoute()
 const month = computed(() => +route.params.slug)
 const { data: routeData } = await useLazyAsyncData(
   `month-${month.value}`,
   async () => {
-    const { data } = await $supabase
+    const { data } = await client
       .rpc("get_monthly", {
         month_number: month.value,
       })

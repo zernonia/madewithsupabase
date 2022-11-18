@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import HeroImage from "@/assets/fx.svg"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const projects = ref([
   {
@@ -174,7 +174,7 @@ const projects = ref([
 const { data: hacktoberfestData, pending: isPending } = useLazyAsyncData(
   "other_submission",
   async () => {
-    const { data } = await $supabase
+    const { data } = await client
       .from("bring_the_func_view")
       .select("*")
       .order("views", { ascending: false })

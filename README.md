@@ -219,7 +219,7 @@ Yarn
 3. Setup your Supabase environment `.env`
    ```sh
    SUPABASE_URL=<SUPABASE_URL>
-   SUPABASE_ANON_KEY=<SUPABASE_ANON_KEY>
+   SUPABASE_KEY=<SUPABASE_KEY>
    SUPABASE_SERVICE_KEY=<SUPABASE_SERVICE_KEY>
    ```
 4. Run Development instance

@@ -153,7 +153,7 @@
 import { ref, onMounted } from "vue"
 import SiteLogo from "@/assets/logo.svg"
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 definePageMeta({
   layout: "blank",
@@ -231,7 +231,7 @@ const hacktoberfestData = ref<any>([])
 const isFetching = ref(true)
 const fetchData = async () => {
   isFetching.value = true
-  const { data, error } = await $supabase
+  const { data, error } = await client
     .from("holiday_hackdays_view")
     .select("*")
     .order("views", { ascending: false })

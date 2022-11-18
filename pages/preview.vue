@@ -26,11 +26,11 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const dataList = ref<any[]>([])
 const fetch = async () => {
-  const { data } = await $supabase.from("products").select("*").match({
+  const { data } = await client.from("products").select("*").match({
     approved: false,
   })
   if (data) {

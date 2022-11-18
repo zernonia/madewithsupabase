@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const prop = defineProps({
   modelValue: {
@@ -53,7 +53,7 @@ const remove = (index: number) => {
 
 const dataCategory = ref<any[]>([])
 const fetchTags = async () => {
-  const { data, error } = await $supabase
+  const { data, error } = await client
     .from("tags_view")
     .select("*")
     .order("count", {

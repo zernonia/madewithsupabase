@@ -69,7 +69,7 @@ import { useRoute } from "vue-router"
 import { OnClickOutside } from "@vueuse/components"
 
 const route = useRoute()
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 const supabaseTags = ref([
   {
     tags: "Supabase Auth",
@@ -89,7 +89,7 @@ const supabaseTags = ref([
 ])
 const fetchTags = async () => {
   if (state.tags.length) return
-  const { data, error } = await $supabase
+  const { data, error } = await client
     .from("tags_view")
     .select("*")
     .order("count", {

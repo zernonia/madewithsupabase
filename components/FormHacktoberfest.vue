@@ -237,8 +237,7 @@
 </template>
 
 <script setup lang="ts">
-const { $supabase } = useNuxtApp()
-import SVGCircle from "./SVGCircle.vue"
+const client = useSupabase()
 
 const emit = defineEmits(["submit"])
 const isSubmitting = ref(false)
@@ -320,16 +319,16 @@ const pickFile = (e: any) => {
         let index = form.value.images.length
         form.value.images[index] = result
         const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
+        const { data } = await client.storage
           .from("products")
           .upload(title, files[i], { upsert: true })
         if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
+          const {
+            data: { publicUrl },
+          } = client.storage.from("products").getPublicUrl(title)
+          if (publicUrl) {
             let newIndex = form.value.images.findIndex((i) => i == result)
-            form.value.images[newIndex] = publicURL
+            form.value.images[newIndex] = publicUrl
           }
         }
       }
@@ -341,7 +340,7 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = form.value.images[index].split("products/")[1]
   form.value.images.splice(index, 1)
-  const { data, error } = await $supabase.storage
+  const { data, error } = await client.storage
     .from("products")
     .remove([imageStr])
   if (!error) {
