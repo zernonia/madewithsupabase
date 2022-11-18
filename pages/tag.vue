@@ -6,7 +6,7 @@
         class="sm:w-80 lg:w-1/3 lg:px-6"
       >
         <div class="relative flex items-center">
-          <i-eva:search-fill class="absolute left-4"></i-eva:search-fill>
+          <div class="i-eva:search-fill absolute left-4"></div>
           <input
             class="!placeholder-light-50 !focus:placeholder-dark-50 w-full !pl-12"
             type="text"

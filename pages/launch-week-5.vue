@@ -11,7 +11,7 @@
             to="/"
             class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
           >
-            <i-mdi:chevron-left></i-mdi:chevron-left>
+            <div class="i-mdi:chevron-left"></div>
           </NuxtLink>
 
           <div class="relative group">
