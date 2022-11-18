@@ -1,54 +1,35 @@
 <template>
-  <div>
-    <transition name="fade">
-      <img
-        @load="isLoading = false"
-        class="absolute w-full h-full object-cover"
-        v-show="!isLoading"
-        ref="target"
-        :src="compressedImage"
-        alt=""
-      />
-    </transition>
-    <div
-      v-if="isLoading"
-      class="absolute w-full h-full flex items-center justify-center"
-    >
-      <SVGCircle class="animate-ping w-12 h-12"></SVGCircle>
-    </div>
-  </div>
+  <NuxtImg
+    ref="el"
+    class="absolute w-full h-full object-cover transition-all duration-1000"
+    :class="[isBlur ? 'blur-md scale-105' : 'blur-0 scale-100']"
+    :preset="preset"
+    loading="lazy"
+    v-bind="$attrs"
+    @load="removeBlur"
+  />
 </template>
 
 <script setup lang="ts">
-import { state } from "@/script/store"
-import SiteLogo from "@/assets/logo.svg"
+import { PropType } from "vue"
 
-const prop = defineProps({
-  src: {
-    type: String,
-    required: true,
-  },
-  srcPlaceholder: {
-    type: String,
-    default: SiteLogo,
+defineProps({
+  preset: {
+    type: String as PropType<"cover" | "card">,
+    default: "card",
   },
 })
 
-const isLoading = ref(!process.server)
-const target = ref()
+const isBlur = ref(!process.server)
+const removeBlur = () => {
+  console.log("loaded")
+  isBlur.value = false
+}
 
-watch(
-  target,
-  () => {
-    isLoading.value = !target.value?.complete
-  },
-  { immediate: true }
-)
-
-const compressedImage = computed(
-  () =>
-    "../api/resize?link=" +
-    prop.src.split("products/")[1] +
-    `&w=${state.deviceWidth}`
-)
+const el = ref()
+// onMounted(() => {
+//   isBlur.value = true
+//   console.log(el.value)
+//   console.log(el.value.loading)
+// })
 </script>

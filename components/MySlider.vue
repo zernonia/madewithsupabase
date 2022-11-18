@@ -9,6 +9,7 @@
   >
     <SwiperSlide class="w-full !h-auto relative pb-9/16" v-for="image in images"
       ><CompressedImage
+        :preset="'cover'"
         class="absolute w-full h-full object-cover"
         :src="image"
         alt=""

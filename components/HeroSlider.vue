@@ -15,6 +15,7 @@
       >
         <NuxtLink :to="`/p/${data[index].slug}`">
           <CompressedImage
+            :preset="'cover'"
             class="absolute w-full h-full object-cover"
             :src="image"
             alt=""
