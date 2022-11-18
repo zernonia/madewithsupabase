@@ -3,7 +3,7 @@ import { createTransport, SendMailOptions } from "nodemailer"
 import marked from "marked"
 
 export default defineEventHandler(async (event) => {
-  const { req, res } = event
+  const { req, res } = event.node
 
   const transporter = createTransport({
     service: "gmail",

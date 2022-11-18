@@ -2,7 +2,7 @@ import axios from "axios"
 import { supabase } from "../_lib/supabase"
 
 export default defineEventHandler(async (event) => {
-  const { res } = event
+  const { res } = event.node
   const { slug } = getQuery(event)
 
   if (slug) {

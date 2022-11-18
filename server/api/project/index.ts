@@ -1,8 +1,8 @@
 import { supabase } from "../../_lib/supabase"
 
 export default defineEventHandler(async (event) => {
-  const { req, res } = event
-  let name: string
+  const { req, res } = event.node
+  let name: any
   if (req.method == "GET") {
     ;({ name } = getQuery(event))
   } else if (req.method == "POST") {

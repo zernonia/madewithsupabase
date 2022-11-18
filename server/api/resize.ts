@@ -2,7 +2,7 @@ import sharp from "sharp"
 import axios from "axios"
 
 export default defineEventHandler(async (event) => {
-  const { res } = event
+  const { res } = event.node
   const { w, h, link } = getQuery(event)
 
   if (link) {
