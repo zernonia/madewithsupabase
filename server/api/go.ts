@@ -1,10 +1,11 @@
-import { supabase } from "../_lib/supabase"
+import { useSupabaseServer } from "~~/composables/supabase-server"
 
 export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer(event)
   const { res } = event.node
   const { name } = getQuery(event)
   if (name) {
-    const initialData = await supabase
+    const initialData = await client
       .from("products")
       .select("*")
       .eq("slug", name)

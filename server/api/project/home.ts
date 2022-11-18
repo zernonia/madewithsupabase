@@ -1,13 +1,14 @@
-import { supabase } from "../../_lib/supabase"
+import { useSupabaseServer } from "~~/composables/supabase-server"
 
 export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer(event)
   const data = Promise.all([
-    supabase
+    client
       .from("products_view")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(3),
-    supabase
+    client
       .from("products_view")
       .select("*")
       .or(

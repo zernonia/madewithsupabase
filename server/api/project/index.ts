@@ -1,6 +1,7 @@
-import { supabase } from "../../_lib/supabase"
+import { useSupabaseServer } from "~~/composables/supabase-server"
 
 export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer(event)
   const { req, res } = event.node
   let name: any
   if (req.method == "GET") {
@@ -10,7 +11,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (name) {
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from("products")
       .select(
         "id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features"

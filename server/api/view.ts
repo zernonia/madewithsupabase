@@ -1,7 +1,8 @@
-import { supabase } from "../_lib/supabase"
+import { useSupabaseServer } from "~~/composables/supabase-server"
 
 let cache: any = {}
 export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer(event)
   const { name } = getQuery(event)
   const { res, req } = event
 
@@ -12,7 +13,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (name) {
-    const initialData = await supabase
+    const initialData = await client
       .from("products")
       .select("*")
       .eq("slug", name)
@@ -21,8 +22,8 @@ export default defineEventHandler(async (event) => {
       if (cache[name as string].findIndex((i: any) => i == ip) > -1) {
         res.end("cache")
       } else {
-        const { data, error } = await supabase.from("views").insert({
-          ip_address: ip,
+        const { data, error } = await client.from("views").insert({
+          ip_address: ip.toString(),
           product_id: initialData.data.id,
         })
         cache[name as string].push(ip)

@@ -1,12 +1,13 @@
-import { supabase } from "../../_lib/supabase"
+import { useSupabaseServer } from "~~/composables/supabase-server"
 
 export default defineEventHandler(async (event) => {
   const { form } = await readBody(event)
+  const client = useSupabaseServer(event)
   const simplelog_token = process.env.SIMPLELOG_TOKEN
   form.approved = false
 
-  const { data, error } = await supabase.from("products").insert(form).single()
-  if (!error) {
+  const { data, error } = await client.from("products").insert(form).single()
+  if (!error && data) {
     await $fetch("https://simple-log.vercel.app/api/v1/log", {
       method: "POST",
       headers: {

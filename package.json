@@ -9,6 +9,7 @@
     "generate": "nuxt generate",
     "build": "nuxt build",
     "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
     "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./database.types.ts"
   },
   "prettier": {

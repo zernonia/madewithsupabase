@@ -1,4 +1,3 @@
 import type { Database } from "~~/database.types"
-export const useSupabase = () => {
-  return useSupabaseClient<Database>()
-}
+
+export const useSupabase = () => useSupabaseClient<Database>()
