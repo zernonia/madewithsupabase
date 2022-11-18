@@ -11,9 +11,28 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ["dayjs", "swiper", "node-fetch"],
+    transpile: ["dayjs", "swiper"],
   },
-  modules: ["@unocss/nuxt"],
+  modules: ["@unocss/nuxt", "@nuxt/image-edge"],
+  image: {
+    domains: ["dohemiycqebeipbvsvnr.supabase.co"],
+    presets: {
+      cover: {
+        modifiers: {
+          format: "jpg",
+          quality: 80,
+          sizes: "sm:100vw md:50vw lg:800px",
+        },
+      },
+      card: {
+        modifiers: {
+          format: "jpg",
+          quality: 70,
+          sizes: "sm:100vw md:40vw lg:300px",
+        },
+      },
+    },
+  },
   unocss: {
     // presets
     uno: true, // enabled `@unocss/preset-uno`

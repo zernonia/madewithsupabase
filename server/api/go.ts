@@ -1,7 +1,7 @@
 import { supabase } from "../_lib/supabase"
 
 export default defineEventHandler(async (event) => {
-  const { res } = event
+  const { res } = event.node
   const { name } = getQuery(event)
   if (name) {
     const initialData = await supabase

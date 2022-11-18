@@ -1,4 +1,3 @@
-import axios from "axios"
 import { supabase } from "../_lib/supabase"
 
 export default defineEventHandler(async (event) => {
@@ -18,8 +17,8 @@ export default defineEventHandler(async (event) => {
       }&image=${data.images[0]}&author=${
         data.twitter ? "by " + data.twitter : "_"
       }`
-      const buffer = (await axios({ url, responseType: "arraybuffer" }))
-        .data as Buffer
+      const arrayBuffer = await $fetch(url, { responseType: "arrayBuffer" })
+      const buffer = new Uint8Array(arrayBuffer)
 
       res.statusCode = 200
       res.setHeader(
