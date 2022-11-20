@@ -1,8 +1,8 @@
-import { useSupabaseServer } from "~~/composables/supabase-server"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 export default defineEventHandler(async (event) => {
   let { name } = getQuery(event)
-  const client = useSupabaseServer(event)
+  const client = useSupabaseServer()
 
   const { res } = event.node
   let rpc = "get_tags"

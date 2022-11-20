@@ -1,8 +1,8 @@
-import { useSupabaseServer } from "~~/composables/supabase-server"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 export default defineEventHandler(async (event) => {
   const { email, slug } = await readBody(event)
-  const client = useSupabaseServer(event)
+  const client = useSupabaseServer()
   let verify = false
 
   const { data } = await client

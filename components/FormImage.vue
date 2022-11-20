@@ -93,7 +93,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
         }}</span>
         <div
           v-if="blob.startsWith('http')"
-          class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
+          class="absolute w-full h-full center hover:bg-dark-900 hover:bg-opacity-25"
         >
           <button
             @click.prevent="removeImage(index)"

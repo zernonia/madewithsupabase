@@ -1,8 +1,8 @@
-import { useSupabaseServer } from "~~/composables/supabase-server"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 let cache: any = {}
 export default defineEventHandler(async (event) => {
-  const client = useSupabaseServer(event)
+  const client = useSupabaseServer()
   const { name } = getQuery(event)
   const { res, req } = event
 

@@ -1,7 +1,7 @@
-import { useSupabaseServer } from "~~/composables/supabase-server"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 export default defineEventHandler(async (event) => {
-  const client = useSupabaseServer(event)
+  const client = useSupabaseServer()
   const data = Promise.all([
     client
       .from("products_view")

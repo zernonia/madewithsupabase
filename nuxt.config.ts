@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["dayjs", "swiper"],
   },
-  modules: ["@unocss/nuxt", "@nuxt/image-edge", "@nuxtjs/supabase"],
+  modules: ["@unocss/nuxt", "@nuxt/image-edge"],
   image: {
     domains: ["dohemiycqebeipbvsvnr.supabase.co"],
     presets: {
@@ -51,5 +51,6 @@ export default defineNuxtConfig({
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
     },
+    SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
 })

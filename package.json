@@ -19,6 +19,7 @@
     "singleQuote": false
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.1.0",
     "@vueuse/components": "^9.5.0",
     "@vueuse/core": "^9.5.0",
     "dayjs": "^1.10.7",

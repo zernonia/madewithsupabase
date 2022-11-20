@@ -1,9 +1,9 @@
-import { useSupabaseServer } from "~~/composables/supabase-server"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 export default defineEventHandler(async (event) => {
   const { res } = event.node
   const { slug } = getQuery(event)
-  const client = useSupabaseServer(event)
+  const client = useSupabaseServer()
 
   if (slug) {
     const { data, error } = await client
