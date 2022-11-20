@@ -22,10 +22,8 @@ export default defineEventHandler(async (event) => {
     if (data) {
       return data
     } else {
-      res.statusCode = 500
-      return error
+      return sendError(event, new Error(error.message))
     }
   }
-  res.statusCode = 500
-  return "error"
+  return sendError(event, new Error("No query.name is found"))
 })

@@ -4,8 +4,8 @@ import { PropType } from "vue"
 const route = useRoute()
 
 const props = defineProps({
-  count: Number,
-  target: Object as PropType<HTMLElement>,
+  count: { type: Number, required: true },
+  target: { type: Object as PropType<HTMLElement>, required: true },
 })
 
 const emit = defineEmits<{

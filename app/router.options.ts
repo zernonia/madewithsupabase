@@ -14,6 +14,17 @@ export default <RouterConfig>{
         })
       })
     }
+
+    if (typeof to.params.position === "string") {
+      console.log(to.params.position)
+      setTimeout(() => {
+        return window.scrollTo({
+          top: +to.params.position,
+          behavior: "smooth",
+        })
+      })
+    }
+
     // Scroll to heading on click
     if (to.hash) {
       setTimeout(() => {

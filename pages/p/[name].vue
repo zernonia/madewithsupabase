@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen-md">
     <CustomMeta
-      :key="routeData?.title"
+      :key="routeData?.title ?? ''"
       :title="routeData?.title + ' | Made with Supabase'"
       :description="
-        routeData?.description.replace(/<|>/gi, '').slice(0, 150) + '...'
+        routeData?.description?.replace(/<|>/gi, '').slice(0, 150) + '...'
       "
       :image="'https://madewithsupabase.com/api/og?slug=' + routeData?.slug"
     />
@@ -30,7 +30,7 @@
 
           <MySlider
             class="max-w-screen-lg"
-            :images="routeData.images"
+            :images="routeData.images ?? []"
           ></MySlider>
 
           <div class="mt-8 flex flex-col items-center justify-center">
@@ -53,7 +53,7 @@
                 <div class="i-mdi:information-outline w-8 h-8"></div>
                 <h2 class="text-3xl mb-2">Description</h2>
                 <Marked
-                  :text="routeData.description.replace(/<|>/gi, '')"
+                  :text="routeData.description?.replace(/<|>/gi, '')"
                 ></Marked>
               </div>
 
@@ -171,16 +171,16 @@
 
 <script setup lang="ts">
 import Logo404 from "@/assets/404.svg"
-import { ProductData } from "@/script/interface"
 const client = useSupabase()
 const notFound = ref(false)
-const route = useRoute()
 
-const name = computed(() => route.params.name)
-const { data: routeData, pending } = await useLazyAsyncData<ProductData>(
-  `project-${name.value}`,
-  () => $fetch(`/api/project?name=${name.value}`)
-)
+const name = useRoute().params.name
+
+const { data: routeData, pending } = await useLazyFetch("/api/project", {
+  method: "GET",
+  query: { name },
+  key: name.toString(),
+})
 
 const related = ref(null)
 const relatedData = ref<any[]>([])
@@ -202,7 +202,7 @@ watch(routeData, (n) => {
 })
 
 const viewProduct = () => {
-  $fetch(`/api/view?name=${name.value}`)
+  $fetch(`/api/view?name=${name}`)
 }
 
 onMounted(() => {
@@ -211,7 +211,8 @@ onMounted(() => {
 })
 
 const tweetLink = computed(() => {
-  const href = "https://madewithsupabase.com" + route.fullPath
+  const href = "https://madewithsupabase.com" + useRoute().fullPath
+  if (!routeData.value) return
   return `https://twitter.com/intent/tweet?original_referer=${href}&text=Check out ${
     routeData.value.title
   } ${
@@ -220,7 +221,7 @@ const tweetLink = computed(() => {
 })
 
 const computedUrl = computed(() => {
-  let url = new URL(routeData.value.url)
+  let url = new URL(routeData.value?.url ?? "")
   url.searchParams.set("ref", "madewithsupabase")
   return url.href
 })

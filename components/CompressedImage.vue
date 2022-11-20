@@ -1,7 +1,9 @@
 <template>
   <NuxtImg
     class="absolute w-full h-full object-cover transition-all duration-1000"
-    :class="[isBlur ? 'blur-md scale-105' : 'blur-0 scale-100']"
+    :class="[
+      isBlur ? 'blur-md scale-105 opacity-0' : 'blur-0 scale-100 opacity-100',
+    ]"
     :preset="preset"
     loading="lazy"
     v-bind="$attrs"
