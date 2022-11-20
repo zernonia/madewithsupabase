@@ -35,7 +35,11 @@
 
             <transition name="fade" mode="out-in">
               <div v-if="!pending" class="card-grid">
-                <Card v-for="item in data" :key="item.id" :item="item"></Card>
+                <Card
+                  v-for="item in data"
+                  :key="item.id?.toString()"
+                  :item="item"
+                ></Card>
               </div>
               <div
                 v-else
@@ -60,7 +64,7 @@ export default {
 <script setup lang="ts">
 const client = useSupabase()
 
-const { data, pending, refresh } = useAsyncData(
+const { data, pending, refresh } = useLazyAsyncData(
   "launch-week-5-submission",
   async () => {
     const { data, error } = await client
@@ -69,7 +73,6 @@ const { data, pending, refresh } = useAsyncData(
       .order("views", { ascending: false })
 
     return data
-  },
-  { lazy: true }
+  }
 )
 </script>
