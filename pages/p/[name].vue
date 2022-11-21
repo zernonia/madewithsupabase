@@ -202,6 +202,7 @@ watch(routeData, (n) => {
 })
 
 const viewProduct = () => {
+  if (!name) return
   $fetch(`/api/view?name=${name}`)
 }
 

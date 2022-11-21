@@ -21,12 +21,11 @@ const {
   return data?.filter((i) => i.id)
 })
 
-watch(
-  () => route.query.page,
-  () => {
+watch(page, (n, o) => {
+  if (!isNaN(n) && n !== o) {
     refresh()
   }
-)
+})
 </script>
 
 <template>
