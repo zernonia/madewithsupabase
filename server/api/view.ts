@@ -1,10 +1,10 @@
-import { supabase } from "../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
 let cache: any = {}
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { name } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer()
+  const { name } = getQuery(event)
+  const { res, req } = event
 
   const ip = req.headers["x-forwarded-for"] || "::1"
 
@@ -13,7 +13,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
 
   if (name) {
-    const initialData = await supabase
+    const initialData = await client
       .from("products")
       .select("*")
       .eq("slug", name)
@@ -22,8 +22,8 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
       if (cache[name as string].findIndex((i: any) => i == ip) > -1) {
         res.end("cache")
       } else {
-        const { data, error } = await supabase.from("views").insert({
-          ip_address: ip,
+        const { data, error } = await client.from("views").insert({
+          ip_address: ip.toString(),
           product_id: initialData.data.id,
         })
         cache[name as string].push(ip)
@@ -37,4 +37,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.statusCode = 500
     res.end("error")
   }
-}
+})

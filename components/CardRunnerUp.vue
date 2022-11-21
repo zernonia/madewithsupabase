@@ -35,7 +35,7 @@
             <CompressedImage
               class="absolute inset-0 w-full h-full object-cover"
               :src="obj.image"
-              alt=""
+              :alt="obj.title"
             />
           </div>
         </NuxtLink>

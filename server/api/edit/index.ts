@@ -1,11 +1,9 @@
-import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody, useQuery } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { form } = await useBody(req)
+export default defineEventHandler(async (event) => {
+  const { form } = await readBody(event)
+  const client = useSupabaseServer()
 
-  const { data, error } = await supabase.from("products").upsert(form).single()
-
+  const { data, error } = await client.from("products").upsert(form).single()
   return { data, error }
-}
+})

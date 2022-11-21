@@ -4,8 +4,8 @@ import { PropType } from "vue"
 const route = useRoute()
 
 const props = defineProps({
-  count: Number,
-  target: Object as PropType<HTMLElement>,
+  count: { type: Number, required: true },
+  target: { type: Object as PropType<HTMLElement>, required: true },
 })
 
 const emit = defineEmits<{
@@ -52,7 +52,7 @@ const pageArray = computed(() => {
           params: nuxtLinkParams,
         }"
       >
-        <i-mdi:menu-left class="w-8 h-8"></i-mdi:menu-left>
+        <div class="i-mdi:menu-left w-8 h-8"></div>
       </NuxtLink>
       <div v-else class="w-8 h-8"></div>
     </div>
@@ -78,7 +78,7 @@ const pageArray = computed(() => {
           params: nuxtLinkParams,
         }"
       >
-        <i-mdi:menu-right class="w-8 h-8"></i-mdi:menu-right>
+        <div class="i-mdi:menu-right w-8 h-8"></div>
       </NuxtLink>
       <div v-else class="w-8 h-8"></div>
     </div>

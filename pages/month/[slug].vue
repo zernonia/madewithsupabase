@@ -17,7 +17,8 @@
             @click="$router.push('/')"
             class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
           >
-            <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Home
+            <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
+            Home
           </button>
         </div>
       </div>
@@ -30,14 +31,14 @@
 
 <script setup lang="ts">
 import dayjs from "dayjs/esm"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const route = useRoute()
 const month = computed(() => +route.params.slug)
 const { data: routeData } = await useLazyAsyncData(
   `month-${month.value}`,
   async () => {
-    const { data } = await $supabase
+    const { data } = await client
       .rpc("get_monthly", {
         month_number: month.value,
       })

@@ -4,7 +4,8 @@
       @click="$router.back()"
       class="w-full mt-4 inline-flex items-center text-dark-50 hover:text-light-900 transition"
     >
-      <i-mdi:menu-left class="mr-2 w-6 h-6"></i-mdi:menu-left> Back
+      <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
+      Back
     </button>
     <h1 id="form" class="text-3xl text-center mt-8">
       Editing: {{ form.title }}
@@ -127,7 +128,7 @@
               @click="target?.click()"
               class="h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-2 border-dashed"
             >
-              <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+              <div class="i-mdi:plus w-12 h-12"></div>
               <p>Click to 'Add' images</p>
               <input
                 class="hidden"
@@ -149,7 +150,7 @@
                   @click.prevent="removeImage(index)"
                   class="flex flex-col items-center justify-center w-full h-full cursor-pointer"
                 >
-                  <i-mdi:trash-can class="w-12 h-12"></i-mdi:trash-can>
+                  <div class="i-mdi:trash-can w-12 h-12"></div>
                   Click to 'Remove' image
                 </button>
               </div>
@@ -172,7 +173,7 @@
             v-else
             class="text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-2 border-dashed"
           >
-            <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+            <div class="i-mdi:plus w-12 h-12"></div>
             <p>Click to 'Add' images</p>
             <input
               class="hidden"
@@ -231,8 +232,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
-
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
@@ -349,15 +349,15 @@ const pickFile = (e: any) => {
         let index = form.value.images.length
         form.value.images[index] = result
         const title = slugify(form.value.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
+        const { data } = await client.storage
           .from("products")
           .upload(title, files[i])
         if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
-            form.value.images[index] = publicURL
+          const {
+            data: { publicUrl },
+          } = client.storage.from("products").getPublicUrl(title)
+          if (publicUrl) {
+            form.value.images[index] = publicUrl
           }
         }
       }
@@ -369,7 +369,7 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = form.value.images[index].split("products/")[1]
   form.value.images.splice(index, 1)
-  const { data, error } = await $supabase.storage
+  const { data, error } = await client.storage
     .from("products")
     .remove([imageStr])
   if (!error) {

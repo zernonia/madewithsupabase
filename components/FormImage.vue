@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
 import { slugify, movePosition } from "~~/functions"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 const props = defineProps({
-  modelValue: Object as PropType<string[]>,
+  modelValue: { type: Object as PropType<string[]>, default: () => [] },
   title: String,
 })
 
@@ -20,21 +20,21 @@ const pickFile = (e: any) => {
       reader.onload = async (e) => {
         const result = e.target?.result as string
         let r = (Math.random() + 1).toString(36).substring(7)
-        let index = props.modelValue.length
+        let index = props.modelValue.length ?? 0
         let images = props.modelValue
         images[index] = result
         emits("update:modelValue", images)
         const title = slugify(props.title + "-" + r + "-" + files[i].name)
-        const { data } = await $supabase.storage
+        const { data } = await client.storage
           .from("products")
           .upload(title, files[i], { upsert: true })
         if (data) {
-          const { publicURL } = $supabase.storage
-            .from("products")
-            .getPublicUrl(title)
-          if (publicURL) {
+          const {
+            data: { publicUrl },
+          } = client.storage.from("products").getPublicUrl(title)
+          if (publicUrl) {
             let newIndex = props.modelValue.findIndex((i) => i == result)
-            images[newIndex] = publicURL
+            images[newIndex] = publicUrl
             emits("update:modelValue", images)
           }
         }
@@ -47,7 +47,7 @@ const pickFile = (e: any) => {
 const removeImage = async (index: number) => {
   let imageStr = props.modelValue[index].split("products/")[1]
   props.modelValue.splice(index, 1)
-  const { data, error } = await $supabase.storage
+  const { data, error } = await client.storage
     .from("products")
     .remove([imageStr])
   if (!error) {
@@ -71,9 +71,9 @@ const changePosition = (index: number, direction: "left" | "right") => {
         tabindex="0"
         @keypress.enter="target?.click()"
         @click="target?.click()"
-        class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
+        class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
       >
-        <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+        <div class="w-12 h-12 i-mdi:plus"></div>
         <p>Click to 'Add' images</p>
         <input
           class="hidden"
@@ -93,13 +93,13 @@ const changePosition = (index: number, direction: "left" | "right") => {
         }}</span>
         <div
           v-if="blob.startsWith('http')"
-          class="absolute w-full h-full center hidden hover:bg-dark-900 hover:bg-opacity-25"
+          class="absolute w-full h-full center hover:bg-dark-900 hover:bg-opacity-25"
         >
           <button
             @click.prevent="removeImage(index)"
             class="absolute bottom-2 right-2 flex items-center justify-center p-1 rounded-lg bg-red-500 hover:bg-red-600"
           >
-            <i-mdi:trash-can class="w-5 h-5"></i-mdi:trash-can>
+            <div class="i-mdi:trash-can w-5 h-5"></div>
           </button>
 
           <div
@@ -110,18 +110,14 @@ const changePosition = (index: number, direction: "left" | "right") => {
               v-if="index != 0"
               class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
             >
-              <i-ic:baseline-arrow-left
-                class="w-8 h-8"
-              ></i-ic:baseline-arrow-left>
+              <div class="i-ic:baseline-arrow-left w-8 h-8"></div>
             </button>
             <button
               @click.prevent="changePosition(index, 'right')"
               v-if="index != modelValue.length - 1"
               class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
             >
-              <i-ic:baseline-arrow-right
-                class="w-8 h-8"
-              ></i-ic:baseline-arrow-right>
+              <div class="i-ic:baseline-arrow-right w-8 h-8"></div>
             </button>
           </div>
         </div>
@@ -144,9 +140,9 @@ const changePosition = (index: number, direction: "left" | "right") => {
       @keypress.enter="target?.click()"
       @click="target?.click()"
       v-else
-      class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-green-400 focus:outline-none ring-1 ring-transparent focus:ring-green-400"
+      class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
     >
-      <i-mdi:plus class="w-12 h-12"></i-mdi:plus>
+      <div class="w-12 h-12 i-mdi:plus"></div>
       <p>Click to 'Add' images</p>
       <input
         class="hidden"

@@ -8,11 +8,10 @@ type InsertPayload = {
   record: any
   old_record: null
 }
-
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   const cfg = useRuntimeConfig()
   const discord_webhook_url = cfg.public.DISCORD_WEBHOOK_URL
-  const payload = (await useBody(event)) as InsertPayload
+  const payload = (await readBody(event)) as InsertPayload
 
   if (payload.type === "INSERT") {
     const data = payload.record as ProductData
@@ -30,5 +29,7 @@ export default eventHandler(async (event) => {
     })
 
     return response
+  } else {
+    return undefined
   }
 })

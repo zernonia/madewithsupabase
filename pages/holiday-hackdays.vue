@@ -133,10 +133,10 @@
           Other Submission
         </h2>
         <transition name="fade" mode="out-in">
-          <div v-if="!isFetching" class="card-grid">
+          <div v-if="!pending" class="card-grid">
             <Card
-              v-for="item in hacktoberfestData"
-              :key="item.id"
+              v-for="item in data"
+              :key="item.id?.toString()"
               :item="item"
             ></Card>
           </div>
@@ -153,7 +153,7 @@
 import { ref, onMounted } from "vue"
 import SiteLogo from "@/assets/logo.svg"
 import HeroImage from "@/assets/supabase-hackathon-v2.png"
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 
 definePageMeta({
   layout: "blank",
@@ -226,17 +226,11 @@ const projects = ref([
   },
 ])
 
-// get other submission
-const hacktoberfestData = ref<any>([])
-const isFetching = ref(true)
-const fetchData = async () => {
-  isFetching.value = true
-  const { data, error } = await $supabase
-    .from("holiday_hackdays_view")
+const { data, pending } = useLazyAsyncData("hacktoberfest", async () => {
+  const { data, error } = await client
+    .from("hacktoberfest_view")
     .select("*")
     .order("views", { ascending: false })
-  hacktoberfestData.value = data
-  isFetching.value = false
-}
-fetchData()
+  return data
+})
 </script>

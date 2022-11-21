@@ -1,15 +1,16 @@
-import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  let { name } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  let { name } = getQuery(event)
+  const client = useSupabaseServer()
+
+  const { res } = event.node
   let rpc = "get_tags"
-  if (name.toString().toLowerCase().startsWith("supabase")) {
+  if (name?.toString().toLowerCase().startsWith("supabase")) {
     rpc = "get_supabase_tags"
   }
   if (name) {
-    const { data, error } = await supabase
+    const { data, error } = await client
       .rpc(rpc, { tag: name }, { count: "exact" })
       .order("views", { ascending: false })
 
@@ -22,4 +23,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   }
   res.statusCode = 500
   return "error"
-}
+})

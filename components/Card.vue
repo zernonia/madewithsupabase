@@ -4,7 +4,11 @@
       class="bg-dark-600 flex flex-col rounded-2xl h-full border-5 border-dark-300 hover:border-gray-300 hover:shadow-gray-300 hover:shadow-lg transition ease-in-out overflow-hidden"
     >
       <div class="relative flex-shrink-0 pb-2/3">
-        <CompressedImage v-if="item.images[0]" :src="item.images[0]" />
+        <CompressedImage
+          :alt="item.title"
+          v-if="item.images[0]"
+          :src="item.images[0]"
+        />
         <div
           class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
           v-else
@@ -33,7 +37,7 @@
           </div>
           <div class="flex items-center flex-shrink-0 text-light-900">
             <p class="mr-1">{{ separator(item.views) }}</p>
-            <i-ic:twotone-ads-click></i-ic:twotone-ads-click>
+            <div class="i-ic:twotone-ads-click"></div>
           </div>
         </div>
       </div>

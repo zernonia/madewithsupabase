@@ -1,15 +1,14 @@
-import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody, useQuery } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer()
   const data = Promise.all([
-    supabase
+    client
       .from("products_view")
       .select("*")
       .order("created_at", { ascending: false })
       .limit(3),
-    supabase
+    client
       .from("products_view")
       .select("*")
       .or(
@@ -20,7 +19,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   if (data) {
     return data
   } else {
-    res.statusCode = 500
+    event.res.statusCode = 500
     return
   }
-}
+})

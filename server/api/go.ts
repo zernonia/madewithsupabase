@@ -1,11 +1,11 @@
-import { supabase } from "../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useQuery, sendRedirect, sendError } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { name } = useQuery(req)
+export default defineEventHandler(async (event) => {
+  const client = useSupabaseServer()
+  const { res } = event.node
+  const { name } = getQuery(event)
   if (name) {
-    const initialData = await supabase
+    const initialData = await client
       .from("products")
       .select("*")
       .eq("slug", name)
@@ -24,4 +24,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     res.statusCode = 500
     res.end("No project found")
   }
-}
+})

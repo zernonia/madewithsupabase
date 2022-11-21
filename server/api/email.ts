@@ -1,9 +1,10 @@
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody } from "h3"
+import { readBody } from "h3"
 import { createTransport, SendMailOptions } from "nodemailer"
 import marked from "marked"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler(async (event) => {
+  const { req, res } = event.node
+
   const transporter = createTransport({
     service: "gmail",
     auth: {
@@ -15,7 +16,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
   if (req.method == "POST") {
     const {
       record: { title, description, created_at },
-    } = await useBody(req)
+    } = await readBody(event)
 
     if (title && created_at) {
       const mailOptions: SendMailOptions = {
@@ -44,4 +45,4 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const err = await transporter.sendMail(mailOptions)
     return err
   }
-}
+})

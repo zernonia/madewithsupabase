@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 definePageMeta({
   layout: "plain",
 })
@@ -67,6 +67,6 @@ definePageMeta({
 
 <style scoped>
 span {
-  @apply text-green-400;
+  @apply text-emerald-400;
 }
 </style>

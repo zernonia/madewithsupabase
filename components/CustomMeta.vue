@@ -2,7 +2,7 @@
   <div>
     <Html lang="en-US">
       <Head>
-        <Title>{{ title }}</Title>
+        <Title>{{ title || "Loading..." }}</Title>
         <Meta name="description" :content="description" />
 
         <Meta name="og:title" :content="title" />

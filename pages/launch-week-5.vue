@@ -11,7 +11,7 @@
             to="/"
             class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
           >
-            <i-mdi:chevron-left></i-mdi:chevron-left>
+            <div class="i-mdi:chevron-left"></div>
           </NuxtLink>
 
           <div class="relative group">
@@ -21,7 +21,7 @@
             >
               <img
                 class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
-                :src="HeroImage"
+                src="~~/assets/launch-week-5-hackathon.jpeg"
                 alt="Supabase Launch Week 5 Hackathon"
               />
             </NuxtLink>
@@ -35,7 +35,11 @@
 
             <transition name="fade" mode="out-in">
               <div v-if="!pending" class="card-grid">
-                <Card v-for="item in data" :key="item.id" :item="item"></Card>
+                <Card
+                  v-for="item in data"
+                  :key="item.id?.toString()"
+                  :item="item"
+                ></Card>
               </div>
               <div
                 v-else
@@ -58,20 +62,17 @@ export default {
 </script>
 
 <script setup lang="ts">
-import HeroImage from "@/assets/launch-week-5-hackathon.jpeg"
+const client = useSupabase()
 
-const { $supabase } = useNuxtApp()
-
-const { data, pending, refresh } = useAsyncData(
+const { data, pending, refresh } = useLazyAsyncData(
   "launch-week-5-submission",
   async () => {
-    const { data, error } = await $supabase
+    const { data, error } = await client
       .from("launch_week_5_view")
       .select("*")
       .order("views", { ascending: false })
 
     return data
-  },
-  { lazy: true }
+  }
 )
 </script>

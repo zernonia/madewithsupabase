@@ -6,7 +6,7 @@
         class="sm:w-80 lg:w-1/3 lg:px-6"
       >
         <div class="relative flex items-center">
-          <i-eva:search-fill class="absolute left-4"></i-eva:search-fill>
+          <div class="i-eva:search-fill absolute left-4"></div>
           <input
             class="!placeholder-light-50 !focus:placeholder-dark-50 w-full !pl-12"
             type="text"
@@ -69,7 +69,7 @@ import { useRoute } from "vue-router"
 import { OnClickOutside } from "@vueuse/components"
 
 const route = useRoute()
-const { $supabase } = useNuxtApp()
+const client = useSupabase()
 const supabaseTags = ref([
   {
     tags: "Supabase Auth",
@@ -89,7 +89,7 @@ const supabaseTags = ref([
 ])
 const fetchTags = async () => {
   if (state.tags.length) return
-  const { data, error } = await $supabase
+  const { data, error } = await client
     .from("tags_view")
     .select("*")
     .order("count", {

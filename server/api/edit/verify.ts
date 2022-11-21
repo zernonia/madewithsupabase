@@ -1,13 +1,16 @@
-import { supabase } from "../../_lib/supabase"
-import type { IncomingMessage, ServerResponse } from "http"
-import { useBody } from "h3"
+import { useSupabaseServer } from "~~/composables/supabase"
 
-export default async (req: IncomingMessage, res: ServerResponse) => {
-  const { email, slug } = await useBody(req)
+export default defineEventHandler(async (event) => {
+  const { email, slug } = await readBody(event)
+  const client = useSupabaseServer()
   let verify = false
 
-  const { data } = await supabase.from("products").select("*").eq("slug", slug).single()
+  const { data } = await client
+    .from("products")
+    .select("*")
+    .eq("slug", slug)
+    .single()
 
-  data.email == email ? (verify = true) : ""
+  data?.email == email ? (verify = true) : ""
   return { verify }
-}
+})
