@@ -13,7 +13,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ["dayjs", "swiper"],
   },
-  modules: ["@unocss/nuxt", "@nuxt/image-edge", "v-satori/nuxt"],
+  modules: [
+    "@unocss/nuxt",
+    "@nuxt/image-edge",
+    "v-satori/nuxt",
+    "~~/modules/server-assets",
+  ],
   image: {
     domains: ["dohemiycqebeipbvsvnr.supabase.co"],
     presets: {
