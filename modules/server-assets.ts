@@ -6,7 +6,7 @@ export default defineNuxtModule({
     nuxt.hook("close", async () => {
       await cp(
         "assets/fonts",
-        ".vercel/output/functions/__nitro.func/public/fonts",
+        ".vercel/output/functions/__nitro.func/assets/fonts",
         { recursive: true }
       )
     })
