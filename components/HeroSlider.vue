@@ -6,7 +6,6 @@
       :space-between="40"
       :pagination="{ clickable: true }"
       :autoplay="{ delay: 5000, pauseOnMouseEnter: true }"
-      :navigation="{ nextEl: '.image-next', prevEl: '.image-prev' }"
       class="relative w-full max-w-screen-lg border-5 border-dark-300 rounded-2xl bg-dark-600"
     >
       <SwiperSlide
@@ -27,21 +26,6 @@
           </h1>
         </NuxtLink>
       </SwiperSlide>
-
-      <button
-        slot="container-end"
-        aria-label="slider-left"
-        class="image-prev absolute flex rounded-full z-20 left-4 top-1/2 -mt-6 w-12 h-auto bg-opacity-50 bg-dark-900 hover:bg-opacity-100"
-      >
-        <div class="i-ic:baseline-arrow-left w-full h-auto"></div>
-      </button>
-      <button
-        slot="container-end"
-        aria-label="slider-right"
-        class="image-next absolute flex rounded-full z-20 right-4 top-1/2 -mt-6 w-12 h-auto bg-opacity-50 bg-dark-900 hover:bg-opacity-100"
-      >
-        <div class="i-ic:baseline-arrow-right w-full h-auto"></div>
-      </button>
     </Swiper>
     <SVGCircle
       class="absolute w-20 h-20 sm:w-30 sm:h-30 lg:left-0 -left-10 -top-10"
@@ -54,7 +38,7 @@
 
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue"
-import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper/core"
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper"
 SwiperCore.use([Pagination, Navigation, Autoplay])
 
 const prop = defineProps({
@@ -69,9 +53,4 @@ const heroImages = computed(() => {
     .map((item: any) => item.images[0])
     .filter((item: any) => item != undefined)
 })
-function separator(number: number) {
-  var str = number.toString().split(".")
-  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  return str.join(".")
-}
 </script>

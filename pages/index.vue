@@ -30,10 +30,6 @@
 </template>
 
 <script setup lang="ts">
-const client = useSupabase()
-
-const route = useRoute()
-
 const { data: homeData } = await useLazyAsyncData("hero testimonial", () =>
   $fetch("/api/project/home")
 )

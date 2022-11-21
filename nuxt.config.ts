@@ -10,9 +10,6 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
     },
   },
-  build: {
-    transpile: ["dayjs", "swiper"],
-  },
   modules: [
     "@unocss/nuxt",
     "@nuxt/image-edge",
@@ -83,9 +80,9 @@ export default defineNuxtConfig({
   css: [
     "@unocss/reset/tailwind.css",
     "@/assets/main.css",
-    "swiper/swiper.min.css",
-    "swiper/components/navigation/navigation.min.css",
-    "swiper/components/pagination/pagination.min.css",
+    "swiper/css",
+    "swiper/css/navigation",
+    "swiper/css/pagination",
   ],
   runtimeConfig: {
     public: {
