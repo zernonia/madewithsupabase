@@ -6,7 +6,7 @@
       :description="
         routeData?.description?.replace(/<|>/gi, '').slice(0, 150) + '...'
       "
-      :image="'https://madewithsupabase.com/api/og?slug=' + routeData?.slug"
+      :image="'https://madewithsupabase.com/og/' + routeData?.slug"
     />
     <transition name="fade" mode="out-in">
       <div class="mt-4" v-if="routeData || !pending">
