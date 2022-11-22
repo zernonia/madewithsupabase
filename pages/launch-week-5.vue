@@ -1,9 +1,6 @@
 <template>
   <div>
-    <CustomMeta
-      :title="'Launch Week 5 Hackathon | Made with Supabase'"
-      :image="HeroImage"
-    />
+    <CustomMeta :title="'Launch Week 5 Hackathon'" :image="HeroImage" />
     <transition name="fade" appear>
       <main class="py-8">
         <section class="md:py-6 px-4 flex flex-col items-center">

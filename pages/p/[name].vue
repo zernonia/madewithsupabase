@@ -2,7 +2,7 @@
   <div class="min-h-screen-md">
     <CustomMeta
       :key="routeData?.title ?? ''"
-      :title="routeData?.title + ' | Made with Supabase'"
+      :title="routeData?.title"
       :description="
         routeData?.description?.replace(/<|>/gi, '').slice(0, 150) + '...'
       "
@@ -176,7 +176,7 @@ const notFound = ref(false)
 
 const name = useRoute().params.name
 
-const { data: routeData, pending } = await useLazyFetch("/api/project", {
+const { data: routeData, pending } = await useFetch("/api/project", {
   method: "GET",
   query: { name },
   key: name.toString(),

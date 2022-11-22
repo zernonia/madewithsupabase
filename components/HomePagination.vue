@@ -30,7 +30,7 @@ watch(page, (n, o) => {
 
 <template>
   <div>
-    <h1 ref="target" class="text-4xl text-center mb-4 sm:mb-8">Most Viewed</h1>
+    <h1 ref="target" class="text-4xl text-center mb-4 sm:mb-8">Showcase</h1>
     <div v-if="latest" class="h-full relative">
       <div class="card-grid">
         <div v-for="item in latest" :key="item.id?.toString()">

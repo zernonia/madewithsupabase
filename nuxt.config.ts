@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       ],
       link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
     },
+    layoutTransition: { name: "fade", mode: "out-in" },
   },
   modules: [
     "@unocss/nuxt",

@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full flex items-center justify-between">
+  <menu class="w-full flex items-center justify-between">
     <div class="w-1/3">
       <HeaderButton></HeaderButton>
     </div>
@@ -18,7 +18,7 @@
         Submit a Project
       </NuxtLink>
     </div>
-  </header>
+  </menu>
 </template>
 
 <script lang="ts" setup></script>
