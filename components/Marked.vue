@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import marked from "marked"
+import { marked } from "marked"
 
 const props = defineProps({
   text: {
