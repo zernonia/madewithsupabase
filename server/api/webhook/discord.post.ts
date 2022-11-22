@@ -1,4 +1,4 @@
-import marked from "marked"
+import { marked } from "marked"
 import type { ProductData } from "~~/script/interface"
 
 type InsertPayload = {

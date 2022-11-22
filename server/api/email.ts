@@ -1,6 +1,6 @@
 import { readBody } from "h3"
 import { createTransport, SendMailOptions } from "nodemailer"
-import marked from "marked"
+import { marked } from "marked"
 
 export default defineEventHandler(async (event) => {
   const { req, res } = event.node
