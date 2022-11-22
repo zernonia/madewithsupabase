@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CustomMeta :title="'Supabase Showcase | Made with Supabase'" />
+    <CustomMeta :title="'Supabase Showcase'" />
 
     <div class="mt-8 flex flex-col items-center">
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>

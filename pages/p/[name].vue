@@ -2,7 +2,7 @@
   <div class="min-h-screen-md">
     <CustomMeta
       :key="routeData?.title ?? ''"
-      :title="routeData?.title + ' | Made with Supabase'"
+      :title="routeData?.title"
       :description="
         routeData?.description?.replace(/<|>/gi, '').slice(0, 150) + '...'
       "

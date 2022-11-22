@@ -2,7 +2,7 @@
   <div>
     <CustomMeta
       :key="$route.params.slug.toString()"
-      :title="getMonthName($route.params.slug) + ' | Made with Supabase'"
+      :title="getMonthName($route.params.slug)"
     />
 
     <transition name="fade" mode="out-in">
