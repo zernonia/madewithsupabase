@@ -176,7 +176,7 @@ const notFound = ref(false)
 
 const name = useRoute().params.name
 
-const { data: routeData, pending } = await useLazyFetch("/api/project", {
+const { data: routeData, pending } = await useFetch("/api/project", {
   method: "GET",
   query: { name },
   key: name.toString(),
