@@ -38,20 +38,24 @@ const links = ref([
   <div class="mt-16 sm:mt-24">
     <h1 class="text-4xl text-center mb-4 sm:mb-8">Use cases</h1>
 
-    <ul class="grid lg:grid-cols-2 gap-6">
+    <ul class="pl-0 grid lg:grid-cols-2 gap-6">
       <li
         v-for="link in links"
         class="p-4 bg-transparent hover:bg-dark-500 transition rounded-xl"
       >
-        <NuxtLink :to="link.url" target="_blank" class="flex">
-          <div class="mr-6">
-            <h5 class="text-lg">{{ link.title }}</h5>
-            <p class="text-sm text-dark-50 mt-1">
+        <NuxtLink
+          :to="link.url"
+          target="_blank"
+          class="flex flex-col-reverse md:flex-row"
+        >
+          <div class="md:mr-6">
+            <h5 class="md:text-lg">{{ link.title }}</h5>
+            <p class="text-sm text-dark-50 mt-2">
               {{ link.description }}
             </p>
           </div>
           <NuxtImg
-            class="rounded w-20 h-20 object-cover flex-shrink-0"
+            class="rounded w-20 h-20 object-cover flex-shrink-0 mb-4"
             :src="link.image"
           ></NuxtImg>
         </NuxtLink>
