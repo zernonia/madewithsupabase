@@ -27,13 +27,12 @@ const submitForm = async () => {
 
       <div v-if="!isSubmitted" class="">
         <p>Subscribe to our newsletter!</p>
-
         <div class="flex items-center mt-8 relative">
           <input
             type="text"
             v-model="email"
             placeholder="foo@bar.com"
-            class="w-96 !py-2.5"
+            class="w-full md:w-96 !py-2.5"
           />
           <button
             :disabled="!email"
