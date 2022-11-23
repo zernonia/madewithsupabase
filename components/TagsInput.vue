@@ -20,6 +20,7 @@
         list="category"
         v-model="inputText"
         @keydown.enter="append"
+        @blur="append"
       />
       <p class="ml-4 text-light-900">← Press 'Enter' to Add</p>
     </div>
