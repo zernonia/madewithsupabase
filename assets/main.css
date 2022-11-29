@@ -1,5 +1,11 @@
 @font-face {
   font-family: custom-font;
+  font-weight: 400;
+  font-style: normal;
+  src: url(./fonts/CustomFont-Book.woff2) format("woff2");
+}
+@font-face {
+  font-family: custom-font;
   font-weight: 500;
   font-style: normal;
   src: url(./fonts/CustomFont-Medium.woff2) format("woff2");
