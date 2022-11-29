@@ -93,7 +93,7 @@ onMounted(() => {
   >
     <h1
       id="form"
-      class="text-4xl sm:text-5xl text-emerald-300 text-center mt-8"
+      class="text-4xl sm:text-5xl text-emerald-400 font-bold text-center mt-8"
     >
       {{ title }}
     </h1>

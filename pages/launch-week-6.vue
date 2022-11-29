@@ -16,11 +16,11 @@
               to="https://supabase.com/blog/launch-week-5-hackathon"
               target="_blank"
             >
-              <!-- <img
+              <img
                 class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
-                :src="HeroImage"
+                src="~~/assets/launch-week-5-hackathon.jpeg"
                 alt="Supabase Launch Week 5 Hackathon"
-              /> -->
+              />
             </NuxtLink>
             <p
               class="absolute top-full right-0 md:-right-12 mt-2 text-sm md:text-xl text-dark-50"
@@ -62,7 +62,7 @@
             <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
             <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
           </div>
-          <div class="mt-8 flex flex-col items-center" v-else-if="!submitted">
+          <div class="mt-4 flex flex-col items-center" v-else-if="!submitted">
             <h2 class="text-2xl sm:text-4xl mt-1">
               <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
               {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
@@ -92,22 +92,22 @@
         <section
           v-if="!submitted && !isExpired"
           ref="submitTarget"
-          class="flex flex-col items-center"
+          class="mt-12 flex flex-col lg:flex-row items-center h-full"
         >
           <div
-            class="flex flex-col flex-col-reverse md:flex-row items-center max-w-screen-md mx-auto"
+            class="flex flex-col flex-col-reverse lg:w-1/2 bg-gradient-to-br from-dark-500 to-dark-800 rounded-2xl md:flex-row items-center max-w-screen-md mx-auto"
           >
-            <div class="mt-6 md:py-16 px-4 sm:px-8 rounded-2xl flex flex-col">
+            <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
               <h1
-                class="text-4xl sm:text-5xl text-emerald-400 text-center md:text-left font-bold"
+                class="text-3xl sm:text-4xl text-emerald-400 text-center md:text-left font-bold"
               >
                 Checklist
               </h1>
 
-              <p class="mt-8 text-xl">
+              <p class="mt-4 text-lg">
                 README in GitHub (or similar) should include:
               </p>
-              <ul class="text-lg list-disc ml-4 text-light-900">
+              <ul class="mt-2 list-disc ml-4 text-light-900">
                 <li>link to hosted demo (if applicable)</li>
                 <li>
                   list of team members github handles (and twitter if they have
@@ -126,25 +126,20 @@
                   any other info you want the judges to know
                   (motivations/ideas/process)
                 </li>
-                <li>*optional* team photo</li>
               </ul>
             </div>
-            <div class="h-64 md:h-full w-64 md:w-128" ref="checklist"></div>
           </div>
 
           <div
-            id="checklist"
-            class="mt-18 md:mt-0 flex flex-col md:flex-row items-center max-w-screen-md mx-auto"
+            class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-gradient-to-br from-dark-500 to-dark-800 rounded-2xl md:flex-row items-center max-w-screen-md mx-auto"
           >
-            <div class="h-56 md:h-full w-56 md:w-160" ref="rules"></div>
-
-            <div class="mt-6 md:py-16 px-4 sm:px-8 rounded-2xl flex flex-col">
+            <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
               <h1
-                class="text-4xl sm:text-5xl text-emerald-400 text-center md:text-left font-bold"
+                class="text-3xl sm:text-4xl text-emerald-400 text-center md:text-left font-bold"
               >
                 Rules
               </h1>
-              <ul class="text-lg list-disc ml-4 text-light-900">
+              <ul class="mt-4 list-disc ml-4 text-light-900">
                 <li>
                   Team size 1-5 (all team members on winning teams will receive
                   a prize)
@@ -178,7 +173,7 @@
             @submit="completed"
             :label="formCustomLabel"
             title="Submission"
-            :defaultCategories="['Launch Week 5']"
+            :defaultCategories="['Launch Week 6']"
             isHackathon
           ></Form>
         </section>
@@ -194,8 +189,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import lottie from "lottie-web"
-import { useElementVisibility, useClipboard } from "@vueuse/core"
+import { useClipboard } from "@vueuse/core"
 import { animate } from "motion"
 
 const client = useSupabase()
@@ -223,38 +217,6 @@ const goTo = () => {
 }
 
 const timeOriginal = ref(true)
-
-// Checklist -- step 0
-const checklist = ref()
-const checklistIsVisible = useElementVisibility(checklist)
-
-watch(checklistIsVisible, () => {
-  if (!checklist.value?.children.length) {
-    lottie.loadAnimation({
-      container: checklist.value,
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "./checklist.json",
-    })
-  }
-})
-
-const rules = ref()
-const rulesIsVisible = useElementVisibility(rules)
-
-watch(rulesIsVisible, () => {
-  if (!rules.value?.children.length) {
-    lottie.loadAnimation({
-      container: rules.value,
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "./rules.json",
-    })
-  }
-})
-
 const submitted = ref(false)
 const editingLink = ref("https://www.madewithsupabase.com/")
 const completed = (slug: string) => {
