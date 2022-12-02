@@ -25,32 +25,35 @@ const submitForm = async () => {
       <p class="text-2xl"># madewithsupabase</p>
       <h1 class="text-4xl">Collection of projects made with Supabase</h1>
 
-      <div v-if="!isSubmitted" class="">
-        <p>Subscribe to our newsletter!</p>
-        <div class="flex items-center mt-8 relative">
-          <input
-            type="text"
-            v-model="email"
-            placeholder="foo@bar.com"
-            class="w-full md:w-96 !py-2.5"
-          />
-          <button
-            :disabled="!email"
-            class="px-2 py-1.5 rounded absolute right-2 disabled:opacity-60 bg-dark-200"
-            @click="submitForm"
-          >
-            Submit
-          </button>
+      <ClientOnly>
+        <div v-if="!isSubmitted" class="">
+          <p>Subscribe to our newsletter!</p>
+          <div class="flex items-center mt-8 relative">
+            <input
+              type="text"
+              v-model="email"
+              placeholder="foo@bar.com"
+              class="w-full md:w-96 !py-2.5"
+            />
+            <button
+              :disabled="!email"
+              class="px-2 py-1.5 rounded absolute right-2 disabled:opacity-60 bg-dark-200"
+              @click="submitForm"
+            >
+              Submit
+            </button>
+          </div>
         </div>
-      </div>
-      <div v-else class="">
-        <NuxtLink
-          class="!mt-8 btn-pale hover:bg-dark-900 self-center"
-          to="/submission"
-        >
-          Join us! Submit a Project 🚀
-        </NuxtLink>
-      </div>
+
+        <div v-else class="">
+          <NuxtLink
+            class="!mt-8 btn-pale hover:bg-dark-900 self-center"
+            to="/submission"
+          >
+            Join us! Submit a Project 🚀
+          </NuxtLink>
+        </div>
+      </ClientOnly>
 
       <SVGCircle class="absolute -right-10 -bottom-10"></SVGCircle>
     </div>
