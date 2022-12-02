@@ -85,7 +85,7 @@ definePageMeta({
             <NuxtLink
               to="https://supabase.com/launch-week"
               target="_blank"
-              class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-3xl relative outline outline-dark-100 hover:outline-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
+              class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
             >
               <img
                 src="~~/assets/launch-week-6.png"
@@ -160,7 +160,7 @@ definePageMeta({
           v-if="!submitted && !isExpired"
           ref="submitTarget"
           style="max-width: 960px"
-          class="mt-12 flex flex-col lg:flex-row h-full px-8 xl:px-0 mx-auto"
+          class="mt-12 flex flex-col lg:flex-row h-full px-4 md:px-8 xl:px-0 mx-auto"
         >
           <div
             class="flex flex-col flex-col-reverse lg:w-1/2 bg-gradient-to-br from-dark-400 to-dark-800 border border-dark-300 rounded-2xl md:flex-row items-center"
@@ -172,10 +172,12 @@ definePageMeta({
                 Checklist
               </h1>
 
-              <p class="mt-4 text-lg">
+              <p class="mt-4 md:text-lg">
                 README in GitHub (or similar) should include:
               </p>
-              <ul class="mt-2 list-disc ml-4 text-light-900">
+              <ul
+                class="mt-2 list-disc ml-4 text-sm md:text-base text-light-900"
+              >
                 <li>link to hosted demo (if applicable)</li>
                 <li>
                   list of team members github handles (and twitter if they have
@@ -207,7 +209,9 @@ definePageMeta({
               >
                 Rules
               </h1>
-              <ul class="mt-4 list-disc ml-4 text-light-900">
+              <ul
+                class="mt-4 list-disc ml-4 text-sm md:text-base text-light-900"
+              >
                 <li>
                   Team size 1-5 (all team members on winning teams will receive
                   a prize)
