@@ -88,7 +88,7 @@ definePageMeta({
               class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
             >
               <img
-                src="~~/assets/launch-week-6.png"
+                src="~~/assets/hackathon-lw6.jpg"
                 alt="Supabase Launch Week 6 Hackathon"
                 class="w-full h-full object-cover transition duration-750"
                 style="object-position: center 68%"
