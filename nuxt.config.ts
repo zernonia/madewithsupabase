@@ -1,4 +1,5 @@
 import transformerDirective from "@unocss/transformer-directives"
+import { defineNuxtConfig } from "nuxt/config"
 
 export default defineNuxtConfig({
   app: {

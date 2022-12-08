@@ -6,9 +6,13 @@ export default defineEventHandler(async (event) => {
   const simplelog_token = process.env.SIMPLELOG_TOKEN
   form.approved = false
 
-  const { data, error } = await client.from("products").insert(form).single()
+  const { data, error } = await client
+    .from("products")
+    .insert(form)
+    .select()
+    .single()
   if (!error && data) {
-    await $fetch("https://simple-log.vercel.app/api/v1/log", {
+    $fetch("https://simple-log.vercel.app/api/v1/log", {
       method: "POST",
       headers: {
         Authorization: "Bearer " + simplelog_token,
@@ -18,7 +22,7 @@ export default defineEventHandler(async (event) => {
         channel: "submission",
         event: "New Submission",
         description: `Title: ${data.title}
-Description: ${data.description.substring(0, 200)}
+Description: ${data.description?.substring(0, 200)}
 URL: ${data.url}
 GitHub url: ${data.github_url}
 Twitter: ${data.twitter}`,

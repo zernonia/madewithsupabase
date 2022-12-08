@@ -6,7 +6,7 @@
       <h1 class="text-3xl md:text-4xl text-center">Made with Supabase</h1>
     </div>
 
-    <!-- <Banner></Banner> -->
+    <Banner></Banner>
 
     <transition name="fade" mode="out-in">
       <div v-if="hero && hero.length" class="flex flex-col items-center">

@@ -20,7 +20,7 @@ const form = ref({
   url: "",
   github_url: "",
   description: "",
-  categories: [],
+  categories: [] as string[],
   supabase_features: [],
   twitter: "",
   instagram: "",
@@ -93,7 +93,7 @@ onMounted(() => {
   >
     <h1
       id="form"
-      class="text-4xl sm:text-5xl text-emerald-300 text-center mt-8"
+      class="text-4xl sm:text-5xl text-emerald-400 font-bold text-center mt-8"
     >
       {{ title }}
     </h1>
@@ -219,7 +219,6 @@ onMounted(() => {
       </p>
       <div class="mt-2 flex items-center space-x-4">
         <input
-          class="rounded form-checkbox cursor-pointer h-5 w-5 text-emerald-500 focus:ring-emerald-400 focus:ring-offset-transparent"
           type="checkbox"
           name="acknowledge"
           id="acknowledge"
@@ -239,7 +238,6 @@ onMounted(() => {
       </p>
       <div class="mt-2 flex items-center space-x-4">
         <input
-          class="rounded form-checkbox cursor-pointer h-5 w-5 text-emerald-500 focus:ring-emerald-400 focus:ring-offset-transparent"
           type="checkbox"
           name="accept"
           id="accept"

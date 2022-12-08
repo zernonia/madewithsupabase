@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       if (cache[name as string].findIndex((i: any) => i == ip) > -1) {
         res.end("cache")
       } else {
-        const { data, error } = await client.from("views").insert({
+        await client.from("views").insert({
           ip_address: ip.toString(),
           product_id: initialData.data.id,
         })
