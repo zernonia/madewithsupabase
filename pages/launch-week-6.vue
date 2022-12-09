@@ -83,7 +83,7 @@ definePageMeta({
 
           <div>
             <NuxtLink
-              to="https://supabase.com/launch-week"
+              to="https://supabase.com/blog/launch-week-6-hackathon"
               target="_blank"
               class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
             >
