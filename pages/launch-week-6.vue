@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useClipboard } from "@vueuse/core"
+import { useClipboard, useLocalStorage } from "@vueuse/core"
 import { animate } from "motion"
 
 const client = useSupabase()
@@ -7,6 +7,7 @@ const { timePT, timeLocale, isExpired } = useTime(
   "9 December 2022 08:00:00 PST",
   "19 December 2022 00:01:00 PST"
 )
+const localStorageSubmission = useLocalStorage("launch-week-6-hackathon", "")
 
 definePageMeta({
   layout: "blank",
@@ -22,13 +23,11 @@ const goTo = () => {
 }
 
 const timeOriginal = ref(true)
-const submitted = ref(false)
-const editingLink = ref("https://www.madewithsupabase.com/")
 const completed = (slug: string) => {
-  submitted.value = true
-  editingLink.value = "https://www.madewithsupabase.com/edit/" + slug
+  localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug
 }
-const { copy } = useClipboard({ source: editingLink })
+const submitted = computed(() => localStorageSubmission.value)
+const { copy } = useClipboard({ source: localStorageSubmission })
 
 const projectSubmittedRef = ref<HTMLElement>()
 
@@ -138,7 +137,7 @@ definePageMeta({
           </div>
           <div class="mt-12 flex flex-col items-center text-center" v-else>
             <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900">
+            <p class="mt-2 text-light-900 text-center">
               Stay tuned for the Medal Ceremony <br />
               You can edit your submission here before too late!
             </p>
@@ -147,7 +146,7 @@ definePageMeta({
                 class="!rounded-r-none"
                 type="text"
                 disabled
-                v-model="editingLink"
+                v-model="localStorageSubmission"
               />
               <button @click="copy()" class="btn !rounded-l-none !p-2.5">
                 <div class="i-mdi:content-copy"></div>
