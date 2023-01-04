@@ -49,6 +49,12 @@ It turns out that this project gained a lot of attention from Supabase users, as
 - [WindiCSS](https://windicss.org/)
 - [Vercel](https://vercel.com)
 
+# 🔥 Contributors
+
+<a href="https://github.com/zernonia/madewithsupabase/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=zernonia/madewithsupabase" />
+</a>
+
 # 💻 Supabase Schema/Script
 
 [![Schema generated using Supabase Schema](public/schema.png)](https://supabase-schema.vercel.app/)
