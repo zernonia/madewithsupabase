@@ -1,66 +1,102 @@
 <script setup lang="ts">
-import { useClipboard, useLocalStorage } from "@vueuse/core"
-import { animate } from "motion"
-
 const client = useSupabase()
-const { timePT, timeLocale, isExpired } = useTime(
-  "9 December 2022 08:00:00 PST",
-  "19 December 2022 00:01:00 PST"
-)
-const localStorageSubmission = useLocalStorage("launch-week-6-hackathon", "")
 
-definePageMeta({
-  layout: "blank",
+const winnerGroup = {
+  "Best Overall Project": [
+    {
+      id: "6217a5bb-08a7-49b7-b489-62b6c9b89c6c",
+
+      title: "Depulso",
+      subtitle: "@_iamkarthikeyan, @SindhuMansi",
+      link: "/p/depulso",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/depulso-6luxd-screenshot-2022-12-19-at-132424png",
+    },
+    {
+      id: "d3e34023-b1a5-4ddb-8e04-caa42d20af0e",
+      title: "Supa Sql App",
+      subtitle: "@luis_rodge",
+      link: "/p/supa-sql-app",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/supa-sql-app-3d33jf-screen-shot-2022-12-18-at-51957-pmpng",
+    },
+  ],
+  "Most Fun/Interesting": [
+    {
+      id: "f1f18b82-4d96-4ab7-80db-9f814b6e428b",
+      title: "http-sense",
+      subtitle: "@tchyut_p",
+      link: "/p/http-sense",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/http-sense-gs9mf-screen-shot-2022-12-19-at-120553-pmpng",
+    },
+    {
+      id: "e8dbe6d5-3f2a-4b95-86d5-5849a9f4d1ba",
+      title: "supabase-js-rs",
+      subtitle: "@wa1aric",
+      link: "/p/supabase-js-rs",
+      image:
+        "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Flw6-hackathon-winners%2Fsupabase-js-rs.png&w=1920&q=75",
+    },
+  ],
+  "Best Flutter Project": [
+    {
+      id: "5a74a233-9bd7-4ce5-9c4e-01b86696675",
+      category: "",
+      position: "Winner",
+      title: "Supaquiz",
+      subtitle: "@yallurium",
+      link: "/p/supaquiz-multiplayer-trivia-quiz-game",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/supaquiz-multiplayer-trivia-quiz-game-ieg4m-title-screenpng",
+    },
+  ],
+  "Best Storage Project": [
+    {
+      id: "fc1366ba-303d-48d8-bf00-88fff933d134",
+      title: "Lookout",
+      subtitle: "@Amanrk28, @nithsua, @_harisaran_, @sabeshbharathi",
+      link: "/p/lookout",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/lookout-1w901k-screenshot-2022-12-19-at-12733-pmpng",
+    },
+    {
+      id: "df7e0b3e-bf78-4ee1-b93d-9887449a2577",
+      title: "Penelope AI",
+      subtitle: "@taishik_",
+      link: "/p/penelope-ai-unleash-the-power-of-your-writing-with-the-most-sophisticated-ai-writing-assistant",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/penelope-ai-unleash-the-power-of-your-writing-with-the-most-sophisticated-ai-writing-assistant-lkjh6-xnapper-2022-12-15-211346png",
+    },
+  ],
+  "Best Edge Functions Project": [
+    {
+      id: "59be8ec0-0452-40b4-a888-4fcc046ed9ff",
+      title: "Vista",
+      subtitle: "@zernonia",
+      link: "/p/vista",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/vista-5sjbu-screenshot-2022-12-19-at-113852-ampng",
+    },
+    {
+      id: "00a4a936-d229-42fc-8954-ed5851204c6a",
+      title: "Supa Que",
+      subtitle: "@suciptodev",
+      link: "/p/supa-que",
+      image:
+        "https://dohemiycqebeipbvsvnr.supabase.co/storage/v1/object/public/products/supa-que-mfdyj-screenshot-2022-12-19-at-145405png",
+    },
+  ],
+}
+
+const { data, pending } = useLazyAsyncData("launch-week-6-view", async () => {
+  const { data, error } = await client
+    .from("launch_week_6_view")
+    .select("*")
+    .order("views", { ascending: false })
+
+  return data
 })
-
-const submitTarget = ref()
-const goTo = () => {
-  let d = submitTarget.value as HTMLDivElement
-  document.documentElement.scrollTo({
-    top: d.offsetTop,
-    behavior: "smooth",
-  })
-}
-
-const timeOriginal = ref(true)
-const completed = (slug: string) => {
-  localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug
-}
-const submitted = computed(() => localStorageSubmission.value)
-const { copy } = useClipboard({ source: localStorageSubmission })
-
-const projectSubmittedRef = ref<HTMLElement>()
-
-const { data: projectSubmitted } = useAsyncData(
-  "launch-week-6-submission-count",
-  async () => {
-    const { data, error } = await client
-      .rpc("submission_count", {
-        tag: "Launch Week 6",
-      })
-      .maybeSingle()
-
-    if (data && projectSubmittedRef.value) {
-      animate(
-        (progress) =>
-          projectSubmittedRef.value &&
-          (projectSubmittedRef.value.innerHTML = String(
-            Math.round(progress * data)
-          )),
-        { duration: 1, easing: "ease-in-out" }
-      )
-    }
-    return data
-  },
-  { server: false }
-)
-
-const formCustomLabel = {
-  url: "Demo URL",
-  github_url: "(Public) Github URL",
-  email: "Team Captain's Email",
-  twitter: "Team Captain's Twitter handle",
-}
 
 definePageMeta({
   layout: "blank",
@@ -68,215 +104,88 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <CustomMeta :title="'Launch Week 6 Hackathon'" />
-    <transition name="fade">
-      <main class="py-8">
-        <section class="md:py-6 px-4 flex flex-col items-center">
-          <NuxtLink
-            to="/"
-            class="fixed left-0 top-7 px-4 md:px-6 py-3 rounded-r-full bg-dark-300"
-          >
-            <div class="i-mdi:chevron-left text-2xl"></div>
-          </NuxtLink>
+  <CustomMeta :title="'Launch Week 6 Hackathon'" />
+  <div class="relative">
+    <NuxtLink
+      to="/"
+      class="fixed left-6 top-18 p-3 rounded-full bg-dark-400 border border-dark-300"
+    >
+      <div class="i-mdi:chevron-left text-2xl"></div>
+    </NuxtLink>
 
-          <div>
+    <div class="flex items-center mt-12">
+      <h1 class="text-4xl">Launch Week 6 Hackathon</h1>
+
+      <NuxtLink
+        to="https://supabase.com/blog/launch-week-6-hackathon-winners"
+        target="_blank"
+        class="ml-4 text-xl"
+      >
+        <div class="i-mdi-arrow-top-right-thin"></div>
+      </NuxtLink>
+    </div>
+
+    <div v-for="(winners, key) of winnerGroup">
+      <h2 class="mt-12 mb-4 ml-6 text-xl">{{ key }}</h2>
+      <ul class="p-0 m-0 w-full">
+        <li
+          v-for="(winner, index) in winners"
+          class="group mb-6 w-full relative p-12 rounded-3xl bg-gradient-to-br from-dark-900 via-dark-900 border border-dark-300 overflow-hidden"
+          :class="[index === 0 ? 'to-yellow-900' : 'to-gray-700']"
+        >
+          <div class="flex flex-col">
+            <h5 class="text-3xl">{{ winner.title }}</h5>
+            <h6 class="text-sm text-light-900 mt-1">{{ winner.subtitle }}</h6>
+
             <NuxtLink
-              to="https://supabase.com/blog/launch-week-6-hackathon"
-              target="_blank"
-              class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
+              class="btn my-6 md:mt-40 w-max !text-sm md:opacity-0 group-hover:opacity-100"
+              :to="winner.link"
             >
-              <img
-                src="~~/assets/hackathon-lw6.jpg"
-                alt="Supabase Launch Week 6 Hackathon"
-                class="w-full h-full object-cover transition duration-750"
-                style="object-position: center 68%"
-              />
+              Read more
             </NuxtLink>
           </div>
 
-          <div
-            v-if="!submitted"
-            class="mt-12 md:mt-18 text-center text-dark-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
-          >
-            <transition name="slide-fade" mode="out-in">
-              <p v-if="timeOriginal">{{ timePT }}</p>
-              <p v-else>{{ timeLocale }}</p>
-            </transition>
-            <span
-              class="text-base flex items-center ml-2"
-              v-tooltip="'Toggle local time'"
+          <div class="md:w-120 md:absolute top-16 right-16">
+            <div
+              class="relative flex-shrink-0 pb-2/3 rounded-t-xl border-4 border-dark-100"
             >
-              <button
-                class="text-2xl !p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
-                :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
-                @click="timeOriginal = !timeOriginal"
-              >
-                <div class="i-ic:twotone-change-circle"></div>
-              </button>
-            </span>
-          </div>
-          <div
-            class="mt-12 flex flex-col items-center text-center"
-            v-if="isExpired"
-          >
-            <h2 class="text-2xl sm:text-4xl mt-1 mb-12">
-              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-              {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
-            </h2>
-            <h1 class="text-2xl sm:text-4xl">Time is up! ⌚</h1>
-            <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
-          </div>
-          <div class="mt-4 flex flex-col items-center" v-else-if="!submitted">
-            <h2 class="text-2xl sm:text-4xl mt-1">
-              <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-              {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
-            </h2>
-            <button class="btn mt-6" @click="goTo">Submit Project</button>
-          </div>
-          <div class="mt-12 flex flex-col items-center text-center" v-else>
-            <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-            <p class="mt-2 text-light-900 text-center">
-              Stay tuned for the Medal Ceremony <br />
-              You can edit your submission here before too late!
-            </p>
-            <div class="flex items-center mt-4" id="edit">
-              <input
-                class="!rounded-r-none"
-                type="text"
-                disabled
-                v-model="localStorageSubmission"
+              <CompressedImage
+                class="rounded-lg"
+                :alt="winner.title"
+                :src="winner.image"
               />
-              <button @click="copy()" class="btn !rounded-l-none !p-2.5">
-                <div class="i-mdi:content-copy"></div>
-              </button>
             </div>
           </div>
-        </section>
+        </li>
+      </ul>
 
-        <section
-          v-if="!submitted && !isExpired"
-          ref="submitTarget"
-          style="max-width: 960px"
-          class="mt-12 flex flex-col lg:flex-row h-full px-4 md:px-8 xl:px-0 mx-auto"
-        >
-          <div
-            class="flex flex-col flex-col-reverse lg:w-1/2 bg-gradient-to-br from-dark-400 to-dark-800 border border-dark-300 rounded-2xl md:flex-row items-center"
-          >
-            <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-              <h1
-                class="text-2xl sm:text-3xl text-dark-50 text-center md:text-left"
-              >
-                Checklist
-              </h1>
+      <div class="my-12 h-[1px] w-full bg-dark-300"></div>
+    </div>
 
-              <p class="mt-4 md:text-lg">
-                README in GitHub (or similar) should include:
-              </p>
-              <ul
-                class="mt-2 list-disc ml-4 text-sm md:text-base text-light-900"
-              >
-                <li>link to hosted demo (if applicable)</li>
-                <li>
-                  list of team members github handles (and twitter if they have
-                  one) - any demo videos, instructions, or memes
-                </li>
-                <li>
-                  a brief description of how you used Supabase:
-                  <ul class="list-circle ml-4">
-                    <li>to store data?</li>
-                    <li>realtime?</li>
-                    <li>auth?</li>
-                    <li>storage?</li>
-                  </ul>
-                </li>
-                <li>
-                  any other info you want the judges to know
-                  (motivations/ideas/process)
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div
-            class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-gradient-to-br from-dark-400 to-dark-800 border border-dark-300 rounded-2xl md:flex-row items-center"
-          >
-            <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-              <h1
-                class="text-2xl sm:text-3xl text-dark-50 text-center md:text-left"
-              >
-                Rules
-              </h1>
-              <ul
-                class="mt-4 list-disc ml-4 text-sm md:text-base text-light-900"
-              >
-                <li>
-                  Team size 1-5 (all team members on winning teams will receive
-                  a prize)
-                </li>
-                <li>You cannot be in multiple teams</li>
-                <li>
-                  All design elements, code, etc. for your project/feature must
-                  be created during the event
-                </li>
-                <li>
-                  All entries must be Open Source (link to source code required
-                  in entry)
-                </li>
-                <li>Must use Supabase in some capacity</li>
-                <li>Can be any language or framework</li>
-                <li>
-                  You can continue to make updates to your project after the
-                  submission deadline, but there is no guarantee that the judges
-                  will see additions made after the submission time.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section
-          v-if="!submitted && !isExpired"
-          class="w-full flex justify-center"
-        >
-          <Form
-            @submit="completed"
-            :label="formCustomLabel"
-            title="Submission"
-            :defaultCategories="['Launch Week 6']"
-            isHackathon
-          ></Form>
-        </section>
-      </main>
+    <transition name="fade" mode="out-in">
+      <div v-if="!pending" class="card-grid">
+        <Card
+          v-for="item in data"
+          :key="item.id?.toString()"
+          :item="item"
+        ></Card>
+      </div>
+      <div v-else class="w-full h-screen flex items-center justify-center">
+        <SVGCircle class="animate-ping"></SVGCircle>
+      </div>
     </transition>
   </div>
 </template>
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-dark-400 rounded-full font-normal text-base border-1 border-dark-300;
+  @apply bg-dark-400 rounded-full font-normal text-base border-1 border-dark-300 hover:border-white;
 }
-:deep(input),
-:deep(textarea) {
-  border-radius: 0.5rem;
-  @apply border-1 border-dark-300 focus:border-dark-50  focus:ring-dark-50;
+
+:deep(.card-grid a > div) {
+  @apply bg-gradient-to-br from-dark-900 to-dark-500 border hover:shadow-dark-300;
 }
-:deep(form > div:nth-child(9) > div > div) {
-  border-radius: 0.5rem;
-  @apply focus:border-1 focus:!border-dark-50 ring-none;
-}
-:deep(form > div:nth-child(9) > div > div > div:nth-child(1)) {
-  border-radius: 0.5rem;
-  @apply border-1 focus:!border-dark-50 ring-none;
-}
-:deep(#form) {
-  @apply font-normal text-2xl sm:text-3xl text-light-900;
-}
-:deep(#edit > input) {
-  @apply rounded-full min-w-64;
-}
-:deep(#edit > button) {
-  @apply !py-3;
+:deep(.card-grid a > div > div:nth-child(2)) {
+  @apply border-t;
 }
 </style>
