@@ -106,6 +106,13 @@ definePageMeta({
 <template>
   <CustomMeta :title="'Launch Week 6 Hackathon'" />
   <div class="relative">
+    <NuxtLink
+      to="/"
+      class="fixed left-6 top-18 p-3 rounded-full bg-dark-400 border border-dark-300"
+    >
+      <div class="i-mdi:chevron-left text-2xl"></div>
+    </NuxtLink>
+
     <div class="flex items-center mt-12">
       <h1 class="text-4xl">Launch Week 6 Hackathon</h1>
 
