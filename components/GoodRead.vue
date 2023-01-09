@@ -4,7 +4,7 @@ const links = ref([
     title: "How I Migrated 1000+ Users from Firebase to Supabase",
     description:
       "When beginning my journey as a Flutter developer, I thought Firebase would be the best backend solution for Flutter. Given that both are made by Google, I thought this would be the backend that would be the most stable and flexible.",
-    image: "https://fleetingnotes.app/icon.png",
+    image: "https://www.fleetingnotes.app/favicon/512.png",
     url: "https://fleetingnotes.app/posts/migrating-from-firebase-to-supabase/",
   },
   {
