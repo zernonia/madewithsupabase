@@ -19,20 +19,21 @@ export default defineNuxtConfig({
     "~~/modules/server-assets",
   ],
   image: {
-    domains: ["dohemiycqebeipbvsvnr.supabase.co"],
+    providers: {
+      customProvider: {
+        name: "supabase", // optional value to overrider provider name
+        provider: "~/utils/image-provider", // Path to custom provider
+      },
+    },
     presets: {
       cover: {
         modifiers: {
-          format: "jpg",
-          quality: 80,
-          sizes: "sm:100vw md:50vw lg:800px",
+          width: 500,
         },
       },
       card: {
         modifiers: {
-          format: "jpg",
-          quality: 70,
-          sizes: "sm:100vw md:40vw lg:300px",
+          width: 300,
         },
       },
     },
