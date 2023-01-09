@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     presets: {
       cover: {
         modifiers: {
-          width: 500,
+          width: 800,
         },
       },
       card: {
