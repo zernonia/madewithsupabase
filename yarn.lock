@@ -506,7 +506,7 @@
   optionalDependencies:
     ipx "^0.9.11"
 
-"@nuxt/kit@3.0.0", "@nuxt/kit@^3.0.0-rc.11", "@nuxt/kit@^3.0.0-rc.13", "@nuxt/kit@^3.0.0-rc.14":
+"@nuxt/kit@3.0.0", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.0.0-rc.11", "@nuxt/kit@^3.0.0-rc.14":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.0.0.tgz#ae49b4e27b15285556cb88f35a56309c5ca0dd79"
   integrity sha512-7ZsOLt5s9a0ZleAIzmoD70JwkZf5ti6bDdxl6f8ew7Huxz+ni/oRfTPTX9TrORXsgW5CvDt6Q9M7IJNPkAN/Iw==
@@ -618,15 +618,15 @@
     vite-plugin-checker "^0.5.1"
     vue-bundle-renderer "^1.0.0"
 
-"@nuxtjs/supabase@^0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.2.5.tgz#6308ff4d1e0c2737d1ab64d48f4b5e0109573623"
-  integrity sha512-nNpd7e64jre6U8NWjPI+geCaub6EZB0/tIVhF6d08/LAd3w/kJj3wYU8yxZbUrJsaAmhoguceywI34+bxDkn2g==
+"@nuxtjs/supabase@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.0.tgz#65d3cf86e2ac8ab069a51b2311e810241629205a"
+  integrity sha512-fSZVv7WQ8QqoZ/Ap9zQoM9UOyGaHgC2FdndkZB2IZU3e0kVobdt+MxAEbe8SjzK89/eqBs/bbvbxNJHarc6PfQ==
   dependencies:
-    "@nuxt/kit" "^3.0.0-rc.13"
-    "@supabase/supabase-js" "2.0.6"
-    defu "^6.1.0"
-    pathe "^0.3.9"
+    "@nuxt/kit" "^3.0.0"
+    "@supabase/supabase-js" "2.1.0"
+    defu "^6.1.1"
+    pathe "^1.0.0"
 
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
@@ -795,7 +795,7 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/gotrue-js@^2.2.4", "@supabase/gotrue-js@^2.3.0":
+"@supabase/gotrue-js@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.3.0.tgz#3e11900d464c9dba8c95a11fd91c3663af18cdd1"
   integrity sha512-e50w8LkfbxtI2SJxUbuQNM7pN+Yu3HYkvCLsidwBgivTdcoFOkhFodwLvWSVdeaxY1mH6Gm66RiKeUMn1+BAow==
@@ -824,19 +824,7 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/supabase-js@2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.0.6.tgz#b516e062e4cdf75558a1881691e0fa9567ce64c9"
-  integrity sha512-S8oTHq8Z915X5PevxTeoiqnZZvZ8J4Np2uNmsFarMAjP+6FygMMMpdsicgaWtxr+6isrZ7SMpTkWtUSwxo0MFg==
-  dependencies:
-    "@supabase/functions-js" "^2.0.0"
-    "@supabase/gotrue-js" "^2.2.4"
-    "@supabase/postgrest-js" "^1.1.0"
-    "@supabase/realtime-js" "^2.1.0"
-    "@supabase/storage-js" "^2.0.0"
-    cross-fetch "^3.1.5"
-
-"@supabase/supabase-js@^2.1.0":
+"@supabase/supabase-js@2.1.0", "@supabase/supabase-js@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.1.0.tgz#1ae369b8bb828e1d037f709e173fb932cf04cfae"
   integrity sha512-hODrAUDSC6RV6EhwuSMyhaQCF32gij0EBTceuDR+8suJsg7XcyUG0fYgeYecWIvt0nz61xAMY6E+Ywb0tJaAng==

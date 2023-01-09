@@ -33,7 +33,7 @@
   "devDependencies": {
     "@iconify/json": "^1.1.381",
     "@nuxt/image-edge": "^1.0.0-27809804.194d2d6",
-    "@nuxtjs/supabase": "^0.2.5",
+    "@nuxtjs/supabase": "^0.3.0",
     "@resvg/resvg-js": "^2.2.0",
     "@types/marked": "^4.0.7",
     "@types/nodemailer": "^6.4.4",
