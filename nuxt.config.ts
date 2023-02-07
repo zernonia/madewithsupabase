@@ -29,11 +29,13 @@ export default defineNuxtConfig({
       cover: {
         modifiers: {
           width: 800,
+          resize: "contain",
         },
       },
       card: {
         modifiers: {
           width: 300,
+          resize: "contain",
         },
       },
     },
