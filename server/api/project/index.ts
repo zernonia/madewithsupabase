@@ -4,6 +4,7 @@ export default defineEventHandler(async (event) => {
   const client = useSupabaseServer()
   const { req, res } = event.node
   let name: any
+  res.setHeader("Cache-Control", "no-cache")
   if (req.method == "GET") {
     ;({ name } = getQuery(event))
   } else if (req.method == "POST") {
