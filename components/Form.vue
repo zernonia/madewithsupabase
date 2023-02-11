@@ -7,6 +7,7 @@ const props = defineProps({
   label: Object,
   defaultCategories: Object as PropType<string[]>,
   isHackathon: { type: Boolean, default: false },
+  defaultValue: Object,
 })
 
 const emit = defineEmits(["submit"])
@@ -42,8 +43,8 @@ const submit = async () => {
   if (
     form.value.title &&
     form.value.url.match(regexUrl) &&
-    form.value.email &&
-    form.value.description
+    form.value.description &&
+    (props.defaultValue ? true : form.value.email)
   ) {
     isSubmitting.value = true
     errorMsg.value = ""
@@ -83,6 +84,9 @@ onMounted(() => {
   if (props.defaultCategories?.length) {
     form.value.categories = props.defaultCategories
   }
+  if (props.defaultValue) {
+    form.value = props.defaultValue
+  }
 })
 </script>
 
@@ -93,6 +97,7 @@ onMounted(() => {
   >
     <h1
       id="form"
+      v-if="!defaultValue"
       class="text-4xl sm:text-5xl text-emerald-400 font-bold text-center mt-8"
     >
       {{ title }}
@@ -107,11 +112,12 @@ onMounted(() => {
         placeholder="My Project"
       />
     </div>
-    <div class="flex flex-col">
-      <label for="email" class="normal-case" required
+    <div v-if="!defaultValue" class="flex flex-col">
+      <label for="email" class="normal-case"
         >{{ label?.email ?? "Email (allow you to edit the project)" }} *</label
       >
       <input
+        required
         name="email"
         type="email"
         v-model="form.email"

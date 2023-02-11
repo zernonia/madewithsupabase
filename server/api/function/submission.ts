@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
 
   const { data, error } = await client
     .from("products")
-    .insert(form)
+    .upsert(form)
     .select()
     .single()
   if (!error && data) {
