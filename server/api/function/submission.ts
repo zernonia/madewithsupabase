@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const { form } = await readBody(event)
   const client = useSupabaseServer()
   const simplelog_token = process.env.SIMPLELOG_TOKEN
-  form.approved = false
+  form.approved = form.id ? form.approved : false
 
   const { data, error } = await client
     .from("products")
