@@ -6,7 +6,7 @@ import { Resvg } from "@resvg/resvg-js"
 import OG from "~~/components/OG.vue"
 
 export default eventHandler(async (event) => {
-  const name = event.context.params.name
+  const name = event.context.params?.name
   if (!name) return sendError(event, new Error("No name is found"))
 
   const client = useSupabaseServer()
