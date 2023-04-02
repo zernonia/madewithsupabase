@@ -1,10 +1,10 @@
 <template>
   <Swiper
     v-if="images.length"
-    :slides-per-view="1"
+    :slides-per-view="'auto'"
     :space-between="40"
     :pagination="{ clickable: true }"
-    class="relative w-full mt-8 border-5 border-dark-300 rounded-2xl"
+    class="relative w-full mt-8 border rounded-2xl"
   >
     <SwiperSlide class="w-full !h-auto relative pb-9/16" v-for="image in images"
       ><CompressedImage

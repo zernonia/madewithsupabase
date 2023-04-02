@@ -22,6 +22,7 @@
     "@supabase/supabase-js": "^2.12.1",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
+    "@yeger/vue-masonry-wall": "^3.4.4",
     "dayjs": "^1.11.7",
     "lottie-web": "^5.10.2",
     "marked": "^4.3.0",

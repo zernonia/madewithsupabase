@@ -262,3 +262,5 @@ export interface Database {
     }
   }
 }
+
+export type Projects = Database["public"]["Views"]["products_view"]["Row"][]

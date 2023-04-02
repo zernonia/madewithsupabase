@@ -1544,6 +1544,11 @@
   dependencies:
     vue-demi "*"
 
+"@yeger/vue-masonry-wall@^3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@yeger/vue-masonry-wall/-/vue-masonry-wall-3.4.4.tgz#c81a4f13b39cbf2db4df16f54783a5b5125d97cc"
+  integrity sha512-LSQmLVsntTNTdc2N79dpkuUySYGZUnj/hvFTXPEuNG3eLwy1EKgd2otllVmX5eQeXEp3NVV0HKaRf8y+TsglIw==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
