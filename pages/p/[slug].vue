@@ -71,60 +71,44 @@ watch(data, () => (meta.title = data.value?.title), {
               Edit
             </button>
           </div> -->
-          <div class="flex justify-end items-center">
-            <a
-              :href="tweetLink"
-              target="_blank"
-              rel="noopener"
-              class="px-6 rounded-xl flex space-x-4"
-            >
-              <div class="i-mdi:twitter w-7 h-7"></div>
-            </a>
-            <a
-              :href="computedUrl"
-              target="_blank"
-              rel="noopener"
-              class="btn mr-4 inline-flex items-center"
-              >Visit Website
-              <div class="i-ic:twotone-ads-click ml-2"></div>
-            </a>
+          <div class="flex justify-between items-center">
+            <SupabaseFeatures
+              :features="data.supabase_features"
+            ></SupabaseFeatures>
+
+            <div class="flex items-center">
+              <a
+                :href="tweetLink"
+                target="_blank"
+                rel="noopener"
+                class="px-6 rounded-xl flex space-x-4"
+              >
+                <div class="i-mdi:twitter w-7 h-7"></div>
+              </a>
+              <a
+                :href="computedUrl"
+                target="_blank"
+                rel="noopener"
+                class="btn mr-4 inline-flex items-center"
+                >Visit Website
+                <div class="i-ic:twotone-ads-click ml-2"></div>
+              </a>
+            </div>
           </div>
 
-          <MySlider
-            class="max-w-screen-lg"
-            :images="data.images ?? []"
-          ></MySlider>
+          <div class="mt-6 bg-dark-900 bg-opacity-20 py-6 rounded-3xl">
+            <MySlider :images="data.images ?? []"></MySlider>
+          </div>
 
           <div class="mt-12 flex flex-col md:flex-row justify-between relative">
-            <div
-              class="w-full mx-auto p-4 md:p-8 flex z-10 flex-col space-y-16"
-            >
-              <div>
-                <div class="i-mdi:information-outline w-8 h-8"></div>
-                <h2 class="text-3xl mb-2">Description</h2>
+            <div class="flex flex-col">
+              <div class="w-max flex-shrink-0">
+                <!-- <div class="i-mdi:information-outline w-8 h-8"></div>
+                <h2 class="text-3xl mb-2">Description</h2> -->
                 <Marked :text="data.description?.replace(/<|>/gi, '')"></Marked>
               </div>
 
-              <div>
-                <div class="i-mdi:lightning-bolt w-8 h-8"></div>
-                <h2 class="text-3xl mb-2">Supabase Features</h2>
-                <div class="prose">
-                  <ul
-                    v-if="
-                      !data.supabase_features || !data.supabase_features.length
-                    "
-                  >
-                    <li class="text-light-900">Unknown</li>
-                  </ul>
-                  <ul v-else class="text-light-900">
-                    <li v-for="feature in data.supabase_features">
-                      {{ feature }}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap items-center mt-2">
+              <div class="flex flex-wrap items-center mt-8">
                 <div
                   class="text-sm rounded-md bg-dark-400 mr-2 mb-2"
                   v-for="category in data.categories"

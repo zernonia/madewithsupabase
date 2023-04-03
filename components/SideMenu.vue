@@ -3,10 +3,18 @@
 <template>
   <div class="h-screen p-6">
     <div class="rounded-2xl bg-dark-500 p-6 w-80 flex flex-col h-full">
-      <NuxtLink to="/">
-        <img class="w-12 h-12 sm:w-18 sm:h-18" src="@/assets/logo.svg" alt="" />
-      </NuxtLink>
-      <h1>Hi, Supabase</h1>
+      <div class="flex justify-center mt-4">
+        <NuxtLink to="/">
+          <img
+            class="w-12 h-12 md:w-28 md:h-28"
+            src="@/assets/logo.svg"
+            alt=""
+          />
+        </NuxtLink>
+      </div>
+      <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
+
+      <button class="btn mt-4">Submit a project</button>
 
       <menu class="flex-1">
         <li></li>

@@ -34,7 +34,7 @@ export default defineNuxtConfig({
       },
       card: {
         modifiers: {
-          width: 300,
+          width: 400,
           resize: "contain",
         },
       },
@@ -77,6 +77,12 @@ export default defineNuxtConfig({
         "ul > li::before": {
           color: "#56524e",
           "background-color": "#56524e !important",
+        },
+        h1: {
+          "font-size": "1.75rem",
+        },
+        h2: {
+          "font-size": "1.5rem",
         },
       },
     },

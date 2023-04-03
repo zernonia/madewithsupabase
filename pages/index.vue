@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Projects } from "@/database.types"
+import { useInfiniteScroll } from "@vueuse/core"
 
 const client = useSupabase()
 
@@ -46,20 +47,20 @@ function fetchNextPage() {
   refresh()
 }
 
-bus.on((ev) => {
-  fetchNextPage()
-})
+onMounted(() => [
+  useInfiniteScroll(window, () => fetchNextPage(), { distance: 10 }),
+])
 </script>
 
 <template>
   <div class="flex flex-col">
     <CustomMeta :title="'Supabase Showcase'" />
 
-    <ol class="pl-0 flex items-center mt-6">
+    <ol class="pl-0 flex items-center mt-6 sticky top-0 z-10">
       <li v-for="link in navLinks">
         <NuxtLink class="" :to="link.path">
           <div
-            class="px-6 py-4 border-b-2 border-transparent hover:border-white transition"
+            class="px-6 py-4 mr-4 border-b-2 border-transparent hover:border-white transition"
           >
             {{ link.label }}
           </div>
@@ -68,7 +69,7 @@ bus.on((ev) => {
     </ol>
 
     <div class="w-full mt-8 pb-20" v-if="projects">
-      <div class="grid grid-cols-3 gap-10">
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 lg:gap-6 xl:gap-10">
         <div v-for="item in projects">
           <div v-if="item.title === 'PROMO'">hi</div>
           <Card v-else :item="item"></Card>
@@ -86,8 +87,8 @@ bus.on((ev) => {
           <Card v-else :item="item"></Card>
         </template>
       </MasonryWall>
-
-      <Loading :loading="true"></Loading> -->
+      -->
+      <Loading :loading="pending"></Loading>
     </div>
   </div>
 </template>
