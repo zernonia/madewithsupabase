@@ -28,7 +28,7 @@ const separator = (number: number) => {
 <template>
   <NuxtLink :to="`/p/${item.slug}`" class="h-full">
     <div
-      class="bg-dark-500 bg-opacity-20 rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
+      class="bg-dark-500 bg-opacity-20 h-full rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
     >
       <div class="flex flex-col rounded-2xl h-full shadow-2xl">
         <div class="relative flex-shrink-0 rounded-2xl overflow-hidden">

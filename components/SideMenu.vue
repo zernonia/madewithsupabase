@@ -14,6 +14,16 @@
       </div>
       <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
 
+      <div class="mt-12 rounded-xl overflow-hidden">
+        <NuxtLink to="https://supabase.com/launch-week" target="_blank">
+          <img
+            src="@/assets/launch-week-7-banner.jpeg"
+            class="scale-140"
+            alt=""
+          />
+        </NuxtLink>
+      </div>
+
       <NuxtLink to="/submission" class="btn text-center mt-4"
         >Submit a project</NuxtLink
       >
@@ -50,16 +60,6 @@
       </menu>
 
       <div class="flex-shrink-0">
-        <div class="mt-4 rounded-xl overflow-hidden">
-          <NuxtLink to="https://supabase.com/launch-week" target="_blank">
-            <img
-              src="@/assets/launch-week-7-banner.jpeg"
-              class="scale-140"
-              alt=""
-            />
-          </NuxtLink>
-        </div>
-
         <div class="mt-4">
           <p class="text-sm text-center text-opacity-40 text-white">
             Made by Zernonia

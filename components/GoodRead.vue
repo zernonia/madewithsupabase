@@ -35,28 +35,30 @@ const links = ref([
 </script>
 
 <template>
-  <div class="mt-16 sm:mt-24">
+  <div class="mt-12">
     <ul class="pl-0 grid lg:grid-cols-2 gap-6">
       <li
         v-for="link in links"
-        class="bg-dark-500 bg-opacity-20 rounded-xl p-4 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
+        class="bg-dark-500 bg-opacity-20 rounded-2xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
       >
-        <NuxtLink
-          :to="link.url"
-          target="_blank"
-          class="flex flex-col-reverse md:flex-row"
-        >
-          <div class="md:mr-6">
-            <h5 class="md:text-lg">{{ link.title }}</h5>
-            <p class="text-sm text-light-900 mt-2">
-              {{ link.description }}
-            </p>
-          </div>
-          <NuxtImg
-            class="rounded w-20 h-20 object-cover flex-shrink-0 mb-4"
-            :src="link.image"
-          ></NuxtImg>
-        </NuxtLink>
+        <div class="flex flex-col rounded-2xl h-full shadow-2xl p-3">
+          <NuxtLink
+            :to="link.url"
+            target="_blank"
+            class="flex flex-col-reverse md:flex-row"
+          >
+            <div class="md:mr-6">
+              <h5 class="md:text-lg">{{ link.title }}</h5>
+              <p class="text-sm text-light-900 mt-2">
+                {{ link.description }}
+              </p>
+            </div>
+            <NuxtImg
+              class="rounded-lg w-32 h-32 object-cover flex-shrink-0 mb-4"
+              :src="link.image"
+            ></NuxtImg>
+          </NuxtLink>
+        </div>
       </li>
     </ul>
 

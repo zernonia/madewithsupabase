@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import Logo404 from "@/assets/404.svg"
-import { Projects } from "~~/database.types"
 
+const { allProjects, upsertProjects } = useAllProjects()
 const slug = useRoute().params.slug
 
-// Access to the cached value of useFetch in archive.vue
-const { data: projects } = useNuxtData<Projects>("projects")
 const { data, pending } = await useFetch(`/api/project/${slug}`, {
   key: `project-${slug}`,
   default: () => {
-    return projects.value?.find((project) => project.slug === slug)
+    return allProjects.value?.find((project) => project.slug === slug)
   },
   lazy: true,
 })
@@ -50,7 +48,10 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
     const d = await client.rpc("get_related_products_v2", {
       product_slug: slug.toString(),
     })
-    return d.data
+    if (d.data) {
+      upsertProjects(d.data)
+      return d.data
+    }
   },
   { server: false, lazy: true }
 )
@@ -104,7 +105,10 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
             </div>
           </div>
 
-          <div class="mt-6 bg-dark-900 bg-opacity-20 py-6 rounded-3xl">
+          <div
+            class="mt-6 bg-dark-900 bg-opacity-20 py-6 rounded-3xl"
+            v-if="data.images?.length"
+          >
             <MySlider :images="data.images ?? []"></MySlider>
           </div>
 
@@ -141,7 +145,7 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
           <h1 class="text-4xl">No project found...</h1>
           <button
             @click="$router.push('/')"
-            class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+            class="inline-flex items-center text-light-900 hover:text-green-500 outline-none transition"
           >
             <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
             Home

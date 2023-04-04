@@ -23,12 +23,15 @@ const { meta } = toRefs(useRoute())
 
     <div class="z-10 flex-1 p-6 ml-92">
       <div class="mx-auto max-w-7xl my-24">
-        <div class="flex items-center">
-          <h1 class="text-4xl">{{ meta.title }}</h1>
-          <button v-if="meta.back" @click="$router.go(-1)">
-            <div class="i-mdi-arrow-left ml-4 mt-1 text-2xl"></div>
-          </button>
-        </div>
+        <Transition name="fade" appear mode="out-in">
+          <div class="flex items-center" :key="meta.title?.toString() || ''">
+            <h1 class="text-4xl">{{ meta.title }}</h1>
+            <button v-if="meta.back" @click="$router.go(-1)">
+              <div class="i-mdi-arrow-left ml-4 mt-1 text-2xl"></div>
+            </button>
+          </div>
+        </Transition>
+
         <slot></slot>
       </div>
     </div>

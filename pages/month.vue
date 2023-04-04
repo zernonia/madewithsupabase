@@ -1,17 +1,16 @@
 <template>
-  <div class="mt-12 min-h-screen-md">
-    <div class="flex flex-col items-center justify-center text-xl w-full">
-      <h2 class="mb-2">Month:</h2>
-      <div class="flex flex-wrap items-center justify-center">
-        <NuxtLink
-          class="m-1 px-3 py-1 text-sm md:text-base bg-dark-500 hover:bg-dark-300 border-3 border-dark-200 transition rounded-lg inline-flex items-center justify-center"
-          :class="{ '!bg-dark-300': `${item.value}` === $route.params.slug }"
-          v-for="item in availableMonth"
-          :to="`/month/${item.value}`"
-        >
-          {{ item.label }}
-        </NuxtLink>
-      </div>
+  <div class="mt-6">
+    <div class="flex items-center text-xl w-full">
+      <NuxtLink
+        class="m-1 px-4 py-2 text-sm md:text-base bg-dark-500 bg-opacity-50 hover:bg-white hover:text-dark transition rounded-lg inline-flex items-center justify-center"
+        :class="{
+          '!bg-white text-dark': `${item.value}` === $route.params.slug,
+        }"
+        v-for="item in availableMonth"
+        :to="`/month/${item.value}`"
+      >
+        {{ item.label }}
+      </NuxtLink>
     </div>
     <NuxtPage></NuxtPage>
   </div>
