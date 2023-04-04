@@ -129,5 +129,6 @@ definePageMeta({
     name: "fade",
     mode: "out-in",
   },
+  title: "Tag",
 })
 </script>

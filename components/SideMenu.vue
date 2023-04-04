@@ -2,7 +2,7 @@
 
 <template>
   <div class="h-screen p-6">
-    <div class="rounded-2xl bg-dark-500 p-6 w-80 flex flex-col h-full">
+    <div class="rounded-2xl bg-dark-700 p-6 w-80 flex flex-col h-full">
       <div class="flex justify-center mt-4">
         <NuxtLink to="/">
           <img
@@ -14,24 +14,64 @@
       </div>
       <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
 
-      <button class="btn mt-4">Submit a project</button>
+      <NuxtLink to="/submission" class="btn text-center mt-4"
+        >Submit a project</NuxtLink
+      >
 
-      <menu class="flex-1">
-        <li></li>
+      <menu class="flex-1 flex flex-col mt-12 gap-4">
+        <NuxtLink
+          to="/"
+          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
+        >
+          <div class="mr-4 i-mdi-home"></div>
+          Home</NuxtLink
+        >
+        <NuxtLink
+          to="/tag"
+          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
+        >
+          <div class="mr-4 i-mdi-tag"></div>
+          Tag</NuxtLink
+        >
+        <NuxtLink
+          to="/month"
+          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
+        >
+          <div class="mr-4 i-ic-baseline-calendar-month"></div>
+          Month</NuxtLink
+        >
+        <NuxtLink
+          to="/testimonial"
+          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
+        >
+          <div class="mr-4 i-mdi-chat"></div>
+          Testimonial
+        </NuxtLink>
       </menu>
 
       <div class="flex-shrink-0">
-        <div
-          class="p-8 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-xl flex flex-col text-center"
-        >
-          <h3>Showcase your project</h3>
-          <button class="btn-icon mt-4">Submit</button>
+        <div class="mt-4 rounded-xl overflow-hidden">
+          <NuxtLink to="https://supabase.com/launch-week" target="_blank">
+            <img
+              src="@/assets/launch-week-7-banner.jpeg"
+              class="scale-140"
+              alt=""
+            />
+          </NuxtLink>
         </div>
 
         <div class="mt-4">
-          <p class="text-sm">Made by Zernonia</p>
+          <p class="text-sm text-center text-opacity-40 text-white">
+            Made by Zernonia
+          </p>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped lang="postcss">
+.router-link-active {
+  @apply border-white;
+}
+</style>

@@ -42,7 +42,7 @@ input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
-  @apply px-4 py-2 bg-dark-600 text-white font-thin rounded-lg placeholder-dark-50 border-3 border-dark-300 focus:ring-emerald-400 focus:outline-none focus:border-emerald-500;
+  @apply mt-2 px-6 py-3 bg-dark-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-warm-gray-600 border-b-4 border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
 }
 
 input[type="color"] {

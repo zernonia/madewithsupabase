@@ -34,5 +34,6 @@ definePageMeta({
     name: "fade",
     mode: "out-in",
   },
+  title: "Month",
 })
 </script>

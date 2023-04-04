@@ -36,8 +36,6 @@ const links = ref([
 
 <template>
   <div class="mt-16 sm:mt-24">
-    <h1 class="text-4xl text-center mb-4 sm:mb-8">Use cases</h1>
-
     <ul class="pl-0 grid lg:grid-cols-2 gap-6">
       <li
         v-for="link in links"

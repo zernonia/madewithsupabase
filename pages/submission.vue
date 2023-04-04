@@ -8,6 +8,7 @@ definePageMeta({
     name: "fade",
     mode: "out-in",
   },
+  title: "Project Submission",
 })
 </script>
 

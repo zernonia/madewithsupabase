@@ -36,9 +36,19 @@ definePageMeta({
 })
 
 const { meta } = useRoute()
-watch(data, () => (meta.title = data.value?.title), {
-  immediate: true,
-})
+const {
+  options: { history },
+} = useRouter()
+watch(
+  data,
+  () => {
+    meta.title = data.value?.title
+    if (history.state.back) meta.back = true
+  },
+  {
+    immediate: true,
+  }
+)
 </script>
 
 <template>
@@ -83,7 +93,7 @@ watch(data, () => (meta.title = data.value?.title), {
                 rel="noopener"
                 class="px-6 rounded-xl flex space-x-4"
               >
-                <div class="i-mdi:twitter w-7 h-7"></div>
+                <div class="i-mdi-share-variant w-7 h-7"></div>
               </a>
               <a
                 :href="computedUrl"
@@ -100,13 +110,12 @@ watch(data, () => (meta.title = data.value?.title), {
             <MySlider :images="data.images ?? []"></MySlider>
           </div>
 
-          <div class="mt-12 flex flex-col md:flex-row justify-between relative">
+          <div class="mt-12 w-full flex flex-col">
             <div class="flex flex-col">
-              <div class="w-max flex-shrink-0">
-                <!-- <div class="i-mdi:information-outline w-8 h-8"></div>
-                <h2 class="text-3xl mb-2">Description</h2> -->
-                <Marked :text="data.description?.replace(/<|>/gi, '')"></Marked>
-              </div>
+              <Marked
+                class="max-w-none"
+                :text="data.description?.replace(/<|>/gi, '')"
+              ></Marked>
 
               <div class="flex flex-wrap items-center mt-8">
                 <div

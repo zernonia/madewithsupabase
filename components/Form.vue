@@ -91,17 +91,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <form
-    onsubmit="return false"
-    class="flex flex-col space-y-4 p-4 md:p-8 rounded-md w-full max-w-screen-lg"
-  >
-    <h1
-      id="form"
-      v-if="!defaultValue"
-      class="text-4xl sm:text-5xl text-emerald-400 font-bold text-center mt-8"
-    >
-      {{ title }}
-    </h1>
+  <form onsubmit="return false" class="mt-14 flex flex-col space-y-4 w-full">
     <div class="flex flex-col">
       <label for="title">{{ label?.title ?? "title" }} *</label>
       <input
