@@ -125,10 +125,6 @@ watch(
 )
 
 definePageMeta({
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
   title: "Tag",
 })
 </script>

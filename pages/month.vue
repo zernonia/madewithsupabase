@@ -30,10 +30,6 @@ const availableMonth = computed(() => {
 })
 
 definePageMeta({
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
   title: "Month",
 })
 </script>

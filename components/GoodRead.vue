@@ -39,7 +39,7 @@ const links = ref([
     <ul class="pl-0 grid lg:grid-cols-2 gap-6">
       <li
         v-for="link in links"
-        class="p-4 bg-transparent hover:bg-dark-500 transition rounded-xl"
+        class="bg-dark-500 bg-opacity-20 rounded-xl p-4 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
       >
         <NuxtLink
           :to="link.url"
@@ -48,7 +48,7 @@ const links = ref([
         >
           <div class="md:mr-6">
             <h5 class="md:text-lg">{{ link.title }}</h5>
-            <p class="text-sm text-dark-50 mt-2">
+            <p class="text-sm text-light-900 mt-2">
               {{ link.description }}
             </p>
           </div>
@@ -64,7 +64,7 @@ const links = ref([
       <NuxtLink
         to="https://supabase.com/blog/tags/case-study"
         target="_blank"
-        class="text-dark-50 underline-offset-4 hover:underline hover:text-emerald-500 transition"
+        class="text-light-900 underline-offset-4 hover:underline hover:text-emerald-500 transition"
         >More use cases</NuxtLink
       >
     </div>

@@ -4,10 +4,6 @@ import { computed, ref } from "vue"
 const isSubmitted = ref(false)
 
 definePageMeta({
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
   title: "Project Submission",
 })
 </script>

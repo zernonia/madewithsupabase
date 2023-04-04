@@ -11,87 +11,87 @@ export interface Database {
     Tables: {
       forms: {
         Row: {
-          id: number
-          email: string | null
           created_at: string | null
+          email: string | null
+          id: number
         }
         Insert: {
-          id?: number
-          email?: string | null
           created_at?: string | null
+          email?: string | null
+          id?: number
         }
         Update: {
-          id?: number
-          email?: string | null
           created_at?: string | null
+          email?: string | null
+          id?: number
         }
       }
       products: {
         Row: {
-          title: string | null
-          email: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          id: string
-          url: string | null
+          created_at: string | null
+          description: string | null
+          email: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
-          created_at: string | null
-          approved: boolean | null
+          title: string | null
+          twitter: string | null
+          url: string | null
         }
         Insert: {
-          title?: string | null
-          email?: string | null
-          description?: string | null
+          approved?: boolean | null
           categories?: string[] | null
-          id?: string
-          url?: string | null
+          created_at?: string | null
+          description?: string | null
+          email?: string | null
           github_url?: string | null
-          twitter?: string | null
-          instagram?: string | null
+          id?: string
           images?: string[] | null
+          instagram?: string | null
           slug?: string | null
           supabase_features?: string[] | null
-          created_at?: string | null
-          approved?: boolean | null
+          title?: string | null
+          twitter?: string | null
+          url?: string | null
         }
         Update: {
-          title?: string | null
-          email?: string | null
-          description?: string | null
+          approved?: boolean | null
           categories?: string[] | null
-          id?: string
-          url?: string | null
+          created_at?: string | null
+          description?: string | null
+          email?: string | null
           github_url?: string | null
-          twitter?: string | null
-          instagram?: string | null
+          id?: string
           images?: string[] | null
+          instagram?: string | null
           slug?: string | null
           supabase_features?: string[] | null
-          created_at?: string | null
-          approved?: boolean | null
+          title?: string | null
+          twitter?: string | null
+          url?: string | null
         }
       }
       views: {
         Row: {
-          id: string
           created_at: string | null
+          id: string
           ip_address: string | null
           product_id: string | null
         }
         Insert: {
-          id?: string
           created_at?: string | null
+          id?: string
           ip_address?: string | null
           product_id?: string | null
         }
         Update: {
-          id?: string
           created_at?: string | null
+          id?: string
           ip_address?: string | null
           product_id?: string | null
         }
@@ -100,34 +100,34 @@ export interface Database {
     Views: {
       bring_the_func_view: {
         Row: {
-          id: string | null
-          title: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          url: string | null
+          created_at: string | null
+          description: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string | null
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
-          approved: boolean | null
-          created_at: string | null
+          title: string | null
+          twitter: string | null
+          url: string | null
           views: number | null
         }
       }
       hackathon_view: {
         Row: {
-          id: string | null
           categories: string[] | null
+          id: string | null
         }
         Insert: {
-          id?: string | null
           categories?: string[] | null
+          id?: string | null
         }
         Update: {
-          id?: string | null
           categories?: string[] | null
+          id?: string | null
         }
       }
       hacktoberfest_count: {
@@ -137,127 +137,291 @@ export interface Database {
       }
       hacktoberfest_view: {
         Row: {
-          id: string | null
-          title: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          url: string | null
+          created_at: string | null
+          description: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string | null
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
-          approved: boolean | null
-          created_at: string | null
+          title: string | null
+          twitter: string | null
+          url: string | null
           views: number | null
         }
       }
       holiday_hackdays_view: {
         Row: {
-          id: string | null
-          title: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          url: string | null
+          created_at: string | null
+          description: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string | null
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
-          approved: boolean | null
-          created_at: string | null
+          title: string | null
+          twitter: string | null
+          url: string | null
           views: number | null
         }
       }
       launch_week_5_view: {
         Row: {
-          id: string | null
-          title: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          url: string | null
+          created_at: string | null
+          description: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string | null
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }
+      }
+      launch_week_6_view: {
+        Row: {
           approved: boolean | null
+          categories: string[] | null
           created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
           views: number | null
         }
       }
       products_view: {
         Row: {
-          id: string | null
-          title: string | null
-          description: string | null
+          approved: boolean | null
           categories: string[] | null
-          url: string | null
+          created_at: string | null
+          description: string | null
           github_url: string | null
-          twitter: string | null
-          instagram: string | null
+          id: string | null
           images: string[] | null
+          instagram: string | null
           slug: string | null
           supabase_features: string[] | null
-          approved: boolean | null
-          created_at: string | null
+          title: string | null
+          twitter: string | null
+          url: string | null
           views: number | null
         }
       }
       tags_view: {
         Row: {
-          tags: string | null
           count: number | null
+          tags: string | null
         }
       }
     }
     Functions: {
       delete_file: {
-        Args: { bucket: string; pathname: string }
+        Args: {
+          bucket: string
+          pathname: string
+        }
         Returns: string
       }
       get_hacktoberfest_tags: {
         Args: Record<PropertyKey, never>
-        Returns: unknown
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
       }
       get_monthly:
         | {
-            Args: { month_string: string }
-            Returns: unknown
+            Args: {
+              month_string: string
+            }
+            Returns: {
+              approved: boolean | null
+              categories: string[] | null
+              created_at: string | null
+              description: string | null
+              github_url: string | null
+              id: string | null
+              images: string[] | null
+              instagram: string | null
+              slug: string | null
+              supabase_features: string[] | null
+              title: string | null
+              twitter: string | null
+              url: string | null
+              views: number | null
+            }[]
           }
         | {
-            Args: { month_number: number }
-            Returns: unknown
+            Args: {
+              month_number: number
+            }
+            Returns: {
+              approved: boolean | null
+              categories: string[] | null
+              created_at: string | null
+              description: string | null
+              github_url: string | null
+              id: string | null
+              images: string[] | null
+              instagram: string | null
+              slug: string | null
+              supabase_features: string[] | null
+              title: string | null
+              twitter: string | null
+              url: string | null
+              views: number | null
+            }[]
           }
       get_related_products: {
-        Args: { parent_id: string }
-        Returns: unknown
+        Args: {
+          parent_id: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
+      }
+      get_related_products_v2: {
+        Args: {
+          product_slug: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
       }
       get_search_result: {
-        Args: { search_term: string }
-        Returns: unknown
+        Args: {
+          search_term: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
       }
       get_supabase_tags: {
-        Args: { tag: string }
-        Returns: unknown
+        Args: {
+          tag: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
       }
       get_tags: {
-        Args: { tag: string }
-        Returns: unknown
+        Args: {
+          tag: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
       }
       hacktoberfest_count: {
         Args: Record<PropertyKey, never>
         Returns: number
       }
       submission_count: {
-        Args: { tag: string }
+        Args: {
+          tag: string
+        }
         Returns: number
       }
     }
     Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
       [_ in never]: never
     }
   }

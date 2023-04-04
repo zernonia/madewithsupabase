@@ -71,7 +71,7 @@
 </template>
 
 <style scoped lang="postcss">
-.router-link-active {
+menu .router-link-active {
   @apply border-white;
 }
 </style>

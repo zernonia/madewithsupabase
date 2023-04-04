@@ -27,10 +27,6 @@ const { pending, refresh } = useLazyAsyncData("projects", async () => {
 })
 
 definePageMeta({
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
   title: "New project",
 })
 

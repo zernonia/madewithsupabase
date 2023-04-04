@@ -28,13 +28,6 @@ const computedUrl = computed(() => {
   return url.href
 })
 
-definePageMeta({
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
-})
-
 const { meta } = useRoute()
 const {
   options: { history },
@@ -49,51 +42,56 @@ watch(
     immediate: true,
   }
 )
+
+const client = useSupabase()
+const { data: relatedData, pending: relatedPending } = await useAsyncData(
+  `project-${slug}-related`,
+  async () => {
+    const d = await client.rpc("get_related_products_v2", {
+      product_slug: slug.toString(),
+    })
+    return d.data
+  },
+  { server: false, lazy: true }
+)
 </script>
 
 <template>
   <div class="min-h-screen-md">
-    <!-- <CustomMeta
+    <CustomMeta
       :key="data?.title ?? ''"
-      :title="data?.title"
+      :title="data?.title ?? ''"
       :description="
         data?.description?.replace(/<|>/gi, '').slice(0, 150) + '...'
       "
       :image="'https://madewithsupabase.com/og/' + data?.slug"
-    /> -->
+    />
 
     <transition name="fade" mode="out-in">
       <div class="mt-4" v-if="data || !pending">
         <div v-if="data && data.id">
-          <!-- <div class="w-full flex items-center justify-between">
-            <button
-              @click="$router.back()"
-              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
-            >
-              <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
-              Back
-            </button>
-            <button
-              @click="$router.push(`/edit/${slug}`)"
-              class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
-            >
-              <div class="i-mdi:square-edit-outline mr-2 w-6 h-6"></div>
-              Edit
-            </button>
-          </div> -->
           <div class="flex justify-between items-center">
             <SupabaseFeatures
               :features="data.supabase_features"
             ></SupabaseFeatures>
 
-            <div class="flex items-center">
+            <div class="flex items-center gap-4">
+              <a :href="tweetLink" target="_blank" rel="noopener">
+                <div class="i-mdi-share-variant w-7 h-7"></div>
+              </a>
               <a
-                :href="tweetLink"
+                v-if="data.twitter"
+                :href="'https://twitter.com/' + data.twitter"
                 target="_blank"
                 rel="noopener"
-                class="px-6 rounded-xl flex space-x-4"
-              >
-                <div class="i-mdi-share-variant w-7 h-7"></div>
+                ><div class="i-mdi:twitter w-7 h-7"></div>
+              </a>
+              <a
+                v-if="data.github_url"
+                :href="data.github_url"
+                target="_blank"
+                rel="noopener"
+                ><div class="i-mdi:github w-7 h-7"></div>
               </a>
               <a
                 :href="computedUrl"
@@ -111,71 +109,30 @@ watch(
           </div>
 
           <div class="mt-12 w-full flex flex-col">
-            <div class="flex flex-col">
-              <Marked
-                class="max-w-none"
-                :text="data.description?.replace(/<|>/gi, '')"
-              ></Marked>
+            <Marked
+              class="max-w-none"
+              :text="data.description?.replace(/<|>/gi, '')"
+            ></Marked>
 
-              <div class="flex flex-wrap items-center mt-8">
-                <div
-                  class="text-sm rounded-md bg-dark-400 mr-2 mb-2"
-                  v-for="category in data.categories"
-                >
-                  <router-link :to="'/tag/' + category">
-                    <p class="px-4 py-2"># {{ category }}</p>
-                  </router-link>
-                </div>
+            <div class="flex flex-wrap items-center mt-8">
+              <div
+                class="text-sm rounded-md bg-dark-400 mr-2 mb-2"
+                v-for="category in data.categories"
+              >
+                <router-link :to="'/tag/' + category">
+                  <p class="px-4 py-2"># {{ category }}</p>
+                </router-link>
               </div>
             </div>
-
-            <!-- <div class="w-full md:w-1/3 h-min mt-6 md:mt-0 md:ml-8">
-              <div
-                class="p-8 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-xl"
-              >
-                <div class="i-mdi:circle-multiple-outline w-8 h-8"></div>
-                <h2 class="text-3xl mb-2">Maker</h2>
-                <div class="flex flex-col space-y-1">
-                  <a
-                    v-if="data.github_url"
-                    :href="data.github_url"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><div class="i-mdi:github mr-2"></div>
-                    {{ data.github_url.split(".com/")[1] }}</a
-                  >
-                  <a
-                    v-if="data.twitter"
-                    :href="'https://twitter.com/' + data.twitter"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><div class="i-mdi:twitter mr-2"></div>
-                    {{ data.twitter }}</a
-                  >
-                  <a
-                    v-if="data.instagram"
-                    :href="'https://instagram.com/' + data.instagram"
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center hover:underline underline-offset-1"
-                    ><div class="i-mdi:instagram mr-2"></div>
-                    {{ data.instagram }}</a
-                  >
-                </div>
-              </div>
-            </div> -->
           </div>
 
-          <!-- <Divider class="my-12 !bg-dark-600"></Divider> -->
-
-          <!-- <div ref="related" class="">
-            <h1 class="text-3xl text-center">Related Projects</h1>
-            <div class="mt-12 card-grid">
+          <div class="mt-36">
+            <h1 class="text-3xl text-left">Related Projects</h1>
+            <div class="mt-12 card-grid" v-if="!relatedPending">
               <Card v-for="item in relatedData" :item="item"></Card>
             </div>
-          </div> -->
+            <Loading :loading="relatedPending"></Loading>
+          </div>
         </div>
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
           <CustomMeta title="404 ⚡ Made with Supabase" />
