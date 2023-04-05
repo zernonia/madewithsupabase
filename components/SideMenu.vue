@@ -15,7 +15,7 @@
       <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
 
       <div class="mt-12 rounded-xl overflow-hidden">
-        <NuxtLink to="https://supabase.com/launch-week" target="_blank">
+        <NuxtLink to="/launch-week-7">
           <img
             src="@/assets/launch-week-7-banner.jpeg"
             class="scale-140"

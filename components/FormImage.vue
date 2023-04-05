@@ -140,7 +140,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
       @keypress.enter="target?.click()"
       @click="target?.click()"
       v-else
-      class="cursor-pointer w-full flex flex-col items-center justify-center"
+      class="cursor-pointer w-full flex flex-col items-center justify-center bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
     >
       <div class="w-12 h-12 i-mdi:plus"></div>
       <p>Click to 'Add' images</p>

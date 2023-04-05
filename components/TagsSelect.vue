@@ -4,7 +4,7 @@
       <div
         @click.prevent="remove(index)"
         v-for="(item, index) in modelValue"
-        class="flex items-center px-4 py-2 mt-2 mr-2 rounded-md cursor-pointer bg-dark-400 hover:bg-dark-500"
+        class="tag-btn flex items-center px-4 py-2 mt-2 mr-2 rounded-md cursor-pointer bg-dark-400 hover:bg-dark-500"
       >
         <p>
           {{ item }}
