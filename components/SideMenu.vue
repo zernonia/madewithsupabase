@@ -1,8 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="h-screen md:p-6">
-    <div class="md:rounded-2xl bg-dark-700 p-6 w-80 flex flex-col h-full">
+  <div
+    class="h-full overflow-y-auto bg-dark-700 md:bg-transparent md:h-screen md:p-6"
+  >
+    <div class="md:rounded-2xl p-6 w-80 bg-dark-700 flex flex-col h-full">
       <div class="hidden md:block">
         <div class="flex justify-center mt-4">
           <NuxtLink to="/">

@@ -23,13 +23,16 @@ const removeMember = (index: number) => {
 
 <template>
   <div v-if="modelValue?.length">
-    <div class="flex">
-      <label class="w-1/2 mr-4">Member's Twitter/GitHub</label>
-      <label class="w-1/2">Member's Email</label>
+    <div class="flex flex-col md:flex-row">
+      <label class="md:w-1/2 mr-4">Member's Twitter/GitHub</label>
+      <label class="md:w-1/2">Member's Email</label>
     </div>
 
-    <div v-for="(member, index) in modelValue" class="flex items-center mb-1">
-      <div class="flex items-center w-1/2 mr-4">
+    <div
+      v-for="(member, index) in modelValue"
+      class="flex flex-col md:flex-row items-center mb-1"
+    >
+      <div class="flex items-center w-full md:w-1/2 md:mr-4">
         <button class="text-xl mr-2" @click.prevent="removeMember(index)">
           <div class="i-mdi-close"></div>
         </button>
@@ -42,13 +45,15 @@ const removeMember = (index: number) => {
           placeholder="user_handler"
         />
       </div>
-      <input
-        class="w-1/2"
-        name="email"
-        type="text"
-        v-model="member.email"
-        placeholder="user@gmail.com"
-      />
+      <div class="w-full md:w-1/2 pl-13 md:pl-0">
+        <input
+          name="email"
+          class="w-full"
+          type="text"
+          v-model="member.email"
+          placeholder="user@gmail.com"
+        />
+      </div>
     </div>
   </div>
 

@@ -98,7 +98,7 @@ onMounted(() => {
       />
     </div>
 
-    <div class="flex items-center gap-4">
+    <div class="flex flex-col md:flex-row items-center gap-4">
       <div class="flex flex-col w-full">
         <label for="url">URL *</label>
         <input
@@ -163,8 +163,8 @@ onMounted(() => {
       <FormImage v-model="form.images" :title="form.title"></FormImage>
     </div>
 
-    <div class="flex items-center justify-between">
-      <div class="flex flex-col mr-4 w-1/2">
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      <div class="flex flex-col md:mr-4 w-full md:w-1/2">
         <label for="twitter">Captain's Twitter</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
@@ -177,7 +177,7 @@ onMounted(() => {
           />
         </div>
       </div>
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full md:w-1/2">
         <label for="email">Captain's Email</label>
         <input
           class="w-full"

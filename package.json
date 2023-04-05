@@ -47,7 +47,7 @@
     "@unocss/transformer-directives": "^0.50.6",
     "@vercel/analytics": "^0.1.11",
     "nuxt": "^3.3.2",
-    "satori": "^0.4.4",
-    "v-satori": "^0.1.9"
+    "satori": "^0.0.44",
+    "v-satori": "^0.1.6"
   }
 }

@@ -6,9 +6,9 @@
     :space-between="40"
     :pagination="{ clickable: true }"
   >
-    <SwiperSlide v-for="image in images" class="w-auto min-h-64"
+    <SwiperSlide v-for="image in images" class="w-full md:w-auto min-h-64"
       ><CompressedImage
-        class="rounded-2xl max-h-3xl object-contain"
+        class="rounded-2xl max-h-3xl object-contain w-full"
         :preset="'cover'"
         :src="image"
         alt=""
@@ -22,7 +22,7 @@ import SwiperCore, { Pagination, Navigation } from "swiper"
 
 SwiperCore.use([Pagination, Navigation])
 
-const p = defineProps({
+defineProps({
   images: {
     type: Array as () => string[],
     required: true,

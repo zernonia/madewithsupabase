@@ -31,9 +31,9 @@ const separator = (number: number) => {
       class="bg-dark-500 bg-opacity-20 h-full rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
     >
       <div class="flex flex-col rounded-2xl h-full shadow-2xl">
-        <div class="relative flex-shrink-0 rounded-2xl overflow-hidden">
+        <div class="relative flex-shrink-0 overflow-hidden">
           <CompressedImage
-            class="aspect-16/9"
+            class="aspect-16/9 rounded-2xl"
             :alt="item.title"
             v-if="item.images[0]"
             :src="item.images[0]"

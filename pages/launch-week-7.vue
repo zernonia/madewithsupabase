@@ -70,8 +70,8 @@ definePageMeta({
     <CustomMeta :title="'Launch Week 7 Hackathon'" />
 
     <main class="py-8">
-      <section class="md:py-6 px-4 flex flex-col items-center">
-        <div>
+      <section class="md:py-6 flex flex-col items-center">
+        <div class="w-full md:w-auto">
           <NuxtLink
             to="https://supabase.com/launch-week"
             target="_blank"
@@ -149,7 +149,7 @@ definePageMeta({
       <section
         v-if="!submitted && !isExpired"
         ref="submitTarget"
-        class="max-w-[960px] mt-12 flex flex-col lg:flex-row h-full px-4 md:px-8 xl:px-0 mx-auto"
+        class="max-w-[960px] mt-12 flex flex-col lg:flex-row h-full md:px-4 xl:px-0 mx-auto"
       >
         <div
           class="flex flex-col flex-col-reverse lg:w-1/2 bg-dark-500 bg-opacity-20 rounded-2xl md:flex-row items-center"
