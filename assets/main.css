@@ -145,5 +145,5 @@ code,
 }
 
 .card-grid {
-  @apply grid md:grid-cols-2 xl:grid-cols-3 lg:gap-6 xl:gap-10;
+  @apply grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 xl:gap-10;
 }

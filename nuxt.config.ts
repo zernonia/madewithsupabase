@@ -66,6 +66,9 @@ export default defineNuxtConfig({
         pre: {
           "background-color": "#2d2d2d !important",
         },
+        "pre,code": {
+          "white-space": "pre-wrap",
+        },
         hr: {
           borderTop: "1px solid #2d2d2d",
         },

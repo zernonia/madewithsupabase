@@ -1,20 +1,18 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="h-screen p-6">
-    <div class="rounded-2xl bg-dark-700 p-6 w-80 flex flex-col h-full">
-      <div class="flex justify-center mt-4">
-        <NuxtLink to="/">
-          <img
-            class="w-12 h-12 md:w-28 md:h-28"
-            src="@/assets/logo.svg"
-            alt=""
-          />
-        </NuxtLink>
+  <div class="h-screen md:p-6">
+    <div class="md:rounded-2xl bg-dark-700 p-6 w-80 flex flex-col h-full">
+      <div class="hidden md:block">
+        <div class="flex justify-center mt-4">
+          <NuxtLink to="/">
+            <img class="md:w-28 md:h-28" src="@/assets/logo.svg" alt="" />
+          </NuxtLink>
+        </div>
+        <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
       </div>
-      <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
 
-      <div class="mt-12 rounded-xl overflow-hidden">
+      <div class="md:mt-12 rounded-xl overflow-hidden flex-shrink-0">
         <NuxtLink to="/launch-week-7">
           <img
             src="@/assets/launch-week-7-banner.jpeg"

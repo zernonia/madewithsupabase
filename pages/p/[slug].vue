@@ -71,12 +71,14 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
     <transition name="fade" mode="out-in">
       <div class="mt-4" v-if="data || !pending">
         <div v-if="data && data.id">
-          <div class="flex justify-between items-center">
+          <div
+            class="flex flex-col md:flex-row justify-between md:items-center"
+          >
             <SupabaseFeatures
               :features="data.supabase_features"
             ></SupabaseFeatures>
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 mt-4 justify-end">
               <a :href="tweetLink" target="_blank" rel="noopener">
                 <div class="i-mdi-share-variant w-7 h-7"></div>
               </a>
@@ -112,7 +114,7 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
             <MySlider :images="data.images ?? []"></MySlider>
           </div>
 
-          <div class="mt-12 w-full flex flex-col">
+          <div class="mt-6 md:mt-12 w-full flex flex-col">
             <Marked
               class="max-w-none"
               :text="data.description?.replace(/<|>/gi, '')"
@@ -130,9 +132,9 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
             </div>
           </div>
 
-          <div class="mt-36">
+          <div class="mt-16 md:mt-36">
             <h1 class="text-3xl text-left">Related Projects</h1>
-            <div class="mt-12 card-grid" v-if="!relatedPending">
+            <div class="mt-6 md:mt-12 card-grid" v-if="!relatedPending">
               <Card v-for="item in relatedData" :item="item"></Card>
             </div>
             <Loading :loading="relatedPending"></Loading>

@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const { meta } = toRefs(useRoute())
+import { OnClickOutside } from "@vueuse/components"
+
+const { meta, name } = toRefs(useRoute())
+
+const isSideMenuOpen = ref(false)
+watch(name, () => {
+  isSideMenuOpen.value = false
+})
 </script>
 
 <template>
@@ -14,15 +21,33 @@ const { meta } = toRefs(useRoute())
       ></div>
     </Transition>
 
-    <SideMenu class="z-10 fixed top-0 left-0"></SideMenu>
+    <OnClickOutside @trigger="isSideMenuOpen = false">
+      <SideMenu
+        class="z-20 fixed top-0 left-0 transition md:translate-x-0 duration-500 ease-in-out"
+        :class="[isSideMenuOpen ? 'translate-x-0' : '-translate-x-full ']"
+      ></SideMenu>
+    </OnClickOutside>
 
-    <div class="z-10 flex-1 p-6 ml-92">
-      <div class="mx-auto max-w-7xl my-24">
+    <div class="z-10 flex-1 p-3 sm:p-6 md:ml-92">
+      <div class="mx-auto max-w-7xl mb-6 md:my-24">
+        <div class="md:hidden flex justify-between">
+          <button @click="isSideMenuOpen = true" class="md:hidden my-6">
+            <div class="i-mdi-menu text-3xl"></div>
+          </button>
+
+          <NuxtLink to="/">
+            <img class="w-20 h-20" src="@/assets/logo.svg" alt="" />
+          </NuxtLink>
+        </div>
+
         <Transition name="fade" appear mode="out-in">
-          <div class="flex items-center" :key="meta.title?.toString() || ''">
-            <h1 class="text-4xl">{{ meta.title }}</h1>
+          <div
+            class="flex items-center gap-4"
+            :key="meta.title?.toString() || ''"
+          >
+            <h1 class="text-3xl md:text-4xl">{{ meta.title }}</h1>
             <button v-if="meta.back" @click="$router.go(-1)">
-              <div class="i-mdi-arrow-left ml-4 mt-1 text-2xl"></div>
+              <div class="i-mdi-arrow-left mt-1 text-2xl"></div>
             </button>
           </div>
         </Transition>

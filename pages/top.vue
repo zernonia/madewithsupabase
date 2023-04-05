@@ -63,7 +63,7 @@ onMounted(() => [
     </ol>
 
     <div class="w-full mt-8 pb-20" v-if="projects">
-      <div class="grid md:grid-cols-2 xl:grid-cols-3 lg:gap-6 xl:gap-10">
+      <div class="card-grid">
         <Card v-for="item in projects" :item="item"></Card>
       </div>
 
