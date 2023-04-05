@@ -28,11 +28,11 @@ const { copy } = useClipboard({ source: localStorageSubmission })
 const projectSubmittedRef = ref<HTMLElement>()
 
 const { data: projectSubmitted } = useAsyncData(
-  "launch-week-6-submission-count",
+  "launch-week-7-submission-count",
   async () => {
     const { data, error } = await client
       .rpc("submission_count", {
-        tag: "Launch Week 6",
+        tag: "Launch Week 7",
       })
       .maybeSingle()
 
@@ -61,25 +61,25 @@ const formCustomLabel = {
 definePageMeta({
   title: "Launch Week 7",
   noise_bg_color:
-    "40deg,rgba(44, 60, 142, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.6)",
+    "60deg,rgba(0, 41, 255, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.85)",
 })
 </script>
 
 <template>
   <div>
-    <CustomMeta :title="'Launch Week 6 Hackathon'" />
+    <CustomMeta :title="'Launch Week 7 Hackathon'" />
 
     <main class="py-8">
       <section class="md:py-6 px-4 flex flex-col items-center">
         <div>
           <NuxtLink
-            to="https://supabase.com/blog/launch-week-6-hackathon"
+            to="https://supabase.com/launch-week"
             target="_blank"
             class="group relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
             <img
               src="~~/assets/launch-week-7-banner.jpeg"
-              alt="Supabase Launch Week 6 Hackathon"
+              alt="Supabase Launch Week 7 Hackathon"
               class="w-full h-full object-cover transition duration-750 scale-110 group-hover:scale-120"
               style="object-position: center 68%"
             />
@@ -230,7 +230,7 @@ definePageMeta({
           @submit="completed"
           :label="formCustomLabel"
           title="Submission"
-          :defaultCategories="['Launch Week 6']"
+          :defaultCategories="['Launch Week 7']"
           isHackathon
         ></Form>
       </section>
@@ -241,17 +241,20 @@ definePageMeta({
 <style scoped lang="postcss">
 :deep(.btn),
 :deep(.tag-btn) {
-  @apply bg-purple-500   border-none;
+  @apply bg-purple-500 hover:bg-purple-600 border-none;
 }
 :deep(input),
 :deep(textarea) {
   border-radius: 0.5rem;
-  @apply border-none placeholder-gray-300;
+  @apply border-none placeholder-cool-gray-300;
 }
 :deep(form > div:nth-child(8) > div div) {
   @apply border-0;
 }
 :deep(form > div.\!my-8.px-6.py-4.bg-dark-600.rounded-lg) {
   @apply bg-purple-500;
+}
+:deep(input[type="checkbox"]) {
+  @apply mt-0 bg-purple-600;
 }
 </style>
