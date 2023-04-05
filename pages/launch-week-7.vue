@@ -226,13 +226,10 @@ definePageMeta({
         v-if="!submitted && !isExpired"
         class="max-w-[960px] mx-auto w-full flex justify-center"
       >
-        <Form
+        <FormHackathon
           @submit="completed"
-          :label="formCustomLabel"
-          title="Submission"
           :defaultCategories="['Launch Week 7']"
-          isHackathon
-        ></Form>
+        ></FormHackathon>
       </section>
     </main>
   </div>
@@ -241,7 +238,7 @@ definePageMeta({
 <style scoped lang="postcss">
 :deep(.btn),
 :deep(.tag-btn) {
-  @apply bg-purple-500 hover:bg-purple-600 border-none;
+  @apply px-8 py-3 bg-purple-500 hover:bg-purple-600 bg-opacity-50 border-none;
 }
 :deep(input),
 :deep(textarea) {
@@ -252,7 +249,7 @@ definePageMeta({
   @apply border-0;
 }
 :deep(form > div.\!my-8.px-6.py-4.bg-dark-600.rounded-lg) {
-  @apply bg-purple-500;
+  @apply bg-purple-500 bg-opacity-50;
 }
 :deep(input[type="checkbox"]) {
   @apply mt-0 bg-purple-600;
