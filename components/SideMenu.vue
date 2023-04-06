@@ -59,11 +59,30 @@
         </NuxtLink>
       </menu>
 
-      <div class="flex-shrink-0">
-        <div class="mt-4">
-          <p class="text-sm text-center text-opacity-40 text-white">
+      <div class="flex-shrink-0 mt-4">
+        <div class="flex flex-row items-center space-x-4">
+          <NuxtLink
+            target="_blank"
+            to="https://twitter.com/madewifsupabase"
+            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
+          >
+            <div class="text-2xl i-mdi-twitter"></div>
+          </NuxtLink>
+          <NuxtLink
+            target="_blank"
+            to="https://github.com/zernonia/madewithsupabase"
+            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
+          >
+            <div class="text-2xl i-mdi-github"></div>
+          </NuxtLink>
+
+          <NuxtLink
+            target="_blank"
+            to="https://zernonia.com"
+            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
+          >
             Made by Zernonia
-          </p>
+          </NuxtLink>
         </div>
       </div>
     </div>

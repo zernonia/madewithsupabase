@@ -8,7 +8,15 @@ defineProps({
 
 <template>
   <div
-    tw="h-full w-full flex items-start justify-start bg-[#0e0e0e] text-white "
+    tw="h-full w-full flex items-start justify-start   text-white "
+    style="
+      background: linear-gradient(
+        40deg,
+        rgba(15, 15, 15, 1),
+        rgba(35, 35, 35, 0.85),
+        rgba(52, 185, 125, 1)
+      );
+    "
   >
     <div tw="p-8 flex  h-full">
       <div tw="flex flex-col items-center justify-between w-full h-full'">
@@ -66,9 +74,9 @@ defineProps({
         <h1 tw="text-5xl font-bold leading-4 mt-8">
           {{ title }}
         </h1>
-        <h2 tw="text-[#6a6a6a] text-3xl">by {{ author }}</h2>
+        <h2 tw="text-white text-3xl">by {{ author }}</h2>
         <div
-          tw="text-2xl flex mx-20 mt-4 rounded-2xl overflow-hidden border-[8px] border-[#3a3a3a]"
+          tw="text-2xl flex mx-20 mt-4 rounded-[2rem] overflow-hidden border-[8px] border-[#3a3a3a] border-opacity-50"
         >
           <img :src="cover_img" tw="w-full" />
         </div>
