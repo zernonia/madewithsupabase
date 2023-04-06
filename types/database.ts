@@ -39,6 +39,7 @@ export interface Database {
           instagram: string | null
           slug: string | null
           supabase_features: string[] | null
+          team_info: Json[] | null
           title: string | null
           twitter: string | null
           url: string | null
@@ -55,6 +56,7 @@ export interface Database {
           instagram?: string | null
           slug?: string | null
           supabase_features?: string[] | null
+          team_info?: Json[] | null
           title?: string | null
           twitter?: string | null
           url?: string | null
@@ -71,6 +73,7 @@ export interface Database {
           instagram?: string | null
           slug?: string | null
           supabase_features?: string[] | null
+          team_info?: Json[] | null
           title?: string | null
           twitter?: string | null
           url?: string | null
@@ -426,5 +429,3 @@ export interface Database {
     }
   }
 }
-
-export type Projects = Database["public"]["Views"]["products_view"]["Row"][]

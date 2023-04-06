@@ -5184,6 +5184,11 @@ vue-router@^4.1.6:
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
+vue3-toastify@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/vue3-toastify/-/vue3-toastify-0.1.6.tgz#b3bc273deded1ee7b301330862de56e0c9e998c4"
+  integrity sha512-Ijk/tmpYrQLzyK/a0hFd5E/Gfoj+UkUGRLMU71JZpZ5cMUbkwWjXjdJ2xIXeGh/MJtl3xQWClG3z0PWcKz3ksQ==
+
 vue@^3.2.47:
   version "3.2.47"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"

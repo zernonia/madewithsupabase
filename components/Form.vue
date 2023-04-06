@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue"
+import type { NonNullableProjectForm, ProjectForm } from "@/types"
 import { slugify } from "~~/functions/slugify"
 
 const props = defineProps({
@@ -15,18 +16,19 @@ const emit = defineEmits(["submit"])
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
 
-const form = ref({
+const form = ref<NonNullableProjectForm>({
   title: "",
   email: "",
   url: "",
   github_url: "",
   description: "",
-  categories: [] as string[],
+  categories: [],
   supabase_features: [],
   twitter: "",
   instagram: "",
-  images: [] as string[],
+  images: [],
   slug: "",
+  team_info: [],
 })
 const terms = ref({
   acknowledge: false,
@@ -42,7 +44,7 @@ const submit = async () => {
   }
   if (
     form.value.title &&
-    form.value.url.match(regexUrl) &&
+    form.value.url?.match(regexUrl) &&
     form.value.description &&
     (props.defaultValue ? true : form.value.email)
   ) {
@@ -125,7 +127,7 @@ onMounted(() => {
       />
     </div>
     <div class="flex flex-col">
-      <label for="github_url">{{ label?.github_url ?? "github url" }}</label>
+      <label for="github_url">{{ label?.github_url ?? "GitHub URL" }}</label>
       <input
         name="github_url"
         type="text"
@@ -206,6 +208,8 @@ onMounted(() => {
         </div>
       </div>
     </div>
+
+    <FormTeamMember v-model="form.team_info"></FormTeamMember>
 
     <div v-if="isHackathon" class="!my-8 px-6 py-4 bg-dark-600 rounded-lg">
       <p>

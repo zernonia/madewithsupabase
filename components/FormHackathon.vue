@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
+import type { NonNullableProjectForm } from "~/types"
 import { slugify } from "~~/functions/slugify"
 
 const props = defineProps({
-  label: Object,
   defaultCategories: Object as PropType<string[]>,
-  isHackathon: { type: Boolean, default: false },
-  defaultValue: Object,
 })
 
 const emit = defineEmits(["submit"])
@@ -14,7 +12,7 @@ const emit = defineEmits(["submit"])
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
 
-const form = ref({
+const form = ref<NonNullableProjectForm>({
   title: "",
   email: "",
   url: "",
@@ -42,7 +40,7 @@ const submit = async () => {
     form.value.title &&
     form.value.url.match(regexUrl) &&
     form.value.description &&
-    (props.defaultValue ? true : form.value.email)
+    form.value.email
   ) {
     isSubmitting.value = true
     errorMsg.value = ""
@@ -88,7 +86,7 @@ onMounted(() => {
 <template>
   <form onsubmit="return false" class="mt-14 flex flex-col space-y-4 w-full">
     <div class="flex flex-col">
-      <label for="title">{{ label?.title ?? "title" }} *</label>
+      <label for="title">title *</label>
       <input
         name="title"
         type="text"

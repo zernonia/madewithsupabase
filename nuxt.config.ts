@@ -93,8 +93,16 @@ export default defineNuxtConfig({
         },
       },
     },
+    theme: {
+      fontFamily: {
+        main: [
+          "custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,  Arial, sans-serif",
+        ],
+      },
+    },
     transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
   },
+
   css: [
     "@unocss/reset/tailwind.css",
     "@/assets/main.css",

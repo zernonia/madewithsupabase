@@ -10,7 +10,7 @@
     "build": "nuxt build",
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
-    "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./database.types.ts"
+    "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./types/database.ts"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -29,7 +29,8 @@
     "motion": "^10.15.5",
     "nodemailer": "^6.9.1",
     "remove-markdown": "^0.5.0",
-    "swiper": "^9.1.1"
+    "swiper": "^9.1.1",
+    "vue3-toastify": "^0.1.6"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.41",

@@ -21,6 +21,7 @@ const goTo = () => {
 const timeOriginal = ref(true)
 const completed = (slug: string) => {
   localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug
+  useNuxtApp().$toast.success("Submission done!", { autoClose: 3000 })
 }
 const submitted = computed(() => localStorageSubmission.value)
 const { copy } = useClipboard({ source: localStorageSubmission })
@@ -51,11 +52,9 @@ const { data: projectSubmitted } = useAsyncData(
   { server: false }
 )
 
-const formCustomLabel = {
-  url: "Demo URL",
-  github_url: "(Public) Github URL",
-  email: "Team Captain's Email",
-  twitter: "Team Captain's Twitter handle",
+const copyLink = async () => {
+  await copy()
+  useNuxtApp().$toast.success("Copied", { autoClose: 3000 })
 }
 
 definePageMeta({
@@ -139,7 +138,7 @@ definePageMeta({
               disabled
               v-model="localStorageSubmission"
             />
-            <button @click="copy()" class="btn !rounded-l-none !p-2.5">
+            <button @click="copyLink" class="btn !rounded-l-none !p-4 mt-2">
               <div class="i-mdi:content-copy"></div>
             </button>
           </div>

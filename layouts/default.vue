@@ -69,6 +69,6 @@ watch(name, () => {
         rgba(0, 245, 169, 0.6)
       )
     ),
-    url(./noise.svg);
+    url(../noise.svg);
 }
 </style>

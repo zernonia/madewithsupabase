@@ -1,9 +1,9 @@
-import type { Projects } from "~~/database.types"
+import type { Project } from "~~/types"
 
 export const useAllProjects = () => {
-  const allProjects = useState<Projects>("all-projects", () => [])
+  const allProjects = useState<Project[]>("all-projects", () => [])
 
-  const upsertProjects = (projects: Projects) => {
+  const upsertProjects = (projects: Project[]) => {
     for (const project of projects) {
       if (allProjects.value.indexOf(project) === -1) {
         allProjects.value.push(project)

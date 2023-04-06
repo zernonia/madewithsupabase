@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await client
       .from("products")
       .select(
-        "id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features"
+        "id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features, team_info"
       )
       .eq("slug", name)
       .single()

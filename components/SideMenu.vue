@@ -18,7 +18,7 @@
         <NuxtLink to="/launch-week-7">
           <img
             src="@/assets/launch-week-7-banner.jpeg"
-            class="scale-140"
+            class="scale-140 hover:scale-145 transition duration-750"
             alt=""
           />
         </NuxtLink>
