@@ -3,7 +3,7 @@ import { useClipboard, useLocalStorage } from "@vueuse/core";
 import { animate } from "motion";
 
 const client = useSupabase();
-const { timePT, timeLocale, isExpired } = useTime("7 April 2023 06:00:00 PT", "16 April 2023 00:00:00 PT");
+const { timePT, timeLocale, isExpired } = useTime("7 April 2023 05:00:00 PST", "15 April 2023 23:00:00 PST");
 const localStorageSubmission = useLocalStorage("launch-week-7-hackathon", "");
 
 const submitTarget = ref();
