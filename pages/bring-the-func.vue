@@ -184,9 +184,5 @@ const { data: hacktoberfestData, pending: isPending } = useLazyAsyncData(
 
 definePageMeta({
   layout: "blank",
-  pageTransition: {
-    name: "fade",
-    mode: "out-in",
-  },
 })
 </script>

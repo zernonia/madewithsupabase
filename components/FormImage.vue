@@ -65,13 +65,13 @@ const changePosition = (index: number, direction: "left" | "right") => {
   <div class="h-64 flex rounded-md">
     <div
       v-if="modelValue.length"
-      class="w-full h-full flex overflow-hidden overflow-x-auto"
+      class="w-full h-full flex overflow-hidden overflow-x-auto bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
     >
       <div
         tabindex="0"
         @keypress.enter="target?.click()"
         @click="target?.click()"
-        class="rounded-lg h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
+        class="rounded-xl h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-b-4 outline-none ring-1 ring-transparent"
       >
         <div class="w-12 h-12 i-mdi:plus"></div>
         <p>Click to 'Add' images</p>
@@ -88,16 +88,16 @@ const changePosition = (index: number, direction: "left" | "right") => {
         v-for="(blob, index) in modelValue"
         class="ml-2 flex-shrink-0 relative hover:children:block"
       >
-        <span class="absolute bottom-2 left-2 px-2 rounded-lg bg-dark-200">{{
+        <span class="absolute bottom-2 left-2 px-2 rounded-xl bg-dark-200">{{
           index == 0 ? "Cover" : index + 1
         }}</span>
         <div
           v-if="blob.startsWith('http')"
-          class="absolute w-full h-full center hover:bg-dark-900 hover:bg-opacity-25"
+          class="absolute w-full h-full center"
         >
           <button
             @click.prevent="removeImage(index)"
-            class="absolute bottom-2 right-2 flex items-center justify-center p-1 rounded-lg bg-red-500 hover:bg-red-600"
+            class="absolute bottom-2 right-2 flex items-center justify-center p-1 rounded-xl bg-red-500 hover:bg-red-600"
           >
             <div class="i-mdi:trash-can w-5 h-5"></div>
           </button>
@@ -108,14 +108,14 @@ const changePosition = (index: number, direction: "left" | "right") => {
             <button
               @click.prevent="changePosition(index, 'left')"
               v-if="index != 0"
-              class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
+              class="p-0.5 rounded-xl bg-dark-200 hover:bg-dark-500"
             >
               <div class="i-ic:baseline-arrow-left w-8 h-8"></div>
             </button>
             <button
               @click.prevent="changePosition(index, 'right')"
               v-if="index != modelValue.length - 1"
-              class="p-0.5 rounded-lg bg-dark-200 hover:bg-dark-500"
+              class="p-0.5 rounded-xl bg-dark-200 hover:bg-dark-500"
             >
               <div class="i-ic:baseline-arrow-right w-8 h-8"></div>
             </button>
@@ -140,7 +140,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
       @keypress.enter="target?.click()"
       @click="target?.click()"
       v-else
-      class="rounded-lg text-light-900 cursor-pointer w-full flex flex-col items-center justify-center border-dark-500 border-3 border-dashed focus:border-solid focus:border-emerald-400 focus:outline-none ring-1 ring-transparent focus:ring-emerald-400"
+      class="cursor-pointer w-full flex flex-col items-center justify-center bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
     >
       <div class="w-12 h-12 i-mdi:plus"></div>
       <p>Click to 'Add' images</p>

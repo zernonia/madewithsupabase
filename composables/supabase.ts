@@ -1,4 +1,4 @@
-import type { Database } from "~~/database.types"
+import type { Database } from "~~/types"
 import { createClient } from "@supabase/supabase-js"
 
 export const useSupabase = () => {

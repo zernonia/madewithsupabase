@@ -10,15 +10,14 @@
   font-style: normal;
   src: url(./fonts/CustomFont-Medium.woff2) format("woff2");
 }
-html {
-  font-family: custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,
-    Arial, sans-serif;
-  overflow-x: hidden;
+
+:root {
+  --toastify-color-success: rgb(158, 68, 239) !important;
 }
+
 body {
   overflow-x: hidden;
-  @apply bg-dark-900;
+  @apply font-main bg-dark-900;
 }
 
 button {
@@ -42,7 +41,7 @@ input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
-  @apply px-4 py-2 bg-dark-600 text-white font-thin rounded-lg placeholder-dark-50 border-3 border-dark-300 focus:ring-emerald-400 focus:outline-none focus:border-emerald-500;
+  @apply mt-2 px-6 py-3 bg-dark-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-warm-gray-500 border-b-4 border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
 }
 
 input[type="color"] {
@@ -145,5 +144,12 @@ code,
 }
 
 .card-grid {
-  @apply grid sm:grid-cols-2 lg:grid-cols-3 row-auto gap-4 gap-y-8 md:gap-8 lg:gap-16;
+  @apply grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 xl:gap-10;
+}
+
+.Toastify__toast {
+  @apply !rounded-lg shadow-xl;
+}
+.Toastify__toast-body > div:last-child {
+  @apply font-main;
 }

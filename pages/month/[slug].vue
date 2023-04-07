@@ -1,3 +1,31 @@
+<script setup lang="ts">
+import dayjs from "dayjs/esm"
+const client = useSupabase()
+const { upsertProjects } = useAllProjects()
+
+const route = useRoute()
+const month = computed(() => +route.params.slug)
+const { data: routeData } = await useLazyAsyncData(
+  `month-${month.value}`,
+  async () => {
+    const { data } = await client
+      .rpc("get_monthly", {
+        month_number: month.value,
+      })
+      .order("views", { ascending: false })
+
+    if (data) upsertProjects(data)
+    return data
+  }
+)
+
+const getMonthName = (mth: number | string | string[]) => {
+  return dayjs()
+    .month(+mth - 1)
+    .format("MMMM")
+}
+</script>
+
 <template>
   <div>
     <CustomMeta
@@ -28,28 +56,3 @@
     </transition>
   </div>
 </template>
-
-<script setup lang="ts">
-import dayjs from "dayjs/esm"
-const client = useSupabase()
-
-const route = useRoute()
-const month = computed(() => +route.params.slug)
-const { data: routeData } = await useLazyAsyncData(
-  `month-${month.value}`,
-  async () => {
-    const { data } = await client
-      .rpc("get_monthly", {
-        month_number: month.value,
-      })
-      .order("views", { ascending: false })
-    return data
-  }
-)
-
-const getMonthName = (mth: number | string | string[]) => {
-  return dayjs()
-    .month(+mth - 1)
-    .format("MMMM")
-}
-</script>

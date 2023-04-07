@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { useInfiniteScroll } from "@vueuse/core"
 
-const { count, page, projects } = useInfinitePage("latest-project")
+const { count, page, projects } = useInfinitePage("top-project")
 const { upsertProjects } = useAllProjects()
 const client = useSupabase()
 
-const { pending, refresh } = useLazyAsyncData("projects", async () => {
+const { pending, refresh } = useLazyAsyncData("top-projects", async () => {
   const { data, count: rowCount } = await client
     .from("products_view")
     .select("*", { count: "exact" })
-    .order("created_at", { ascending: false })
+    .order("views", { ascending: false })
     .range(page.value * 15, page.value * 15 + 14)
 
   if (data && page.value === 0) {

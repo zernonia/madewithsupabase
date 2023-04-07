@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { PropType } from "vue"
-import type { NonNullableProjectForm, ProjectForm } from "@/types"
+import type { NonNullableProjectForm } from "~/types"
 import { slugify } from "~~/functions/slugify"
 
 const props = defineProps({
-  title: { type: String, default: "Project Submission" },
-  label: Object,
   defaultCategories: Object as PropType<string[]>,
-  isHackathon: { type: Boolean, default: false },
-  defaultValue: Object,
 })
 
 const emit = defineEmits(["submit"])
@@ -22,11 +18,11 @@ const form = ref<NonNullableProjectForm>({
   url: "",
   github_url: "",
   description: "",
-  categories: [],
+  categories: [] as string[],
   supabase_features: [],
   twitter: "",
   instagram: "",
-  images: [],
+  images: [] as string[],
   slug: "",
   team_info: [],
 })
@@ -39,14 +35,12 @@ const errorMsg = ref("")
 const submit = async () => {
   const regexUrl =
     /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
-  if (props.isHackathon) {
-    if (!terms.value.acknowledge || !terms.value.accept) return
-  }
+  if (!terms.value.acknowledge || !terms.value.accept) return
   if (
     form.value.title &&
-    form.value.url?.match(regexUrl) &&
+    form.value.url.match(regexUrl) &&
     form.value.description &&
-    (props.defaultValue ? true : form.value.email)
+    form.value.email
   ) {
     isSubmitting.value = true
     errorMsg.value = ""
@@ -86,16 +80,13 @@ onMounted(() => {
   if (props.defaultCategories?.length) {
     form.value.categories = props.defaultCategories
   }
-  if (props.defaultValue) {
-    form.value = props.defaultValue
-  }
 })
 </script>
 
 <template>
   <form onsubmit="return false" class="mt-14 flex flex-col space-y-4 w-full">
     <div class="flex flex-col">
-      <label for="title">{{ label?.title ?? "title" }} *</label>
+      <label for="title">title *</label>
       <input
         name="title"
         type="text"
@@ -104,36 +95,27 @@ onMounted(() => {
         placeholder="My Project"
       />
     </div>
-    <div v-if="!defaultValue" class="flex flex-col">
-      <label for="email" class="normal-case"
-        >{{ label?.email ?? "Email (allow you to edit the project)" }} *</label
-      >
-      <input
-        required
-        name="email"
-        type="email"
-        v-model="form.email"
-        placeholder="madewithsupabase@gmail.com"
-      />
-    </div>
-    <div class="flex flex-col">
-      <label for="url">{{ label?.url ?? "URL" }} *</label>
-      <input
-        name="url"
-        type="url"
-        v-model="form.url"
-        required
-        placeholder="https://www.supabase.io"
-      />
-    </div>
-    <div class="flex flex-col">
-      <label for="github_url">{{ label?.github_url ?? "GitHub URL" }}</label>
-      <input
-        name="github_url"
-        type="text"
-        v-model="form.github_url"
-        placeholder="https://www.github.com/supabase/supabase"
-      />
+
+    <div class="flex flex-col md:flex-row items-center gap-4">
+      <div class="flex flex-col w-full">
+        <label for="url">URL *</label>
+        <input
+          name="url"
+          type="url"
+          v-model="form.url"
+          required
+          placeholder="https://www.supabase.io"
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="github_url">GitHub URL *</label>
+        <input
+          name="github_url"
+          type="text"
+          v-model="form.github_url"
+          placeholder="https://www.github.com/supabase/supabase"
+        />
+      </div>
     </div>
     <div class="flex flex-col">
       <div class="flex justify-between items-center">
@@ -141,7 +123,7 @@ onMounted(() => {
         <div class="flex space-x-2">
           <button
             @click.prevent="isPreviewMd = !isPreviewMd"
-            class="hover:underline border-3 border-transparent px-2 rounded-lg focus:border-emerald-600 focus:outline-none"
+            class="hover:underline border-3 border-transparent px-2 rounded-lg"
           >
             {{ isPreviewMd ? "Edit" : "Preview" }}
           </button>
@@ -164,25 +146,24 @@ onMounted(() => {
         ></Marked>
       </div>
     </div>
+
     <div class="flex flex-col">
-      <label for="features">Supabase Features (choose applicable)</label>
+      <label for="features">Supabase Features (choose applicable) *</label>
       <TagsSelect v-model="form.supabase_features"></TagsSelect>
     </div>
     <div class="flex flex-col">
       <label for="categories">categories</label>
       <TagsInput v-model="form.categories"></TagsInput>
     </div>
+
     <div class="flex flex-col">
-      <label class="normal-case" for="images">Image</label>
+      <label class="mb-2" for="images">Image</label>
       <FormImage v-model="form.images" :title="form.title"></FormImage>
     </div>
 
-    <div class="flex items-center justify-between">
-      <div
-        class="flex flex-col mr-4"
-        :class="[isHackathon ? 'w-full' : 'w-1/2']"
-      >
-        <label for="twitter">{{ label?.twitter ?? "Twitter" }}</label>
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      <div class="flex flex-col md:mr-4 w-full md:w-1/2">
+        <label for="twitter">Captain's Twitter</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
           <input
@@ -194,24 +175,24 @@ onMounted(() => {
           />
         </div>
       </div>
-      <div v-if="!isHackathon" class="flex flex-col w-1/2">
-        <label for="instagram">instagram</label>
-        <div class="flex items-center">
-          <span class="text-xl mr-2">@</span>
-          <input
-            class="w-full"
-            name="instagram"
-            type="text"
-            v-model="form.instagram"
-            placeholder="madewithsupabase"
-          />
-        </div>
+      <div class="flex flex-col w-full md:w-1/2">
+        <label for="email">Captain's Email</label>
+        <input
+          class="w-full"
+          name="email"
+          type="text"
+          v-model="form.email"
+          placeholder="madewithsupabase@gmail.com"
+        />
       </div>
     </div>
 
-    <FormTeamMember v-model="form.team_info"></FormTeamMember>
+    <div class="flex flex-col">
+      <label>Team member (if any)</label>
+      <FormTeamMember v-model="form.team_info"></FormTeamMember>
+    </div>
 
-    <div v-if="isHackathon" class="!my-8 px-6 py-4 bg-dark-600 rounded-lg">
+    <div class="!my-8 px-6 py-4 bg-dark-600 rounded-lg">
       <p>
         Any intellectual property developed during the hackathon will belong to
         the team that developed it. We expect that each team will have an
