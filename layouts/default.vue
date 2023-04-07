@@ -24,11 +24,16 @@ watch(name, () => {
     <OnClickOutside @trigger="isSideMenuOpen = false">
       <SideMenu
         class="z-20 fixed top-0 left-0 transition md:translate-x-0 duration-500 ease-in-out"
-        :class="[isSideMenuOpen ? 'translate-x-0' : '-translate-x-full ']"
+        :class="[
+          isSideMenuOpen ? 'translate-x-0 modal-open' : '-translate-x-full ',
+        ]"
       ></SideMenu>
     </OnClickOutside>
 
-    <div class="z-10 flex-1 p-3 sm:p-6 md:ml-92">
+    <div
+      class="z-10 flex-1 p-3 sm:p-6 md:ml-92"
+      :class="{ 'pointer-events-none': isSideMenuOpen }"
+    >
       <div class="mx-auto max-w-7xl mb-6 md:my-24">
         <div class="md:hidden flex justify-between">
           <button @click="isSideMenuOpen = true" class="md:hidden my-6">
@@ -70,5 +75,9 @@ watch(name, () => {
       )
     ),
     url(../noise.svg);
+}
+
+body:has(.modal-open) {
+  @apply overflow-hidden;
 }
 </style>
