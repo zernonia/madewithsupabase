@@ -55,6 +55,10 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
   },
   { server: false, lazy: true }
 )
+
+onMounted(() => {
+  $fetch(`/api/view?slug=${slug}`)
+})
 </script>
 
 <template>
