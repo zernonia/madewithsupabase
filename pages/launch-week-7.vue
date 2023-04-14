@@ -1,29 +1,32 @@
 <script setup lang="ts">
-import { useClipboard, useLocalStorage } from "@vueuse/core";
-import { animate } from "motion";
+import { useClipboard, useLocalStorage } from "@vueuse/core"
+import { animate } from "motion"
 
-const client = useSupabase();
-const { timePT, timeLocale, isExpired } = useTime("7 April 2023 05:00:00 PST", "15 April 2023 23:00:00 PST");
-const localStorageSubmission = useLocalStorage("launch-week-7-hackathon", "");
+const client = useSupabase()
+const { timePT, timeLocale, isExpired } = useTime(
+  "7 April 2023 06:00:00 PDT",
+  "16 April 2023 23:59:59 PDT"
+)
+const localStorageSubmission = useLocalStorage("launch-week-7-hackathon", "")
 
-const submitTarget = ref();
+const submitTarget = ref()
 const goTo = () => {
-  let d = submitTarget.value as HTMLDivElement;
+  let d = submitTarget.value as HTMLDivElement
   document.documentElement.scrollTo({
     top: d.offsetTop,
     behavior: "smooth",
-  });
-};
+  })
+}
 
-const timeOriginal = ref(true);
+const timeOriginal = ref(true)
 const completed = (slug: string) => {
-  localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug;
-  useNuxtApp().$toast.success("Submission done!", { autoClose: 3000 });
-};
-const submitted = computed(() => localStorageSubmission.value);
-const { copy } = useClipboard({ source: localStorageSubmission });
+  localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug
+  useNuxtApp().$toast.success("Submission done!", { autoClose: 3000 })
+}
+const submitted = computed(() => localStorageSubmission.value)
+const { copy } = useClipboard({ source: localStorageSubmission })
 
-const projectSubmittedRef = ref<HTMLElement>();
+const projectSubmittedRef = ref<HTMLElement>()
 
 const { data: projectSubmitted } = useAsyncData(
   "launch-week-7-submission-count",
@@ -32,29 +35,33 @@ const { data: projectSubmitted } = useAsyncData(
       .rpc("submission_count", {
         tag: "Launch Week 7",
       })
-      .maybeSingle();
+      .maybeSingle()
 
     if (data && projectSubmittedRef.value) {
       animate(
         (progress) =>
-          projectSubmittedRef.value && (projectSubmittedRef.value.innerHTML = String(Math.round(progress * data))),
+          projectSubmittedRef.value &&
+          (projectSubmittedRef.value.innerHTML = String(
+            Math.round(progress * data)
+          )),
         { duration: 1, easing: "ease-in-out" }
-      );
+      )
     }
-    return data;
+    return data
   },
   { server: false }
-);
+)
 
 const copyLink = async () => {
-  await copy();
-  useNuxtApp().$toast.success("Copied", { autoClose: 3000 });
-};
+  await copy()
+  useNuxtApp().$toast.success("Copied", { autoClose: 3000 })
+}
 
 definePageMeta({
   title: "Launch Week 7",
-  noise_bg_color: "60deg,rgba(0, 41, 255, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.85)",
-});
+  noise_bg_color:
+    "60deg,rgba(0, 41, 255, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.85)",
+})
 </script>
 
 <template>
@@ -86,7 +93,10 @@ definePageMeta({
             <p v-if="timeOriginal">{{ timePT }}</p>
             <p v-else>{{ timeLocale }}</p>
           </transition>
-          <span class="text-base flex items-center ml-2" v-tooltip="'Toggle local time'">
+          <span
+            class="text-base flex items-center ml-2"
+            v-tooltip="'Toggle local time'"
+          >
             <button
               class="text-2xl !p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
               :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
@@ -96,7 +106,10 @@ definePageMeta({
             </button>
           </span>
         </div>
-        <div class="mt-12 flex flex-col items-center text-center" v-if="isExpired">
+        <div
+          class="mt-12 flex flex-col items-center text-center"
+          v-if="isExpired"
+        >
           <h2 class="text-2xl sm:text-4xl mt-1 mb-12">
             <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
             {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
@@ -119,7 +132,12 @@ definePageMeta({
             You can edit your submission here before too late!
           </p>
           <div class="flex items-center mt-4" id="edit">
-            <input class="!rounded-r-none" type="text" disabled v-model="localStorageSubmission" />
+            <input
+              class="!rounded-r-none"
+              type="text"
+              disabled
+              v-model="localStorageSubmission"
+            />
             <button @click="copyLink" class="btn !rounded-l-none !p-4 mt-2">
               <div class="i-mdi:content-copy"></div>
             </button>
@@ -136,14 +154,20 @@ definePageMeta({
           class="flex flex-col flex-col-reverse lg:w-1/2 bg-dark-500 bg-opacity-20 rounded-2xl md:flex-row items-center"
         >
           <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-            <h1 class="text-2xl sm:text-3xl text-white text-center md:text-left">Checklist</h1>
+            <h1
+              class="text-2xl sm:text-3xl text-white text-center md:text-left"
+            >
+              Checklist
+            </h1>
 
-            <p class="mt-4 md:text-lg">README in GitHub (or similar) should include:</p>
+            <p class="mt-4 md:text-lg">
+              README in GitHub (or similar) should include:
+            </p>
             <ul class="mt-2 list-disc ml-4 text-sm md:text-base text-light-900">
               <li>link to hosted demo (if applicable)</li>
               <li>
-                list of team members github handles (and twitter if they have one) - any demo videos, instructions, or
-                memes
+                list of team members github handles (and twitter if they have
+                one) - any demo videos, instructions, or memes
               </li>
               <li>
                 a brief description of how you used Supabase:
@@ -154,7 +178,10 @@ definePageMeta({
                   <li>storage?</li>
                 </ul>
               </li>
-              <li>any other info you want the judges to know (motivations/ideas/process)</li>
+              <li>
+                any other info you want the judges to know
+                (motivations/ideas/process)
+              </li>
             </ul>
           </div>
         </div>
@@ -163,25 +190,45 @@ definePageMeta({
           class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-dark-500 bg-opacity-20 rounded-2xl md:flex-row items-center"
         >
           <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-            <h1 class="text-2xl sm:text-3xl text-white text-center md:text-left">Rules</h1>
+            <h1
+              class="text-2xl sm:text-3xl text-white text-center md:text-left"
+            >
+              Rules
+            </h1>
             <ul class="mt-4 list-disc ml-4 text-sm md:text-base text-light-900">
-              <li>Team size 1-5 (all team members on winning teams will receive a prize)</li>
+              <li>
+                Team size 1-5 (all team members on winning teams will receive a
+                prize)
+              </li>
               <li>You cannot be in multiple teams</li>
-              <li>All design elements, code, etc. for your project/feature must be created during the event</li>
-              <li>All entries must be Open Source (link to source code required in entry)</li>
+              <li>
+                All design elements, code, etc. for your project/feature must be
+                created during the event
+              </li>
+              <li>
+                All entries must be Open Source (link to source code required in
+                entry)
+              </li>
               <li>Must use Supabase in some capacity</li>
               <li>Can be any language or framework</li>
               <li>
-                You can continue to make updates to your project after the submission deadline, but there is no
-                guarantee that the judges will see additions made after the submission time.
+                You can continue to make updates to your project after the
+                submission deadline, but there is no guarantee that the judges
+                will see additions made after the submission time.
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section v-if="!submitted && !isExpired" class="max-w-[960px] mx-auto w-full flex justify-center">
-        <FormHackathon @submit="completed" :defaultCategories="['Launch Week 7']"></FormHackathon>
+      <section
+        v-if="!submitted && !isExpired"
+        class="max-w-[960px] mx-auto w-full flex justify-center"
+      >
+        <FormHackathon
+          @submit="completed"
+          :defaultCategories="['Launch Week 7']"
+        ></FormHackathon>
       </section>
     </main>
   </div>
