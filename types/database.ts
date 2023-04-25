@@ -210,6 +210,24 @@ export interface Database {
           views: number | null
         }
       }
+      launch_week_7_view: {
+        Row: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }
+      }
       products_view: {
         Row: {
           approved: boolean | null
