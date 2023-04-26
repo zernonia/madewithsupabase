@@ -143,20 +143,11 @@ definePageMeta({
           </NuxtLink>
         </li>
       </ul>
-
-      <!-- <div class="my-12 h-[1px] w-full bg-white"></div> -->
     </div>
 
-    <transition name="fade" mode="out-in">
-      <div v-if="data" class="card-grid mt-12">
-        <Card
-          v-for="item in data"
-          :key="item.id?.toString()"
-          :item="item"
-        ></Card>
-      </div>
-      <Loading v-else></Loading>
-    </transition>
+    <div class="card-grid mt-12">
+      <Card v-for="item in data" :key="item.id?.toString()" :item="item"></Card>
+    </div>
   </div>
 </template>
 
