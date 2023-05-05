@@ -12,12 +12,11 @@ const { data, pending } = await useFetch(`/api/project/${slug}`, {
   lazy: true,
 })
 
-const tweetLink = computed(() => {
-  const href = "https://madewithsupabase.com" + useRoute().fullPath
+const tweetText = computed(() => {
   if (!data.value) return
-  return `https://twitter.com/intent/tweet?original_referer=${href}&text=Check out ${
-    data.value.title
-  } ${data.value.twitter ? "by @" + data.value.twitter : ""}&url=${href}`
+  return `Check out ${data.value.title} ${
+    data.value.twitter ? "by @" + data.value.twitter : ""
+  }`
 })
 
 const computedUrl = computed(() => {
@@ -83,9 +82,18 @@ onMounted(() => {
             ></SupabaseFeatures>
 
             <div class="flex items-center gap-4 mt-4 justify-end">
-              <a :href="tweetLink" target="_blank" rel="noopener">
-                <div class="i-mdi-share-variant w-7 h-7"></div>
-              </a>
+              <!-- <a :href="tweetLink" target="_blank" rel="noopener">
+              </a> -->
+
+              <LegoSocialShare class="text-3xl flex space-x-3">
+                <LegoSocialShareTwitter
+                  class="text-white hover:text-gray-100 transition"
+                  :text="tweetText"
+                >
+                  <div class="i-mdi-share-variant w-7 h-7"></div>
+                </LegoSocialShareTwitter>
+              </LegoSocialShare>
+
               <a
                 v-if="data.twitter"
                 :href="'https://twitter.com/' + data.twitter"
