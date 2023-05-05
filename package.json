@@ -10,8 +10,7 @@
     "build": "nuxt build",
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
-    "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./types/database.ts",
-    "upgrade:nuxt": "nuxi upgrade --force"
+    "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./types/database.ts"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -48,9 +47,7 @@
     "@unocss/reset": "^0.50.6",
     "@unocss/transformer-directives": "^0.50.6",
     "@vercel/analytics": "^0.1.11",
-    "@vueuse/nuxt": "^9.13.0",
-    "nuxt": "^3.4.3",
-    "nuxt-icon": "^0.4.0",
+    "nuxt": "^3.3.2",
     "satori": "^0.0.44",
     "v-satori": "^0.1.6"
   }
