@@ -15,7 +15,7 @@
       </div>
 
       <div class="md:mt-12 rounded-xl overflow-hidden flex-shrink-0">
-        <NuxtLink to="/launch-week-7">
+        <NuxtLink to="/flutter-hackathon">
           <img
             src="@/assets/launch-week-7-banner.jpeg"
             class="scale-140 hover:scale-145 transition duration-750"
