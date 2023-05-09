@@ -72,7 +72,7 @@ definePageMeta({
           <NuxtLink
             to="https://supabase.com/launch-week"
             target="_blank"
-            class="group relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
+            class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
             <img
               src="~~/assets/flutter-hackathon.jpg"
