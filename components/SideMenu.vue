@@ -14,17 +14,17 @@
         <h1 class="text-2xl mt-6 text-center">Made with Supabase</h1>
       </div>
 
-      <div class="md:mt-12 rounded-xl overflow-hidden flex-shrink-0">
+      <div class="md:mt-8 rounded-xl overflow-hidden flex-shrink-0">
         <NuxtLink to="/flutter-hackathon">
           <img
-            src="@/assets/launch-week-7-banner.jpeg"
-            class="scale-140 hover:scale-145 transition duration-750"
+            src="@/assets/flutter-hackathon.jpg"
+            class="scale-120 hover:scale-145 transition duration-750"
             alt=""
           />
         </NuxtLink>
       </div>
 
-      <NuxtLink to="/submission" class="btn text-center mt-4"
+      <NuxtLink to="/submission" class="btn text-center mt-6"
         >Submit a project</NuxtLink
       >
 
