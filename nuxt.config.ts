@@ -22,6 +22,9 @@ export default defineNuxtConfig({
     "v-satori/nuxt",
     "~~/modules/server-assets",
   ],
+  alias: {
+    "@vueuse/core": require.resolve("@vueuse/core/index.mjs"),
+  },
   image: {
     providers: {
       customProvider: {
@@ -102,6 +105,10 @@ export default defineNuxtConfig({
     },
     transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
   },
+
+  extends: [
+    "nuxt-lego", // Currently in Alpha stage
+  ],
 
   css: [
     "@unocss/reset/tailwind.css",
