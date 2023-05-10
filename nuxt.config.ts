@@ -107,7 +107,7 @@ export default defineNuxtConfig({
   },
 
   extends: [
-    "github:zernonia/nuxt-lego", // Currently in Alpha stage
+    "nuxt-lego", // Currently in Alpha stage
   ],
 
   css: [
