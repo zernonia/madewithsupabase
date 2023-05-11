@@ -22,9 +22,6 @@ export default defineNuxtConfig({
     "v-satori/nuxt",
     "~~/modules/server-assets",
   ],
-  alias: {
-    "@vueuse/core": require.resolve("@vueuse/core/index.mjs"),
-  },
   image: {
     providers: {
       customProvider: {
