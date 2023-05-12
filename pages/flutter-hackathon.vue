@@ -59,6 +59,7 @@ const copyLink = async () => {
 
 definePageMeta({
   title: "Flutter Hackathon",
+  noise_bg_color: "60deg,rgb(46 42 50),rgb(0 0 0 / 75%),rgb(25 47 160)",
 })
 </script>
 
@@ -70,7 +71,7 @@ definePageMeta({
       <section class="md:py-6 flex flex-col items-center">
         <div class="w-full md:w-auto">
           <NuxtLink
-            to="https://supabase.com/launch-week"
+            to="https://supabase.com/blog/flutter-hackathon"
             target="_blank"
             class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
@@ -231,3 +232,9 @@ definePageMeta({
     </main>
   </div>
 </template>
+
+<style scoped lang="postcss">
+:deep(.btn) {
+  @apply bg-violet-800 hover:bg-violet-900 opacity-100 rounded-xl font-normal text-base border-2 border-violet-800 hover:border-white shadow hover:shadow-xl;
+}
+</style>
