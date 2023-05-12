@@ -75,7 +75,7 @@ definePageMeta({
             class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
             <img
-              src="~~/assets/flutter-hackathon.jpg"
+              src="~~/assets/flutter_hackathon.jpg"
               alt="Supabase Flutter Hackathon"
               class="w-full h-full object-cover transition duration-750 scale-100 group-hover:scale-110"
               style="object-position: center 68%"

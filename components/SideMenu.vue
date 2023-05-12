@@ -17,7 +17,7 @@
       <div class="md:mt-8 rounded-xl overflow-hidden flex-shrink-0">
         <NuxtLink to="/flutter-hackathon">
           <img
-            src="@/assets/flutter-hackathon.jpg"
+            src="@/assets/flutter_hackathon.jpg"
             class="scale-120 hover:scale-145 transition duration-750"
             alt=""
           />
