@@ -14,9 +14,8 @@ const { pending, refresh } = useLazyAsyncData("top-projects", async () => {
 
   if (data && page.value === 0) {
     count.value = rowCount ?? 0
-    // @ts-ignore
-    projects.value = data
-  } else if (data) {
+  } 
+  if (data) {
     projects.value = [...projects.value, ...data]
     upsertProjects(data)
   }
