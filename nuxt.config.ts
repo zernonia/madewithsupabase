@@ -121,4 +121,7 @@ export default defineNuxtConfig({
     },
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
+  routeRules: {
+    "/**": { isr: 3600 }
+  }
 })
