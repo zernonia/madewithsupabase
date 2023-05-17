@@ -16,8 +16,7 @@ const { pending, refresh } = useLazyAsyncData("projects", async () => {
     count.value = rowCount ?? 0
     // @ts-ignore
     projects.value = data
-  }
-  if (data) {
+  } else if (data) {
     projects.value = [...projects.value, ...data]
     upsertProjects(data)
   }
