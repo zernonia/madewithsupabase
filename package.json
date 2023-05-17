@@ -49,7 +49,7 @@
     "@unocss/transformer-directives": "^0.50.6",
     "@vercel/analytics": "^0.1.11",
     "@vueuse/nuxt": "^9.13.0",
-    "nuxt": "^3.4.3",
+    "nuxt": "^3.5.0",
     "nuxt-lego": "^0.0.3",
     "satori": "^0.0.44",
     "v-satori": "^0.1.6"
