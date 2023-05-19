@@ -163,7 +163,7 @@ onMounted(() => {
 
     <div class="flex flex-col md:flex-row items-center justify-between">
       <div class="flex flex-col md:mr-4 w-full md:w-1/2">
-        <label for="twitter">Captain's Twitter</label>
+        <label for="twitter">Captain's Twitter *</label>
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
           <input
@@ -176,7 +176,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="flex flex-col w-full md:w-1/2">
-        <label for="email">Captain's Email</label>
+        <label for="email">Captain's Email *</label>
         <input
           class="w-full"
           name="email"
@@ -246,3 +246,10 @@ onMounted(() => {
     </div>
   </form>
 </template>
+
+
+<style scoped>
+input, textarea, :deep(input), :deep(#form-image) {
+  @apply border-2 border-cool-gray-600 placeholder-text-cool-gray-500;
+}
+</style>

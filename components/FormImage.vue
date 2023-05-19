@@ -64,6 +64,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
 <template>
   <div class="h-64 flex rounded-md">
     <div
+      id="form-image"
       v-if="modelValue.length"
       class="w-full h-full flex overflow-hidden overflow-x-auto bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
     >
@@ -136,6 +137,7 @@ const changePosition = (index: number, direction: "left" | "right") => {
       </div>
     </div>
     <div
+      id="form-image"
       tabindex="0"
       @keypress.enter="target?.click()"
       @click="target?.click()"
