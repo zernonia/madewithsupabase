@@ -108,7 +108,7 @@ onMounted(() => {
         />
       </div>
       <div class="flex flex-col w-full">
-        <label for="github_url">GitHub URL *</label>
+        <label for="github_url">GitHub URL</label>
         <input
           name="github_url"
           type="text"
@@ -169,6 +169,7 @@ onMounted(() => {
           <input
             class="w-full"
             name="twitter"
+            required
             type="text"
             v-model="form.twitter"
             placeholder="madewithsupabase"
@@ -181,6 +182,7 @@ onMounted(() => {
           class="w-full"
           name="email"
           type="text"
+          required
           v-model="form.email"
           placeholder="madewithsupabase@gmail.com"
         />
