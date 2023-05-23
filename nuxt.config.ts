@@ -104,7 +104,7 @@ export default defineNuxtConfig({
   },
 
   extends: [
-    "nuxt-lego", // Currently in Alpha stage
+    "nuxt-lego",
   ],
 
   css: [
