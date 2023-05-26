@@ -10,9 +10,8 @@ export const useSupabase = () => {
 }
 
 export const useSupabaseServer = () => {
-  const cfg = useRuntimeConfig()
   return createClient<Database>(
-    cfg.public.SUPABASE_URL,
-    cfg.SUPABASE_SERVICE_KEY
+    process.env.SUPABASE_URL ?? "",
+    process.env.SUPABASE_SERVICE_KEY ?? ""
   )
 }

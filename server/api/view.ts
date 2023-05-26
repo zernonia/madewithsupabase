@@ -31,10 +31,10 @@ export default defineEventHandler(async (event) => {
       }
     } else {
       res.statusCode = 500
-      res.end("error")
+      res.end(initialData.error)
     }
   } else {
     res.statusCode = 500
-    res.end("error")
+    res.end("No slug found")
   }
 })
