@@ -3,7 +3,7 @@ import { useSupabaseServer } from "~~/composables/supabase"
 let cache: any = {}
 export default defineEventHandler(async (event) => {
   const client = useSupabaseServer()
-  const { slug } = getQuery(event)
+  const slug = event.context.params?.slug
   const { res, req } = event
 
   const ip = req.headers["x-forwarded-for"] || "::1"
@@ -31,10 +31,10 @@ export default defineEventHandler(async (event) => {
       }
     } else {
       res.statusCode = 500
-      res.end("error")
+      res.end(initialData.error)
     }
   } else {
     res.statusCode = 500
-    res.end("error")
+    res.end("No slug found")
   }
 })

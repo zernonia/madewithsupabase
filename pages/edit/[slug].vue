@@ -45,10 +45,8 @@ const help = async (e: any) => {
   )
 }
 
-const { data, refresh } = await useFetch("/api/project", {
-  method: "GET",
-  query: { name: params.slug },
-  key: params.slug.toString(),
+const { data, refresh } = await useFetch(`/api/project/${params.slug}`, {
+  method: "GET",  
 })
 refresh()
 
