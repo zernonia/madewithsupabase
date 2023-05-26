@@ -56,7 +56,7 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
 )
 
 onMounted(() => {
-  $fetch(`/api/view?slug=${slug}`)
+  $fetch(`/api/view/${slug}`)
 })
 </script>
 

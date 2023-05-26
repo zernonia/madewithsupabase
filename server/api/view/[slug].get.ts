@@ -3,7 +3,7 @@ import { useSupabaseServer } from "~~/composables/supabase"
 let cache: any = {}
 export default defineEventHandler(async (event) => {
   const client = useSupabaseServer()
-  const { slug } = getQuery(event)
+  const slug = event.context.params?.slug
   const { res, req } = event
 
   const ip = req.headers["x-forwarded-for"] || "::1"
