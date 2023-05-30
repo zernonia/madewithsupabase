@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const capitalizeFirstLetter = (string: string) => {
+function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 const routeName = computed(() =>
-  capitalizeFirstLetter(route.name?.toString() || "")
+  capitalizeFirstLetter(route.name?.toString() || ''),
 )
 
 useHead(() => ({
@@ -14,7 +14,7 @@ useHead(() => ({
   titleTemplate: (titleChunk) => {
     return titleChunk
       ? `${titleChunk} | Made with Supabase`
-      : "Made with Supabase"
+      : 'Made with Supabase'
   },
 }))
 </script>
@@ -22,6 +22,6 @@ useHead(() => ({
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator />
-    <NuxtPage></NuxtPage>
+    <NuxtPage />
   </NuxtLayout>
 </template>

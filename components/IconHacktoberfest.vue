@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" width="966" height="374" viewBox="0 0 966 374" fill="none">
     <path
@@ -125,7 +127,7 @@
       fill="#CDD1CB"
     />
     <a href="https://supabase.io/" target="_blank">
-      <g class="animate-duration-1000 animate-jack-in" id="supabase">
+      <g id="supabase" class="animate-duration-1000 animate-jack-in">
         <path
           id="supabase-bottom"
           d="M541.977 337.531C538.925 341.376 532.736 339.269 532.662 334.359L531.587 262.552H579.856C588.599 262.552 593.475 272.653 588.038 279.502L541.977 337.531Z"
@@ -140,5 +142,3 @@
     </a>
   </svg>
 </template>
-
-<script setup lang="ts"></script>

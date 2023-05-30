@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import dayjs from "dayjs/esm"
+import dayjs from 'dayjs/esm'
+
 const client = useSupabase()
 const { upsertProjects } = useAllProjects()
 
@@ -9,20 +10,21 @@ const { data: routeData } = await useLazyAsyncData(
   `month-${month.value}`,
   async () => {
     const { data } = await client
-      .rpc("get_monthly", {
+      .rpc('get_monthly', {
         month_number: month.value,
       })
-      .order("views", { ascending: false })
+      .order('views', { ascending: false })
 
-    if (data) upsertProjects(data)
+    if (data)
+      upsertProjects(data)
     return data
-  }
+  },
 )
 
-const getMonthName = (mth: number | string | string[]) => {
+function getMonthName(mth: number | string | string[]) {
   return dayjs()
     .month(+mth - 1)
-    .format("MMMM")
+    .format('MMMM')
 }
 </script>
 
@@ -36,22 +38,24 @@ const getMonthName = (mth: number | string | string[]) => {
     <transition name="fade" mode="out-in">
       <div v-if="routeData" class="mt-12">
         <div v-if="routeData.length" class="card-grid">
-          <Card v-for="item in routeData" :item="item"></Card>
+          <Card v-for="item in routeData" :item="item" />
         </div>
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
-          <img class="w-40" src="@/assets/404.svg" />
-          <h1 class="text-4xl">No project found...</h1>
+          <img class="w-40" src="@/assets/404.svg">
+          <h1 class="text-4xl">
+            No project found...
+          </h1>
           <button
-            @click="$router.push('/')"
             class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+            @click="$router.push('/')"
           >
-            <div class="i-mdi:menu-left mr-2 w-6 h-6"></div>
+            <div class="i-mdi:menu-left mr-2 w-6 h-6" />
             Home
           </button>
         </div>
       </div>
       <div v-else class="w-full h-screen flex items-center justify-center">
-        <SVGCircle class="animate-ping"></SVGCircle>
+        <SVGCircle class="animate-ping" />
       </div>
     </transition>
   </div>

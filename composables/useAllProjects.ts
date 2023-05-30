@@ -1,13 +1,12 @@
-import type { Project } from "~~/types"
+import type { Project } from '~~/types'
 
-export const useAllProjects = () => {
-  const allProjects = useState<Project[]>("all-projects", () => [])
+export function useAllProjects() {
+  const allProjects = useState<Project[]>('all-projects', () => [])
 
   const upsertProjects = (projects: Project[]) => {
     for (const project of projects) {
-      if (allProjects.value.indexOf(project) === -1) {
+      if (!allProjects.value.includes(project))
         allProjects.value.push(project)
-      }
     }
   }
 

@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { useLocalStorage } from "@vueuse/core"
+import { useLocalStorage } from '@vueuse/core'
 
 const client = useSupabase()
 
-const email = ref("")
-const isSubmitted = useLocalStorage("newsletter", false)
-const submitForm = async () => {
+const email = ref('')
+const isSubmitted = useLocalStorage('newsletter', false)
+async function submitForm() {
   if (email.value.length) {
-    const { error } = await client.from("forms").insert({ email: email.value })
-    if (!error) {
+    const { error } = await client.from('forms').insert({ email: email.value })
+    if (!error)
       isSubmitted.value = true
-    }
   }
 }
 </script>
@@ -22,19 +21,23 @@ const submitForm = async () => {
     <div
       class="relative rounded-lg bg-gradient-to-tr from-emerald-600 to-emerald-400 w-full p-8 inline-flex flex-col items-center space-y-2"
     >
-      <p class="text-2xl"># madewithsupabase</p>
-      <h1 class="text-4xl">Collection of projects made with Supabase</h1>
+      <p class="text-2xl">
+        # madewithsupabase
+      </p>
+      <h1 class="text-4xl">
+        Collection of projects made with Supabase
+      </h1>
 
       <ClientOnly>
         <div v-if="!isSubmitted" class="">
           <p>Subscribe to our newsletter!</p>
           <div class="flex items-center mt-8 relative">
             <input
-              type="text"
               v-model="email"
+              type="text"
               placeholder="foo@bar.com"
               class="w-full md:w-96 !py-2.5"
-            />
+            >
             <button
               :disabled="!email"
               class="px-2 py-1.5 rounded absolute right-2 disabled:opacity-60 bg-dark-200"
@@ -55,15 +58,23 @@ const submitForm = async () => {
         </div>
       </ClientOnly>
 
-      <SVGCircle class="absolute -right-10 -bottom-10"></SVGCircle>
+      <SVGCircle class="absolute -right-10 -bottom-10" />
     </div>
     <div
       class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 items-center mt-16"
     >
-      <NuxtLink to="/about">About</NuxtLink>
-      <p class="px-2 hidden sm:block">|</p>
-      <NuxtLink to="/contact">Contact</NuxtLink>
-      <p class="px-2 hidden sm:block">|</p>
+      <NuxtLink to="/about">
+        About
+      </NuxtLink>
+      <p class="px-2 hidden sm:block">
+        |
+      </p>
+      <NuxtLink to="/contact">
+        Contact
+      </NuxtLink>
+      <p class="px-2 hidden sm:block">
+        |
+      </p>
       <div class="inline-flex items-center">
         <p>Created by</p>
         <a
@@ -72,10 +83,9 @@ const submitForm = async () => {
           target="_blank"
           class="ml-2 relative underline underline-offset-2 underline-dark-100 underline-3"
         >
-          Zernonia</a
-        >
+          Zernonia</a>
         <a rel="noopener" href="https://twitter.com/zernonia" target="_blank">
-          <div class="i-mdi:twitter ml-2"></div>
+          <div class="i-mdi:twitter ml-2" />
         </a>
       </div>
     </div>

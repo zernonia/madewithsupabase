@@ -17,7 +17,7 @@ onMounted(() => (isBlur.value = false))
         class="w-full h-full object-cover transition duration-750"
         :class="[isBlur ? 'blur-md opacity-60' : 'blur-0 opacity-100']"
         style="object-position: center 68%"
-      />
+      >
     </NuxtLink>
   </div>
 </template>

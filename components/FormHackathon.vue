@@ -1,63 +1,65 @@
 <script setup lang="ts">
-import { PropType } from "vue"
-import type { NonNullableProjectForm } from "~/types"
-import { slugify } from "~~/functions/slugify"
+import type { PropType } from 'vue'
+import type { NonNullableProjectForm } from '~/types'
+import { slugify } from '~~/functions/slugify'
 
 const props = defineProps({
   defaultCategories: Object as PropType<string[]>,
 })
 
-const emit = defineEmits(["submit"])
+const emit = defineEmits(['submit'])
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
 
 const form = ref<NonNullableProjectForm>({
-  title: "",
-  email: "",
-  url: "",
-  github_url: "",
-  description: "",
+  title: '',
+  email: '',
+  url: '',
+  github_url: '',
+  description: '',
   categories: [] as string[],
   supabase_features: [],
-  twitter: "",
-  instagram: "",
+  twitter: '',
+  instagram: '',
   images: [] as string[],
-  slug: "",
+  slug: '',
   team_info: [],
 })
 const terms = ref({
   acknowledge: false,
   accept: false,
 })
-const errorMsg = ref("")
+const errorMsg = ref('')
 
-const submit = async () => {
-  const regexUrl =
-    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
-  if (!terms.value.acknowledge || !terms.value.accept) return
+async function submit() {
+  const regexUrl
+    = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
+  if (!terms.value.acknowledge || !terms.value.accept)
+    return
   if (
-    form.value.title &&
-    form.value.url.match(regexUrl) &&
-    form.value.description &&
-    form.value.email
+    form.value.title
+    && form.value.url.match(regexUrl)
+    && form.value.description
+    && form.value.email
   ) {
     isSubmitting.value = true
-    errorMsg.value = ""
+    errorMsg.value = ''
     form.value.slug = slugify(form.value.title)
 
-    const { data, error } = await $fetch(`/api/function/submission`, {
-      method: "POST",
+    const { data, error } = await $fetch('/api/function/submission', {
+      method: 'POST',
       body: { form: form.value },
-    }).catch((err) => err.data)
+    }).catch(err => err.data)
 
     if (!error) {
       isSubmitted.value = true
-      emit("submit", form.value.slug)
-    } else {
+      emit('submit', form.value.slug)
+    }
+    else {
       switch (error.code) {
-        case "23505":
-          errorMsg.value = "Title already exist. Please try another Title *"
+        case '23505':
+          errorMsg.value = 'Title already exist. Please try another Title *'
           break
         default:
           errorMsg.value = error.meesage
@@ -69,17 +71,14 @@ const submit = async () => {
 }
 
 const isStillUploadingImage = computed(() => {
-  return form.value.images?.findIndex((i) => i.startsWith("data")) != -1
-    ? true
-    : false
+  return form.value.images?.findIndex(i => i.startsWith('data')) !== -1
 })
 
 const isPreviewMd = ref(false)
 
 onMounted(() => {
-  if (props.defaultCategories?.length) {
+  if (props.defaultCategories?.length)
     form.value.categories = props.defaultCategories
-  }
 })
 </script>
 
@@ -88,33 +87,33 @@ onMounted(() => {
     <div class="flex flex-col">
       <label for="title">title *</label>
       <input
+        v-model="form.title"
         name="title"
         type="text"
-        v-model="form.title"
         required
         placeholder="My Project"
-      />
+      >
     </div>
 
     <div class="flex flex-col md:flex-row items-center gap-4">
       <div class="flex flex-col w-full">
         <label for="url">URL *</label>
         <input
+          v-model="form.url"
           name="url"
           type="url"
-          v-model="form.url"
           required
           placeholder="https://www.supabase.io"
-        />
+        >
       </div>
       <div class="flex flex-col w-full">
         <label for="github_url">GitHub URL</label>
         <input
+          v-model="form.github_url"
           name="github_url"
           type="text"
-          v-model="form.github_url"
           placeholder="https://www.github.com/supabase/supabase"
-        />
+        >
       </div>
     </div>
     <div class="flex flex-col">
@@ -122,8 +121,8 @@ onMounted(() => {
         <label for="description">description (Markdown Supported) * </label>
         <div class="flex space-x-2">
           <button
-            @click.prevent="isPreviewMd = !isPreviewMd"
             class="hover:underline border-3 border-transparent px-2 rounded-lg"
+            @click.prevent="isPreviewMd = !isPreviewMd"
           >
             {{ isPreviewMd ? "Edit" : "Preview" }}
           </button>
@@ -132,33 +131,33 @@ onMounted(() => {
       <div class="w-full">
         <textarea
           v-if="!isPreviewMd"
+          v-model="form.description"
           class="w-full"
           rows="6"
           name="description"
-          v-model="form.description"
           required
           placeholder="Write some description about your project"
         />
         <Marked
-          class="max-w-none px-4 py-2 border-3 border-transparent"
           v-else
+          class="max-w-none px-4 py-2 border-3 border-transparent"
           :text="form.description"
-        ></Marked>
+        />
       </div>
     </div>
 
     <div class="flex flex-col">
       <label for="features">Supabase Features (choose applicable) *</label>
-      <TagsSelect v-model="form.supabase_features"></TagsSelect>
+      <TagsSelect v-model="form.supabase_features" />
     </div>
     <div class="flex flex-col">
       <label for="categories">categories</label>
-      <TagsInput v-model="form.categories"></TagsInput>
+      <TagsInput v-model="form.categories" />
     </div>
 
     <div class="flex flex-col">
       <label class="mb-2" for="images">Image</label>
-      <FormImage v-model="form.images" :title="form.title"></FormImage>
+      <FormImage v-model="form.images" :title="form.title" />
     </div>
 
     <div class="flex flex-col md:flex-row items-center justify-between">
@@ -167,31 +166,31 @@ onMounted(() => {
         <div class="flex items-center">
           <span class="text-xl mr-2">@</span>
           <input
+            v-model="form.twitter"
             class="w-full"
             name="twitter"
             required
             type="text"
-            v-model="form.twitter"
             placeholder="madewithsupabase"
-          />
+          >
         </div>
       </div>
       <div class="flex flex-col w-full md:w-1/2">
         <label for="email">Captain's Email *</label>
         <input
+          v-model="form.email"
           class="w-full"
           name="email"
           type="text"
           required
-          v-model="form.email"
           placeholder="madewithsupabase@gmail.com"
-        />
+        >
       </div>
     </div>
 
     <div class="flex flex-col">
       <label>Team member (if any)</label>
-      <FormTeamMember v-model="form.team_info"></FormTeamMember>
+      <FormTeamMember v-model="form.team_info" />
     </div>
 
     <div class="!my-8 px-6 py-4 bg-dark-600 rounded-lg">
@@ -202,15 +201,13 @@ onMounted(() => {
       </p>
       <div class="mt-2 flex items-center space-x-4">
         <input
+          id="acknowledge"
+          v-model="terms.acknowledge"
           type="checkbox"
           name="acknowledge"
-          id="acknowledge"
           required
-          v-model="terms.acknowledge"
-        />
-        <label class="!text-base text-light-900" for="acknowledge"
-          >Acknowledge</label
         >
+        <label class="!text-base text-light-900" for="acknowledge">Acknowledge</label>
       </div>
 
       <p class="mt-8">
@@ -221,12 +218,12 @@ onMounted(() => {
       </p>
       <div class="mt-2 flex items-center space-x-4">
         <input
+          id="accept"
+          v-model="terms.accept"
           type="checkbox"
           name="accept"
-          id="accept"
           required
-          v-model="terms.accept"
-        />
+        >
         <label class="!text-base text-light-900" for="accept">Accept</label>
       </div>
     </div>
@@ -241,14 +238,13 @@ onMounted(() => {
         <SVGCircle
           v-if="isSubmitting"
           class="w-4 h-4 ml-4 animate-ping"
-        ></SVGCircle>
+        />
       </button>
 
       <span class="ml-4 text-red-500">{{ errorMsg }}</span>
     </div>
   </form>
 </template>
-
 
 <style scoped>
 input, textarea, :deep(input), :deep(#form-image) {

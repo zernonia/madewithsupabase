@@ -299,48 +299,48 @@ export interface Database {
         }[]
       }
       get_monthly:
-        | {
-            Args: {
-              month_string: string
-            }
-            Returns: {
-              approved: boolean | null
-              categories: string[] | null
-              created_at: string | null
-              description: string | null
-              github_url: string | null
-              id: string | null
-              images: string[] | null
-              instagram: string | null
-              slug: string | null
-              supabase_features: string[] | null
-              title: string | null
-              twitter: string | null
-              url: string | null
-              views: number | null
-            }[]
-          }
-        | {
-            Args: {
-              month_number: number
-            }
-            Returns: {
-              approved: boolean | null
-              categories: string[] | null
-              created_at: string | null
-              description: string | null
-              github_url: string | null
-              id: string | null
-              images: string[] | null
-              instagram: string | null
-              slug: string | null
-              supabase_features: string[] | null
-              title: string | null
-              twitter: string | null
-              url: string | null
-              views: number | null
-            }[]
-          }
+      | {
+        Args: {
+          month_string: string
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
+      }
+      | {
+        Args: {
+          month_number: number
+        }
+        Returns: {
+          approved: boolean | null
+          categories: string[] | null
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string | null
+          images: string[] | null
+          instagram: string | null
+          slug: string | null
+          supabase_features: string[] | null
+          title: string | null
+          twitter: string | null
+          url: string | null
+          views: number | null
+        }[]
+      }
       get_related_products: {
         Args: {
           parent_id: string

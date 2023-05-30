@@ -7,7 +7,7 @@ defineProps({
 <template>
   <transition name="fade" mode="out-in">
     <div v-if="loading" class="my-12 mx-auto h-full flex justify-center">
-      <SVGCircle class="animate-ping"></SVGCircle>
+      <SVGCircle class="animate-ping" />
     </div>
   </transition>
 </template>

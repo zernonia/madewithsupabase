@@ -1,6 +1,28 @@
+<script lang="ts">
+export default {
+  layout: 'blank',
+}
+</script>
+
+<script setup lang="ts">
+const client = useSupabase()
+
+const { data, pending, refresh } = useLazyAsyncData(
+  'launch-week-5-submission',
+  async () => {
+    const { data, error } = await client
+      .from('launch_week_5_view')
+      .select('*')
+      .order('views', { ascending: false })
+
+    return data
+  },
+)
+</script>
+
 <template>
   <div>
-    <CustomMeta :title="'Launch Week 5 Hackathon'" :image="HeroImage" />
+    <CustomMeta title="Launch Week 5 Hackathon" :image="HeroImage" />
     <transition name="fade" appear>
       <main class="py-8">
         <section class="md:py-6 px-4 flex flex-col items-center">
@@ -8,7 +30,7 @@
             to="/"
             class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
           >
-            <div class="i-mdi:chevron-left"></div>
+            <div class="i-mdi:chevron-left" />
           </NuxtLink>
 
           <div class="relative group">
@@ -20,7 +42,7 @@
                 class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
                 src="~~/assets/launch-week-5-hackathon.jpeg"
                 alt="Supabase Launch Week 5 Hackathon"
-              />
+              >
             </NuxtLink>
           </div>
           <section class="mt-12 md:mt-20">
@@ -36,13 +58,13 @@
                   v-for="item in data"
                   :key="item.id?.toString()"
                   :item="item"
-                ></Card>
+                />
               </div>
               <div
                 v-else
                 class="w-full h-screen flex items-center justify-center"
               >
-                <SVGCircle class="animate-ping"></SVGCircle>
+                <SVGCircle class="animate-ping" />
               </div>
             </transition>
           </section>
@@ -51,25 +73,3 @@
     </transition>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  layout: "blank",
-}
-</script>
-
-<script setup lang="ts">
-const client = useSupabase()
-
-const { data, pending, refresh } = useLazyAsyncData(
-  "launch-week-5-submission",
-  async () => {
-    const { data, error } = await client
-      .from("launch_week_5_view")
-      .select("*")
-      .order("views", { ascending: false })
-
-    return data
-  }
-)
-</script>

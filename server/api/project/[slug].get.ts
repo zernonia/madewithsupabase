@@ -1,4 +1,4 @@
-import { useSupabaseServer } from "~~/composables/supabase"
+import { useSupabaseServer } from '~~/composables/supabase'
 
 export default defineEventHandler(async (event) => {
   const client = useSupabaseServer()
@@ -6,18 +6,17 @@ export default defineEventHandler(async (event) => {
 
   if (slug) {
     const { data, error } = await client
-      .from("products")
+      .from('products')
       .select(
-        "id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features"
+        'id, title, description, categories, url, github_url, twitter, instagram, images, slug, supabase_features',
       )
-      .eq("slug", slug)
+      .eq('slug', slug)
       .single()
 
-    if (data) {
+    if (data)
       return data
-    } else {
+    else
       return sendError(event, new Error(error.message))
-    }
   }
-  return sendError(event, new Error("No slug is found"))
+  return sendError(event, new Error('No slug is found'))
 })
