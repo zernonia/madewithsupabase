@@ -90,15 +90,17 @@ const winnerGroup = {
   ],
 }
 
-const { data, pending } = useLazyAsyncData("launch-week-7-view", async () => {
+const { data, pending } = useLazyAsyncData("flutter_hackathon_view", async () => {
   const { data, error } = await client
-    .from("launch_week_7_view")
+    .from("flutter_hackathon_view")
     .select("*")
     .order("views", { ascending: false })
 
+  const winnersId = Object.values(winnerGroup).flat().map(i => i.id)
+
   if (data) upsertProjects(data)
 
-  return data
+  return data?.filter(i => !winnersId.includes(i.id ?? ""))
 })
 
 definePageMeta({
@@ -138,6 +140,7 @@ definePageMeta({
           </li>
         </ul>
       </div>
+      <h2 class="mt-12 mb-4 text-3xl">Submissions</h2>
       <div class="card-grid mt-12">
         <Card v-for="item in data" :key="item.id?.toString()" :item="item"></Card>
       </div>
