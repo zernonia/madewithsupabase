@@ -1,61 +1,105 @@
 <script setup lang="ts">
-import { useClipboard, useLocalStorage } from "@vueuse/core"
-import { animate } from "motion"
 
 const client = useSupabase()
-const { timePT, timeLocale, isExpired } = useTime(
-  "12 May 2023 06:00:00 PDT",
-  "21 May 2023 23:59:59 PDT"
-)
-const localStorageSubmission = useLocalStorage("flutter-hackathon", "")
+const { upsertProjects } = useAllProjects()
 
-const submitTarget = ref()
-const goTo = () => {
-  let d = submitTarget.value as HTMLDivElement
-  document.documentElement.scrollTo({
-    top: d.offsetTop,
-    behavior: "smooth",
-  })
-}
 
-const timeOriginal = ref(true)
-const completed = (slug: string) => {
-  localStorageSubmission.value = "https://www.madewithsupabase.com/edit/" + slug
-  useNuxtApp().$toast.success("Submission done!", { autoClose: 3000 })
-}
-const submitted = computed(() => localStorageSubmission.value)
-const { copy } = useClipboard({ source: localStorageSubmission })
 
-const projectSubmittedRef = ref<HTMLElement>()
 
-const { data: projectSubmitted } = useAsyncData(
-  "flutter-submission-count",
-  async () => {
-    const { data, error } = await client
-      .rpc("submission_count", {
-        tag: "Flutter Hackathon",
-      })
-      .maybeSingle()
+const winnerGroup = {
+  "Best Overall Project": [
+    {
+      "title": "Syno",
+      "id": "2172950e-12c6-4ae2-940f-a361cc708a0b",
+      "twitter": "samuelP09301972",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fsyno.jpg&w=1920&q=75",
+      "slug": "syno-ai-youtube-summarizer-app",
 
-    if (data && projectSubmittedRef.value) {
-      animate(
-        (progress) =>
-          projectSubmittedRef.value &&
-          (projectSubmittedRef.value.innerHTML = String(
-            Math.round(progress * data)
-          )),
-        { duration: 1, easing: "ease-in-out" }
-      )
+    },
+    {
+      "title": "Study Genius",
+      "id": "80e3dcfb-56f8-4ec7-a521-afac3ea1d2a0",
+      "twitter": "salomon_diei",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fstudy-genius.jpg&w=1920&q=75",
+      "slug": "study-genius",
+    },
+  ],
+  "Best FlutterFlow Project": [
+    {
+      "title": "Lord Of The Memes",
+      "id": "b1ed5262-b829-49a2-baae-3b6f9fcbcabc",
+      "twitter": "mohonishc",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Flord-of-the-memes.jpg&w=1920&q=75",
+      "slug": "lord-of-the-memes",
+    },
+    {
+      "title": "Colabity",
+      "id": "beca1f73-5703-4270-9b9d-ee1cf39accfd",
+      "twitter": "hichamics",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fcolabity.jpg&w=1920&q=75",
+      "slug": "colabity",
+    },
+  ],
+  "Best Dart Edge Project": [
+    {
+      "title": "ChatGlobe",
+      "id": "894af72a-9832-49e8-b115-07f88ee3b9b6",
+      "twitter": "tomohiko-tanihata",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fchatglobe.jpg&w=1920&q=75",
+      "slug": "chatglobe",
+    },
+    {
+      "title": "Adventure Kingdom",
+      "id": "b4a94161-6a75-4784-b608-cffb1d3e66d4",
+      "twitter": "anujeshd",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fadventure-kingdom.jpg&w=1920&q=75",
+      "slug": "adventure-kingdom-theme-park-information-ticketbooking-app",
     }
-    return data
-  },
-  { server: false }
-)
-
-const copyLink = async () => {
-  await copy()
-  useNuxtApp().$toast.success("Copied", { autoClose: 3000 })
+  ],
+  "Most technically impressive": [
+    {
+      "title": "Accident Detection",
+      "id": "c97450aa-1346-4c64-a22e-2ebd40e2af43",
+      "twitter": "Guneetsingh02",
+      "images": 'https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Faccident-detection.jpg&w=1920&q=75',
+      "slug": "accident-detection",
+    },
+    {
+      "title": "IntelliTask",
+      "id": "a00a15bf-420e-4469-866d-bbfc3f5591f7",
+      "twitter": "noga_dev",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fintellitask.jpg&w=1920&q=75",
+      "slug": "intellitask",
+    }
+  ],
+  "Most visually pleasing": [
+    {
+      "title": "Caffeio",
+      "id": "6ccc0c53-1191-41ef-b40c-21fc4bcd80ad",
+      "twitter": "caurregoz",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fcaffeio.jpg&w=1920&q=75",
+      "slug": "caffeio",
+    },
+    {
+      "title": "Decision Tales",
+      "id": "c93608ff-f668-4430-8219-64a5508e0dd3",
+      "twitter": "JudoUergens",
+      "images": "https://supabase.com/_next/image?url=%2Fimages%2Fblog%2Fflutter-hackathon-winners%2Fdecision-tales.jpg&w=1920&q=75",
+      "slug": "decision-tales",
+    },
+  ],
 }
+
+const { data, pending } = useLazyAsyncData("launch-week-7-view", async () => {
+  const { data, error } = await client
+    .from("launch_week_7_view")
+    .select("*")
+    .order("views", { ascending: false })
+
+  if (data) upsertProjects(data)
+
+  return data
+})
 
 definePageMeta({
   title: "Flutter Hackathon",
@@ -66,175 +110,43 @@ definePageMeta({
 <template>
   <div>
     <CustomMeta :title="'Flutter Hackathon'" />
-
     <main class="py-8">
       <section class="md:py-6 flex flex-col items-center">
         <div class="w-full md:w-auto">
-          <NuxtLink
-            to="https://supabase.com/blog/flutter-hackathon"
-            target="_blank"
-            class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
-          >
-            <img
-              src="~~/assets/flutter_hackathon.jpg"
-              alt="Supabase Flutter Hackathon"
+          <NuxtLink to="https://supabase.com/blog/flutter-hackathon-winners" target="_blank"
+            class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105">
+            <img src="~~/assets/flutter-hackathon-winners.webp" alt="Supabase Flutter Hackathon Winners"
               class="w-full h-full object-cover transition duration-750 scale-100 group-hover:scale-110"
-              style="object-position: center 68%"
-            />
+              style="object-position: center 68%" />
           </NuxtLink>
         </div>
-
-        <div
-          v-if="!submitted"
-          class="mt-12 md:mt-18 text-center text-white font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
-        >
-          <transition name="slide-fade" mode="out-in">
-            <p v-if="timeOriginal">{{ timePT }}</p>
-            <p v-else>{{ timeLocale }}</p>
-          </transition>
-          <span
-            class="text-base flex items-center ml-2"
-            v-tooltip="'Toggle local time'"
-          >
-            <button
-              class="text-2xl !p-0 !bg-none transition transform duration-700 !ring-transparent hover:text-white"
-              :class="[timeOriginal ? ' rotate-180' : ' rotate-0']"
-              @click="timeOriginal = !timeOriginal"
-            >
-              <div class="i-ic:twotone-change-circle"></div>
-            </button>
-          </span>
-        </div>
-        <div
-          class="mt-12 flex flex-col items-center text-center"
-          v-if="isExpired"
-        >
-          <h2 class="text-2xl sm:text-4xl mt-1 mb-12">
-            <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-            {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
-          </h2>
-          <h1 class="text-2xl sm:text-4xl">Time is up! ⌚</h1>
-          <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-          <p class="mt-2 text-light-900">Stay tuned for the Medal Ceremony</p>
-        </div>
-        <div class="mt-4 flex flex-col items-center" v-else-if="!submitted">
-          <h2 class="text-2xl sm:text-4xl mt-1">
-            <span ref="projectSubmittedRef">{{ projectSubmitted }}</span>
-            {{ projectSubmitted ?? 0 > 1 ? "submissions" : "submission" }}
-          </h2>
-          <button class="btn mt-6" @click="goTo">Submit Project</button>
-        </div>
-        <div class="mt-12 flex flex-col items-center text-center" v-else>
-          <h1 class="text-xl sm:text-3xl">Thank you for Partipating!</h1>
-          <p class="mt-2 text-light-900 text-center">
-            Stay tuned for the Medal Ceremony <br />
-            You can edit your submission here before too late!
-          </p>
-          <div class="flex items-center mt-4" id="edit">
-            <input
-              class="!rounded-r-none"
-              type="text"
-              disabled
-              v-model="localStorageSubmission"
-            />
-            <button @click="copyLink" class="btn !rounded-l-none !p-4 mt-2">
-              <div class="i-mdi:content-copy"></div>
-            </button>
-          </div>
-        </div>
       </section>
-
-      <section
-        v-if="!submitted && !isExpired"
-        ref="submitTarget"
-        class="max-w-[960px] mt-12 flex flex-col lg:flex-row h-full md:px-4 xl:px-0 mx-auto"
-      >
-        <div
-          class="flex flex-col flex-col-reverse lg:w-1/2 bg-dark-500 bg-opacity-20 rounded-2xl md:flex-row items-center"
-        >
-          <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-            <h1
-              class="text-2xl sm:text-3xl text-white text-center md:text-left"
-            >
-              Checklist
-            </h1>
-
-            <p class="mt-4 md:text-lg">
-              README in GitHub (or similar) should include:
-            </p>
-            <ul class="mt-2 list-disc ml-4 text-sm md:text-base text-light-900">
-              <li>link to hosted demo (if applicable)</li>
-              <li>
-                list of team members github handles (and twitter if they have
-                one) - any demo videos, instructions, or memes
-              </li>
-              <li>
-                a brief description of how you used Supabase:
-                <ul class="list-circle ml-4">
-                  <li>to store data?</li>
-                  <li>realtime?</li>
-                  <li>auth?</li>
-                  <li>storage?</li>
-                </ul>
-              </li>
-              <li>
-                any other info you want the judges to know
-                (motivations/ideas/process)
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div
-          class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-dark-500 bg-opacity-20 rounded-2xl md:flex-row items-center"
-        >
-          <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
-            <h1
-              class="text-2xl sm:text-3xl text-white text-center md:text-left"
-            >
-              Rules
-            </h1>
-            <ul class="mt-4 list-disc ml-4 text-sm md:text-base text-light-900">
-              <li>
-                Team size 1-5 (all team members on winning teams will receive a
-                prize)
-              </li>
-              <li>You cannot be in multiple teams</li>
-              <li>
-                All design elements, code, etc. for your project/feature must be
-                created during the event
-              </li>
-              <li>
-                All entries must be Open Source (link to source code required in
-                entry)
-              </li>
-              <li>Must use Supabase in some capacity</li>
-              <li>Can be any language or framework</li>
-              <li>
-                You can continue to make updates to your project after the
-                submission deadline, but there is no guarantee that the judges
-                will see additions made after the submission time.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section
-        v-if="!submitted && !isExpired"
-        class="max-w-[960px] mx-auto w-full flex justify-center"
-      >
-        <FormHackathon
-          @submit="completed"
-          :defaultCategories="['Flutter Hackathon']"
-        ></FormHackathon>
-      </section>
+      <div v-for="(winners, key) of winnerGroup">
+        <h2 class="mt-12 mb-4 text-3xl">{{ key }}</h2>
+        <ul class="grid lg:grid-cols-2 gap-6 xl:gap-12 p-0 m-0 w-full">
+          <li v-for="(winner, index) in winners"
+            class="mb-6 w-full h-max relative p-6 xl:p-12 rounded-3xl bg-dark-900 bg-opacity-20 overflow-hidden hover:scale-102 transition duration-700">
+            <NuxtLink :to="`/p/${winner.slug}`">
+              <div class="flex flex-col">
+                <h5 class="text-2xl md:text-3xl">
+                  <span> {{ index === 0 ? "🥇" : "🥈" }} </span> {{ winner.title }}
+                </h5>
+                <h6 class="text-sm text-light-900 mt-1">{{ winner.twitter }}</h6>
+              </div>
+              <img class="rounded-2xl mt-6" :alt="winner.title" :src="winner.images" />
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
+      <div class="card-grid mt-12">
+        <Card v-for="item in data" :key="item.id?.toString()" :item="item"></Card>
+      </div>
     </main>
   </div>
 </template>
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-violet-800 hover:bg-violet-900 opacity-100 rounded-xl font-normal text-base border-2 border-violet-800 hover:border-white shadow hover:shadow-xl;
+  @apply bg-violet-800 hover: bg-violet-900 opacity-100 rounded-xl font-normal text-base border-2 border-violet-800 hover:border-white shadow hover:shadow-xl;
 }
 </style>
