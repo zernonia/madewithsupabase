@@ -1,0 +1,11 @@
+{
+  "extends": "@antfu",
+  "rules": {
+    "vue/valid-v-for": "warn",
+    "vue/valid-v-on": "warn",
+    "vue/require-v-for-key": "warn",
+    // TODO
+    "vue/require-valid-default-prop": "warn",
+    "vue/no-mutating-props": "warn"
+  }
+}

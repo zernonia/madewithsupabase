@@ -2,8 +2,8 @@
   "name": "made-with-supabase",
   "version": "1.0.0",
   "description": "A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!",
-  "license": "MIT",
   "author": "zernonia",
+  "license": "MIT",
   "scripts": {
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -11,13 +11,9 @@
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
     "codegen": "supabase gen types typescript --project-id dohemiycqebeipbvsvnr > ./types/database.ts",
-    "upgrade:nuxt": "nuxi upgrade --force"
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": false
+    "upgrade:nuxt": "nuxi upgrade --force",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.12.1",
@@ -34,6 +30,7 @@
     "vue3-toastify": "^0.1.6"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.39.3",
     "@iconify/json": "^2.2.41",
     "@nuxt/image-edge": "^1.0.0-28001428.0aa03b6",
     "@nuxtjs/supabase": "^0.3.1",
@@ -48,9 +45,11 @@
     "@unocss/reset": "^0.50.6",
     "@unocss/transformer-directives": "^0.50.6",
     "@vueuse/nuxt": "^9.13.0",
+    "eslint": "^8.41.0",
     "nuxt": "^3.5.0",
     "nuxt-lego": "^0.0.3",
     "satori": "^0.0.44",
+    "typescript": "^5.0.4",
     "v-satori": "^0.1.6"
   }
 }
