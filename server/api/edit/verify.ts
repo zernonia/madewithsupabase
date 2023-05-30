@@ -1,4 +1,4 @@
-import { useSupabaseServer } from "~~/composables/supabase"
+import { useSupabaseServer } from '~~/composables/supabase'
 
 export default defineEventHandler(async (event) => {
   const { email, slug } = await readBody(event)
@@ -6,11 +6,13 @@ export default defineEventHandler(async (event) => {
   let verify = false
 
   const { data } = await client
-    .from("products")
-    .select("*")
-    .eq("slug", slug)
+    .from('products')
+    .select('*')
+    .eq('slug', slug)
     .single()
 
-  data?.email == email ? (verify = true) : ""
+  if (data?.email === email)
+    verify = true
+
   return { verify }
 })

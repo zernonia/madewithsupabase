@@ -1,16 +1,16 @@
-<template>
-  <div class="prose break-words max-w-6xl" v-html="markedText"></div>
-</template>
-
 <script setup lang="ts">
-import { marked } from "marked"
+import { marked } from 'marked'
 
 const props = defineProps({
   text: {
     type: String,
-    default: "",
+    default: '',
   },
 })
 
 const markedText = computed(() => marked(props.text))
 </script>
+
+<template>
+  <div class="prose break-words max-w-6xl" v-html="markedText" />
+</template>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { PropType } from "vue"
+import type { PropType } from 'vue'
 
 defineProps({
   preset: {
-    type: String as PropType<"cover" | "card">,
-    default: "card",
+    type: String as PropType<'cover' | 'card'>,
+    default: 'card',
   },
 })
 
 const isBlur = ref(!process.server)
-const removeBlur = () => {
+function removeBlur() {
   isBlur.value = false
 }
 </script>

@@ -1,45 +1,45 @@
-import transformerDirective from "@unocss/transformer-directives"
-import { defineNuxtConfig } from "nuxt/config"
+import transformerDirective from '@unocss/transformer-directives'
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   app: {
     head: {
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
-      link: [{ rel: "icon", type: "image/svg", href: "/logo.svg" }],
+      link: [{ rel: 'icon', type: 'image/svg', href: '/logo.svg' }],
     },
-    layoutTransition: { name: "fade", mode: "out-in" },
+    layoutTransition: { name: 'fade', mode: 'out-in' },
     pageTransition: {
-      name: "fade",
-      mode: "out-in",
+      name: 'fade',
+      mode: 'out-in',
     },
   },
   modules: [
-    "@unocss/nuxt",
-    "@nuxt/image-edge",
-    "v-satori/nuxt",
-    "~~/modules/server-assets",
+    '@unocss/nuxt',
+    '@nuxt/image-edge',
+    'v-satori/nuxt',
+    '~~/modules/server-assets',
   ],
   image: {
     providers: {
       customProvider: {
-        name: "supabase", // optional value to overrider provider name
-        provider: "~/utils/image-provider", // Path to custom provider
+        name: 'supabase', // optional value to overrider provider name
+        provider: '~/utils/image-provider', // Path to custom provider
       },
     },
     presets: {
       cover: {
         modifiers: {
           width: 800,
-          resize: "contain",
+          resize: 'contain',
         },
       },
       card: {
         modifiers: {
           width: 400,
-          resize: "contain",
+          resize: 'contain',
         },
       },
     },
@@ -50,69 +50,69 @@ export default defineNuxtConfig({
     icons: true, // enabled `@unocss/preset-icons`,
     typography: {
       cssExtend: {
-        strong: {
-          color: "white",
-          fontWeight: "500",
+        'strong': {
+          color: 'white',
+          fontWeight: '500',
         },
-        code: {
-          "background-color": "#2d2d2d !important",
+        'code': {
+          'background-color': '#2d2d2d !important',
         },
-        "code::before": {
+        'code::before': {
           content: '""',
         },
-        "code::after": {
+        'code::after': {
           content: '""',
         },
-        pre: {
-          "background-color": "#2d2d2d !important",
+        'pre': {
+          'background-color': '#2d2d2d !important',
         },
-        "pre,code": {
-          "white-space": "pre-wrap",
+        'pre,code': {
+          'white-space': 'pre-wrap',
         },
-        hr: {
-          borderTop: "1px solid #2d2d2d",
+        'hr': {
+          borderTop: '1px solid #2d2d2d',
         },
-        a: {
-          color: "#d6d9dc",
+        'a': {
+          color: '#d6d9dc',
         },
-        "a:hover": {
-          color: "#10b981",
+        'a:hover': {
+          color: '#10b981',
         },
-        "ol > li::before": {
-          color: "#56524e",
+        'ol > li::before': {
+          color: '#56524e',
         },
-        "ul > li::before": {
-          color: "#56524e",
-          "background-color": "#56524e !important",
+        'ul > li::before': {
+          'color': '#56524e',
+          'background-color': '#56524e !important',
         },
-        h1: {
-          "font-size": "1.75rem",
+        'h1': {
+          'font-size': '1.75rem',
         },
-        h2: {
-          "font-size": "1.5rem",
+        'h2': {
+          'font-size': '1.5rem',
         },
       },
     },
     theme: {
       fontFamily: {
         main: [
-          "custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,  Arial, sans-serif",
+          'custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,  Arial, sans-serif',
         ],
       },
     },
-    transformers: [transformerDirective({ enforce: "pre" })], // enabled `@unocss/transformer-directives`,
+    transformers: [transformerDirective({ enforce: 'pre' })], // enabled `@unocss/transformer-directives`,
   },
 
   extends: [
-    "nuxt-lego",
+    'nuxt-lego',
   ],
 
   css: [
-    "@unocss/reset/tailwind.css",
-    "@/assets/main.css",
-    "swiper/css",
-    "swiper/css/navigation",
-    "swiper/css/pagination",
+    '@unocss/reset/tailwind.css',
+    '@/assets/main.css',
+    'swiper/css',
+    'swiper/css/navigation',
+    'swiper/css/pagination',
   ],
   runtimeConfig: {
     public: {
@@ -122,6 +122,6 @@ export default defineNuxtConfig({
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
   routeRules: {
-    "/**": { isr: 3600 }
-  }
+    '/**': { isr: 3600 },
+  },
 })

@@ -1,2 +1,2 @@
-export * from "./movePosition"
-export * from "./slugify"
+export * from './movePosition'
+export * from './slugify'

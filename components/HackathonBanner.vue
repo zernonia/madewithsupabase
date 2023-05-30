@@ -1,5 +1,6 @@
 <template>
   <NuxtLink
+    id="hacktober"
     class="
       relative
       overflow-hidden
@@ -20,7 +21,6 @@
       group
     "
     to="/hacktoberfest"
-    id="hacktober"
   >
     <div
       class="
@@ -36,7 +36,7 @@
         transform
         -rotate-40
       "
-    ></div>
+    />
     <div
       class="
         absolute
@@ -51,7 +51,7 @@
         transform
         -rotate-40
       "
-    ></div>
+    />
     <div
       class="
         absolute
@@ -66,7 +66,7 @@
         transform
         -rotate-40
       "
-    ></div>
+    />
     <div
       class="
         absolute
@@ -82,10 +82,14 @@
         transform
         -rotate-45
       "
-    ></div>
+    />
     <div class="relative">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl">Hacktoberfest</h1>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl">
+        Hacktoberfest
+      </h1>
     </div>
-    <button class="relative px-6 py-3 mt-2 md:mt-0 rounded-lg bg-white text-emerald-600">Announcement 🥇</button>
+    <button class="relative px-6 py-3 mt-2 md:mt-0 rounded-lg bg-white text-emerald-600">
+      Announcement 🥇
+    </button>
   </NuxtLink>
 </template>

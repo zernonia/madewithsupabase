@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { OnClickOutside } from "@vueuse/components"
+import { OnClickOutside } from '@vueuse/components'
 
 const { meta, name } = toRefs(useRoute())
 
@@ -18,7 +18,7 @@ watch(name, () => {
         :key="meta.noise_bg_color?.toString()"
         class="fixed top-0 left-0 w-screen h-screen noise-bg"
         :style="{ '--noise-bg-color': meta.noise_bg_color }"
-      ></div>
+      />
     </Transition>
 
     <OnClickOutside @trigger="isSideMenuOpen = false">
@@ -27,7 +27,7 @@ watch(name, () => {
         :class="[
           isSideMenuOpen ? 'translate-x-0 modal-open' : '-translate-x-full ',
         ]"
-      ></SideMenu>
+      />
     </OnClickOutside>
 
     <div
@@ -36,28 +36,30 @@ watch(name, () => {
     >
       <div class="mx-auto max-w-7xl mb-6 md:my-24">
         <div class="md:hidden flex justify-between">
-          <button @click="isSideMenuOpen = true" class="md:hidden my-6">
-            <div class="i-mdi-menu text-3xl"></div>
+          <button class="md:hidden my-6" @click="isSideMenuOpen = true">
+            <div class="i-mdi-menu text-3xl" />
           </button>
 
           <NuxtLink to="/">
-            <img class="w-20 h-20" src="@/assets/logo.svg" alt="" />
+            <img class="w-20 h-20" src="@/assets/logo.svg" alt="">
           </NuxtLink>
         </div>
 
         <Transition name="fade" appear mode="out-in">
           <div
-            class="flex items-center gap-4"
             :key="meta.title?.toString() || ''"
+            class="flex items-center gap-4"
           >
-            <h1 class="text-3xl md:text-4xl">{{ meta.title }}</h1>
+            <h1 class="text-3xl md:text-4xl">
+              {{ meta.title }}
+            </h1>
             <button v-if="meta.back" @click="$router.go(-1)">
-              <div class="i-mdi-arrow-left mt-1 text-2xl"></div>
+              <div class="i-mdi-arrow-left mt-1 text-2xl" />
             </button>
           </div>
         </Transition>
 
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </div>

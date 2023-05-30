@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { PropType } from "vue"
+import type { PropType } from 'vue'
 
 const props = defineProps({
   modelValue: Object as PropType<{ handler: string; email: string }[]>,
 })
 
-const emits = defineEmits(["update:modelValue"])
+const emits = defineEmits(['update:modelValue'])
 
-const addMember = () => {
-  emits("update:modelValue", [
+function addMember() {
+  emits('update:modelValue', [
     ...(props.modelValue ?? []),
-    { handler: "", email: "" },
+    { handler: '', email: '' },
   ])
 }
 
-const removeMember = (index: number) => {
-  if (!props.modelValue?.length) return
+function removeMember(index: number) {
+  if (!props.modelValue?.length)
+    return
   props.modelValue.splice(index, 1)
-  emits("update:modelValue", props.modelValue)
+  emits('update:modelValue', props.modelValue)
 }
 </script>
 
@@ -34,25 +35,25 @@ const removeMember = (index: number) => {
     >
       <div class="flex items-center w-full md:w-1/2 md:mr-4">
         <button class="text-xl mr-2" @click.prevent="removeMember(index)">
-          <div class="i-mdi-close"></div>
+          <div class="i-mdi-close" />
         </button>
         <span class="text-xl mr-2">@</span>
         <input
+          v-model="member.handler"
           class="w-full"
           name="twitter"
           type="text"
-          v-model="member.handler"
           placeholder="user_handler"
-        />
+        >
       </div>
       <div class="w-full md:w-1/2 pl-13 md:pl-0">
         <input
+          v-model="member.email"
           name="email"
           class="w-full"
           type="text"
-          v-model="member.email"
           placeholder="user@gmail.com"
-        />
+        >
       </div>
     </div>
   </div>
@@ -62,7 +63,7 @@ const removeMember = (index: number) => {
     :disabled="modelValue && modelValue?.length > 3"
     @click.prevent="addMember"
   >
-    <div class="i-mdi-plus mr-2"></div>
+    <div class="i-mdi-plus mr-2" />
     Add a member
   </button>
 </template>

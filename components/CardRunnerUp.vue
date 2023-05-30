@@ -1,3 +1,12 @@
+<script setup lang="ts">
+defineProps({
+  obj: {
+    type: Object as any,
+    required: true,
+  },
+})
+</script>
+
 <template>
   <div
     class="w-full mt-8 md:mt-16 flex flex-col-reverse sm:flex-row items-center justify-center relative"
@@ -5,9 +14,15 @@
     <div
       class="w-full sm:w-1/2 sm:mr-4 md:mr-12 flex flex-col sm:items-end transform -translate-y-8 sm:translate-y-0 bg-dark-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl z-10"
     >
-      <h2 class="text-2xl md:text-4xl text-gray-300">Runner up</h2>
-      <h5 class="text-3xl md:text-5xl mt-2 md:text-right">{{ obj.title }}</h5>
-      <h6 class="md:text-xl">{{ obj.subtitle }} ―</h6>
+      <h2 class="text-2xl md:text-4xl text-gray-300">
+        Runner up
+      </h2>
+      <h5 class="text-3xl md:text-5xl mt-2 md:text-right">
+        {{ obj.title }}
+      </h5>
+      <h6 class="md:text-xl">
+        {{ obj.subtitle }} ―
+      </h6>
     </div>
     <div class="w-full sm:w-1/2">
       <div class="group relative flex justify-center w-full max-w-120">
@@ -43,12 +58,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps({
-  obj: {
-    type: Object as any,
-    required: true,
-  },
-})
-</script>

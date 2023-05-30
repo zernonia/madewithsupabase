@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import removeMd from "remove-markdown"
-import SiteLogo from "@/assets/logo.svg"
+import removeMd from 'remove-markdown'
+import SiteLogo from '@/assets/logo.svg'
 
 const prop = defineProps({
   item: {
@@ -13,15 +13,15 @@ const trimCategories = computed(() => {
   return prop.item.categories.slice(0, 6)
 })
 
-const cleanse = (text: string) => {
-  let t = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, "")
+function cleanse(text: string) {
+  const t = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
   return removeMd(t).slice(0, 140)
 }
 
-const separator = (number: number) => {
-  var str = number.toString().split(".")
-  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-  return str.join(".")
+function separator(number: number) {
+  const str = number.toString().split('.')
+  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return str.join('.')
 }
 </script>
 
@@ -33,24 +33,26 @@ const separator = (number: number) => {
       <div class="flex flex-col rounded-2xl h-full shadow-2xl">
         <div class="relative flex-shrink-0 overflow-hidden">
           <CompressedImage
+            v-if="item.images[0]"
             class="aspect-16/9 rounded-2xl"
             :alt="item.title"
-            v-if="item.images[0]"
             :src="item.images[0]"
           />
           <div
-            class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
             v-else
+            class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
           >
             <img
               class="w-24 h-24 opacity-50 filter grayscale"
               :src="SiteLogo"
               alt=""
-            />
+            >
           </div>
         </div>
         <div class="p-4 sm:p-6 h-full flex flex-col justify-between">
-          <h1 class="text-xl">{{ item.title }}</h1>
+          <h1 class="text-xl">
+            {{ item.title }}
+          </h1>
           <p
             class="break-words text-light-900 flex-1 my-4 leading-5 line-clamp-3 text-sm"
           >
