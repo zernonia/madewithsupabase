@@ -47,7 +47,7 @@
     "@vueuse/nuxt": "^9.13.0",
     "eslint": "^8.41.0",
     "nuxt": "^3.5.0",
-    "nuxt-lego": "^0.0.3",
+    "nuxt-lego": "^0.0.9",
     "satori": "^0.0.44",
     "typescript": "^5.0.4",
     "v-satori": "^0.1.6"

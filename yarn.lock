@@ -5524,10 +5524,10 @@ nuxt-icon@^0.4.0:
     "@iconify/vue" "^4.1.1"
     "@nuxt/kit" "^3.4.2"
 
-nuxt-lego@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/nuxt-lego/-/nuxt-lego-0.0.3.tgz#15303e47c9645e89796b5dc3a1d47bc18f4be1ac"
-  integrity sha512-u+2jwWfjMAKhsvt/e5arQ11iP2qP5qK4ZS/9/GtPzwVaJ4cf5gtw8NzXIvg/Zi51n74LFrVBglJJXygPrm/lMQ==
+nuxt-lego@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/nuxt-lego/-/nuxt-lego-0.0.9.tgz#27cb1cb0f1410e692b9c1dc83ea6f40caea070b7"
+  integrity sha512-kund7uR8TMctEL0YMmZWdaSdKnKe+kxX6ZBqb8rTq4RS7J1lyI0ijenyYGUrsDcbQ4PchpJOem9H2SYad+iDqQ==
   dependencies:
     "@vueuse/core" "^10.1.0"
     "@vueuse/nuxt" "^10.1.0"
