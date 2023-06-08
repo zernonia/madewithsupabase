@@ -28,7 +28,7 @@ function separator(number: number) {
 <template>
   <NuxtLink :to="`/p/${item.slug}`" class="h-full">
     <div
-      class="bg-dark-500 bg-opacity-20 h-full rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
+      class="bg-gray-500 bg-opacity-20 h-full rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
     >
       <div class="flex flex-col rounded-2xl h-full shadow-2xl">
         <div class="relative flex-shrink-0 overflow-hidden">
@@ -54,12 +54,12 @@ function separator(number: number) {
             {{ item.title }}
           </h1>
           <p
-            class="break-words text-light-900 flex-1 my-4 leading-5 line-clamp-3 text-sm"
+            class="break-words text-white flex-1 my-4 leading-5 line-clamp-3 text-sm"
           >
             {{ cleanse(item.description) }}
           </p>
           <!-- <div class="flex justify-between items-center">
-          <div class="flex items-center flex-shrink-0 text-light-900">
+          <div class="flex items-center flex-shrink-0 text-white">
             <p class="mr-1">{{ separator(item.views) }}</p>
             <div class="i-ic:twotone-ads-click"></div>
           </div>

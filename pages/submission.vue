@@ -15,7 +15,7 @@ definePageMeta({
       <h1 class="text-5xl">
         Thank you for submitting!
       </h1>
-      <p class="text-light-900">
+      <p class="text-white">
         I'm trying my best to get this done ASAP!
       </p>
     </div>

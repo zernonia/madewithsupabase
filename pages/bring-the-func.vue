@@ -77,7 +77,7 @@ definePageMeta({
     <section class="md:py-6 px-4 flex flex-col items-center">
       <a
         href="/"
-        class="fixed left-0 top-10 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
+        class="fixed left-0 top-10 px-4 md:px-6 py-4 rounded-r-full bg-gray-300"
       >
         <i-mdi:chevron-left />
       </a>

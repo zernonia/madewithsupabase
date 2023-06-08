@@ -13,7 +13,7 @@
         rel="noopener"
         href="https://twitter.com/madewifsupabase"
         target="_blank"
-        class="p-3 rounded-md flex items-center hover:bg-dark-300"
+        class="p-3 rounded-md flex items-center hover:bg-gray-300"
       ><div class="i-mdi:twitter w-6 h-6" /></a>
       <NuxtLink class="btn !ml-4 hidden md:block" to="/submission">
         Submit a Project

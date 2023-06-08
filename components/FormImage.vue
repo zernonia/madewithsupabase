@@ -65,11 +65,11 @@ function changePosition(index: number, direction: 'left' | 'right') {
     <div
       v-if="modelValue.length"
       id="form-image"
-      class="w-full h-full flex overflow-hidden overflow-x-auto bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
+      class="w-full h-full flex overflow-hidden overflow-x-auto bg-gray-500 bg-opacity-25 border-b-4 border-dark border-gray-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
     >
       <div
         tabindex="0"
-        class="rounded-xl h-64 w-64 text-light-900 cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-dark-500 border-b-4 outline-none ring-1 ring-transparent"
+        class="rounded-xl h-64 w-64 text-white cursor-pointer flex flex-shrink-0 flex-col items-center justify-center border-gray-500 border-b-4 outline-none ring-1 ring-transparent"
         @keypress.enter="target?.click()"
         @click="target?.click()"
       >
@@ -88,7 +88,7 @@ function changePosition(index: number, direction: 'left' | 'right') {
         v-for="(blob, index) in modelValue"
         class="ml-2 flex-shrink-0 relative hover:children:block"
       >
-        <span class="absolute bottom-2 left-2 px-2 rounded-xl bg-dark-200">{{
+        <span class="absolute bottom-2 left-2 px-2 rounded-xl bg-gray-200">{{
           index === 0 ? "Cover" : index + 1
         }}</span>
         <div
@@ -107,14 +107,14 @@ function changePosition(index: number, direction: 'left' | 'right') {
           >
             <button
               v-if="index !== 0"
-              class="p-0.5 rounded-xl bg-dark-200 hover:bg-dark-500"
+              class="p-0.5 rounded-xl bg-gray-200 hover:bg-gray-500"
               @click.prevent="changePosition(index, 'left')"
             >
               <div class="i-ic:baseline-arrow-left w-8 h-8" />
             </button>
             <button
               v-if="index !== modelValue.length - 1"
-              class="p-0.5 rounded-xl bg-dark-200 hover:bg-dark-500"
+              class="p-0.5 rounded-xl bg-gray-200 hover:bg-gray-500"
               @click.prevent="changePosition(index, 'right')"
             >
               <div class="i-ic:baseline-arrow-right w-8 h-8" />
@@ -123,7 +123,7 @@ function changePosition(index: number, direction: 'left' | 'right') {
         </div>
         <div
           v-else
-          class="absolute w-full h-full center bg-dark-900 bg-opacity-25"
+          class="absolute w-full h-full center bg-gray-900 bg-opacity-25"
         >
           <button
             class="flex flex-col items-center justify-center w-full h-full"
@@ -139,7 +139,7 @@ function changePosition(index: number, direction: 'left' | 'right') {
       v-else
       id="form-image"
       tabindex="0"
-      class="cursor-pointer w-full flex flex-col items-center justify-center bg-dark-500 bg-opacity-25 border-b-4 border-dark border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
+      class="cursor-pointer w-full flex flex-col items-center justify-center bg-gray-500 bg-opacity-25 border-b-4 border-dark border-gray-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl rounded-2xl"
       @keypress.enter="target?.click()"
       @click="target?.click()"
     >

@@ -44,7 +44,7 @@ defineProps({
       </div>
     </div>
     <div
-      class="w-full sm:w-1/2 sm:ml-4 transform -translate-y-8 sm:translate-y-0 md:ml-12 bg-dark-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl"
+      class="w-full sm:w-1/2 sm:ml-4 transform -translate-y-8 sm:translate-y-0 md:ml-12 bg-gray-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl"
     >
       <h2 class="text-2xl md:text-4xl text-amber-300">
         Winner

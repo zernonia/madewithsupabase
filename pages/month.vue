@@ -20,7 +20,7 @@ definePageMeta({
     <div class="flex items-center text-xl w-full">
       <NuxtLink
         v-for="item in availableMonth"
-        class="m-1 px-4 py-2 text-sm md:text-base bg-dark-500 bg-opacity-50 hover:bg-white hover:text-dark transition rounded-lg inline-flex items-center justify-center"
+        class="m-1 px-4 py-2 text-sm md:text-base bg-gray-500 bg-opacity-50 hover:bg-white hover:text-dark transition rounded-lg inline-flex items-center justify-center"
         :class="{
           '!bg-white text-dark': `${item.value}` === $route.params.slug,
         }"

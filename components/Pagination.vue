@@ -49,7 +49,7 @@ const pageArray = computed(() => {
     <div>
       <NuxtLink
         v-if="page !== 0"
-        class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
+        class="text-gray-300 hover:text-gray-300 rounded-lg transition ease-in-out"
         :to="{
           query: { page },
           params: nuxtLinkParams,
@@ -62,7 +62,7 @@ const pageArray = computed(() => {
     <div class="flex flex-wrap justify-center">
       <NuxtLink
         v-for="i in pageArray"
-        class="border-4 border-dark-300 hover:border-gray-300 mr-2 mb-2 w-12 h-12 inline-flex items-center justify-center rounded-lg transition ease-in-out"
+        class="border-4 border-gray-300 hover:border-gray-300 mr-2 mb-2 w-12 h-12 inline-flex items-center justify-center rounded-lg transition ease-in-out"
         :class="[page === i - 1 ? ' border-gray-300' : '']"
         :to="{
           query: { page: i },
@@ -75,7 +75,7 @@ const pageArray = computed(() => {
     <div>
       <NuxtLink
         v-if="page !== maxPage - 1"
-        class="text-dark-300 hover:text-gray-300 rounded-lg transition ease-in-out"
+        class="text-gray-300 hover:text-gray-300 rounded-lg transition ease-in-out"
         :to="{
           query: { page: page + 2 },
           params: nuxtLinkParams,

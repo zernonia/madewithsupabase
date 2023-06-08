@@ -9,7 +9,7 @@ onMounted(() => (isBlur.value = false))
     <NuxtLink
       to="https://supabase.com/launch-week"
       target="_blank"
-      class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
+      class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl border border-gray-100 hover:border-gray-50 shadow-none hover:shadow-xl shadow-gray-300 overflow-hidden"
     >
       <img
         src="https://supabase.com/images/launchweek/seven/launch-week-7-teaser.jpg"

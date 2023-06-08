@@ -6,7 +6,7 @@ defineProps<{ id: string }>()
   <LegoTweet
     v-slot="{ url }"
     :tweet-id="id"
-    class="max-w-[550px] h-max bg-dark-500 p-4 rounded-xl border border-dark-600"
+    class="max-w-[550px] h-max bg-gray-500 p-4 rounded-xl border border-gray-600"
   >
     <NuxtLink target="_blank" :to="url">
       <div class="flex justify-between">

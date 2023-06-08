@@ -41,7 +41,7 @@ watch(page, (n, o) => {
       <transition name="fade" mode="out-in">
         <div
           v-if="pending"
-          class="absolute top-0 left-0 w-full h-full flex justify-center bg-dark-900"
+          class="absolute top-0 left-0 w-full h-full flex justify-center bg-gray-900"
         >
           <SVGCircle class="mt-48 animate-ping" />
         </div>

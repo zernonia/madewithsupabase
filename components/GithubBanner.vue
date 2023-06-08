@@ -9,7 +9,7 @@ const { data } = await useAsyncData(
 <template>
   <a
     rel="noopener"
-    class="bg-white rounded-lg border border-gray-500 p-2 text-dark-900 flex items-center"
+    class="bg-white rounded-lg border border-gray-500 p-2 text-gray-900 flex items-center"
     style="font-family: Arial, Helvetica, sans-serif; height: 54px"
     href="https://github.com/zernonia/madewithsupabase"
     target="_blank"

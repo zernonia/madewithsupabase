@@ -38,7 +38,7 @@ function remove(index: number) {
     <ul class="flex flex-wrap items-center pl-0">
       <div
         v-for="(item, index) in modelValue"
-        class="tag-btn flex items-center px-4 py-2 mt-2 mr-2 rounded-md cursor-pointer bg-dark-400 hover:bg-dark-500"
+        class="tag-btn flex items-center px-4 py-2 mt-2 mr-2 rounded-md cursor-pointer bg-gray-400 hover:bg-gray-500"
         @click.prevent="remove(index)"
       >
         <p>
@@ -57,7 +57,7 @@ function remove(index: number) {
         @keydown.enter="append"
         @blur="append"
       >
-      <p class="ml-4 text-light-900">
+      <p class="ml-4 text-white">
         ← Press 'Enter' to Add
       </p>
     </div>

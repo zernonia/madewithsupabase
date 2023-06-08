@@ -11,7 +11,7 @@ watch(name, () => {
 
 <template>
   <div
-    class="bg-dark-900 text-light-200 h-full w-full min-h-screen flex justify-center"
+    class="bg-gray-900 text-white h-full w-full min-h-screen flex justify-center"
   >
     <Transition mode="out-in" name="fade">
       <div

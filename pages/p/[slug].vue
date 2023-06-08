@@ -123,7 +123,7 @@ onMounted(() => {
 
           <div
             v-if="data.images?.length"
-            class="mt-6 bg-dark-900 bg-opacity-20 py-6 rounded-3xl"
+            class="mt-6 bg-gray-900 bg-opacity-20 py-6 rounded-3xl"
           >
             <MySlider :images="data.images ?? []" />
           </div>
@@ -137,7 +137,7 @@ onMounted(() => {
             <div class="flex flex-wrap items-center mt-8">
               <div
                 v-for="category in data.categories"
-                class="text-sm rounded-md bg-dark-400 mr-2 mb-2"
+                class="text-sm rounded-md bg-gray-400 mr-2 mb-2"
               >
                 <router-link :to="`/tag/${category}`">
                   <p class="px-4 py-2">
@@ -166,7 +166,7 @@ onMounted(() => {
             No project found...
           </h1>
           <button
-            class="inline-flex items-center text-light-900 hover:text-green-500 outline-none transition"
+            class="inline-flex items-center text-white hover:text-green-500 outline-none transition"
             @click="$router.push('/')"
           >
             <div class="i-mdi:menu-left mr-2 w-6 h-6" />

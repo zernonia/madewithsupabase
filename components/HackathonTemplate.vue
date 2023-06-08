@@ -71,7 +71,7 @@ definePageMeta({
         <section class="md:py-6 px-4 flex flex-col items-center">
           <NuxtLink
             to="/"
-            class="fixed left-0 top-7 px-4 md:px-6 py-3 rounded-r-full bg-dark-300"
+            class="fixed left-0 top-7 px-4 md:px-6 py-3 rounded-r-full bg-gray-300"
           >
             <div class="i-mdi:chevron-left text-2xl" />
           </NuxtLink>
@@ -80,7 +80,7 @@ definePageMeta({
             <NuxtLink
               to="https://supabase.com/blog/launch-week-6-hackathon"
               target="_blank"
-              class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-dark-100 hover:border-dark-50 shadow-none hover:shadow-xl shadow-dark-300 overflow-hidden"
+              class="relative h-48 sm:h-80 lg:h-100 w-full flex flex-col justify-center items-center transition-all rounded-2xl md:rounded-3xl relative border border-gray-100 hover:border-gray-50 shadow-none hover:shadow-xl shadow-gray-300 overflow-hidden"
             >
               <img
                 src="~~/assets/hackathon-lw6.jpg"
@@ -93,7 +93,7 @@ definePageMeta({
 
           <div
             v-if="!submitted"
-            class="mt-12 md:mt-18 text-center text-dark-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
+            class="mt-12 md:mt-18 text-center text-gray-50 font-normal text-xl sm:text-2xl flex flex-col sm:flex-row items-center"
           >
             <transition name="slide-fade" mode="out-in">
               <p v-if="timeOriginal">
@@ -130,7 +130,7 @@ definePageMeta({
             <h1 class="text-xl sm:text-3xl">
               Thank you for Partipating!
             </h1>
-            <p class="mt-2 text-light-900">
+            <p class="mt-2 text-white">
               Stay tuned for the Medal Ceremony
             </p>
           </div>
@@ -147,7 +147,7 @@ definePageMeta({
             <h1 class="text-xl sm:text-3xl">
               Thank you for Partipating!
             </h1>
-            <p class="mt-2 text-light-900 text-center">
+            <p class="mt-2 text-white text-center">
               Stay tuned for the Medal Ceremony <br>
               You can edit your submission here before too late!
             </p>
@@ -172,11 +172,11 @@ definePageMeta({
           class="mt-12 flex flex-col lg:flex-row h-full px-4 md:px-8 xl:px-0 mx-auto"
         >
           <div
-            class="flex flex-col flex-col-reverse lg:w-1/2 bg-gradient-to-br from-dark-400 to-dark-800 border border-dark-300 rounded-2xl md:flex-row items-center"
+            class="flex flex-col flex-col-reverse lg:w-1/2 bg-gradient-to-br from-gray-400 to-gray-800 border border-gray-300 rounded-2xl md:flex-row items-center"
           >
             <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
               <h1
-                class="text-2xl sm:text-3xl text-dark-50 text-center md:text-left"
+                class="text-2xl sm:text-3xl text-gray-50 text-center md:text-left"
               >
                 Checklist
               </h1>
@@ -185,7 +185,7 @@ definePageMeta({
                 README in GitHub (or similar) should include:
               </p>
               <ul
-                class="mt-2 list-disc ml-4 text-sm md:text-base text-light-900"
+                class="mt-2 list-disc ml-4 text-sm md:text-base text-white"
               >
                 <li>link to hosted demo (if applicable)</li>
                 <li>
@@ -210,16 +210,16 @@ definePageMeta({
           </div>
 
           <div
-            class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-gradient-to-br from-dark-400 to-dark-800 border border-dark-300 rounded-2xl md:flex-row items-center"
+            class="mt-12 lg:mt-0 lg:ml-8 flex flex-col lg:w-1/2 bg-gradient-to-br from-gray-400 to-gray-800 border border-gray-300 rounded-2xl md:flex-row items-center"
           >
             <div class="p-4 sm:p-8 rounded-2xl flex flex-col">
               <h1
-                class="text-2xl sm:text-3xl text-dark-50 text-center md:text-left"
+                class="text-2xl sm:text-3xl text-gray-50 text-center md:text-left"
               >
                 Rules
               </h1>
               <ul
-                class="mt-4 list-disc ml-4 text-sm md:text-base text-light-900"
+                class="mt-4 list-disc ml-4 text-sm md:text-base text-white"
               >
                 <li>
                   Team size 1-5 (all team members on winning teams will receive
@@ -265,23 +265,23 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-dark-400 rounded-full font-normal text-base border-1 border-dark-300;
+  @apply bg-gray-400 rounded-full font-normal text-base border-1 border-gray-300;
 }
 :deep(input),
 :deep(textarea) {
   border-radius: 0.5rem;
-  @apply border-1 border-dark-300 focus:border-dark-50  focus:ring-dark-50;
+  @apply border-1 border-gray-300 focus:border-gray-50  focus:ring-gray-50;
 }
 :deep(form > div:nth-child(9) > div > div) {
   border-radius: 0.5rem;
-  @apply focus:border-1 focus:!border-dark-50 ring-none;
+  @apply focus:border-1 focus:!border-gray-50 ring-none;
 }
 :deep(form > div:nth-child(9) > div > div > div:nth-child(1)) {
   border-radius: 0.5rem;
-  @apply border-1 focus:!border-dark-50 ring-none;
+  @apply border-1 focus:!border-gray-50 ring-none;
 }
 :deep(#form) {
-  @apply font-normal text-2xl sm:text-3xl text-light-900;
+  @apply font-normal text-2xl sm:text-3xl text-white;
 }
 :deep(#edit > input) {
   @apply rounded-full min-w-64;

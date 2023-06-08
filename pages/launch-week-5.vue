@@ -28,7 +28,7 @@ const { data, pending, refresh } = useLazyAsyncData(
         <section class="md:py-6 px-4 flex flex-col items-center">
           <NuxtLink
             to="/"
-            class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-dark-300"
+            class="fixed left-0 top-5 px-4 md:px-6 py-4 rounded-r-full bg-gray-300"
           >
             <div class="i-mdi:chevron-left" />
           </NuxtLink>
@@ -39,7 +39,7 @@ const { data, pending, refresh } = useLazyAsyncData(
               target="_blank"
             >
               <img
-                class="w-full object-cover object-top max-w-screen-md rounded-xl border-3 border-yellow-400 transform scale-100 hover:scale-102 transition-all"
+                class="w-full object-cover object-top max-w-screen-md rounded-xl border-[3px] border-yellow-400 transform scale-100 hover:scale-102 transition-all"
                 src="~~/assets/launch-week-5-hackathon.jpeg"
                 alt="Supabase Launch Week 5 Hackathon"
               >

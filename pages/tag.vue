@@ -78,7 +78,7 @@ definePageMeta({
           <div class="i-eva:search-fill absolute left-4" />
           <input
             v-model="searchTag"
-            class="!placeholder-light-50 !focus:placeholder-dark-50 w-full !pl-12"
+            class="!placeholder-white !focus:placeholder-gray-50 w-full !pl-12"
             type="text"
             :placeholder="searchPlaceholder"
             @focus="isSelectionOpen = true"
@@ -86,18 +86,18 @@ definePageMeta({
           >
           <div
             v-if="isSelectionOpen"
-            class="z-100 absolute w-full max-h-64 overflow-y-auto top-full left-0 flex flex-wrap rounded-lg bg-dark-500 backdrop-filter backdrop-blur-md bg-opacity-60"
+            class="z-100 absolute w-full max-h-64 overflow-y-auto top-full left-0 flex flex-wrap rounded-lg bg-gray-500 backdrop-filter backdrop-blur-md bg-opacity-60"
           >
             <h5
               v-if="searchSupabaseTags.length"
-              class="px-4 pt-5 pb-3 uppercase text-sm text-light-900 opacity-50"
+              class="px-4 pt-5 pb-3 uppercase text-sm text-white opacity-50"
             >
               Supabase
             </h5>
             <router-link
               v-for="tag in searchSupabaseTags"
-              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-dark-500 focus:bg-dark-500 transition outline-none ring-none"
-              :class="[$route.params.name === tag.tags ? 'bg-dark-500' : '']"
+              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-none"
+              :class="[$route.params.name === tag.tags ? 'bg-gray-500' : '']"
               :to="`/tag/${tag.tags}`"
             >
               <div>
@@ -106,14 +106,14 @@ definePageMeta({
             </router-link>
             <h5
               v-if="searchTags.length"
-              class="px-4 pt-5 pb-3 uppercase text-sm text-light-900 opacity-50"
+              class="px-4 pt-5 pb-3 uppercase text-sm text-white opacity-50"
             >
               Tagging
             </h5>
             <router-link
               v-for="tag in searchTags"
-              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-dark-500 focus:bg-dark-500 transition outline-none ring-none"
-              :class="[$route.params.name === tag.tags ? 'bg-dark-500' : '']"
+              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-none"
+              :class="[$route.params.name === tag.tags ? 'bg-gray-500' : '']"
               :to="`/tag/${tag.tags}`"
             >
               <div>

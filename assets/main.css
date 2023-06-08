@@ -17,7 +17,7 @@
 
 body {
   overflow-x: hidden;
-  @apply font-main bg-dark-900;
+  @apply font-main bg-gray-900;
 }
 
 button {
@@ -41,7 +41,7 @@ input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
-  @apply mt-2 px-6 py-3 bg-dark-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-warm-gray-500 border-b-4 border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
+  @apply mt-2 px-6 py-3 bg-gray-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-gray-500 border-b-4 border-gray-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
 }
 
 input[type="color"] {
@@ -72,7 +72,7 @@ input[type="checkbox"]:checked {
 
 code,
 .code {
-  @apply font-mono text-sm uppercase bg-dark-300 px-4 py-1 rounded;
+  @apply font-mono text-sm uppercase bg-gray-300 px-4 py-1 rounded;
 }
 
 /* width */
@@ -97,16 +97,16 @@ code,
 }
 
 .btn {
-  @apply px-6 py-2 rounded-lg bg-emerald-500 border-3 border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
+  @apply px-6 py-2 rounded-lg bg-emerald-500 border-[3px] border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
 }
 
 .btn-pale {
   display: inline-flex;
-  @apply px-6 py-2 rounded-lg border-3 border-light-900  transition hover:border-gray-400 focus:border-gray-400 focus:outline-none outline-none;
+  @apply px-6 py-2 rounded-lg border-[3px] border-white  transition hover:border-gray-400 focus:border-gray-400 focus:outline-none outline-none;
 }
 
 .btn-icon {
-  @apply p-3 flex rounded-lg bg-dark-800 border-2 border-dark-600 cursor-pointer opacity-50 hover:opacity-100 hover:bg-dark-600 focus:outline-none transition duration-100;
+  @apply p-3 flex rounded-lg bg-gray-800 border-2 border-gray-600 cursor-pointer opacity-50 hover:opacity-100 hover:bg-gray-600 focus:outline-none transition duration-100;
 }
 
 .swiper-pagination-bullet {

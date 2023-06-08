@@ -40,7 +40,7 @@ async function submitForm() {
             >
             <button
               :disabled="!email"
-              class="px-2 py-1.5 rounded absolute right-2 disabled:opacity-60 bg-dark-200"
+              class="px-2 py-1.5 rounded absolute right-2 disabled:opacity-60 bg-gray-200"
               @click="submitForm"
             >
               Submit
@@ -50,7 +50,7 @@ async function submitForm() {
 
         <div v-else class="">
           <NuxtLink
-            class="!mt-8 btn-pale hover:bg-dark-900 self-center"
+            class="!mt-8 btn-pale hover:bg-gray-900 self-center"
             to="/submission"
           >
             Join us! Submit a Project 🚀
@@ -81,7 +81,7 @@ async function submitForm() {
           href="https://www.zernonia.com"
           rel="noopener"
           target="_blank"
-          class="ml-2 relative underline underline-offset-2 underline-dark-100 underline-3"
+          class="ml-2 relative underline underline-offset-2 underline-gray-100 underline-3"
         >
           Zernonia</a>
         <a rel="noopener" href="https://twitter.com/zernonia" target="_blank">

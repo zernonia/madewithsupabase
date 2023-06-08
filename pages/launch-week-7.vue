@@ -126,7 +126,7 @@ definePageMeta({
       <ul class="grid lg:grid-cols-2 gap-6 xl:gap-12 p-0 m-0 w-full">
         <li
           v-for="(winner, index) in winners"
-          class="mb-6 w-full relative p-6 xl:p-12 rounded-3xl bg-gradient-to-r from-dark-500 via-dark-100 to-dark-900 overflow-hidden hover:scale-102 transition duration-700"
+          class="mb-6 w-full relative p-6 xl:p-12 rounded-3xl bg-gradient-to-r from-gray-500 via-gray-100 to-gray-900 overflow-hidden hover:scale-102 transition duration-700"
         >
           <NuxtLink :to="winner.link">
             <div class="flex flex-col">
@@ -135,7 +135,7 @@ definePageMeta({
 
                 {{ winner.title }}
               </h5>
-              <h6 class="text-sm text-light-900 mt-1">
+              <h6 class="text-sm text-white mt-1">
                 {{ winner.subtitle }}
               </h6>
             </div>
@@ -169,7 +169,7 @@ definePageMeta({
 :deep(form > div:nth-child(8) > div div) {
   @apply border-0;
 }
-:deep(form > div.\!my-8.px-6.py-4.bg-dark-600.rounded-lg) {
+:deep(form > div.\!my-8.px-6.py-4.bg-gray-600.rounded-lg) {
   @apply bg-purple-500 bg-opacity-50;
 }
 :deep(input[type="checkbox"]) {

@@ -26,7 +26,7 @@ const { data: routeData } = await useLazyAsyncData<TagData[]>(name.value, () =>
             No project found...
           </h1>
           <button
-            class="inline-flex items-center text-dark-50 hover:text-light-900 transition"
+            class="inline-flex items-center text-gray-50 hover:text-white transition"
             @click="$router.push('/')"
           >
             <div class="i-mdi:menu-left mr-2 w-6 h-6" />
