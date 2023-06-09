@@ -48,7 +48,7 @@ onMounted(() => [
 <template>
   <div class="flex flex-col">
     <CustomMeta title="Supabase Showcase" />
-
+    <!--
     <ol class="pl-0 flex items-center mt-6 sticky top-0 z-10">
       <li v-for="link in navLinks" :key="link.path">
         <NuxtLink class="" :to="link.path">
@@ -59,7 +59,7 @@ onMounted(() => [
           </div>
         </NuxtLink>
       </li>
-    </ol>
+    </ol> -->
 
     <div v-if="projects" class="w-full mt-8 pb-20">
       <div class="card-grid">

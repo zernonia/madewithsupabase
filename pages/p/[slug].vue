@@ -30,6 +30,7 @@ const { meta } = useRoute()
 const {
   options: { history },
 } = useRouter()
+
 watch(
   data,
   () => {
@@ -74,10 +75,21 @@ onMounted(() => {
     />
 
     <transition name="fade" mode="out-in">
-      <div v-if="data || !pending" class="mt-4">
-        <div v-if="data && data.id">
+      <div v-if="data" class="mt-4">
+        <div v-if="data.id">
+          <h1 class="text-center text-4xl font-semibold">
+            {{ data.title }}
+          </h1>
+
           <div
-            class="flex flex-col md:flex-row justify-between md:items-center"
+            v-if="data.images?.length"
+            class="mt-6 rounded-xl overflow-hidden"
+          >
+            <MySlider :images="data.images ?? []" />
+          </div>
+
+          <div
+            class="mt-4 flex flex-col md:flex-row justify-between md:items-center"
           >
             <SupabaseFeatures
               :features="data.supabase_features"
@@ -110,41 +122,23 @@ onMounted(() => {
                 rel="noopener"
               ><div class="i-mdi:github w-7 h-7" />
               </a>
-              <a
-                :href="computedUrl"
-                target="_blank"
-                rel="noopener"
-                class="btn mr-4 inline-flex items-center"
-              >Visit Website
-                <div class="i-ic:twotone-ads-click ml-2" />
-              </a>
+
+              <UButton :to="computedUrl" size="md" target="_blank" label="Visit Website" />
             </div>
           </div>
 
-          <div
-            v-if="data.images?.length"
-            class="mt-6 bg-gray-900 bg-opacity-20 py-6 rounded-3xl"
-          >
-            <MySlider :images="data.images ?? []" />
-          </div>
-
-          <div class="mt-6 md:mt-12 w-full flex flex-col">
+          <div class="mt-6 md:mt-12 w-full flex flex-col placeholder-rose-50">
             <Marked
               class="max-w-none"
               :text="data.description?.replace(/<|>/gi, '')"
             />
 
             <div class="flex flex-wrap items-center mt-8">
-              <div
-                v-for="category in data.categories"
-                class="text-sm rounded-md bg-gray-400 mr-2 mb-2"
-              >
-                <router-link :to="`/tag/${category}`">
-                  <p class="px-4 py-2">
-                    # {{ category }}
-                  </p>
-                </router-link>
-              </div>
+              <UButton v-for="category in data.categories" :key="category" class="mr-2 mb-2" :to="`/tag/${category}`" :label="category" color="gray">
+                <template #leading>
+                  <UIcon name="i-lucide-hash" />
+                </template>
+              </UButton>
             </div>
           </div>
 
@@ -158,6 +152,7 @@ onMounted(() => {
             <Loading :loading="relatedPending" />
           </div>
         </div>
+
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
           <CustomMeta title="404 ⚡ Made with Supabase" />
 

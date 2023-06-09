@@ -570,6 +570,20 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify-json/lucide@^1.1.98":
+  version "1.1.98"
+  resolved "https://registry.yarnpkg.com/@iconify-json/lucide/-/lucide-1.1.98.tgz#c5e6dba2de33c3540cc5c101bc9dd524f54fb625"
+  integrity sha512-xWkUTqNGqTsN5Hbl2mWHn5v0oQvF5PxE4iki7lsaN7kJq6IVP9EftIN44QAqBH8LB6uh9/SK57tWXWi7k3IbeA==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify-json/simple-icons@^1.1.55":
+  version "1.1.55"
+  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.1.55.tgz#6bd488d7f25b63315547dc7ed47b8d4542917e11"
+  integrity sha512-bQG9NtG3EnJbNCuwBrTLjoyWX61djNvHCJ7cG+96qzcchFxAP2BVy9qug5YrTsJoOIaOsXqFrYFjITHyI8e4Og==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/json@^2.2.41":
   version "2.2.75"
   resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.2.75.tgz#1f987966f146bf620651dd3f2de0c7c8d09e9b37"
@@ -954,7 +968,7 @@
     lodash.template "^4.5.0"
     pathe "^1.0.0"
 
-"@nuxtjs/supabase@^0.3.1":
+"@nuxtjs/supabase@^0.3.6":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.6.tgz#c2d0a4919f7579b89cb69d600b64ed3cf3590946"
   integrity sha512-LhBGyZ+ySEH3kxUwocMm+AaGVd7kIz//rEgOTdpTtnNPiogt5/3ZalJvt0XqZoPbk8KTf+yyOq+9SbDjup661A==

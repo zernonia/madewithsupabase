@@ -5,11 +5,21 @@ const { count, page, projects } = useInfinitePage('latest-project')
 const { upsertProjects } = useAllProjects()
 const client = useSupabase()
 
+const sortOptions = [
+  { label: 'Latest', value: { key: 'created_at', ascending: false } },
+  { label: 'Most Popular', value: { key: 'views', ascending: false } },
+  { label: 'Alphabetically (A-Z)', value: { key: 'slug', ascending: true } },
+  { label: 'Alphabetically (Z-A)', value: { key: 'slug', ascending: false } },
+] as const
+
+const selectedSort = ref(sortOptions[0])
+
 const { pending, refresh } = useLazyAsyncData('projects', async () => {
+  const { key, ascending } = selectedSort.value.value
   const { data, count: rowCount } = await client
     .from('products_view')
     .select('*', { count: 'exact' })
-    .order('created_at', { ascending: false })
+    .order(key, { ascending })
     .range(page.value * 15, page.value * 15 + 14)
 
   if (data && page.value === 0)
@@ -26,13 +36,6 @@ definePageMeta({
   title: 'New project',
 })
 
-const navLinks = [
-  { path: '/', label: 'Latest' },
-  { path: '/top', label: 'Top' },
-]
-
-const { el, bus } = useInfiniteBus()
-
 function fetchNextPage() {
   if (pending.value)
     return
@@ -43,23 +46,40 @@ function fetchNextPage() {
 onMounted(() => [
   useInfiniteScroll(window, () => fetchNextPage(), { distance: 10 }),
 ])
+
+watch(selectedSort, () => {
+  // when sorting option changed, reset all projects
+  projects.value = []
+  refresh()
+})
 </script>
 
 <template>
   <div class="flex flex-col">
     <CustomMeta title="Supabase Showcase" />
 
-    <ol class="pl-0 flex items-center mt-6 sticky top-0 z-10">
-      <li v-for="link in navLinks">
-        <NuxtLink class="" :to="link.path">
-          <div
-            class="px-6 py-4 mr-4 border-b-2 border-transparent hover:border-white transition"
-          >
-            {{ link.label }}
-          </div>
-        </NuxtLink>
-      </li>
-    </ol>
+    <NuxtLink
+      to="/flutter-hackathon"
+      class="mt-6 group h-80 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-500 rounded-2xl relative border border-violet-950 hover:border-violet-800 overflow-hidden"
+    >
+      <img
+        src="~~/assets/flutter-hackathon-winners.webp" alt="Supabase Flutter Hackathon Winners"
+        class="w-full h-full object-cover transition duration-500 scale-100 group-hover:scale-[1.02]"
+      >
+    </NuxtLink>
+
+    <div class="mt-12 flex items-center">
+      <div class="mr-2 text-sm">
+        Sort:
+      </div>
+      <USelectMenu v-model="selectedSort" :disabled="pending" class="w-56" :options="sortOptions">
+        <template #label>
+          <UIcon name="i-lucide-arrow-up-down" />
+          <span v-if="selectedSort" class="truncate">{{ selectedSort.label }}</span>
+          <span v-else>Sorting</span>
+        </template>
+      </USelectMenu>
+    </div>
 
     <div v-if="projects" class="w-full mt-8 pb-20">
       <div class="card-grid">

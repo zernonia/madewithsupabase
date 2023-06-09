@@ -2,20 +2,18 @@
 import removeMd from 'remove-markdown'
 import SiteLogo from '@/assets/logo.svg'
 
-const prop = defineProps({
+defineProps<{
   item: {
-    type: Object,
-    required: true,
-  },
-})
-
-const trimCategories = computed(() => {
-  return prop.item.categories.slice(0, 6)
-})
+    slug: string
+    title: string
+    description: string
+    images: string[]
+  }
+}>()
 
 function cleanse(text: string) {
   const t = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
-  return removeMd(t).slice(0, 140)
+  return removeMd(t).slice(0, 100)
 }
 
 function separator(number: number) {
@@ -26,44 +24,31 @@ function separator(number: number) {
 </script>
 
 <template>
-  <NuxtLink :to="`/p/${item.slug}`" class="h-full">
+  <NuxtLink :to="`/p/${item.slug}`" class="h-full group">
     <div
-      class="bg-gray-500 bg-opacity-20 h-full rounded-3xl p-3 hover:scale-110 transition duration-500 ease-in-out overflow-hidden shadow-2xl"
+      class="border border-gray-700 bg-gray-700 bg-opacity-20 hover:bg-opacity-50 h-full rounded-2xl p-2 transition duration-500 ease-in-out overflow-hidden "
     >
-      <div class="flex flex-col rounded-2xl h-full shadow-2xl">
-        <div class="relative flex-shrink-0 overflow-hidden">
-          <CompressedImage
-            v-if="item.images[0]"
-            class="aspect-16/9 rounded-2xl"
-            :alt="item.title"
-            :src="item.images[0]"
-          />
-          <div
-            v-else
-            class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
+      <h1 class="text-[15px] mt-1 mb-2 ml-2 text-gray-200 whitespace-pre-wrap">
+        {{ item.title }}
+      </h1>
+      <p class="leading-4 text-[13px] ml-2 mb-3 text-gray-500 group-hover:text-gray-400 transition duration-500">
+        {{ cleanse(item.description) }}
+      </p>
+      <div class="relative flex-shrink-0 overflow-hidden aspect-[16/9] rounded-lg">
+        <CompressedImage
+          v-if="item.images[0]"
+          :alt="item.title"
+          :src="item.images[0]"
+        />
+        <div
+          v-else
+          class="absolute w-full h-full flex justify-center items-center object-cover rounded-xl"
+        >
+          <img
+            class="w-24 h-24 opacity-50 filter grayscale"
+            :src="SiteLogo"
+            alt=""
           >
-            <img
-              class="w-24 h-24 opacity-50 filter grayscale"
-              :src="SiteLogo"
-              alt=""
-            >
-          </div>
-        </div>
-        <div class="p-4 sm:p-6 h-full flex flex-col justify-between">
-          <h1 class="text-xl">
-            {{ item.title }}
-          </h1>
-          <p
-            class="break-words text-white flex-1 my-4 leading-5 line-clamp-3 text-sm"
-          >
-            {{ cleanse(item.description) }}
-          </p>
-          <!-- <div class="flex justify-between items-center">
-          <div class="flex items-center flex-shrink-0 text-white">
-            <p class="mr-1">{{ separator(item.views) }}</p>
-            <div class="i-ic:twotone-ads-click"></div>
-          </div>
-        </div> -->
         </div>
       </div>
     </div>

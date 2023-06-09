@@ -164,7 +164,7 @@ definePageMeta({
 :deep(input),
 :deep(textarea) {
   border-radius: 0.5rem;
-  @apply border-none placeholder-cool-gray-300;
+  @apply border-none placeholder-gray-300;
 }
 :deep(form > div:nth-child(8) > div div) {
   @apply border-0;

@@ -102,6 +102,10 @@ export default defineNuxtConfig({
   //   transformers: [transformerDirective({ enforce: 'pre' })], // enabled `@unocss/transformer-directives`,
   // },
 
+  ui: {
+    icons: ['heroicons', 'lucide'],
+  },
+
   extends: [
     'nuxt-lego',
   ],

@@ -248,6 +248,6 @@ onMounted(() => {
 
 <style scoped>
 input, textarea, :deep(input), :deep(#form-image) {
-  @apply border-2 border-cool-gray-600 placeholder-text-cool-gray-500;
+  @apply border-2 border-gray-600 placeholder-text-gray-500;
 }
 </style>
