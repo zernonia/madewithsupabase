@@ -1,14 +1,11 @@
 <script setup lang="ts">
-const client = useSupabaseAuthClient()
+const client = useSupabase()
 
 const isLoadingOAuth = ref(false)
 async function handleSelectProvider() {
   isLoadingOAuth.value = true
   const { data, error } = await client.auth.signInWithOAuth({
     provider: 'github',
-    options: {
-      redirectTo: `${location.origin}/account`,
-    },
   })
   console.log({ data })
 }

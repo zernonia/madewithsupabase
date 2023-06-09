@@ -32,4 +32,5 @@ export default <Partial<Config>>{
       },
     },
   },
+  content: ['formkit.config.ts'],
 }

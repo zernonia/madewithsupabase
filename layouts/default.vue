@@ -64,7 +64,7 @@ watch(name, () => {
           </UTooltip>
         </div>
 
-        <h1 class="text-3xl mt-2 text-center">
+        <h1 class="text-3xl mt-2 font-medium text-center">
           Made with Supabase
         </h1>
       </div>

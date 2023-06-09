@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import type { FormKitFrameworkContext } from '@formkit/core'
+
+const props = defineProps<{ context: FormKitFrameworkContext['node']['context'] }>()
+
+function getDefaultValue() {
+  if (props.context?._value)
+    return props.context._value
+  if (props.context?.attrs.multiple)
+    return []
+
+  else
+    return ''
+}
+
+const selected = ref(getDefaultValue())
+
+watch(selected, (n) => {
+  props.context?.node.input(n)
+})
+</script>
+
+<template>
+  <USelectMenu
+    v-bind="context?.attrs"
+    v-model="selected"
+    :disabled="!!context?.disabled"
+    @close="context?.handlers.blur"
+  />
+</template>

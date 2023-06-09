@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.3",
+    "@formkit/nuxt": "^0.17.2",
     "@iconify-json/lucide": "^1.1.98",
     "@iconify-json/simple-icons": "^1.1.55",
     "@iconify/json": "^2.2.41",
