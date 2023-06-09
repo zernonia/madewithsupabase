@@ -284,7 +284,7 @@ definePageMeta({
   @apply font-normal text-2xl sm:text-3xl text-white;
 }
 :deep(#edit > input) {
-  @apply rounded-full min-w-64;
+  @apply rounded-full min-w-[16rem];
 }
 :deep(#edit > button) {
   @apply !py-3;

@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image-edge',
     '@nuxthq/ui',
     'v-satori/nuxt',
+    '@nuxtjs/supabase',
     '~~/modules/server-assets',
   ],
   image: {
