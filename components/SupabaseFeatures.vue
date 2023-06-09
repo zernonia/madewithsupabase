@@ -11,7 +11,7 @@ defineProps({
     <UBadge
       v-for="feature in features"
       :key="feature"
-      class="stroke-green-200 mr-2"
+      class="stroke-emerald-500 mr-2"
     >
       <UTooltip :text="feature" class="text-white">
         <SupabaseAuthIcon v-if="feature === 'Supabase Auth'" />

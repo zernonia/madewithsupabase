@@ -265,20 +265,20 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-gray-400 rounded-full font-normal text-base border-1 border-gray-300;
+  @apply bg-gray-400 rounded-full font-normal text-base border border-gray-300;
 }
 :deep(input),
 :deep(textarea) {
   border-radius: 0.5rem;
-  @apply border-1 border-gray-300 focus:border-gray-50  focus:ring-gray-50;
+  @apply border border-gray-300 focus:border-gray-50  focus:ring-gray-50;
 }
 :deep(form > div:nth-child(9) > div > div) {
   border-radius: 0.5rem;
-  @apply focus:border-1 focus:!border-gray-50 ring-none;
+  @apply focus:border focus:!border-gray-50 ring-0;
 }
 :deep(form > div:nth-child(9) > div > div > div:nth-child(1)) {
   border-radius: 0.5rem;
-  @apply border-1 focus:!border-gray-50 ring-none;
+  @apply border focus:!border-gray-50 ring-0;
 }
 :deep(#form) {
   @apply font-normal text-2xl sm:text-3xl text-white;

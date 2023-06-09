@@ -187,7 +187,7 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-gray-400 rounded-full font-normal text-base border-1 border-gray-300 hover:border-white;
+  @apply bg-gray-400 rounded-full font-normal text-base border border-gray-300 hover:border-white;
 }
 
 :deep(.card-grid a > div) {

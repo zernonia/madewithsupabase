@@ -96,7 +96,7 @@ definePageMeta({
             </h5>
             <router-link
               v-for="tag in searchSupabaseTags"
-              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-none"
+              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-0"
               :class="[$route.params.name === tag.tags ? 'bg-gray-500' : '']"
               :to="`/tag/${tag.tags}`"
             >
@@ -112,7 +112,7 @@ definePageMeta({
             </h5>
             <router-link
               v-for="tag in searchTags"
-              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-none"
+              class="inline-flex text-base justify-between px-4 py-2 bg-transparent w-full hover:bg-gray-500 focus:bg-gray-500 transition outline-none ring-0"
               :class="[$route.params.name === tag.tags ? 'bg-gray-500' : '']"
               :to="`/tag/${tag.tags}`"
             >
