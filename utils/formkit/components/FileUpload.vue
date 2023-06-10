@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { FormKitFrameworkContext } from '@formkit/core'
-import vueFilePond from 'vue-filepond'
 import type { FilePondFile, FilePondOptions, FilePondServerConfigProps } from 'filepond'
-import 'filepond/dist/filepond.min.css'
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'
+import vueFilePond from 'vue-filepond'
 
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
@@ -128,7 +126,10 @@ watch(isProcessing, (n) => {
   />
 </template>
 
-<style lang="postcss">
+<style>
+@import 'filepond/dist/filepond.min.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
 /* reference: https://pqina.nl/filepond/docs/api/style/#fonts-and-colors */
 .filepond--root {
   @apply font-main;
