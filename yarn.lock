@@ -539,6 +539,21 @@
   resolved "https://registry.yarnpkg.com/@fastify/accept-negotiator/-/accept-negotiator-1.1.0.tgz#c1c66b3b771c09742a54dd5bc87c582f6b0630ff"
   integrity sha512-OIHZrb2ImZ7XG85HXOONLcJWGosv7sIvM2ifAPQVhg9Lv7qdmMBNVaai4QTdyuaqbKM5eO6sLSQOYI7wEQeCJQ==
 
+"@formkit/addons@^0.17.2":
+  version "0.17.2"
+  resolved "https://registry.yarnpkg.com/@formkit/addons/-/addons-0.17.2.tgz#1cdaa262298300e4b2a60c2a1f9ad775570c8c07"
+  integrity sha512-AEXTO+EYhLipbIU+7/CDnYMw6W3gOSVhMNAJEu5FY+wOANYE2OFUWsQEOnwgUkzk4vEw4wHyOqpK9AhEZ9N6UA==
+  dependencies:
+    "@formkit/auto-animate" latest
+    "@formkit/core" "0.17.2"
+    "@formkit/inputs" "0.17.2"
+    "@formkit/utils" "0.17.2"
+
+"@formkit/auto-animate@^1.0.0-beta.6", "@formkit/auto-animate@latest":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@formkit/auto-animate/-/auto-animate-1.0.0-beta.6.tgz#ed7f8bc47d774a7764756646e9e3432e8be51cb3"
+  integrity sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==
+
 "@formkit/core@0.17.2":
   version "0.17.2"
   resolved "https://registry.yarnpkg.com/@formkit/core/-/core-0.17.2.tgz#17231851440c5bb9e4f1aca6bb543979d1af5504"
@@ -1738,14 +1753,14 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.3.4.tgz#06e83c5027f464eef861c329be81454bc8b70780"
   integrity sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==
 
-"@vueuse/components@^10.1.2":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-10.1.2.tgz#0543dad9a0f0bfc2b2a9025c4a9cee2c55baf603"
-  integrity sha512-HlYFYCg3twMhnQgPS4/muz8XIYKViFVKnpL0Xtw5+9ib2gtWvu1Qu7hj6kDMDtOIw1CnNRsUbMLiNI+LXkxSSQ==
+"@vueuse/components@^9.13.0":
+  version "9.13.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-9.13.0.tgz#ff909e5abdedc4123a3001c8ce88d6230b1bb5d9"
+  integrity sha512-UJ8PjQ4SGb2rsVIy9vhEc6aCu+3+2cc+xEfGNX8/M1NKIuL2Vo6c2Kc2fYFaRzWZkP8HWXu+IcwvnAzL44IEFA==
   dependencies:
-    "@vueuse/core" "10.1.2"
-    "@vueuse/shared" "10.1.2"
-    vue-demi ">=0.14.0"
+    "@vueuse/core" "9.13.0"
+    "@vueuse/shared" "9.13.0"
+    vue-demi "*"
 
 "@vueuse/core@10.1.2", "@vueuse/core@^10.1.0", "@vueuse/core@^10.1.2":
   version "10.1.2"
@@ -1757,7 +1772,7 @@
     "@vueuse/shared" "10.1.2"
     vue-demi ">=0.14.0"
 
-"@vueuse/core@9.13.0":
+"@vueuse/core@9.13.0", "@vueuse/core@^9.13.0":
   version "9.13.0"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-9.13.0.tgz#2f69e66d1905c1e4eebc249a01759cf88ea00cf4"
   integrity sha512-pujnclbeHWxxPRqXWmdkKV5OX4Wk4YeK7wusHqRwU0Q7EFusHoqNA/aPhB6KCh9hEqJkLAJo7bb0Lh9b+OIVzw==

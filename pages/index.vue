@@ -32,10 +32,6 @@ const { pending, refresh } = useLazyAsyncData('projects', async () => {
   return projects.value?.filter(i => i.id)
 })
 
-definePageMeta({
-  title: 'New project',
-})
-
 function fetchNextPage() {
   if (pending.value)
     return
@@ -43,9 +39,9 @@ function fetchNextPage() {
   refresh()
 }
 
-onMounted(() => [
-  useInfiniteScroll(window, () => fetchNextPage(), { distance: 10 }),
-])
+onMounted(() => {
+  useInfiniteScroll(window, () => fetchNextPage(), { distance: 10 })
+})
 
 watch(selectedSort, () => {
   // when sorting option changed, reset all projects
@@ -83,7 +79,7 @@ watch(selectedSort, () => {
 
     <div v-if="projects" class="w-full mt-8 pb-20">
       <div class="card-grid">
-        <Card v-for="item in projects" :item="item" />
+        <Card v-for="item in projects" :key="item.slug ?? ''" :item="item" />
       </div>
 
       <Loading :loading="pending" />

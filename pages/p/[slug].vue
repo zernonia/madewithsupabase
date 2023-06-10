@@ -77,9 +77,9 @@ onMounted(() => {
     <transition name="fade" mode="out-in">
       <div v-if="data" class="mt-4">
         <div v-if="data.id">
-          <h1 class="text-center text-4xl font-medium">
+          <!-- <h1 class="text-center text-4xl font-medium">
             {{ data.title }}
-          </h1>
+          </h1> -->
 
           <div
             v-if="data.images?.length"

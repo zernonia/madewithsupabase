@@ -1,5 +1,6 @@
 import { type DefaultConfigOptions, createInput } from '@formkit/vue'
 import { generateClasses } from '@formkit/themes'
+import { createAutoAnimatePlugin } from '@formkit/addons'
 import { addAsteriskPlugin } from './utils/formkit/plugins/asterik'
 import UInput from '@/utils/formkit/components/Input.vue'
 import UButton from '@/utils/formkit/components/Button.vue'
@@ -40,7 +41,7 @@ const config: DefaultConfigOptions = {
     }),
   },
 
-  plugins: [addAsteriskPlugin],
+  plugins: [addAsteriskPlugin, createAutoAnimatePlugin()],
 }
 
 export default config

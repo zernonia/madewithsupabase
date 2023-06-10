@@ -6,8 +6,10 @@ async function handleSelectProvider() {
   isLoadingOAuth.value = true
   const { data, error } = await client.auth.signInWithOAuth({
     provider: 'github',
+    options: {
+      redirectTo: `${location.origin}/account`,
+    },
   })
-  console.log({ data })
 }
 
 const isLoadingOtp = ref(false)

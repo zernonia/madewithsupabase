@@ -16,7 +16,7 @@ const { data: routeData } = await useLazyAsyncData<TagData[]>(name.value, () =>
     />
 
     <transition name="fade" mode="out-in">
-      <div v-if="routeData" class="mt-12">
+      <div v-if="routeData" class="mt-6">
         <div v-if="routeData.length" class="card-grid">
           <Card v-for="item in routeData" :item="item" />
         </div>

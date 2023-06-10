@@ -1,9 +1,26 @@
 <script setup lang="ts">
-const { meta, name } = toRefs(useRoute())
+import autoAnimate from '@formkit/auto-animate'
+
+const { meta, name, path } = toRefs(useRoute())
+
+const user = useSupabaseUser()
+const userAvatar = computed(() => user.value?.user_metadata?.avatar_url)
 
 const isSideMenuOpen = ref(false)
 watch(name, () => {
   isSideMenuOpen.value = false
+})
+
+const isBackButtonShowing = computed(() => {
+  if (process.server)
+    return false
+  return window.history.length > 2 && path.value !== '/'
+})
+
+const metaTitleRef = ref()
+
+onMounted(() => {
+  autoAnimate(metaTitleRef.value)
 })
 </script>
 
@@ -16,6 +33,7 @@ watch(name, () => {
         text="Home" :shortcuts="['1']" :popper="{
           placement: 'right',
         }"
+        class="justify-center"
       >
         <NuxtLink to="/" class="text-gray-500 hover:text-white transition">
           <UIcon name="i-lucide-home" />
@@ -26,6 +44,7 @@ watch(name, () => {
         text="Tags" :shortcuts="['2']" :popper="{
           placement: 'right',
         }"
+        class="justify-center"
       >
         <NuxtLink to="/tag" class="text-gray-500 hover:text-white transition">
           <UIcon name="i-lucide-tag" />
@@ -38,9 +57,23 @@ watch(name, () => {
         text="Account" :shortcuts="['3']" :popper="{
           placement: 'right',
         }"
+        class="justify-center"
       >
         <NuxtLink to="/account" class="text-gray-500 hover:text-white transition">
-          <UIcon name="i-lucide-user" />
+          <UAvatar v-if="userAvatar" :src="userAvatar" alt="Avatar" />
+          <UIcon v-else name="i-lucide-user" />
+        </NuxtLink>
+      </UTooltip>
+
+      <UTooltip
+        text="Back" :shortcuts="['Backspace']" :popper="{
+          placement: 'right',
+        }"
+        :class="{ 'opacity-100': isBackButtonShowing }"
+        class="justify-center opacity-0 transition-opacity"
+      >
+        <NuxtLink class="text-gray-500 hover:text-white transition" @click="isBackButtonShowing && $router.back()">
+          <UIcon name="i-lucide-arrow-left" />
         </NuxtLink>
       </UTooltip>
     </div>
@@ -64,12 +97,26 @@ watch(name, () => {
           </UTooltip>
         </div>
 
-        <h1 class="text-3xl mt-2 font-medium text-center">
+        <div ref="metaTitleRef" class="flex items-center justify-center w-[32rem]">
+          <h2 v-if="meta.title" :key="meta.title" class="text-center text-5xl text-gray-300 my-2 font-medium">
+            {{ meta.title }}
+          </h2>
+        </div>
+
+        <h1 class="mt-2 font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-2xl ' : 'text-3xl ']">
           Made with Supabase
         </h1>
       </div>
 
       <slot />
+
+      <hr class="mt-12 mb-4 border-gray-700">
+
+      <div class="text-sm text-gray-500">
+        A project by <NuxtLink to="https://twitter.com/zernonia" target="_blank">
+          Zernonia
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

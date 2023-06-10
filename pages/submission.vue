@@ -5,7 +5,7 @@ const client = useSupabase()
 const isSubmitted = ref(false)
 
 definePageMeta({
-  title: 'Project Submission',
+  title: 'Your New Project',
 })
 
 const a = ref({
