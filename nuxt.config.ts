@@ -45,64 +45,10 @@ export default defineNuxtConfig({
       },
     },
   },
-  // unocss: {
-  //   // presets
-  //   uno: true, // enabled `@unocss/preset-uno`
-  //   icons: true, // enabled `@unocss/preset-icons`,
-  //   typography: {
-  //     cssExtend: {
-  //       'strong': {
-  //         color: 'white',
-  //         fontWeight: '500',
-  //       },
-  //       'code': {
-  //         'background-color': '#2d2d2d !important',
-  //       },
-  //       'code::before': {
-  //         content: '""',
-  //       },
-  //       'code::after': {
-  //         content: '""',
-  //       },
-  //       'pre': {
-  //         'background-color': '#2d2d2d !important',
-  //       },
-  //       'pre,code': {
-  //         'white-space': 'pre-wrap',
-  //       },
-  //       'hr': {
-  //         borderTop: '1px solid #2d2d2d',
-  //       },
-  //       'a': {
-  //         color: '#d6d9dc',
-  //       },
-  //       'a:hover': {
-  //         color: '#10b981',
-  //       },
-  //       'ol > li::before': {
-  //         color: '#56524e',
-  //       },
-  //       'ul > li::before': {
-  //         'color': '#56524e',
-  //         'background-color': '#56524e !important',
-  //       },
-  //       'h1': {
-  //         'font-size': '1.75rem',
-  //       },
-  //       'h2': {
-  //         'font-size': '1.5rem',
-  //       },
-  //     },
-  //   },
-  //   theme: {
-  //     fontFamily: {
-  //       main: [
-  //         'custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,  Arial, sans-serif',
-  //       ],
-  //     },
-  //   },
-  //   transformers: [transformerDirective({ enforce: 'pre' })], // enabled `@unocss/transformer-directives`,
-  // },
+
+  build: {
+    transpile: ['vue-filepond', 'filepond'],
+  },
 
   ui: {
     icons: ['heroicons', 'lucide'],
