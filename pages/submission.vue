@@ -1,15 +1,37 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const client = useSupabase()
 const isSubmitted = ref(false)
 
 definePageMeta({
   title: 'Project Submission',
 })
 
-const a = ref()
+const a = ref({
+  images: ['products/Group 70 (4).png'],
+})
 
 const options = ['United States', 'Canada', 'Mexico']
+
+const supabaseFeatureOptions = [
+  'Supabase Auth',
+  'Supabase Database',
+  'Supabase Function',
+  'Supabase Storage',
+  'Supabase Realtime',
+]
+
+const { data: tagOptions } = await useAsyncData('tagOptions', async () => {
+  const { data } = await client
+    .from('tags_view')
+    .select('*')
+    .order('tags', {
+      ascending: true,
+    })
+
+  return data?.map(i => i.tags ?? '') ?? []
+}, { server: false, default: () => [] as string[] })
 
 const axios = {
   post: () => new Promise(r => setTimeout(r, 2000)),
@@ -24,7 +46,7 @@ async function login() {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center mt-8">
     <FormKit v-slot="{ value }" v-model="a" type="form" :actions="false" @submit="login">
       <FormKit
         type="uinput"
@@ -37,6 +59,7 @@ async function login() {
         type="uinput"
         label="Email"
         name="email"
+        icon="i-heroicons-envelope"
         placeholder="madewithsupabase@gmail.com"
       />
 
@@ -63,18 +86,57 @@ async function login() {
         validation="required"
       />
 
-      <FormKit type="ubutton" label="Submit" />
-
-      <!-- <FormKit
+      <FormKit
         type="uselect"
-        label="City"
-        :options="options"
-        name="city"
-        placeholder="Jane Doe"
-        help="What do people call you?"
+        label="Supabase Features"
+        :options="supabaseFeatureOptions"
+        name="features"
+        multiple
+        placeholder="Supabase Auth, Supabase Database ..."
+        help="Choose applicable"
         validation="required"
-      /> -->
+      />
 
+      <FormKit
+        type="uselect"
+        label="Tags"
+        :options="tagOptions"
+        name="tags"
+        multiple
+        placeholder="Vuejs, Nuxtjs, ..."
+        help="Choose applicable"
+        validation="required"
+      />
+
+      <div class="grid grid-cols-2 gap-4">
+        <FormKit
+          type="uinput"
+          label="Twitter"
+          name="twitter"
+          icon="i-lucide-at-sign"
+          placeholder="madewifsupabase"
+        />
+
+        <FormKit
+          type="uinput"
+          label="Instagram"
+          name="instagram"
+          icon="i-lucide-at-sign"
+          placeholder="madewifsupabase"
+        />
+      </div>
+
+      <FormKit
+        type="ufileupload"
+        label="Images"
+        name="images"
+        :allow-multiple="true"
+        :allow-reorder="true"
+        :max-files="5"
+        bucket-id="products"
+      />
+
+      <FormKit type="ubutton" label="Submit" />
       <pre wrap>{{ value }}</pre>
     </FormKit>
     <!-- <Form v-if="!isSubmitted" @submit="isSubmitted = true" />

@@ -26,5 +26,10 @@ watch(selected, (n) => {
     v-model="selected"
     :disabled="!!context?.disabled"
     @close="context?.handlers.blur"
-  />
+  >
+    <template #label>
+      <span v-if="selected.length" class="truncate">{{ selected.join(', ') }}</span>
+      <span v-else>{{ context?.attrs.placeholder }}</span>
+    </template>
+  </USelectMenu>
 </template>

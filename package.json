@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.12.1",
-    "@vueuse/components": "^9.13.0",
-    "@vueuse/core": "^9.13.0",
+    "@vueuse/components": "^10.1.2",
+    "@vueuse/core": "^10.1.2",
     "@yeger/vue-masonry-wall": "^3.4.4",
     "dayjs": "^1.11.7",
     "lottie-web": "^5.10.2",
@@ -44,10 +44,14 @@
     "@types/remove-markdown": "^0.3.1",
     "@vueuse/nuxt": "^9.13.0",
     "eslint": "^8.41.0",
+    "filepond": "^4.30.4",
+    "filepond-plugin-file-validate-type": "^1.2.8",
+    "filepond-plugin-image-preview": "^4.6.11",
     "nuxt": "^3.5.3",
     "nuxt-lego": "^0.0.10",
     "satori": "^0.0.44",
     "typescript": "^5.0.4",
-    "v-satori": "^0.1.6"
+    "v-satori": "^0.1.6",
+    "vue-filepond": "^7.0.3"
   }
 }

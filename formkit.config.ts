@@ -1,5 +1,6 @@
 import { type DefaultConfigOptions, createInput } from '@formkit/vue'
 import { generateClasses } from '@formkit/themes'
+import { addAsteriskPlugin } from './utils/formkit/plugins/asterik'
 import UInput from '@/utils/formkit/components/Input.vue'
 import UButton from '@/utils/formkit/components/Button.vue'
 import UTextArea from '@/utils/formkit/components/Textarea.vue'
@@ -7,6 +8,7 @@ import USelect from '@/utils/formkit/components/Select.vue'
 import UCheckbox from '@/utils/formkit/components/Checkbox.vue'
 import URadio from '@/utils/formkit/components/Radio.vue'
 import UToggle from '@/utils/formkit/components/Toggle.vue'
+import UFileUpload from '@/utils/formkit/components/FileUpload.vue'
 
 const config: DefaultConfigOptions = {
   inputs: {
@@ -20,12 +22,13 @@ const config: DefaultConfigOptions = {
       type: 'input',
       component: UButton,
     },
+    ufileupload: createInput(UFileUpload),
   },
 
   config: {
     classes: generateClasses({
       form: {
-        form: 'w-full max-w-[32rem] mx-auto',
+        form: 'w-full max-w-[40rem] mx-auto',
       },
       global: {
         outer: 'mb-2',
@@ -36,6 +39,8 @@ const config: DefaultConfigOptions = {
       },
     }),
   },
+
+  plugins: [addAsteriskPlugin],
 }
 
 export default config
