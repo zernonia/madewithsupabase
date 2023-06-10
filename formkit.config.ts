@@ -34,7 +34,7 @@ const config: DefaultConfigOptions = {
         outer: 'mb-2',
         label: 'text-sm',
         inner: 'mt-1',
-        message: 'text-red-500 mt-1 text-[13px]',
+        message: 'text-red-400 mt-1 text-[13px]',
         help: 'text-gray-400 mt-1 text-xs',
       },
     }),

@@ -53,6 +53,7 @@ async function login() {
         label="Title"
         name="title"
         placeholder="My project"
+        validation="required"
       />
 
       <FormKit
@@ -68,6 +69,7 @@ async function login() {
         label="URL"
         name="url"
         placeholder="https://madewithsupabase.com"
+        validation="required"
       />
 
       <FormKit
@@ -76,6 +78,7 @@ async function login() {
         name="github_url"
         help="url for your project"
         placeholder="https://github.com/zernonia/madewithsupabase"
+        validation="required"
       />
 
       <FormKit

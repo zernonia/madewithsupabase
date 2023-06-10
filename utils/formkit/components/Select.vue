@@ -13,6 +13,8 @@ function getDefaultValue() {
     return ''
 }
 
+const isInvalid = computed(() => !props.context?.state.valid && props.context?.state.blurred)
+
 const selected = ref(getDefaultValue())
 
 watch(selected, (n) => {
@@ -25,6 +27,7 @@ watch(selected, (n) => {
     v-bind="context?.attrs"
     v-model="selected"
     :disabled="!!context?.disabled"
+    :color="isInvalid ? 'red' : undefined"
     @close="context?.handlers.blur"
   >
     <template #label>
