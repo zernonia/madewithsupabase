@@ -15,15 +15,13 @@ function removeBlur() {
 </script>
 
 <template>
-  <NuxtImg
+  <img
     class="w-full h-full transition-all duration-500 group-hover:scale-[1.02]"
     :class="[
       isBlur ? 'blur-md scale-105 opacity-0' : 'blur-0 scale-100 opacity-100',
     ]"
-    :preset="preset"
     loading="lazy"
     v-bind="$attrs"
-    provider="ipx"
     @load="removeBlur"
-  />
+  >
 </template>
