@@ -39,7 +39,6 @@ function handleUserClick() {
         <CompressedImage
           v-if="item.images?.[0]"
           class="object-cover"
-          preset="cover"
           :alt="item.title"
           :src="item.images[0]"
         />
