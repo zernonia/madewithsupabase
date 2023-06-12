@@ -3,7 +3,7 @@ const { upsertProjects } = useAllProjects()
 const route = useRoute()
 const name = computed(() => route.params.name.toString())
 const { data } = await useLazyAsyncData(name.value, async () => {
-  const data = await $fetch(`/api/tag?name=${name.value}`)
+  const data = await $fetch(`/api/tag/${name.value}`)
   upsertProjects(data)
   return data
 },

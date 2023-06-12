@@ -1,11 +1,11 @@
 import { useSupabaseServer } from '~~/composables/supabase'
 
 export default defineEventHandler(async (event) => {
-  const { name } = getQuery(event)
   const client = useSupabaseServer()
+  const name = event.context.params?.name
 
   let rpc: 'get_tags' | 'get_supabase_tags' = 'get_tags'
-  if (name?.toString().toLowerCase().startsWith('supabase'))
+  if (name?.toString().toLowerCase().startsWith('Supabase'))
     rpc = 'get_supabase_tags'
 
   if (name) {

@@ -16,7 +16,7 @@ const selected = ref(params.value.name)
 const { data: tags } = await useLazyAsyncData('tags', async () => {
   const { data } = await client.from('tags_view').select('*').order('tags', { ascending: true })
   return data?.map(i => i.tags ?? '')
-}, { watch: [selected] })
+})
 
 const options = computed(() => [...supabaseTags, ...(tags.value ?? [])])
 
