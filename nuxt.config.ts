@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@nuxt/image-edge',
+    '@nuxt/image',
     '@nuxthq/ui',
     '@nuxtjs/supabase',
     'v-satori/nuxt',
