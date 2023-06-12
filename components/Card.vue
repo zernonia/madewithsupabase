@@ -1,32 +1,33 @@
 <script setup lang="ts">
 import removeMd from 'remove-markdown'
 import SiteLogo from '@/assets/logo.svg'
+import type { Project } from '@/types'
 
-defineProps<{
-  item: {
-    slug: string
-    title: string
-    description: string
-    images: string[]
-  }
+const props = defineProps<{
+  item: Project
 }>()
 
-function cleanse(text: string) {
+function cleanse(text: string | null) {
+  if (!text)
+    return ''
   const t = text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
   return removeMd(t).slice(0, 100)
 }
 
-function separator(number: number) {
-  const str = number.toString().split('.')
-  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  return str.join('.')
+const routeModal = useRouteModal()
+function handleUserClick() {
+  routeModal.value = {
+    isOpen: true,
+    path: `/p/${props.item.slug}`,
+  }
 }
 </script>
 
 <template>
-  <NuxtLink :to="`/p/${item.slug}`" class="h-full group">
+  <NuxtLink v-if="item.slug" :to="`/p/${item.slug}`" class="h-full group">
     <div
       class="border border-gray-700 bg-gray-700 bg-opacity-20 hover:bg-opacity-50 h-full rounded-2xl p-2 transition duration-500 ease-in-out overflow-hidden "
+      @click.prevent.stop="handleUserClick"
     >
       <h1 class="text-[15px] mt-1 mb-2 ml-2 text-gray-200 whitespace-pre-wrap">
         {{ item.title }}
@@ -36,7 +37,9 @@ function separator(number: number) {
       </p>
       <div class="relative flex-shrink-0 overflow-hidden aspect-[16/9] rounded-lg">
         <CompressedImage
-          v-if="item.images[0]"
+          v-if="item.images?.[0]"
+          class="object-cover"
+          preset="cover"
           :alt="item.title"
           :src="item.images[0]"
         />

@@ -20,9 +20,9 @@ SwiperCore.use([Pagination, Navigation])
     :space-between="40"
     :pagination="{ clickable: true }"
   >
-    <SwiperSlide v-for="image in images" :key="image" class="w-full md:w-auto min-h-64">
+    <SwiperSlide v-for="image in images" :key="image" class="w-full md:w-auto min-h-[24rem]">
       <CompressedImage
-        class="rounded-xl max-h-3xl object-contain w-full"
+        class="rounded-xl max-h-[32rem] object-contain"
         preset="cover"
         :src="image"
         alt=""

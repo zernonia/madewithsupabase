@@ -34,5 +34,7 @@ useHead(() => ({
   <NuxtLayout>
     <NuxtLoadingIndicator />
     <NuxtPage />
+
+    <RouteModalProduct />
   </NuxtLayout>
 </template>

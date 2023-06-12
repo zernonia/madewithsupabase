@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { TagData } from '~~/script/interface'
-
+const { upsertProjects } = useAllProjects()
 const route = useRoute()
 const name = computed(() => route.params.name.toString())
-const { data: routeData } = await useLazyAsyncData<TagData[]>(name.value, () =>
-  $fetch(`/api/tag?name=${name.value}`),
+const { data } = await useLazyAsyncData(name.value, async () => {
+  const data = await $fetch(`/api/tag?name=${name.value}`)
+  upsertProjects(data)
+  return data
+},
 )
 </script>
 
@@ -16,9 +18,9 @@ const { data: routeData } = await useLazyAsyncData<TagData[]>(name.value, () =>
     />
 
     <transition name="fade" mode="out-in">
-      <div v-if="routeData" class="mt-6">
-        <div v-if="routeData.length" class="card-grid">
-          <Card v-for="item in routeData" :item="item" />
+      <div v-if="data" class="mt-6">
+        <div v-if="data.length" class="card-grid">
+          <Card v-for="item in data" :key="item.id ?? ''" :item="item" />
         </div>
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
           <img class="w-40" src="@/assets/404.svg">

@@ -23,12 +23,6 @@ const options = computed(() => [...supabaseTags, ...(tags.value ?? [])])
 watch(() => params.value.name, (n) => {
   selected.value = n
 })
-
-// const { data: projects } = await useLazyAsyncData('accounts-project', async () => {
-//   const { key, ascending } = selectedSort.value.value
-//   const { data } = await client.from('products').select('*').eq('email', email.value).order(key, { ascending })
-//   return data
-// }, { server: false, watch: [selectedSort] })
 </script>
 
 <template>
