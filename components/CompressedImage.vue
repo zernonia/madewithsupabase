@@ -23,7 +23,7 @@ function removeBlur() {
     :preset="preset"
     loading="lazy"
     v-bind="$attrs"
-    provider="supabase"
+    provider="ipx"
     @load="removeBlur"
   />
 </template>
