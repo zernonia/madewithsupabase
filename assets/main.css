@@ -62,28 +62,6 @@ input[type="checkbox"]:checked {
 } */
 
  
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #2a2a2a;
-}
-
 .btn {
   @apply px-6 py-2 rounded-lg bg-emerald-500 border-[3px] border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
 }

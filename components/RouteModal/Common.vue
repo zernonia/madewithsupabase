@@ -36,9 +36,7 @@ onBeforeUnmount(() => {
     <UModal
       v-model="routeModal.isOpen"
       :ui="{
-        base: 'relative text-left overflow-hidden sm:my-8 mx-8 w-full flex flex-col border border-gray-700',
-        rounded: 'rounded-2xl',
-        width: 'max-w-[48rem]',
+        base: 'relative text-left overflow-hidden sm:my-16 mx-8 w-full flex flex-col border border-gray-700',
       }"
       @update:model-value="handleModalClose"
     >

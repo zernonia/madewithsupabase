@@ -12,15 +12,16 @@ const sortOptions = [
   { label: 'Alphabetically (Z-A)', value: { key: 'slug', ascending: false } },
 ] as const
 
-const selectedSort = ref(sortOptions[0])
+const selectedSort = useState('project-sort', () => sortOptions[0])
 
+const COUNT_PER_PAGE = 30
 const { pending, refresh } = useLazyAsyncData('projects', async () => {
   const { key, ascending } = selectedSort.value.value
   const { data, count: rowCount } = await client
     .from('products_view')
     .select('*', { count: 'exact' })
     .order(key, { ascending })
-    .range(page.value * 15, page.value * 15 + 14)
+    .range(page.value * COUNT_PER_PAGE, page.value * COUNT_PER_PAGE + (COUNT_PER_PAGE - 1))
 
   if (data && page.value === 0)
     count.value = rowCount ?? 0
@@ -46,6 +47,7 @@ onMounted(() => {
 watch(selectedSort, () => {
   // when sorting option changed, reset all projects
   projects.value = []
+  page.value = 0
   refresh()
 })
 </script>
@@ -77,13 +79,11 @@ watch(selectedSort, () => {
       </USelectMenu>
     </div>
 
-    <div v-if="projects" class="w-full mt-8 pb-20">
-      <div class="card-grid">
-        <Card v-for="item in projects" :key="item.slug ?? ''" :item="item" />
-      </div>
-
-      <Loading :loading="pending" />
+    <div v-if="projects" class="card-grid mt-8 pb-20">
+      <Card v-for="item in projects" :key="item.slug ?? ''" :item="item" />
     </div>
+
+    <Loading :loading="pending" />
   </div>
 </template>
 

@@ -98,7 +98,7 @@ onMounted(() => {
         </div>
 
         <div ref="metaTitleRef" class="flex items-center justify-center w-[32rem]">
-          <h2 v-if="meta.title" :key="meta.title" class="text-center text-5xl text-gray-300 my-2 font-medium">
+          <h2 v-if="meta.title" :key="meta.title.toString()" class="text-center text-5xl text-gray-300 my-2 font-medium">
             {{ meta.title }}
           </h2>
         </div>

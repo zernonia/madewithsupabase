@@ -3,9 +3,16 @@ import removeMd from 'remove-markdown'
 import SiteLogo from '@/assets/logo.svg'
 import type { Project } from '@/types'
 
-const props = defineProps<{
-  item: Project
-}>()
+const props = withDefaults(defineProps<{
+  item?: Project
+  showModal?: boolean
+  path?: string
+}>(), {
+  item: undefined,
+  showModal: true,
+})
+
+const client = useSupabase()
 
 function cleanse(text: string | null) {
   if (!text)
@@ -15,19 +22,33 @@ function cleanse(text: string | null) {
 }
 
 const routeModal = useRouteModal()
-function handleUserClick() {
-  routeModal.value = {
-    isOpen: true,
-    path: `/p/${props.item.slug}`,
+function handleUserClick(ev: Event) {
+  if (props.showModal) {
+    ev.preventDefault()
+    ev.stopPropagation()
+
+    routeModal.value = {
+      isOpen: true,
+      path: `/p/${props.item?.slug}`,
+    }
   }
 }
+
+const image = computed(() => {
+  const key = props.item?.image_keys?.[0]
+  if (key)
+    return client.storage.from('products').getPublicUrl(key.replace('products/', '')).data.publicUrl
+
+  else
+    return null
+})
 </script>
 
 <template>
-  <NuxtLink v-if="item.slug" :to="`/p/${item.slug}`" class="h-full group">
+  <NuxtLink v-if="item?.slug" :to="`/p/${item.slug}`" class="h-full group">
     <div
       class="border border-gray-700 bg-gray-700 bg-opacity-20 hover:bg-opacity-50 h-full rounded-2xl p-2 transition duration-500 ease-in-out overflow-hidden "
-      @click.prevent.stop="handleUserClick"
+      @click="handleUserClick"
     >
       <h1 class="text-[15px] mt-1 mb-2 ml-2 text-gray-200 whitespace-pre-wrap">
         {{ item.title }}
@@ -37,10 +58,10 @@ function handleUserClick() {
       </p>
       <div class="relative flex-shrink-0 overflow-hidden aspect-[16/9] rounded-lg">
         <CompressedImage
-          v-if="item.images?.[0]"
+          v-if="image"
           class="object-cover"
           :alt="item.title"
-          :src="item.images[0]"
+          :src="image"
         />
         <div
           v-else

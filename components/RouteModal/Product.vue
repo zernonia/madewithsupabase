@@ -9,7 +9,7 @@ const data = computed(() =>
 
 <template>
   <RouteModalCommon>
-    <div class="p-8">
+    <div class="p-12">
       <Product v-if="data" is-modal :data="data" />
     </div>
   </RouteModalCommon>

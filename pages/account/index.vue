@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
 const client = useSupabase()
+const { upsertProjects } = useAllProjects()
 const email = computed(() => user.value?.email)
 
 const sortOptions = [
@@ -10,11 +11,13 @@ const sortOptions = [
   { label: 'Alphabetically (Z-A)', value: { key: 'slug', ascending: false } },
 ] as const
 
-const selectedSort = ref(sortOptions[0])
+const selectedSort = useState('account-sort', () => sortOptions[0])
 
-const { data: projects } = await useLazyAsyncData('accounts-project', async () => {
+const { data: projects, pending } = await useLazyAsyncData('account-project', async () => {
   const { key, ascending } = selectedSort.value.value
   const { data } = await client.from('products').select('*').eq('email', email.value).order(key, { ascending })
+  if (data)
+    upsertProjects(data)
   return data
 }, { server: false, watch: [selectedSort] })
 
@@ -42,11 +45,18 @@ definePageMeta({
       </USelectMenu>
     </div>
     <div class="card-grid mt-6">
-      <Card
-        v-for="item in projects"
-        :key="item.slug ?? ''"
-        :item="item"
-      />
+      <div
+        v-for="item in projects" :key="item.slug ?? ''"
+        class="relative group"
+      >
+        <CardOptions :item="item" />
+        <Card
+          :item="item"
+          :show-modal="false"
+        />
+      </div>
     </div>
+
+    <Loading :loading="pending" />
   </div>
 </template>

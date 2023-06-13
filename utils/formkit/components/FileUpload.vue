@@ -18,7 +18,7 @@ const cfg = useRuntimeConfig()
 const myFiles = ref<FilePondOptions['files']>([])
 
 watchOnce(() => props.context?._value, (n: string[]) => {
-  if (n.length)
+  if (n?.length)
     myFiles.value = n.map(i => ({ source: i, options: { type: 'local' } }))
 }, { immediate: true })
 
@@ -85,7 +85,7 @@ function handleInput(files: FilePondFile[]) {
     return
 
   const keys = files.map(file => file.serverId).filter(Boolean)
-  if (keys.length)
+  if (keys?.length)
     props.context?.node.input(keys)
 }
 

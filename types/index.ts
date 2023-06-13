@@ -1,7 +1,7 @@
 import type { Database } from './database'
 
 export * from './database'
-export type Project = Database['public']['Views']['products_view']['Row']
+export type Project = Database['public']['Views']['products_view']['Row'] | Database['public']['Tables']['products']['Row']
 
 export type ProjectForm = Omit<
   Database['public']['Tables']['products']['Row'],

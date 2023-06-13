@@ -37,4 +37,5 @@ useHead(() => ({
 
     <RouteModalProduct />
   </NuxtLayout>
+  <UNotifications />
 </template>
