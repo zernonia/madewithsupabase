@@ -12,6 +12,7 @@ export default defineAppConfig({
       background: 'bg-white dark:bg-gray-800',
       width: 'max-w-[56rem]',
       shadow: 'shadow-2xl',
+      padding: 'p-0 sm:p-4',
     },
   },
 })

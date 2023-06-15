@@ -20,9 +20,7 @@ watch(
   () => {
     meta.title = data.value?.title
   },
-  {
-    immediate: true,
-  },
+  { immediate: true },
 )
 
 const client = useSupabase()

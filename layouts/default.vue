@@ -27,14 +27,15 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-gray-800 text-white h-full w-auto min-h-screen flex"
+    class="bg-gray-800 text-white h-full w-full min-h-screen flex"
   >
-    <div class="p-5 border-r border-gray-700 fixed left-0 h-screen flex flex-col justify-center space-y-5 text-2xl">
+    <div class="w-[80px] hidden md:block" />
+    <div class="p-3 md:p-5 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen flex md:flex-col justify-around md:justify-center md:space-y-5 text-2xl">
       <UTooltip
         text="Home" :shortcuts="['1']" :popper="{
           placement: 'right',
         }"
-        class="justify-center"
+        class="justify-center items-center"
       >
         <NuxtLink to="/" class="text-gray-500 hover:text-white transition">
           <UIcon name="i-lucide-home" />
@@ -45,7 +46,7 @@ onMounted(() => {
         text="Tags" :shortcuts="['2']" :popper="{
           placement: 'right',
         }"
-        class="justify-center"
+        class="justify-center items-center"
       >
         <NuxtLink to="/tag" class="text-gray-500 hover:text-white transition">
           <UIcon name="i-lucide-tag" />
@@ -56,20 +57,20 @@ onMounted(() => {
         text="Hackathons" :shortcuts="['3']" :popper="{
           placement: 'right',
         }"
-        class="justify-center"
+        class="justify-center items-center"
       >
         <NuxtLink to="/hackathons" class="text-gray-500 hover:text-white transition">
           <UIcon name="i-lucide-sparkles" />
         </NuxtLink>
       </UTooltip>
 
-      <hr class="border-gray-700">
+      <hr class="hidden md:block border-gray-700">
 
       <UTooltip
         text="Account" :shortcuts="['3']" :popper="{
           placement: 'right',
         }"
-        class="justify-center"
+        class="justify-center items-center"
       >
         <NuxtLink to="/account" class="text-gray-500 hover:text-white transition">
           <UAvatar v-if="userAvatar" :src="userAvatar" alt="Avatar" />
@@ -82,7 +83,7 @@ onMounted(() => {
           placement: 'right',
         }"
         :class="{ 'opacity-100': isBackButtonShowing }"
-        class="justify-center opacity-0 transition-opacity"
+        class="hidden md:flex justify-center items-center opacity-0 transition-opacity"
       >
         <NuxtLink class="text-gray-500 hover:text-white transition" @click="isBackButtonShowing && router.back()">
           <UIcon name="i-lucide-arrow-left" />
@@ -90,10 +91,10 @@ onMounted(() => {
       </UTooltip>
     </div>
 
-    <div class="py-6 px-12 left-8 relative mx-auto max-w-5xl w-full">
+    <div class="p-3 sm:py-6 sm:px-6 md:px-12 relative mx-auto max-w-5xl w-full">
       <div class="flex flex-col items-center mt-4 justify-center">
         <NuxtLink to="/">
-          <img class="md:w-28 md:h-28" src="@/assets/logo.svg" alt="">
+          <img class="w-16 h-16 md:w-28 md:h-28" src="@/assets/logo.svg" alt="">
         </NuxtLink>
 
         <div class="mt-2 flex items-center justify-center space-x-4">
@@ -109,13 +110,13 @@ onMounted(() => {
           </UTooltip>
         </div>
 
-        <div ref="metaTitleRef" class="flex items-center justify-center w-[32rem]">
-          <h2 v-if="meta.title" :key="meta.title.toString()" class="text-center text-5xl text-gray-300 my-2 font-medium">
+        <div ref="metaTitleRef" class="flex items-center justify-center md:w-[32rem]">
+          <h2 v-if="meta.title" :key="meta.title.toString()" class="text-center text-4xl md:text-5xl text-gray-300 my-2 font-medium">
             {{ meta.title }}
           </h2>
         </div>
 
-        <h1 class="mt-2 font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-2xl ' : 'text-3xl ']">
+        <h1 class="mt-2 font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
           Made with Supabase
         </h1>
       </div>

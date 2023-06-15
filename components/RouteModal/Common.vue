@@ -36,10 +36,11 @@ onBeforeUnmount(() => {
     <UModal
       v-model="routeModal.isOpen"
       :ui="{
-        base: 'relative text-left overflow-hidden sm:my-16 mx-8 w-full flex flex-col border border-gray-700',
+        base: 'relative text-left overflow-hidden  sm:my-16 sm:mx-8 w-full flex flex-col border border-gray-700',
       }"
       @update:model-value="handleModalClose"
     >
+      <UButton icon="i-lucide-x" class="md:hidden absolute top-2 left-2" variant="ghost" color="gray" @click="handleModalClose()" />
       <slot />
     </UModal>
   </div>

@@ -1,5 +1,6 @@
  * {
   -webkit-font-smoothing: inherit;
+  /* border: 1px solid red; */
  }
 
 :root {
@@ -110,7 +111,7 @@ input[type="checkbox"]:checked {
 }
 
 .card-grid {
-  @apply grid sm:grid-cols-2 gap-4 sm:gap-6;
+  @apply grid md:grid-cols-2 gap-4 md:gap-6;
 }
 
 .Toastify__toast {
