@@ -40,7 +40,7 @@ const image = computed(() => {
     return client.storage.from('products').getPublicUrl(key.replace('products/', '')).data.publicUrl
 
   else
-    return null
+    return props.item?.images?.[0]
 })
 </script>
 

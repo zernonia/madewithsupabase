@@ -75,4 +75,8 @@ export default defineNuxtConfig({
     '/**': { isr: 3600 },
   },
 
+  experimental: {
+    typedPages: true,
+  },
+
 })

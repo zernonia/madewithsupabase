@@ -69,6 +69,7 @@ const { data: hacktoberfestData, pending: isPending } = useLazyAsyncData(
 
 definePageMeta({
   layout: 'blank',
+  title: 'Bring the Func',
 })
 </script>
 

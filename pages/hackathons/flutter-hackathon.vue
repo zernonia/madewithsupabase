@@ -102,7 +102,6 @@ const { data, pending } = useLazyAsyncData('flutter_hackathon_view', async () =>
 
 definePageMeta({
   title: 'Flutter Hackathon',
-  noise_bg_color: '60deg,rgb(46 42 50),rgb(0 0 0 / 75%),rgb(25 47 160)',
 })
 </script>
 

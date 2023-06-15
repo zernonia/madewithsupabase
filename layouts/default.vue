@@ -2,6 +2,7 @@
 import autoAnimate from '@formkit/auto-animate'
 
 const { meta, name, path } = toRefs(useRoute())
+const router = useRouter()
 
 const user = useSupabaseUser()
 const userAvatar = computed(() => user.value?.user_metadata?.avatar_url)
@@ -14,7 +15,7 @@ watch(name, () => {
 const isBackButtonShowing = computed(() => {
   if (process.server)
     return false
-  return window.history.length > 2 && path.value !== '/'
+  return window.history.length >= 2 && path.value !== '/'
 })
 
 const metaTitleRef = ref()
@@ -51,6 +52,17 @@ onMounted(() => {
         </NuxtLink>
       </UTooltip>
 
+      <UTooltip
+        text="Hackathons" :shortcuts="['3']" :popper="{
+          placement: 'right',
+        }"
+        class="justify-center"
+      >
+        <NuxtLink to="/hackathons" class="text-gray-500 hover:text-white transition">
+          <UIcon name="i-lucide-sparkles" />
+        </NuxtLink>
+      </UTooltip>
+
       <hr class="border-gray-700">
 
       <UTooltip
@@ -72,7 +84,7 @@ onMounted(() => {
         :class="{ 'opacity-100': isBackButtonShowing }"
         class="justify-center opacity-0 transition-opacity"
       >
-        <NuxtLink class="text-gray-500 hover:text-white transition" @click="isBackButtonShowing && $router.back()">
+        <NuxtLink class="text-gray-500 hover:text-white transition" @click="isBackButtonShowing && router.back()">
           <UIcon name="i-lucide-arrow-left" />
         </NuxtLink>
       </UTooltip>

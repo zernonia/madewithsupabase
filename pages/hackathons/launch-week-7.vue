@@ -110,8 +110,6 @@ const { data, pending } = useLazyAsyncData('launch-week-7-view', async () => {
 
 definePageMeta({
   title: 'Launch Week 7',
-  noise_bg_color:
-    '60deg,rgba(0, 41, 255, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.85)',
 })
 </script>
 

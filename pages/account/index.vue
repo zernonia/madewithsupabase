@@ -50,10 +50,7 @@ definePageMeta({
         class="relative group"
       >
         <CardOptions :item="item" />
-        <Card
-          :item="item"
-          :show-modal="false"
-        />
+        <Card :item="item" />
       </div>
     </div>
 

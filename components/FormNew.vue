@@ -108,8 +108,13 @@ async function handleSubmit() {
         bucket-id="products"
       />
 
-      <FormKit type="ubutton" label="Submit" />
-      <pre wrap>{{ value }}</pre>
+      <div class="flex justify-end mt-8">
+        <FormKit type="ubutton" label="Submit" />
+      </div>
+
+      <DevOnly>
+        <pre wrap>{{ value }}</pre>
+      </DevOnly>
     </FormKit>
   </div>
 </template>
