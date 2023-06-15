@@ -571,7 +571,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@egoist/tailwindcss-icons@^1.1.0":
+"@egoist/tailwindcss-icons@^1.0.7":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@egoist/tailwindcss-icons/-/tailwindcss-icons-1.1.0.tgz#8ccea4d34819292d94f73f6faaed3f4381e94c2f"
   integrity sha512-3zIBtwMH4viBDtDF7nDgGOFS/mxu4qtfhimeyyGlK+RHJu26YaLhHrJf6NaEK5Gwxt8chNntJwslklR+66AErg==
@@ -895,7 +895,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@iconify-json/heroicons@^1.1.11":
+"@iconify-json/heroicons@^1.1.10":
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/@iconify-json/heroicons/-/heroicons-1.1.11.tgz#46a426c8bf4883d9dcf0af5f2dd9e77fc1754be6"
   integrity sha512-Autw98FvUTmBCgb4CuKZ7iQQ2633YBCmcCbAbVNU9hAo6vms9uVcbtrAQt/qlB+qzNi52PV3DWDiRtJgmPeZIw==
@@ -1446,20 +1446,19 @@
     vite-plugin-checker "^0.6.0"
     vue-bundle-renderer "^1.0.3"
 
-"@nuxthq/ui@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@nuxthq/ui/-/ui-2.4.0.tgz#f1a4cc1d91b78cd30ccdd8b1609e870dccf0ce24"
-  integrity sha512-K7h4USb095DDIq3BCaSLT7mU4UoMzes6ALHqTiDIfuRGnQyTNbvH5oIkBIv1gsKILHzEPWFp391jrEFpwiidtg==
+"@nuxthq/ui@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxthq/ui/-/ui-2.3.0.tgz#70f97ba9d53eb62282e1e94b0308c47a744a2dde"
+  integrity sha512-85yN5nKNRwkPn5nQp9UJnxtTLEoO7IjXfgLmVZmVnkuPKVqu/1bbCs5dbfuOQ12WYPZq1/PPjvDKeKYSqE7eUg==
   dependencies:
-    "@egoist/tailwindcss-icons" "^1.1.0"
+    "@egoist/tailwindcss-icons" "^1.0.7"
     "@headlessui/vue" "1.7.10"
-    "@iconify-json/heroicons" "^1.1.11"
-    "@nuxt/kit" "^3.5.3"
+    "@iconify-json/heroicons" "^1.1.10"
+    "@nuxt/kit" "^3.5.2"
     "@nuxtjs/color-mode" "^3.2.0"
-    "@nuxtjs/tailwindcss" "^6.7.2"
+    "@nuxtjs/tailwindcss" "^6.7.0"
     "@popperjs/core" "^2.11.8"
     "@tailwindcss/aspect-ratio" "^0.4.2"
-    "@tailwindcss/container-queries" "^0.1.1"
     "@tailwindcss/forms" "^0.5.3"
     "@tailwindcss/typography" "^0.5.9"
     "@vueuse/core" "^10.1.2"
@@ -1489,7 +1488,7 @@
     defu "^6.1.2"
     pathe "^1.1.0"
 
-"@nuxtjs/tailwindcss@^6.7.2":
+"@nuxtjs/tailwindcss@^6.7.0":
   version "6.7.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-6.7.2.tgz#88f06589c9247ed4ba3d2baec9304da145065d38"
   integrity sha512-Zd4fm+o8bXcu+kc4JtegWAHXVms8pud8fhkJDZjKUa9CpawaWdnIf0fSzYyXdm2dWpDlH4YUdjN0HDaFRFQMDw==
@@ -1792,11 +1791,6 @@
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.4.2.tgz#9ffd52fee8e3c8b20623ff0dcb29e5c21fb0a9ba"
   integrity sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==
-
-"@tailwindcss/container-queries@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/container-queries/-/container-queries-0.1.1.tgz#9a759ce2cb8736a4c6a0cb93aeb740573a731974"
-  integrity sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==
 
 "@tailwindcss/forms@^0.5.3":
   version "0.5.3"

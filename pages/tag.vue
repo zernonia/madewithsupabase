@@ -23,7 +23,7 @@ watch(() => params.value.name, (n) => {
       <USelectMenu
         v-model="selected"
         :options="options"
-        class="!w-56"
+        class="w-56"
         placeholder="Select tag"
         leading-icon="i-lucide-tag"
         @update:model-value="navigateTo(`/tag/${$event}`)"
