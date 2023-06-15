@@ -127,7 +127,7 @@ onMounted(() => {
           </h2>
         </div>
 
-        <h1 class="mt-2 font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
+        <h1 class="font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
           Made with Supabase
         </h1>
       </div>

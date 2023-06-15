@@ -61,7 +61,7 @@ defineOgImageStatic({
       <div v-if="data" class="mt-4">
         <Product :data="data" />
         <div v-if="data.id" class="mt-16 md:mt-36">
-          <h1 class="text-3xl text-left">
+          <h1 class="text-2xl sm:text-3xl text-left">
             Related Projects
           </h1>
           <div v-if="!relatedPending" class="mt-6 md:mt-12 card-grid">
