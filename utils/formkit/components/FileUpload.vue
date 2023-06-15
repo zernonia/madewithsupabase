@@ -13,7 +13,8 @@ const FilePond = vueFilePond(
   FilePondPluginImagePreview,
 )
 
-const client = useSupabaseClient()
+const user = useSupabaseUser()
+const client = useSupabase()
 const cfg = useRuntimeConfig()
 const myFiles = ref<FilePondOptions['files']>([])
 
@@ -53,7 +54,7 @@ const server: FilePondServerConfigProps['server'] = {
 
     const request = new XMLHttpRequest()
 
-    request.open('POST', `${storageUrl}/${file.name}`)
+    request.open('POST', `${storageUrl}/${user.value?.id}/${file.name}`)
     request.setRequestHeader('Apikey', `${cfg.public.SUPABASE_KEY}`)
     request.setRequestHeader('Authorization', `Bearer ${cfg.public.SUPABASE_KEY}`)
     request.setRequestHeader('X-Upsert', 'true')
@@ -87,6 +88,9 @@ function handleInput(files: FilePondFile[]) {
   const keys = files.map(file => file.serverId).filter(Boolean)
   if (keys?.length)
     props.context?.node.input(keys)
+
+  else
+    props.context?.node.input([])
 }
 
 const uploadCount = ref(0)
