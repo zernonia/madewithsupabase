@@ -3,22 +3,11 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const { params } = toRefs(useRoute())
-const client = useSupabase()
-const supabaseTags = [
-  'Supabase Auth',
-  'Supabase Database',
-  'Supabase Function',
-  'Supabase Storage',
-  'Supabase Realtime',
-]
+
+const { tagOptions, supabaseFeatureOptions } = useTags()
 const selected = ref(params.value.name)
 
-const { data: tags } = await useLazyAsyncData('tagOptions', async () => {
-  const { data } = await client.from('tags_view').select('*').order('tags', { ascending: true })
-  return data?.map(i => i.tags ?? '')
-})
-
-const options = computed(() => [...supabaseTags, ...(tags.value ?? [])])
+const options = computed(() => [...supabaseFeatureOptions, ...(tagOptions.value ?? [])])
 
 watch(() => params.value.name, (n) => {
   selected.value = n
@@ -34,7 +23,7 @@ watch(() => params.value.name, (n) => {
       <USelectMenu
         v-model="selected"
         :options="options"
-        class="w-56"
+        class="!w-56"
         placeholder="Select tag"
         leading-icon="i-lucide-tag"
         @update:model-value="navigateTo(`/tag/${$event}`)"

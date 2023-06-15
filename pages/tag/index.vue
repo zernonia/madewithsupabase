@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data } = useNuxtData('tags')
+const { data } = useNuxtData('tagOptions')
 </script>
 
 <template>

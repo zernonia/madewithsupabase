@@ -36,7 +36,7 @@ definePageMeta({
       <div class="mr-2 text-sm">
         Sort:
       </div>
-      <USelectMenu v-model="selectedSort" :disabled="pending" class="w-56" :options="sortOptions">
+      <USelectMenu v-model="selectedSort" :disabled="pending" class="!w-56" :options="sortOptions">
         <template #label>
           <UIcon name="i-lucide-arrow-up-down" />
           <span v-if="selectedSort" class="truncate">{{ selectedSort.label }}</span>
