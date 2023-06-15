@@ -26,7 +26,7 @@ function cleanse(text: string | null) {
 const routeModal = useRouteModal()
 function handleUserClick(ev: Event) {
   // if mobile view (sm), turn off routeModal
-  if (props.showModal && !breakpoints.sm.value) {
+  if (props.showModal && !breakpoints.smaller('sm').value) {
     ev.preventDefault()
     ev.stopPropagation()
 

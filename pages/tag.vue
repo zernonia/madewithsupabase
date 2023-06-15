@@ -13,7 +13,7 @@ const supabaseTags = [
 ]
 const selected = ref(params.value.name)
 
-const { data: tags } = await useLazyAsyncData('tags', async () => {
+const { data: tags } = await useLazyAsyncData('tagOptions', async () => {
   const { data } = await client.from('tags_view').select('*').order('tags', { ascending: true })
   return data?.map(i => i.tags ?? '')
 })
