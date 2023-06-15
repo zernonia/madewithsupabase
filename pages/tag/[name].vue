@@ -1,22 +1,21 @@
 <script setup lang="ts">
 const { upsertProjects } = useAllProjects()
 const route = useRoute()
-const name = computed(() => route.params.name.toString())
+const name = computed(() => route.params?.name?.toString())
 const { data } = await useLazyAsyncData(name.value, async () => {
   const data = await $fetch(`/api/tag/${name.value}`)
   upsertProjects(data)
   return data
 },
 )
+
+useSeoMeta({
+  title: `Tag: ${name.value}`,
+})
 </script>
 
 <template>
   <div>
-    <CustomMeta
-      :key="$route.params.name.toString()"
-      :title="`Tag: ${$route.params.name}`"
-    />
-
     <transition name="fade" mode="out-in">
       <div v-if="data" class="mt-6">
         <div v-if="data.length" class="card-grid">

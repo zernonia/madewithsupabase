@@ -11,15 +11,16 @@ export default defineNuxtConfig({
       mode: 'out-in',
     },
   },
+
   modules: [
     '@nuxt/image',
     '@nuxt/devtools',
     '@nuxthq/ui',
     '@nuxtjs/supabase',
-    'v-satori/nuxt',
     '@formkit/nuxt',
     '~~/modules/server-assets',
   ],
+
   image: {
     providers: {
       customProvider: {
@@ -62,6 +63,7 @@ export default defineNuxtConfig({
     'swiper/css/navigation',
     'swiper/css/pagination',
   ],
+
   runtimeConfig: {
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
@@ -75,6 +77,7 @@ export default defineNuxtConfig({
     },
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
+
   routeRules: {
     '/**': { isr: 3600 },
   },
@@ -99,4 +102,5 @@ export default defineNuxtConfig({
     prerender: { crawlLinks: false },
   },
 
+  plugins: ['~/plugins/analytics.client.ts'],
 })

@@ -109,14 +109,12 @@ const { data, pending } = useLazyAsyncData('launch-week-7-view', async () => {
 })
 
 definePageMeta({
-  title: 'Launch Week 7',
+  title: 'Launch Week 7 Hackathon',
 })
 </script>
 
 <template>
   <div>
-    <CustomMeta title="Launch Week 7 Hackathon" />
-
     <div v-for="(winners, key) of winnerGroup">
       <h2 class="mt-12 mb-4 text-3xl">
         {{ key }}

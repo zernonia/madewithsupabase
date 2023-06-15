@@ -75,8 +75,6 @@ defineOgImageStatic({
         </div>
 
         <div v-else class="w-full flex flex-col space-y-8 items-center mt-32">
-          <CustomMeta title="404 ⚡ Made with Supabase" />
-
           <img class="w-40" :src="Logo404">
           <h1 class="text-4xl">
             No project found...
@@ -91,7 +89,6 @@ defineOgImageStatic({
         </div>
       </div>
       <div v-else class="w-full h-screen flex items-center justify-center">
-        <CustomMeta title="Loading... ⚡ Made with Supabase" />
         <SVGCircle class="animate-ping" />
       </div>
     </transition>

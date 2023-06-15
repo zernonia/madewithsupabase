@@ -19,15 +19,12 @@
     "@supabase/supabase-js": "^2.12.1",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
-    "@yeger/vue-masonry-wall": "^3.4.4",
     "dayjs": "^1.11.7",
     "lottie-web": "^5.10.2",
     "marked": "^4.3.0",
-    "motion": "^10.15.5",
     "nodemailer": "^6.9.1",
     "remove-markdown": "^0.5.0",
-    "swiper": "^9.1.1",
-    "vue3-toastify": "^0.1.6"
+    "swiper": "^9.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.3",
@@ -36,7 +33,6 @@
     "@formkit/nuxt": "^0.17.2",
     "@iconify-json/lucide": "^1.1.98",
     "@iconify-json/simple-icons": "^1.1.55",
-    "@iconify/json": "^2.2.41",
     "@nuxt/devtools": "^0.6.0",
     "@nuxt/image": "^1.0.0-rc.1",
     "@nuxthq/ui": "^2.3.0",
@@ -54,9 +50,7 @@
     "nuxt-lego": "^0.0.10",
     "nuxt-og-image": "^2.0.0-beta.58",
     "nuxt-seo-kit": "^1.3.8",
-    "satori": "^0.0.44",
     "typescript": "^5.0.4",
-    "v-satori": "^0.1.6",
     "vue-filepond": "^7.0.3"
   }
 }
