@@ -14,16 +14,11 @@ const { data, pending } = await useFetch(`/api/project/${slug}`, {
 })
 
 const { meta } = useRoute()
-const {
-  options: { history },
-} = useRouter()
 
 watch(
   data,
   () => {
     meta.title = data.value?.title
-    if (history.state.back)
-      meta.back = true
   },
   {
     immediate: true,
@@ -44,19 +39,17 @@ const { data: relatedData, pending: relatedPending } = await useAsyncData(
   },
   { server: false, lazy: true },
 )
+
+useSeoMeta({
+  title: () => data.value?.title,
+  description: () => `${data.value?.description?.replace(/<|>/gi, '').slice(0, 150)}...}`,
+  // reactive example
+  // ogImage: () => someData.value?.image
+})
 </script>
 
 <template>
   <div class="min-h-screen-md">
-    <CustomMeta
-      :key="data?.title ?? ''"
-      :title="data?.title ?? ''"
-      :description="
-        `${data?.description?.replace(/<|>/gi, '').slice(0, 150)}...`
-      "
-      :image="`https://madewithsupabase.com/og/${data?.slug}`"
-    />
-
     <transition name="fade" mode="out-in">
       <div v-if="data" class="mt-4">
         <Product :data="data" />

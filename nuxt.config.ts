@@ -3,10 +3,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   app: {
     head: {
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ],
       link: [{ rel: 'icon', type: 'image/svg', href: '/logo.svg' }],
     },
     layoutTransition: { name: 'fade', mode: 'out-in' },
@@ -56,6 +52,7 @@ export default defineNuxtConfig({
 
   extends: [
     'nuxt-lego',
+    'nuxt-seo-kit',
   ],
 
   css: [
@@ -68,6 +65,12 @@ export default defineNuxtConfig({
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
+
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://madewithsupabase.com',
+      siteName: 'Made with Supabase',
+      siteDescription: 'A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!',
+      titleSeparator: '|',
+      language: 'en',
     },
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
@@ -77,6 +80,12 @@ export default defineNuxtConfig({
 
   experimental: {
     typedPages: true,
+  },
+
+  ogImage: {
+    defaults: {
+      component: 'OgDefault',
+    },
   },
 
 })

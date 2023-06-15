@@ -50,12 +50,14 @@ watch(selectedSort, () => {
   page.value = 0
   refresh()
 })
+
+definePageMeta({
+  image: '/old_og.png',
+})
 </script>
 
 <template>
   <div class="flex flex-col">
-    <CustomMeta title="Supabase Showcase" />
-
     <NuxtLink
       to="/hackathons/flutter-hackathon"
       class="mt-6 group h-80 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-500 rounded-2xl relative border border-violet-950 hover:border-violet-800 overflow-hidden"

@@ -1,21 +1,5 @@
 <script setup lang="ts">
-const route = useRoute()
-
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const routeName = computed(() =>
-  capitalizeFirstLetter(route.name?.toString() || ''),
-)
-
-useHead(() => ({
-  title: routeName.value,
-  titleTemplate: (titleChunk) => {
-    return titleChunk
-      ? `${titleChunk} | Made with Supabase`
-      : 'Made with Supabase'
-  },
+useHead({
   link: [
     {
       rel: 'preconnect',
@@ -27,11 +11,21 @@ useHead(() => ({
       crossorigin: '',
     },
   ],
-}))
+})
+
+useSeoMeta({
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <template>
   <NuxtLayout>
+    <SeoKit />
+    <!-- a. Generates browser screenshots for every page -->
+    <OgImageScreenshot />
+    <!-- b. Generate saotir images for every page (uses the default template) -->
+    <OgImageStatic />
+
     <NuxtLoadingIndicator />
     <NuxtPage />
 
