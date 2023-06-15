@@ -64,6 +64,17 @@ onMounted(() => {
         </NuxtLink>
       </UTooltip>
 
+      <UTooltip
+        text="Submit project" :shortcuts="['3']" :popper="{
+          placement: 'right',
+        }"
+        class="justify-center items-center"
+      >
+        <NuxtLink to="/submission" class="text-gray-500 hover:text-white transition">
+          <UIcon name="i-lucide-mouse-pointer-2" class="rotate-90" />
+        </NuxtLink>
+      </UTooltip>
+
       <hr class="hidden md:block border-gray-700">
 
       <UTooltip
@@ -110,8 +121,8 @@ onMounted(() => {
           </UTooltip>
         </div>
 
-        <div ref="metaTitleRef" class="flex items-center justify-center md:w-[32rem]">
-          <h2 v-if="meta.title" :key="meta.title.toString()" class="text-center text-4xl md:text-5xl text-gray-300 my-2 font-medium">
+        <div ref="metaTitleRef" class="flex items-center justify-center w-full md:w-[32rem]">
+          <h2 v-if="meta.title" :key="meta.title.toString()" class="text-center text-3xl md:text-5xl text-gray-300 my-2 font-medium">
             {{ meta.title }}
           </h2>
         </div>

@@ -28,7 +28,7 @@ async function handleSubmit() {
 
 <template>
   <LegoAuth
-    class="max-w-[24rem] mx-auto mt-8 text-gray-200 w-full bg-gray-700 bg-opacity-20 hover:bg-opacity-50 border border-gray-700 transition duration-500 rounded-2xl px-8 py-10 shadow-sm"
+    class="max-w-[24rem] mx-auto mt-8 text-gray-200 w-full bg-gray-700 bg-opacity-20 hover:bg-opacity-50 border border-gray-700 transition duration-500 rounded-2xl px-4 md:px-8 py-6 md:py-10 shadow-sm"
     :hide-provider-label="true"
     :providers="['github']"
   >

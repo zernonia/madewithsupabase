@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import removeMd from 'remove-markdown'
+import { breakpointsTailwind } from '@vueuse/core'
 import SiteLogo from '@/assets/logo.svg'
 import type { Project } from '@/types'
 
@@ -13,6 +14,7 @@ const props = withDefaults(defineProps<{
 })
 
 const client = useSupabase()
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
 function cleanse(text: string | null) {
   if (!text)
@@ -23,7 +25,8 @@ function cleanse(text: string | null) {
 
 const routeModal = useRouteModal()
 function handleUserClick(ev: Event) {
-  if (props.showModal) {
+  // if mobile view (sm), turn off routeModal
+  if (props.showModal && !breakpoints.sm) {
     ev.preventDefault()
     ev.stopPropagation()
 
