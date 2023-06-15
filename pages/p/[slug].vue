@@ -46,6 +46,15 @@ useSeoMeta({
   // reactive example
   // ogImage: () => someData.value?.image
 })
+
+defineOgImageStatic({
+  image: () => {
+    const key = data.value?.image_keys?.[0]
+    if (key)
+      return client.storage.from('products').getPublicUrl(key.replace('products/', '')).data.publicUrl
+    else return data.value?.images?.[0]
+  },
+})
 </script>
 
 <template>

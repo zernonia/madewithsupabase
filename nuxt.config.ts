@@ -13,6 +13,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
+    '@nuxt/devtools',
     '@nuxthq/ui',
     '@nuxtjs/supabase',
     'v-satori/nuxt',
@@ -86,6 +87,12 @@ export default defineNuxtConfig({
     defaults: {
       component: 'OgDefault',
     },
+    fonts: [
+      // will load the Noto Sans font from Google fonts
+      'Inter:400',
+      'Inter:500',
+      'Inter:600',
+    ],
   },
 
   nitro: {
