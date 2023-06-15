@@ -27,9 +27,9 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-gray-800 text-white h-full w-full min-h-screen flex"
+    class="bg-gray-800 text-white h-full w-auto min-h-screen flex"
   >
-    <div class="p-5 border-r border-gray-700 sticky top-0 h-screen flex flex-col justify-center space-y-5 text-2xl">
+    <div class="p-5 border-r border-gray-700 fixed left-0 h-screen flex flex-col justify-center space-y-5 text-2xl">
       <UTooltip
         text="Home" :shortcuts="['1']" :popper="{
           placement: 'right',
@@ -90,7 +90,7 @@ onMounted(() => {
       </UTooltip>
     </div>
 
-    <div class="py-6 px-12 mx-auto max-w-5xl w-full">
+    <div class="py-6 px-12 left-8 relative mx-auto max-w-5xl w-full">
       <div class="flex flex-col items-center mt-4 justify-center">
         <NuxtLink to="/">
           <img class="md:w-28 md:h-28" src="@/assets/logo.svg" alt="">

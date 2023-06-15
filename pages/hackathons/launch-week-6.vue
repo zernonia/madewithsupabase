@@ -107,7 +107,7 @@ definePageMeta({
   <CustomMeta title="Launch Week 6 Hackathon" />
   <div class="relative">
     <NuxtLink
-      to="/"
+      to="/hackathons"
       class="fixed left-6 top-18 p-3 rounded-full bg-gray-400 border border-gray-300"
     >
       <div class="i-mdi:chevron-left text-2xl" />
@@ -127,14 +127,15 @@ definePageMeta({
       </NuxtLink>
     </div>
 
-    <div v-for="(winners, key) of winnerGroup">
+    <div v-for="(winners, key) of winnerGroup" :key="key">
       <h2 class="mt-12 mb-4 ml-6 text-xl">
         {{ key }}
       </h2>
       <ul class="p-0 m-0 w-full">
         <li
           v-for="(winner, index) in winners"
-          class="group mb-6 w-full relative p-12 rounded-3xl bg-gradient-to-br from-gray-900 via-gray-900 border border-gray-300 overflow-hidden"
+          :key="index"
+          class="group mb-6 w-full relative p-12 rounded-3xl bg-gradient-to-br from-gray-900 via-gray-900 border border-gray-700 overflow-hidden"
           :class="[index === 0 ? 'to-yellow-900' : 'to-gray-700']"
         >
           <div class="flex flex-col">
@@ -153,9 +154,9 @@ definePageMeta({
             </NuxtLink>
           </div>
 
-          <div class="md:w-120 md:absolute top-16 right-16">
+          <div class="md:w-[30rem] md:absolute bottom-0 right-16">
             <div
-              class="relative flex-shrink-0 pb-2/3 rounded-t-xl border-4 border-gray-100"
+              class="relative flex-shrink-0 max-h-[18rem] rounded-t-xl border border-gray-700"
             >
               <CompressedImage
                 class="rounded-lg"
@@ -187,13 +188,6 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-gray-400 rounded-full font-normal text-base border border-gray-300 hover:border-white;
-}
-
-:deep(.card-grid a > div) {
-  @apply bg-gradient-to-br from-gray-900 to-gray-500 border hover:shadow-gray-300;
-}
-:deep(.card-grid a > div > div:nth-child(2)) {
-  @apply border-t;
+  @apply bg-gray-800 rounded-full font-normal text-base border border-gray-700 hover:border-white;
 }
 </style>

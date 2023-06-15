@@ -113,7 +113,7 @@ definePageMeta({
         <div class="w-full md:w-auto">
           <NuxtLink
             to="https://supabase.com/blog/flutter-hackathon-winners" target="_blank"
-            class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-gray-500 border-opacity-10 overflow-hidden hover:scale-105"
+            class="group h-80 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-750 ease-in-out rounded-lg md:rounded-xl relative border-10 border-gray-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
             <img
               src="~~/assets/flutter-hackathon-winners.webp" alt="Supabase Flutter Hackathon Winners"
