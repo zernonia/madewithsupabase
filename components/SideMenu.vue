@@ -11,7 +11,7 @@ watch(name, () => {
   isSideMenuOpen.value = false
 })
 
-const isBackButtonShowing = computed(() => {
+const isBackButtonShowing = computedWithControl(path, () => {
   if (process.server)
     return false
   return window.history.length >= 2 && path.value !== '/'
@@ -82,7 +82,7 @@ const accounts = computed(() => [{
       :class="{ 'opacity-100': isBackButtonShowing }"
       class="justify-center items-center opacity-0 transition-opacity"
     >
-      <NuxtLink class="p-2 w-10 h-10 text-gray-500 hover:text-white transition" @click="isBackButtonShowing && router.back()">
+      <NuxtLink class="p-2 w-10 h-10 text-gray-500 hover:text-white transition cursor-pointer" @click="isBackButtonShowing && router.back()">
         <UIcon name="i-lucide-arrow-left" />
       </NuxtLink>
     </UTooltip>
