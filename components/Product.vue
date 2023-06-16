@@ -61,9 +61,8 @@ onMounted(() => {
           </LegoSocialShareTwitter>
         </LegoSocialShare>
 
-        <UTooltip text="Project's Twitter">
+        <UTooltip v-if="data.twitter" text="Project's Twitter">
           <UButton
-            v-if="data.twitter"
             :to="`https://twitter.com/${data.twitter}`"
             target="_blank"
             icon="i-lucide-twitter"
@@ -74,7 +73,6 @@ onMounted(() => {
 
         <UTooltip v-if="data.github_url" text="Project's GitHub">
           <UButton
-
             :to="data.github_url"
             target="_blank"
             icon="i-lucide-github"
