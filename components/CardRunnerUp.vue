@@ -12,7 +12,7 @@ defineProps({
     class="w-full mt-8 md:mt-16 flex flex-col-reverse sm:flex-row items-center justify-center relative"
   >
     <div
-      class="w-full sm:w-1/2 sm:mr-4 md:mr-12 flex flex-col sm:items-end transform -translate-y-8 sm:translate-y-0 bg-dark-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl z-10"
+      class="w-full sm:w-1/2 sm:mr-4 md:mr-12 flex flex-col sm:items-end transform -translate-y-8 sm:translate-y-0 bg-gray-600 sm:bg-transparent px-8 py-6 sm:p-0 rounded-xl z-10"
     >
       <h2 class="text-2xl md:text-4xl text-gray-300">
         Runner up

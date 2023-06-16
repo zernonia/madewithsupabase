@@ -121,7 +121,7 @@ onMounted(() => {
         <label for="description">description (Markdown Supported) * </label>
         <div class="flex space-x-2">
           <button
-            class="hover:underline border-3 border-transparent px-2 rounded-lg"
+            class="hover:underline border-[3px] border-transparent px-2 rounded-lg"
             @click.prevent="isPreviewMd = !isPreviewMd"
           >
             {{ isPreviewMd ? "Edit" : "Preview" }}
@@ -140,7 +140,7 @@ onMounted(() => {
         />
         <Marked
           v-else
-          class="max-w-none px-4 py-2 border-3 border-transparent"
+          class="max-w-none px-4 py-2 border-[3px] border-transparent"
           :text="form.description"
         />
       </div>
@@ -193,7 +193,7 @@ onMounted(() => {
       <FormTeamMember v-model="form.team_info" />
     </div>
 
-    <div class="!my-8 px-6 py-4 bg-dark-600 rounded-lg">
+    <div class="!my-8 px-6 py-4 bg-gray-600 rounded-lg">
       <p>
         Any intellectual property developed during the hackathon will belong to
         the team that developed it. We expect that each team will have an
@@ -207,7 +207,7 @@ onMounted(() => {
           name="acknowledge"
           required
         >
-        <label class="!text-base text-light-900" for="acknowledge">Acknowledge</label>
+        <label class="!text-base text-white" for="acknowledge">Acknowledge</label>
       </div>
 
       <p class="mt-8">
@@ -224,7 +224,7 @@ onMounted(() => {
           name="accept"
           required
         >
-        <label class="!text-base text-light-900" for="accept">Accept</label>
+        <label class="!text-base text-white" for="accept">Accept</label>
       </div>
     </div>
 
@@ -248,6 +248,6 @@ onMounted(() => {
 
 <style scoped>
 input, textarea, :deep(input), :deep(#form-image) {
-  @apply border-2 border-cool-gray-600 placeholder-text-cool-gray-500;
+  @apply border-2 border-gray-600 placeholder-gray-500;
 }
 </style>

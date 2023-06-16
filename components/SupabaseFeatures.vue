@@ -8,21 +8,24 @@ defineProps({
 
 <template>
   <div>
-    <div
+    <UBadge
       v-for="feature in features"
-      class="inline-flex mr-2 h-8 w-8 items-center justify-center rounded-md bg-white bg-opacity-90"
+      :key="feature"
+      class="stroke-emerald-500 mr-2"
     >
-      <SupabaseAuthIcon v-if="feature === 'Supabase Auth'" />
-      <SupabaseDBIcon v-if="feature === 'Supabase Database'" />
-      <SupabaseEdgeFunctionIcon
-        v-if="feature === 'Supabase Function'"
-      />
-      <SupabaseStorageIcon
-        v-if="feature === 'Supabase Storage'"
-      />
-      <SupabaseRealtimeIcon
-        v-if="feature === 'Supabase Realtime'"
-      />
-    </div>
+      <UTooltip :text="feature" class="text-white">
+        <SupabaseAuthIcon v-if="feature === 'Supabase Auth'" />
+        <SupabaseDBIcon v-if="feature === 'Supabase Database'" />
+        <SupabaseEdgeFunctionIcon
+          v-if="feature === 'Supabase Function'"
+        />
+        <SupabaseStorageIcon
+          v-if="feature === 'Supabase Storage'"
+        />
+        <SupabaseRealtimeIcon
+          v-if="feature === 'Supabase Realtime'"
+        />
+      </UTooltip>
+    </UBadge>
   </div>
 </template>

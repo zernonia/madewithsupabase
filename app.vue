@@ -1,27 +1,35 @@
 <script setup lang="ts">
-const route = useRoute()
+useHead({
+  link: [
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap',
+      crossorigin: '',
+    },
+  ],
+})
 
-function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const routeName = computed(() =>
-  capitalizeFirstLetter(route.name?.toString() || ''),
-)
-
-useHead(() => ({
-  title: routeName.value,
-  titleTemplate: (titleChunk) => {
-    return titleChunk
-      ? `${titleChunk} | Made with Supabase`
-      : 'Made with Supabase'
-  },
-}))
+useSeoMeta({
+  twitterCard: 'summary_large_image',
+})
 </script>
 
 <template>
   <NuxtLayout>
+    <SeoKit />
+    <!-- a. Generates browser screenshots for every page -->
+    <OgImageScreenshot />
+    <!-- b. Generate saotir images for every page (uses the default template) -->
+    <OgImageStatic />
+
     <NuxtLoadingIndicator />
     <NuxtPage />
+
+    <RouteModalProduct />
   </NuxtLayout>
+  <UNotifications />
 </template>

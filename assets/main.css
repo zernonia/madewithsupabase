@@ -1,15 +1,7 @@
-@font-face {
-  font-family: custom-font;
-  font-weight: 400;
-  font-style: normal;
-  src: url(./fonts/CustomFont-Book.woff2) format("woff2");
-}
-@font-face {
-  font-family: custom-font;
-  font-weight: 500;
-  font-style: normal;
-  src: url(./fonts/CustomFont-Medium.woff2) format("woff2");
-}
+ * {
+  -webkit-font-smoothing: inherit;
+  /* border: 1px solid red; */
+ }
 
 :root {
   --toastify-color-success: rgb(158, 68, 239) !important;
@@ -17,19 +9,19 @@
 
 body {
   overflow-x: hidden;
-  @apply font-main bg-dark-900;
+  @apply font-main bg-gray-900;
 }
-
+/* 
 button {
   display: block;
   @apply focus:!outline-none;
-}
-ol,
+} */
+/* ol,
 ul {
   display: block;
   @apply pl-4;
-}
-
+} */
+/* 
 label {
   display: block;
   @apply capitalize;
@@ -41,7 +33,7 @@ input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
-  @apply mt-2 px-6 py-3 bg-dark-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-warm-gray-500 border-b-4 border-dark-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
+  @apply mt-2 px-6 py-3 bg-gray-500 bg-opacity-20 text-white font-thin rounded-xl placeholder-gray-500 border-b-4 border-gray-500 border-opacity-10 transition duration-500 outline-none focus:shadow-xl;
 }
 
 input[type="color"] {
@@ -68,45 +60,20 @@ input[type="checkbox"] {
 }
 input[type="checkbox"]:checked {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
-}
+} */
 
-code,
-.code {
-  @apply font-mono text-sm uppercase bg-dark-300 px-4 py-1 rounded;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #1e1e1e;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #2a2a2a;
-}
-
+ 
 .btn {
-  @apply px-6 py-2 rounded-lg bg-emerald-500 border-3 border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
+  @apply px-6 py-2 rounded-lg bg-emerald-500 border-[3px] border-emerald-500 transition hover:bg-emerald-600 hover:border-emerald-600 focus:border-emerald-600 focus:outline-none outline-none disabled:bg-emerald-400 disabled:cursor-not-allowed;
 }
 
 .btn-pale {
   display: inline-flex;
-  @apply px-6 py-2 rounded-lg border-3 border-light-900  transition hover:border-gray-400 focus:border-gray-400 focus:outline-none outline-none;
+  @apply px-6 py-2 rounded-lg border-[3px] border-white  transition hover:border-gray-400 focus:border-gray-400 focus:outline-none outline-none;
 }
 
 .btn-icon {
-  @apply p-3 flex rounded-lg bg-dark-800 border-2 border-dark-600 cursor-pointer opacity-50 hover:opacity-100 hover:bg-dark-600 focus:outline-none transition duration-100;
+  @apply p-3 flex rounded-lg bg-gray-800 border-2 border-gray-600 cursor-pointer opacity-50 hover:opacity-100 hover:bg-gray-600 focus:outline-none transition duration-100;
 }
 
 .swiper-pagination-bullet {
@@ -144,7 +111,7 @@ code,
 }
 
 .card-grid {
-  @apply grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 xl:gap-10;
+  @apply grid md:grid-cols-2 gap-4 md:gap-6;
 }
 
 .Toastify__toast {

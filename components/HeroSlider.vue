@@ -26,7 +26,7 @@ const heroImages = computed(() => {
       :space-between="40"
       :pagination="{ clickable: true }"
       :autoplay="{ delay: 5000, pauseOnMouseEnter: true }"
-      class="relative w-full max-w-screen-lg border-5 border-dark-300 rounded-2xl bg-dark-600"
+      class="relative w-full max-w-screen-lg border-5 border-gray-300 rounded-2xl bg-gray-600"
     >
       <SwiperSlide
         v-for="(image, index) in heroImages"

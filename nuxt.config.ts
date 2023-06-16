@@ -1,13 +1,8 @@
-import transformerDirective from '@unocss/transformer-directives'
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   app: {
     head: {
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ],
       link: [{ rel: 'icon', type: 'image/svg', href: '/logo.svg' }],
     },
     layoutTransition: { name: 'fade', mode: 'out-in' },
@@ -16,12 +11,16 @@ export default defineNuxtConfig({
       mode: 'out-in',
     },
   },
+
   modules: [
-    '@unocss/nuxt',
-    '@nuxt/image-edge',
-    'v-satori/nuxt',
+    '@nuxt/image',
+    '@nuxt/devtools',
+    '@nuxthq/ui',
+    '@nuxtjs/supabase',
+    '@formkit/nuxt',
     '~~/modules/server-assets',
   ],
+
   image: {
     providers: {
       customProvider: {
@@ -44,84 +43,64 @@ export default defineNuxtConfig({
       },
     },
   },
-  unocss: {
-    // presets
-    uno: true, // enabled `@unocss/preset-uno`
-    icons: true, // enabled `@unocss/preset-icons`,
-    typography: {
-      cssExtend: {
-        'strong': {
-          color: 'white',
-          fontWeight: '500',
-        },
-        'code': {
-          'background-color': '#2d2d2d !important',
-        },
-        'code::before': {
-          content: '""',
-        },
-        'code::after': {
-          content: '""',
-        },
-        'pre': {
-          'background-color': '#2d2d2d !important',
-        },
-        'pre,code': {
-          'white-space': 'pre-wrap',
-        },
-        'hr': {
-          borderTop: '1px solid #2d2d2d',
-        },
-        'a': {
-          color: '#d6d9dc',
-        },
-        'a:hover': {
-          color: '#10b981',
-        },
-        'ol > li::before': {
-          color: '#56524e',
-        },
-        'ul > li::before': {
-          'color': '#56524e',
-          'background-color': '#56524e !important',
-        },
-        'h1': {
-          'font-size': '1.75rem',
-        },
-        'h2': {
-          'font-size': '1.5rem',
-        },
-      },
-    },
-    theme: {
-      fontFamily: {
-        main: [
-          'custom-font, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica,  Arial, sans-serif',
-        ],
-      },
-    },
-    transformers: [transformerDirective({ enforce: 'pre' })], // enabled `@unocss/transformer-directives`,
+
+  build: {
+    transpile: ['vue-filepond', 'filepond'],
+  },
+
+  ui: {
+    icons: ['heroicons', 'lucide'],
   },
 
   extends: [
     'nuxt-lego',
+    'nuxt-seo-kit',
   ],
 
   css: [
-    '@unocss/reset/tailwind.css',
     '@/assets/main.css',
     'swiper/css',
     'swiper/css/navigation',
     'swiper/css/pagination',
   ],
+
   runtimeConfig: {
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
+
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://madewithsupabase.com',
+      siteName: 'Made with Supabase',
+      siteDescription: 'A collection of projects made with Supabase – Websites, Mobile Apps, SaaS, Plugins and more!',
+      titleSeparator: '|',
+      language: 'en',
     },
     SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
   },
+
   routeRules: {
     '/**': { isr: 3600 },
   },
+
+  experimental: {
+    typedPages: true,
+  },
+
+  ogImage: {
+    defaults: {
+      component: 'OgDefault',
+    },
+    fonts: [
+      // will load the Noto Sans font from Google fonts
+      'Inter:400',
+      'Inter:500',
+      'Inter:600',
+    ],
+  },
+
+  nitro: {
+    prerender: { crawlLinks: false },
+  },
+
+  plugins: ['~/plugins/analytics.client.ts'],
 })

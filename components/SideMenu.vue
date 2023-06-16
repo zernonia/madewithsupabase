@@ -1,98 +1,120 @@
-<script lang="ts" setup></script>
+<script setup lang="ts">
+const { name, path } = toRefs(useRoute())
+
+const router = useRouter()
+
+const user = useSupabaseUser()
+const userAvatar = computed(() => user.value?.user_metadata?.avatar_url)
+
+const isSideMenuOpen = ref(false)
+watch(name, () => {
+  isSideMenuOpen.value = false
+})
+
+const isBackButtonShowing = computedWithControl(path, () => {
+  if (process.server)
+    return false
+  return window.history.length >= 2 && path.value !== '/'
+})
+
+const links = computed(() => [{
+  label: 'Home',
+  icon: 'i-lucide-home',
+  to: '/',
+}, {
+  label: 'Tags',
+  icon: 'i-lucide-tag',
+  to: '/tag',
+}, {
+  label: 'Hackathons',
+  icon: 'i-lucide-sparkles',
+  to: '/hackathons',
+}, {
+  label: 'Submission',
+  icon: 'i-lucide-navigation',
+  to: '/submission',
+}])
+
+const accounts = computed(() => [{
+  label: 'Account',
+  avatar: userAvatar.value
+    ? { src: userAvatar.value }
+    : undefined,
+  icon: userAvatar.value ? '' : 'i-lucide-user',
+  to: '/account',
+}])
+</script>
 
 <template>
-  <div
-    class="h-full overflow-y-auto bg-dark-700 md:bg-transparent md:h-screen md:p-6"
-  >
-    <div class="md:rounded-2xl p-6 w-80 bg-dark-700 flex flex-col h-full">
-      <div class="hidden md:block">
-        <div class="flex justify-center mt-4">
-          <NuxtLink to="/">
-            <img class="md:w-28 md:h-28" src="@/assets/logo.svg" alt="">
-          </NuxtLink>
-        </div>
-        <h1 class="text-2xl mt-6 text-center">
-          Made with Supabase
-        </h1>
-      </div>
-
-      <div class="md:mt-8 rounded-xl overflow-hidden flex-shrink-0">
-        <NuxtLink to="/flutter-hackathon">
-          <img
-            src="@/assets/flutter-hackathon-winners.webp"
-            class="scale-120 hover:scale-145 transition duration-750"
-            alt=""
-          >
-        </NuxtLink>
-      </div>
-
-      <NuxtLink to="/submission" class="btn text-center mt-6">
-        Submit a project
+  <div class="w-[80px] hidden md:block" />
+  <div class="hidden md:flex p-3 md:p-4 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen md:flex-col justify-around md:justify-center md:space-y-2 text-2xl">
+    <UTooltip
+      v-for="link in links"
+      :key="link.label"
+      :text="link.label" :popper="{
+        placement: 'right',
+      }"
+      class="justify-center items-center"
+    >
+      <NuxtLink :to="link.to" class="p-2 w-10 h-10 text-gray-500 hover:text-white transition">
+        <UIcon :name="link.icon" />
       </NuxtLink>
+    </UTooltip>
 
-      <menu class="flex-1 flex flex-col mt-12 gap-4">
-        <NuxtLink
-          to="/"
-          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
-        >
-          <div class="mr-4 i-mdi-home" />
-          Home
-        </NuxtLink>
-        <NuxtLink
-          to="/tag"
-          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
-        >
-          <div class="mr-4 i-mdi-tag" />
-          Tag
-        </NuxtLink>
-        <NuxtLink
-          to="/month"
-          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
-        >
-          <div class="mr-4 i-ic-baseline-calendar-month" />
-          Month
-        </NuxtLink>
-        <NuxtLink
-          to="/testimonial"
-          class="px-6 py-2 flex items-center space-x-4 border-l-2 border-transparent hover:border-white transition"
-        >
-          <div class="mr-4 i-mdi-chat" />
-          Testimonial
-        </NuxtLink>
-      </menu>
+    <hr class="border-gray-700">
 
-      <div class="flex-shrink-0 mt-4">
-        <div class="flex flex-row items-center space-x-4">
-          <NuxtLink
-            target="_blank"
-            to="https://twitter.com/madewifsupabase"
-            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
-          >
-            <div class="text-2xl i-mdi-twitter" />
-          </NuxtLink>
-          <NuxtLink
-            target="_blank"
-            to="https://github.com/zernonia/madewithsupabase"
-            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
-          >
-            <div class="text-2xl i-mdi-github" />
-          </NuxtLink>
+    <UTooltip
+      text="Account" :popper="{
+        placement: 'right',
+      }"
+      class="justify-center items-center"
+    >
+      <NuxtLink to="/account" class="p-2 w-10 h-10 text-gray-500 hover:text-white transition">
+        <UAvatar v-if="userAvatar" class="-ml-1 -mt-1" :src="userAvatar" alt="Avatar" />
+        <UIcon v-else name="i-lucide-user" />
+      </NuxtLink>
+    </UTooltip>
 
-          <NuxtLink
-            target="_blank"
-            to="https://zernonia.com"
-            class="text-sm text-center text-opacity-40 hover:text-opacity-100 text-white transition"
-          >
-            Made by Zernonia
-          </NuxtLink>
-        </div>
+    <UTooltip
+      text="Back" :popper="{
+        placement: 'right',
+      }"
+      :class="{ 'opacity-100': isBackButtonShowing }"
+      class="justify-center items-center opacity-0 transition-opacity"
+    >
+      <NuxtLink class="p-2 w-10 h-10 text-gray-500 hover:text-white transition cursor-pointer" @click="isBackButtonShowing && router.back()">
+        <UIcon name="i-lucide-arrow-left" />
+      </NuxtLink>
+    </UTooltip>
+  </div>
+
+  <div class="block md:hidden">
+    <UButton
+      size="xl"
+      color="gray"
+      class="fixed bottom-4 right-4 z-10" :ui="{
+        rounded: 'rounded-full',
+      }" icon="i-lucide-menu" @click="isSideMenuOpen = true"
+    />
+
+    <USlideover v-model="isSideMenuOpen">
+      <div class="p-4 flex flex-col justify-end h-full mb-20">
+        <h2 class="my-2 font-medium ml-5 text-gray-600">
+          Navigation
+        </h2>
+        <UVerticalNavigation :links="links" />
+
+        <hr class="my-2 border-gray-700">
+
+        <UVerticalNavigation :links="accounts" />
       </div>
-    </div>
+      <UButton
+        size="xl"
+        color="gray"
+        class="absolute bottom-4 right-4 z-10" :ui="{
+          rounded: 'rounded-full',
+        }" icon="i-lucide-x" @click="isSideMenuOpen = false"
+      />
+    </USlideover>
   </div>
 </template>
-
-<style scoped lang="postcss">
-menu .router-link-active {
-  @apply border-white;
-}
-</style>

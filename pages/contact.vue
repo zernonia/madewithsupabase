@@ -31,7 +31,7 @@ definePageMeta({
 
     <div class="mt-8">
       <router-link
-        class="px-6 py-3 rounded-lg bg-dark-400 hover:bg-dark-500 transition"
+        class="px-6 py-3 rounded-lg bg-gray-400 hover:bg-gray-500 transition"
         to="about"
       >
         About

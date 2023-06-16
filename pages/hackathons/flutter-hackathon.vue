@@ -102,7 +102,6 @@ const { data, pending } = useLazyAsyncData('flutter_hackathon_view', async () =>
 
 definePageMeta({
   title: 'Flutter Hackathon',
-  noise_bg_color: '60deg,rgb(46 42 50),rgb(0 0 0 / 75%),rgb(25 47 160)',
 })
 </script>
 
@@ -114,7 +113,7 @@ definePageMeta({
         <div class="w-full md:w-auto">
           <NuxtLink
             to="https://supabase.com/blog/flutter-hackathon-winners" target="_blank"
-            class="group relative h-80 sm:h-90 lg:h-120 w-full flex flex-col justify-center items-center transition-all duration-750 rounded-2xl md:rounded-3xl relative border-10 border-dark-500 border-opacity-10 overflow-hidden hover:scale-105"
+            class="group h-80 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-750 ease-in-out rounded-lg md:rounded-xl relative border-10 border-gray-500 border-opacity-10 overflow-hidden hover:scale-105"
           >
             <img
               src="~~/assets/flutter-hackathon-winners.webp" alt="Supabase Flutter Hackathon Winners"
@@ -131,14 +130,14 @@ definePageMeta({
         <ul class="grid lg:grid-cols-2 gap-6 xl:gap-12 p-0 m-0 w-full">
           <li
             v-for="(winner, index) in winners"
-            class="mb-6 w-full h-max relative p-6 xl:p-12 rounded-3xl bg-dark-900 bg-opacity-20 overflow-hidden hover:scale-102 transition duration-700"
+            class="mb-6 w-full h-max relative p-6 xl:p-12 rounded-3xl bg-gray-900 bg-opacity-20 overflow-hidden hover:scale-102 transition duration-700"
           >
             <NuxtLink :to="`/p/${winner.slug}`">
               <div class="flex flex-col">
                 <h5 class="text-2xl md:text-3xl">
                   <span> {{ index === 0 ? "🥇" : "🥈" }} </span> {{ winner.title }}
                 </h5>
-                <h6 class="text-sm text-light-900 mt-1">
+                <h6 class="text-sm text-white mt-1">
                   {{ winner.twitter }}
                 </h6>
               </div>
@@ -159,6 +158,6 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-violet-800 hover: bg-violet-900 opacity-100 rounded-xl font-normal text-base border-2 border-violet-800 hover:border-white shadow hover:shadow-xl;
+  @apply bg-violet-800 hover:bg-violet-900 opacity-100 rounded-xl font-normal text-base border-2 border-violet-800 hover:border-white shadow hover:shadow-xl;
 }
 </style>

@@ -23,7 +23,7 @@ fetch()
           {{ item.title }}
         </h1>
         <p>{{ item.description }}</p>
-        <ul class="text-light-900">
+        <ul class="text-white">
           <li v-for="feature in item.supabase_features">
             - {{ feature }}
           </li>
@@ -31,7 +31,7 @@ fetch()
         <div>
           <router-link
             v-for="category in item.categories"
-            class="mr-2 transition hover:text-warm-gray-200"
+            class="mr-2 transition hover:text-gray-200"
             :to="`/tag/${category}`"
           >
             #{{ category }}

@@ -109,16 +109,12 @@ const { data, pending } = useLazyAsyncData('launch-week-7-view', async () => {
 })
 
 definePageMeta({
-  title: 'Launch Week 7',
-  noise_bg_color:
-    '60deg,rgba(0, 41, 255, 1),rgba(200, 200, 200, 0.85),rgba(158,68,239, 0.85)',
+  title: 'Launch Week 7 Hackathon',
 })
 </script>
 
 <template>
   <div>
-    <CustomMeta title="Launch Week 7 Hackathon" />
-
     <div v-for="(winners, key) of winnerGroup">
       <h2 class="mt-12 mb-4 text-3xl">
         {{ key }}
@@ -126,7 +122,7 @@ definePageMeta({
       <ul class="grid lg:grid-cols-2 gap-6 xl:gap-12 p-0 m-0 w-full">
         <li
           v-for="(winner, index) in winners"
-          class="mb-6 w-full relative p-6 xl:p-12 rounded-3xl bg-gradient-to-r from-dark-500 via-dark-100 to-dark-900 overflow-hidden hover:scale-102 transition duration-700"
+          class="mb-6 w-full relative p-6 xl:p-12 rounded-3xl bg-gradient-to-r from-gray-500 via-gray-100 to-gray-900 overflow-hidden hover:scale-102 transition duration-700"
         >
           <NuxtLink :to="winner.link">
             <div class="flex flex-col">
@@ -135,7 +131,7 @@ definePageMeta({
 
                 {{ winner.title }}
               </h5>
-              <h6 class="text-sm text-light-900 mt-1">
+              <h6 class="text-sm text-white mt-1">
                 {{ winner.subtitle }}
               </h6>
             </div>
@@ -164,12 +160,12 @@ definePageMeta({
 :deep(input),
 :deep(textarea) {
   border-radius: 0.5rem;
-  @apply border-none placeholder-cool-gray-300;
+  @apply border-none placeholder-gray-300;
 }
 :deep(form > div:nth-child(8) > div div) {
   @apply border-0;
 }
-:deep(form > div.\!my-8.px-6.py-4.bg-dark-600.rounded-lg) {
+:deep(form > div.\!my-8.px-6.py-4.bg-gray-600.rounded-lg) {
   @apply bg-purple-500 bg-opacity-50;
 }
 :deep(input[type="checkbox"]) {

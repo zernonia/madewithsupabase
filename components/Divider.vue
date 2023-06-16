@@ -1,3 +1,3 @@
 <template>
-  <div class="h-3px w-full bg-dark-300 rounded-lg" />
+  <div class="h-3px w-full bg-gray-300 rounded-lg" />
 </template>

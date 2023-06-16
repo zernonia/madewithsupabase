@@ -25,6 +25,7 @@ export interface Database {
           email?: string | null
           id?: number
         }
+        Relationships: []
       }
       products: {
         Row: {
@@ -35,6 +36,7 @@ export interface Database {
           email: string | null
           github_url: string | null
           id: string
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -52,6 +54,7 @@ export interface Database {
           email?: string | null
           github_url?: string | null
           id?: string
+          image_keys?: string[] | null
           images?: string[] | null
           instagram?: string | null
           slug?: string | null
@@ -69,6 +72,7 @@ export interface Database {
           email?: string | null
           github_url?: string | null
           id?: string
+          image_keys?: string[] | null
           images?: string[] | null
           instagram?: string | null
           slug?: string | null
@@ -78,6 +82,7 @@ export interface Database {
           twitter?: string | null
           url?: string | null
         }
+        Relationships: []
       }
       views: {
         Row: {
@@ -98,6 +103,68 @@ export interface Database {
           ip_address?: string | null
           product_id?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "bring_the_func_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "flutter_hackathon_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "hackathon_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "hacktoberfest_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "holiday_hackdays_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "launch_week_5_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "launch_week_6_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "launch_week_7_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            referencedRelation: "products_view"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
@@ -118,6 +185,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       flutter_hackathon_view: {
         Row: {
@@ -136,6 +204,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       hackathon_view: {
         Row: {
@@ -150,11 +219,13 @@ export interface Database {
           categories?: string[] | null
           id?: string | null
         }
+        Relationships: []
       }
       hacktoberfest_count: {
         Row: {
           count: number | null
         }
+        Relationships: []
       }
       hacktoberfest_view: {
         Row: {
@@ -173,6 +244,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       holiday_hackdays_view: {
         Row: {
@@ -191,6 +263,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       launch_week_5_view: {
         Row: {
@@ -209,6 +282,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       launch_week_6_view: {
         Row: {
@@ -227,6 +301,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       launch_week_7_view: {
         Row: {
@@ -245,6 +320,7 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       products_view: {
         Row: {
@@ -254,6 +330,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -263,22 +340,17 @@ export interface Database {
           url: string | null
           views: number | null
         }
+        Relationships: []
       }
       tags_view: {
         Row: {
           count: number | null
           tags: string | null
         }
+        Relationships: []
       }
     }
     Functions: {
-      delete_file: {
-        Args: {
-          bucket: string
-          pathname: string
-        }
-        Returns: string
-      }
       get_hacktoberfest_tags: {
         Args: Record<PropertyKey, never>
         Returns: {
@@ -288,6 +360,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -299,48 +372,50 @@ export interface Database {
         }[]
       }
       get_monthly:
-      | {
-        Args: {
-          month_string: string
-        }
-        Returns: {
-          approved: boolean | null
-          categories: string[] | null
-          created_at: string | null
-          description: string | null
-          github_url: string | null
-          id: string | null
-          images: string[] | null
-          instagram: string | null
-          slug: string | null
-          supabase_features: string[] | null
-          title: string | null
-          twitter: string | null
-          url: string | null
-          views: number | null
-        }[]
-      }
-      | {
-        Args: {
-          month_number: number
-        }
-        Returns: {
-          approved: boolean | null
-          categories: string[] | null
-          created_at: string | null
-          description: string | null
-          github_url: string | null
-          id: string | null
-          images: string[] | null
-          instagram: string | null
-          slug: string | null
-          supabase_features: string[] | null
-          title: string | null
-          twitter: string | null
-          url: string | null
-          views: number | null
-        }[]
-      }
+        | {
+            Args: {
+              month_string: string
+            }
+            Returns: {
+              approved: boolean | null
+              categories: string[] | null
+              created_at: string | null
+              description: string | null
+              github_url: string | null
+              id: string | null
+              image_keys: string[] | null
+              images: string[] | null
+              instagram: string | null
+              slug: string | null
+              supabase_features: string[] | null
+              title: string | null
+              twitter: string | null
+              url: string | null
+              views: number | null
+            }[]
+          }
+        | {
+            Args: {
+              month_number: number
+            }
+            Returns: {
+              approved: boolean | null
+              categories: string[] | null
+              created_at: string | null
+              description: string | null
+              github_url: string | null
+              id: string | null
+              image_keys: string[] | null
+              images: string[] | null
+              instagram: string | null
+              slug: string | null
+              supabase_features: string[] | null
+              title: string | null
+              twitter: string | null
+              url: string | null
+              views: number | null
+            }[]
+          }
       get_related_products: {
         Args: {
           parent_id: string
@@ -352,6 +427,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -373,6 +449,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -394,6 +471,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -415,6 +493,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null
@@ -436,6 +515,7 @@ export interface Database {
           description: string | null
           github_url: string | null
           id: string | null
+          image_keys: string[] | null
           images: string[] | null
           instagram: string | null
           slug: string | null

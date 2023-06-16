@@ -107,8 +107,8 @@ definePageMeta({
   <CustomMeta title="Launch Week 6 Hackathon" />
   <div class="relative">
     <NuxtLink
-      to="/"
-      class="fixed left-6 top-18 p-3 rounded-full bg-dark-400 border border-dark-300"
+      to="/hackathons"
+      class="fixed left-6 top-18 p-3 rounded-full bg-gray-400 border border-gray-300"
     >
       <div class="i-mdi:chevron-left text-2xl" />
     </NuxtLink>
@@ -127,21 +127,22 @@ definePageMeta({
       </NuxtLink>
     </div>
 
-    <div v-for="(winners, key) of winnerGroup">
+    <div v-for="(winners, key) of winnerGroup" :key="key">
       <h2 class="mt-12 mb-4 ml-6 text-xl">
         {{ key }}
       </h2>
       <ul class="p-0 m-0 w-full">
         <li
           v-for="(winner, index) in winners"
-          class="group mb-6 w-full relative p-12 rounded-3xl bg-gradient-to-br from-dark-900 via-dark-900 border border-dark-300 overflow-hidden"
+          :key="index"
+          class="group mb-6 w-full relative p-12 rounded-3xl bg-gradient-to-br from-gray-900 via-gray-900 border border-gray-700 overflow-hidden"
           :class="[index === 0 ? 'to-yellow-900' : 'to-gray-700']"
         >
           <div class="flex flex-col">
             <h5 class="text-3xl">
               {{ winner.title }}
             </h5>
-            <h6 class="text-sm text-light-900 mt-1">
+            <h6 class="text-sm text-white mt-1">
               {{ winner.subtitle }}
             </h6>
 
@@ -153,9 +154,9 @@ definePageMeta({
             </NuxtLink>
           </div>
 
-          <div class="md:w-120 md:absolute top-16 right-16">
+          <div class="md:w-[30rem] md:absolute bottom-0 right-16">
             <div
-              class="relative flex-shrink-0 pb-2/3 rounded-t-xl border-4 border-dark-100"
+              class="relative flex-shrink-0 max-h-[18rem] rounded-t-xl border border-gray-700"
             >
               <CompressedImage
                 class="rounded-lg"
@@ -167,7 +168,7 @@ definePageMeta({
         </li>
       </ul>
 
-      <div class="my-12 h-[1px] w-full bg-dark-300" />
+      <div class="my-12 h-[1px] w-full bg-gray-300" />
     </div>
 
     <transition name="fade" mode="out-in">
@@ -187,13 +188,6 @@ definePageMeta({
 
 <style scoped lang="postcss">
 :deep(.btn) {
-  @apply bg-dark-400 rounded-full font-normal text-base border-1 border-dark-300 hover:border-white;
-}
-
-:deep(.card-grid a > div) {
-  @apply bg-gradient-to-br from-dark-900 to-dark-500 border hover:shadow-dark-300;
-}
-:deep(.card-grid a > div > div:nth-child(2)) {
-  @apply border-t;
+  @apply bg-gray-800 rounded-full font-normal text-base border border-gray-700 hover:border-white;
 }
 </style>
