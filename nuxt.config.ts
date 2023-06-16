@@ -79,7 +79,19 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/account': { ssr: false },
+    '/': { swr: true },
+    '/p/**': { swr: true },
+    '/tag': { swr: true },
+    '/tag/**': { swr: true },
+
+    '/hackathons': { static: true },
+    '/bring-the-func': { redirect: '/hackathons/bring-the-func' },
+    '/flutter-hackathon': { redirect: '/hackathons/flutter-hackathon' },
+    '/hacktoberfest': { redirect: '/hackathons/hacktoberfest' },
+    '/holiday-hackdays': { redirect: '/hackathons/holiday-hackdays' },
+    '/launch-week-5': { redirect: '/hackathons/launch-week-5' },
+    '/launch-week-6': { redirect: '/hackathons/launch-week-6' },
+    '/launch-week-7': { redirect: '/hackathons/launch-week-7' },
   },
 
   experimental: {
