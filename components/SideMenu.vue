@@ -37,9 +37,9 @@ const links = computed(() => [{
 
 const accounts = computed(() => [{
   label: 'Account',
-  avatar: {
-    src: userAvatar.value,
-  },
+  avatar: userAvatar.value
+    ? { src: userAvatar.value }
+    : undefined,
   icon: userAvatar.value ? '' : 'i-lucide-user',
   to: '/account',
 }])
