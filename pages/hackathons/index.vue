@@ -77,7 +77,7 @@ function imageUrl(name: string) {
             </p>
 
             <div class="rounded-xl mt-2 overflow-hidden ">
-              <img class="object-cover h-72 w-full group-hover:scale-[1.03] transition-transform duration-500 ease-in-out" :src="imageUrl(hackathon.banner)" :alt="hackathon.title">
+              <img class="object-cover h-44 md:h-72 w-full group-hover:scale-[1.03] transition-transform duration-500 ease-in-out" :src="imageUrl(hackathon.banner)" :alt="hackathon.title">
             </div>
           </div>
         </NuxtLink>

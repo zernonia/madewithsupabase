@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute()
+const user = useSupabaseUser()
 const client = useSupabase()
 
 const isLoadingOAuth = ref(false)
@@ -7,7 +9,7 @@ async function handleSelectProvider() {
   const { data, error } = await client.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: `${location.origin}/account`,
+      redirectTo: `${location.origin}/login`,
     },
   })
 }
@@ -19,11 +21,23 @@ async function handleSubmit() {
   const { data, error } = await client.auth.signInWithOtp({
     email: email.value,
     options: {
-      emailRedirectTo: `${location.origin}/account`,
+      emailRedirectTo: `${location.origin}/login`,
     },
   })
   isLoadingOtp.value = false
 }
+
+onMounted(() => {
+  if (route.hash.includes('#access_token')) {
+    isLoadingOAuth.value = true
+    isLoadingOtp.value = true
+  }
+})
+
+watch(user, () => {
+  if (user.value)
+    navigateTo('/account')
+})
 </script>
 
 <template>

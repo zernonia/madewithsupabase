@@ -18,6 +18,8 @@ const client = useSupabase()
 const cfg = useRuntimeConfig()
 const myFiles = ref<FilePondOptions['files']>([])
 
+const randomString = () => Math.random().toString(36).substring(2, 8)
+
 watchOnce(() => props.context?._value, (n: string[]) => {
   if (n?.length)
     myFiles.value = n.map(i => ({ source: i, options: { type: 'local' } }))
@@ -54,21 +56,21 @@ const server: FilePondServerConfigProps['server'] = {
 
     const request = new XMLHttpRequest()
 
-    request.open('POST', `${storageUrl}/${user.value?.id}/${file.name}`)
+    request.open('POST', `${storageUrl}/${user.value?.id}/${randomString()}-${file.name}`)
     request.setRequestHeader('Apikey', `${cfg.public.SUPABASE_KEY}`)
     request.setRequestHeader('Authorization', `Bearer ${cfg.public.SUPABASE_KEY}`)
-    request.setRequestHeader('X-Upsert', 'true')
+    request.setRequestHeader('X-Upsert', 'false')
 
     request.upload.onprogress = (e) => {
       progress(e.lengthComputable, e.loaded, e.total)
     }
 
     request.onload = function () {
+      const response = JSON.parse(request.responseText)
       if (request.status >= 200 && request.status < 300)
-        load(JSON.parse(request.responseText).Key)
+        load(response.Key)
 
-      else
-        error('oh no')
+      else error('oh no')
     }
     request.send(formData)
 

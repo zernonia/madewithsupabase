@@ -41,7 +41,10 @@ const config: DefaultConfigOptions = {
     }),
   },
 
-  plugins: [addAsteriskPlugin, createAutoAnimatePlugin()],
+  plugins: [
+    addAsteriskPlugin,
+    createAutoAnimatePlugin(),
+  ],
 }
 
 export default config

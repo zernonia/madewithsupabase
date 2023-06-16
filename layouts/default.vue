@@ -1,22 +1,7 @@
 <script setup lang="ts">
 import autoAnimate from '@formkit/auto-animate'
 
-const { meta, name, path } = toRefs(useRoute())
-const router = useRouter()
-
-const user = useSupabaseUser()
-const userAvatar = computed(() => user.value?.user_metadata?.avatar_url)
-
-const isSideMenuOpen = ref(false)
-watch(name, () => {
-  isSideMenuOpen.value = false
-})
-
-const isBackButtonShowing = computed(() => {
-  if (process.server)
-    return false
-  return window.history.length >= 2 && path.value !== '/'
-})
+const { meta, path } = toRefs(useRoute())
 
 const metaTitleRef = ref()
 
@@ -29,78 +14,7 @@ onMounted(() => {
   <div
     class="bg-gray-800 text-white h-full w-full min-h-screen flex"
   >
-    <div class="w-[80px] hidden md:block" />
-    <div class="p-3 md:p-5 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen flex md:flex-col justify-around md:justify-center md:space-y-5 text-2xl">
-      <UTooltip
-        text="Home" :shortcuts="['1']" :popper="{
-          placement: 'right',
-        }"
-        class="justify-center items-center"
-      >
-        <NuxtLink to="/" class="text-gray-500 hover:text-white transition">
-          <UIcon name="i-lucide-home" />
-        </NuxtLink>
-      </UTooltip>
-
-      <UTooltip
-        text="Tags" :shortcuts="['2']" :popper="{
-          placement: 'right',
-        }"
-        class="justify-center items-center"
-      >
-        <NuxtLink to="/tag" class="text-gray-500 hover:text-white transition">
-          <UIcon name="i-lucide-tag" />
-        </NuxtLink>
-      </UTooltip>
-
-      <UTooltip
-        text="Hackathons" :shortcuts="['3']" :popper="{
-          placement: 'right',
-        }"
-        class="justify-center items-center"
-      >
-        <NuxtLink to="/hackathons" class="text-gray-500 hover:text-white transition">
-          <UIcon name="i-lucide-sparkles" />
-        </NuxtLink>
-      </UTooltip>
-
-      <UTooltip
-        text="Submit project" :shortcuts="['3']" :popper="{
-          placement: 'right',
-        }"
-        class="justify-center items-center"
-      >
-        <NuxtLink to="/submission" class="text-gray-500 hover:text-white transition">
-          <UIcon name="i-lucide-mouse-pointer-2" class="rotate-90" />
-        </NuxtLink>
-      </UTooltip>
-
-      <hr class="hidden md:block border-gray-700">
-
-      <UTooltip
-        text="Account" :shortcuts="['3']" :popper="{
-          placement: 'right',
-        }"
-        class="justify-center items-center"
-      >
-        <NuxtLink to="/account" class="text-gray-500 hover:text-white transition">
-          <UAvatar v-if="userAvatar" :src="userAvatar" alt="Avatar" />
-          <UIcon v-else name="i-lucide-user" />
-        </NuxtLink>
-      </UTooltip>
-
-      <UTooltip
-        text="Back" :shortcuts="['Backspace']" :popper="{
-          placement: 'right',
-        }"
-        :class="{ 'opacity-100': isBackButtonShowing }"
-        class="hidden md:flex justify-center items-center opacity-0 transition-opacity"
-      >
-        <NuxtLink class="text-gray-500 hover:text-white transition" @click="isBackButtonShowing && router.back()">
-          <UIcon name="i-lucide-arrow-left" />
-        </NuxtLink>
-      </UTooltip>
-    </div>
+    <SideMenu />
 
     <div class="p-3 sm:py-6 sm:px-6 md:px-12 relative mx-auto max-w-5xl w-full">
       <div class="flex flex-col items-center mt-4 justify-center">
@@ -126,6 +40,12 @@ onMounted(() => {
             {{ meta.title }}
           </h2>
         </div>
+
+        <NuxtLink v-if="path === '/'" to="https://github.com/zernonia/madewithsupabase/releases" target="_blank" class="inline-flex text-sm space-x-2 items-center px-6 py-2.5 text-gray-100 my-4 rounded-full border border-primary-700 bg-primary-700 bg-opacity-20 hover:bg-opacity-40 transition-all duration-500">
+          <UIcon name="i-lucide-sparkles" class="text-base" />
+          <span>New Changes!</span>
+          <UIcon name="i-lucide-arrow-right" class="text-base" />
+        </NuxtLink>
 
         <h1 class="font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
           Made with Supabase
