@@ -35,9 +35,9 @@ onMounted(() => {
 })
 
 watch(user, () => {
-  if (user.value)
+  if (user.value?.id)
     navigateTo('/account')
-})
+}, { immediate: true, deep: true })
 </script>
 
 <template>
