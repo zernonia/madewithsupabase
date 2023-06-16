@@ -70,8 +70,10 @@ const accounts = computed(() => [{
       class="justify-center items-center"
     >
       <NuxtLink to="/account" class="p-2 w-10 h-10 text-gray-500 hover:text-white transition">
-        <UAvatar v-if="userAvatar" class="-ml-1 -mt-1" :src="userAvatar" alt="Avatar" />
-        <UIcon v-else name="i-lucide-user" />
+        <div>
+          <UAvatar v-if="userAvatar" class="-ml-1 -mt-1" :src="userAvatar" alt="Avatar" />
+          <UIcon v-else name="i-lucide-user" />
+        </div>
       </NuxtLink>
     </UTooltip>
 

@@ -46,7 +46,7 @@ async function handleSubmit() {
         name="github_url"
         help="url for your project"
         placeholder="https://github.com/zernonia/madewithsupabase"
-        validation="required|url"
+        validation="url"
       />
 
       <FormKit
