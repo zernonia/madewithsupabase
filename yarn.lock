@@ -1478,10 +1478,10 @@
     lodash.template "^4.5.0"
     pathe "^1.0.0"
 
-"@nuxtjs/supabase@^0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.6.tgz#c2d0a4919f7579b89cb69d600b64ed3cf3590946"
-  integrity sha512-LhBGyZ+ySEH3kxUwocMm+AaGVd7kIz//rEgOTdpTtnNPiogt5/3ZalJvt0XqZoPbk8KTf+yyOq+9SbDjup661A==
+"@nuxtjs/supabase@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-0.3.7.tgz#43132dc8eff0cea29f65a7a55220e8149b08df59"
+  integrity sha512-Hn4hryNuZYqWfbNvi44sN+Uxx5GcevhHwYzVKEZX23IKy1PSbY+h4mRe2MGoTSpV8MdNvyC0+ah2WoV50BIlrg==
   dependencies:
     "@nuxt/kit" "^3.5.2"
     "@supabase/supabase-js" "2.24.0"
@@ -1775,7 +1775,7 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/supabase-js@2.24.0", "@supabase/supabase-js@^2.12.1":
+"@supabase/supabase-js@2.24.0":
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.24.0.tgz#6bb0ef18c678112caaf793c466a8f21c24c03820"
   integrity sha512-zrAm+hp6DBICqZ7xVPk+KofmlfjJWQzXuf2sHAyPz8XVjpha84z2OVWcow2aI10YkMOrPwhRtBBQYJOnh/fx2w==
