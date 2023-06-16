@@ -80,7 +80,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/account': { ssr: false },
-    '/**': { swr: 3600 },
   },
 
   experimental: {
