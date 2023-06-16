@@ -46,33 +46,42 @@ onMounted(() => {
         :features="data.supabase_features"
       />
 
-      <div class="flex items-center gap-4 mt-4 justify-end">
-        <!-- <a :href="tweetLink" target="_blank" rel="noopener">
-              </a> -->
-
-        <LegoSocialShare class="text-3xl flex space-x-3">
+      <div class="flex items-center gap-2 mt-4 justify-end">
+        <LegoSocialShare>
           <LegoSocialShareTwitter
-            class="text-white hover:text-gray-100 transition"
             :text="tweetText"
           >
-            <div class="i-mdi-share-variant w-7 h-7" />
+            <UTooltip text="Share to Twitter">
+              <UButton
+                icon="i-lucide-share-2"
+                variant="ghost"
+                color="gray"
+              />
+            </UTooltip>
           </LegoSocialShareTwitter>
         </LegoSocialShare>
 
-        <a
-          v-if="data.twitter"
-          :href="`https://twitter.com/${data.twitter}`"
-          target="_blank"
-          rel="noopener"
-        ><div class="i-mdi:twitter w-7 h-7" />
-        </a>
-        <a
-          v-if="data.github_url"
-          :href="data.github_url"
-          target="_blank"
-          rel="noopener"
-        ><div class="i-mdi:github w-7 h-7" />
-        </a>
+        <UTooltip text="Project's Twitter">
+          <UButton
+            v-if="data.twitter"
+            :to="`https://twitter.com/${data.twitter}`"
+            target="_blank"
+            icon="i-lucide-twitter"
+            variant="ghost"
+            color="gray"
+          />
+        </UTooltip>
+
+        <UTooltip v-if="data.github_url" text="Project's GitHub">
+          <UButton
+
+            :to="data.github_url"
+            target="_blank"
+            icon="i-lucide-github"
+            variant="ghost"
+            color="gray"
+          />
+        </UTooltip>
 
         <UButton :to="computedUrl" size="md" target="_blank" label="Visit Website" />
       </div>

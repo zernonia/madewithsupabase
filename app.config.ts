@@ -14,5 +14,24 @@ export default defineAppConfig({
       shadow: 'shadow-2xl',
       padding: 'p-0 sm:p-4',
     },
+    badge: {
+      rounded: 'rounded-lg',
+    },
+    selectMenu: {
+      rounded: 'rounded-lg',
+    },
+    select: {
+      rounded: 'rounded-lg',
+      placeholder: 'text-gray-900 dark:text-dark-600',
+      default: {
+        size: 'md',
+      },
+    },
+    input: {
+      rounded: 'rounded-lg',
+      default: {
+        size: 'md',
+      },
+    },
   },
 })

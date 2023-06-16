@@ -47,7 +47,7 @@ const accounts = computed(() => [{
 
 <template>
   <div class="w-[80px] hidden md:block" />
-  <div class="hidden md:flex p-3 md:p-4 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen md:flex-col justify-around md:justify-center md:space-y-3 text-2xl">
+  <div class="hidden md:flex p-3 md:p-4 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen md:flex-col justify-around md:justify-center md:space-y-2 text-2xl">
     <UTooltip
       v-for="link in links"
       :key="link.label"
@@ -61,7 +61,7 @@ const accounts = computed(() => [{
       </NuxtLink>
     </UTooltip>
 
-    <hr class="hidden md:block border-gray-700">
+    <hr class="border-gray-700">
 
     <UTooltip
       text="Account" :popper="{
@@ -70,7 +70,7 @@ const accounts = computed(() => [{
       class="justify-center items-center"
     >
       <NuxtLink to="/account" class="p-2 w-10 h-10 text-gray-500 hover:text-white transition">
-        <UAvatar v-if="userAvatar" :src="userAvatar" alt="Avatar" />
+        <UAvatar v-if="userAvatar" class="-ml-1 -mt-1" :src="userAvatar" alt="Avatar" />
         <UIcon v-else name="i-lucide-user" />
       </NuxtLink>
     </UTooltip>
@@ -80,7 +80,7 @@ const accounts = computed(() => [{
         placement: 'right',
       }"
       :class="{ 'opacity-100': isBackButtonShowing }"
-      class="hidden md:flex justify-center items-center opacity-0 transition-opacity"
+      class="justify-center items-center opacity-0 transition-opacity"
     >
       <NuxtLink class="p-2 w-10 h-10 text-gray-500 hover:text-white transition" @click="isBackButtonShowing && router.back()">
         <UIcon name="i-lucide-arrow-left" />

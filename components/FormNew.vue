@@ -37,7 +37,7 @@ async function handleSubmit() {
         label="URL"
         name="url"
         placeholder="https://madewithsupabase.com"
-        validation="required"
+        validation="required|url"
       />
 
       <FormKit
@@ -46,7 +46,7 @@ async function handleSubmit() {
         name="github_url"
         help="url for your project"
         placeholder="https://github.com/zernonia/madewithsupabase"
-        validation="required"
+        validation="required|url"
       />
 
       <FormKit
@@ -55,6 +55,7 @@ async function handleSubmit() {
         name="description"
         placeholder="Write some description about your project"
         validation="required"
+        rows="5"
         autoresize
       />
 
@@ -72,6 +73,7 @@ async function handleSubmit() {
       <FormKit
         type="uselect"
         label="Tags"
+        searchable
         :options="tagOptions"
         name="categories"
         multiple

@@ -32,7 +32,7 @@ watch(selected, (n) => {
   >
     <template #label>
       <span v-if="selected.length" class="truncate">{{ selected.join(', ') }}</span>
-      <span v-else>{{ context?.attrs.placeholder }}</span>
+      <span v-else class="text-gray-500">{{ context?.attrs.placeholder }}</span>
     </template>
   </USelectMenu>
 </template>
