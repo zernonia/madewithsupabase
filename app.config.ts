@@ -33,5 +33,8 @@ export default defineAppConfig({
         size: 'md',
       },
     },
+    tooltip: {
+      base: 'invisible lg:visible h-6 px-2 py-1 text-xs font-normal truncate border border-gray-700 text-gray-100',
+    },
   },
 })
