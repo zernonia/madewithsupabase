@@ -49,6 +49,9 @@ definePageMeta({
         v-for="item in projects" :key="item.slug ?? ''"
         class="relative group"
       >
+        <UBadge v-if="!item.approved" class="absolute top-2 right-2 group-hover:opacity-0 transition-opacity flex">
+          Pending
+        </UBadge>
         <CardOptions :item="item" />
         <Card :item="item" />
       </div>
