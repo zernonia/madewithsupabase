@@ -79,7 +79,12 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { swr: 3600 },
+    '/': {
+      cache: {
+        maxAge: 3600,
+        swr: true,
+      },
+    },
     '/p/**': { swr: 3600 },
     '/tag': { swr: 3600 },
     '/tag/**': { swr: 3600 },
