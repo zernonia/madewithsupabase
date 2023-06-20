@@ -79,10 +79,10 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { swr: true },
-    '/p/**': { swr: true },
-    '/tag': { swr: true },
-    '/tag/**': { swr: true },
+    '/': { swr: 3600 },
+    '/p/**': { swr: 3600 },
+    '/tag': { swr: 3600 },
+    '/tag/**': { swr: 3600 },
 
     '/hackathons': { static: true },
     '/bring-the-func': { redirect: '/hackathons/bring-the-func' },
