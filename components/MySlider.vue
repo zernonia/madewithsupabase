@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import SwiperCore, { Navigation, Pagination } from 'swiper'
 
-defineProps({
+const props = defineProps({
   images: {
     type: Array as () => string[],
     required: true,
@@ -10,6 +10,11 @@ defineProps({
 })
 
 SwiperCore.use([Pagination, Navigation])
+
+const client = useSupabase()
+const images = computed(() => {
+  return props.images.map(key => client.storage.from('products').getPublicUrl(key.replace('products/', '')).data.publicUrl)
+})
 </script>
 
 <template>

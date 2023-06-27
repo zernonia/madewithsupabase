@@ -33,10 +33,10 @@ onMounted(() => {
     </h1>
 
     <div
-      v-if="data.images?.length"
+      v-if="data.image_keys?.length"
       class="mt-6 rounded-xl overflow-hidden"
     >
-      <MySlider :images="data.images ?? []" />
+      <MySlider :images="data.image_keys ?? []" />
     </div>
 
     <div
