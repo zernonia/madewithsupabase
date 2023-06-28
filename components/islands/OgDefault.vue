@@ -12,7 +12,7 @@ defineOptions({
 
 <template>
   <div class="w-full h-full bg-stone-800">
-    <img class="absolute top-0 left-0 z-0 w-full h-full opacity-5 object-cover" :src="image" alt="">
+    <img class="absolute top-0 left-0 z-0 w-full h-full opacity-5 " style="objectFit: cover;" :src="image" alt="">
     <img class="absolute top-0 left-0 z-0" src="/og_bg.png" alt="">
     <div class="w-full h-full z-10 relative font-main flex flex-col text-white  items-center justify-center">
       <svg

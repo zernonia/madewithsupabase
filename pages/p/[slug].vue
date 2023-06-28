@@ -48,9 +48,19 @@ useSeoMeta({
 defineOgImageStatic({
   image: () => {
     const key = data.value?.image_keys?.[0]
-    if (key)
-      return client.storage.from('products').getPublicUrl(key.replace('products/', '')).data.publicUrl
-    else return data.value?.images?.[0]
+
+    if (key) {
+      return client.storage.from('products').getPublicUrl(key.replace('products/', ''), {
+        transform: {
+          quality: 50,
+          width: 762,
+          height: 400,
+          resize: 'contain',
+        },
+      }).data.publicUrl
+    }
+
+    else { return data.value?.images?.[0] }
   },
 })
 </script>
