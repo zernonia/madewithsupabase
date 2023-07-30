@@ -8,6 +8,13 @@ dayjs.extend(timezone)
 
 const hackathons = [
   {
+    title: 'Launch Week 8',
+    path: '/hackathons/launch-week-8',
+    banner: 'launch-week-8.webp',
+    start: '4 August 2023 09:00:00 PDT',
+    end: '14 August 2023 23:59:59 PDT',
+  },
+  {
     title: 'Flutter Hackathon',
     path: '/hackathons/flutter-hackathon',
     banner: 'flutter_hackathon.jpg',
