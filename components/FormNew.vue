@@ -20,10 +20,6 @@ async function handleSubmit() {
   if (localData.value)
     await props.handler(localData.value)
 }
-
-function handleClick() {
-  console.log('click')
-}
 </script>
 
 <template>
@@ -105,8 +101,8 @@ function handleClick() {
         />
       </div>
 
-      <FormKit v-slot="{ items, node, value }" label="Team info" type="list" :value="[{}]" dynamic>
-        <label class="formkit-label text-sm" for="input_6">Team info</label>
+      <FormKit v-slot="{ items, node, value }" label="Team info" type="list" :value="[{}]" dynamic name="team_info">
+        <label class="formkit-label text-sm mr-4" for="input_6">Team info</label>
         <div
           v-for="(item, index) in items"
           :key="item" class="flex items-center w-full"
@@ -120,7 +116,7 @@ function handleClick() {
           <UButton icon="i-lucide-trash" color="gray" variant="solid" class="mb-1 ml-2" @click.prevent="() => node.input(value.filter((_, i) => i !== index))" />
         </div>
 
-        <UButton color="gray" label=" + Add team member" variant="solid" @click="() => node.input(value.concat({}))" />
+        <UButton color="gray" class="mb-4" label=" + Add team member" variant="solid" @click="() => node.input(value.concat({}))" />
       </FormKit>
 
       <FormKit
