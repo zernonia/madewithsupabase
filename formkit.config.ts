@@ -10,6 +10,7 @@ import UCheckbox from '@/utils/formkit/components/Checkbox.vue'
 import URadio from '@/utils/formkit/components/Radio.vue'
 import UToggle from '@/utils/formkit/components/Toggle.vue'
 import UFileUpload from '@/utils/formkit/components/FileUpload.vue'
+import TeamMember from '@/utils/formkit/components/TeamMember.vue'
 
 const config: DefaultConfigOptions = {
   inputs: {
@@ -24,6 +25,7 @@ const config: DefaultConfigOptions = {
       component: UButton,
     },
     ufileupload: createInput(UFileUpload),
+    teammember: createInput(TeamMember),
   },
 
   config: {

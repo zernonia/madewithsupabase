@@ -4,6 +4,7 @@ import type { FormKitFrameworkContext } from '@formkit/core'
 const props = defineProps<{ context: FormKitFrameworkContext['node']['context'] }>()
 
 function handleInput(e: string) {
+  console.log(props.context)
   props.context?.node.input(e)
 }
 

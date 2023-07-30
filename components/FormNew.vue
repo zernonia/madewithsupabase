@@ -5,12 +5,13 @@ import type { Project } from '~/types'
 const props = defineProps<{
   data?: Project | null
   handler: (ev: Project | null) => Promise<any>
+  isHackathon?: boolean
 }>()
 
 const localData = ref<Project>()
 const { supabaseFeatureOptions, tagOptions } = useTags()
 
-whenever(() => props.data?.id, () => {
+whenever(() => [props.data], () => {
   if (props.data)
     localData.value = props.data
 }, { immediate: true })
@@ -18,6 +19,10 @@ whenever(() => props.data?.id, () => {
 async function handleSubmit() {
   if (localData.value)
     await props.handler(localData.value)
+}
+
+function handleClick() {
+  console.log('click')
 }
 </script>
 
@@ -82,7 +87,7 @@ async function handleSubmit() {
         validation="required"
       />
 
-      <div class="grid grid-cols-2 gap-4">
+      <div v-if="!isHackathon" class="grid grid-cols-2 gap-4">
         <FormKit
           type="uinput"
           label="Twitter"
@@ -100,6 +105,24 @@ async function handleSubmit() {
         />
       </div>
 
+      <FormKit v-slot="{ items, node, value }" label="Team info" type="list" :value="[{}]" dynamic>
+        <label class="formkit-label text-sm" for="input_6">Team info</label>
+        <div
+          v-for="(item, index) in items"
+          :key="item" class="flex items-center w-full"
+        >
+          <div class="flex-grow">
+            <FormKit
+              :index="index"
+              type="teammember"
+            />
+          </div>
+          <UButton icon="i-lucide-trash" color="gray" variant="solid" class="mb-1 ml-2" @click.prevent="() => node.input(value.filter((_, i) => i !== index))" />
+        </div>
+
+        <UButton color="gray" label=" + Add team member" variant="solid" @click="() => node.input(value.concat({}))" />
+      </FormKit>
+
       <FormKit
         type="ufileupload"
         label="Images"
@@ -109,6 +132,15 @@ async function handleSubmit() {
         :max-files="5"
         bucket-id="products"
       />
+
+      <ul v-if="isHackathon" class="py-6 list-disc ml-4 text-xs text-gray-400">
+        <li>
+          Any intellectual property developed during the hackathon will belong to the team that developed it. We expect that each team will have an agreement between themselves regarding the IP, but this is not required.
+        </li>
+        <li>
+          By making a submission you grant Supabase permission to use screenshots, code snippets, and/or links to your project or content of your README on our Twitter, blog, website, email updates, and in the Supabase discord server. Supabase does not make any claims over your IP.
+        </li>
+      </ul>
 
       <div class="flex justify-end mt-8">
         <FormKit type="ubutton" label="Submit" />
