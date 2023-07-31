@@ -45,9 +45,15 @@ const accounts = computed(() => [{
 }])
 </script>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
+
 <template>
   <div class="w-[80px] hidden md:block" />
-  <div class="hidden md:flex p-3 md:p-4 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen md:flex-col justify-around md:justify-center md:space-y-2 text-2xl">
+  <div v-bind="$attrs" class="hidden md:flex p-3 md:p-4 z-10 bg-gray-800 border-t md:border-t-0 md:border-r border-gray-700 fixed bottom-0 md:bottom-auto left-0 w-screen md:w-max md:h-screen md:flex-col justify-around md:justify-center md:space-y-2 text-2xl">
     <UTooltip
       v-for="link in links"
       :key="link.label"

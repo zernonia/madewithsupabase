@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
@@ -26,6 +26,28 @@ export interface Database {
           id?: number
         }
         Relationships: []
+      }
+      "launch-week-hackathon-8": {
+        Row: {
+          allowed_email: boolean | null
+          user_id: string
+        }
+        Insert: {
+          allowed_email?: boolean | null
+          user_id: string
+        }
+        Update: {
+          allowed_email?: boolean | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "launch-week-hackathon-8_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       products: {
         Row: {
@@ -83,6 +105,37 @@ export interface Database {
           url?: string | null
         }
         Relationships: []
+      }
+      users: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       views: {
         Row: {

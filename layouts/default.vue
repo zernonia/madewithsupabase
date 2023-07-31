@@ -12,7 +12,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-gray-800 text-white h-full w-full min-h-screen flex"
+    class=" bg-gray-800 text-white h-full w-full min-h-screen flex"
   >
     <SideMenu />
 
