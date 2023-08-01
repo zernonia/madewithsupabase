@@ -3,13 +3,15 @@ const route = useRoute()
 const user = useSupabaseUser()
 const client = useSupabase()
 
+const { query } = useRoute()
 const isLoadingOAuth = ref(false)
+
 async function handleSelectProvider() {
   isLoadingOAuth.value = true
   const { data, error } = await client.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: `${location.origin}/login`,
+      redirectTo: location.href,
     },
   })
 }
@@ -18,10 +20,11 @@ const isLoadingOtp = ref(false)
 const email = ref('')
 async function handleSubmit() {
   isLoadingOtp.value = true
+
   const { data, error } = await client.auth.signInWithOtp({
     email: email.value,
     options: {
-      emailRedirectTo: `${location.origin}/login`,
+      emailRedirectTo: location.href,
     },
   })
   isLoadingOtp.value = false
@@ -36,7 +39,7 @@ onMounted(() => {
 
 watch(user, () => {
   if (user.value?.id)
-    navigateTo('/account')
+    query.redirectTo ? navigateTo(query.redirectTo.toLocaleString()) : navigateTo('/account')
 }, { immediate: true, deep: true })
 </script>
 

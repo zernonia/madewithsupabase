@@ -55,7 +55,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="flex flex-col -mt-8  ">
+  <div class="flex flex-col -mt-8">
     <img class="pointer-events-none fixed left-0 top-0 h-screen w-auto object-cover" src="~~/assets/launch-week-8.webp">
 
     <SideMenu class="bg-opacity-50 backdrop-blur-lg" />
@@ -71,15 +71,22 @@ definePageMeta({
             <h2>{{ timeOriginal ? timePT : timeLocale }}</h2>
           </div>
 
-          <div class="flex gap-x-2">
-            <UButton v-if="!user?.id" color="violet" class="!bg-violet-800 !text-white" label="Login to join!" to="/login" />
-            <UButton v-else-if="!isUserJoined" :loading="isJoining" color="violet" class="!bg-violet-800 !text-white" label="Join Hackathon!" @click="joinHackathon" />
+          <div class="flex gap-x-2 relative">
+            <UButton v-if="!user?.id" color="violet" class="!bg-violet-800 !text-white" label="Login to join!" to="/login?redirectTo=/hackathons/launch-week-8" />
+            <UTooltip v-else-if="!isUserJoined" text="Join">
+              <UButton :loading="isJoining" color="violet" class="!bg-violet-800 !text-white" label="Join Hackathon!" @click="joinHackathon" />
+            </UTooltip>
             <UButton target="_blank" to="https://supabase.com/blog/supabase-lw8-hackathon" color="black" variant="solid" label="Read more" />
           </div>
 
+          <span v-if="!isUserJoined" class="text-xs mt-4 text-white/50">Join the hackathon to receive email reminder!</span>
+
           <div class="h-[1px] w-32 bg-gray-400 my-8" />
 
-          <div class="">
+          <div>
+            <h2 style="font-family: 'Playball', cursive;" class="text-2xl md:text-3xl text-violet-400 mb-4">
+              Who's joining the Hackathon?
+            </h2>
             <template v-for="user in allUsers" :key="user.name">
               <UTooltip
                 :text="user.name"
@@ -113,3 +120,7 @@ definePageMeta({
     </div>
   </div>
 </template>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+</style>
