@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs/esm'
 import { type Project } from '@/types'
 import { slugify } from '~/functions'
 
@@ -7,8 +8,8 @@ const user = useSupabaseUser()
 const toast = useToast()
 
 const timeOriginal = ref(false)
-const { timePT, timeLocale } = useTime('4 August 2023 08:00:00 PST',
-  '15 August 2023 00:59:59 PST')
+const { timePT, timeLocale, isExpired } = useTime('4 August 2023 09:00:00 PDT',
+  '13 August 2023 11:59:59 PDT')
 
 const { data, refresh } = useAsyncData('launch-week-hackathon-8', async () => {
   const { data } = await client.from('launch-week-hackathon-8').select('user_id, users(*)', { count: 'exact' })
@@ -48,6 +49,19 @@ async function handleSubmit(ev: Project | null) {
   }
 }
 
+const { data: projectSubmitted } = useAsyncData(
+  'launch-week-8-submission-count',
+  async () => {
+    const { data, error } = await client
+      .rpc('submission_count', {
+        tag: 'Launch Week 8',
+      })
+      .maybeSingle()
+    return data ?? 0
+  },
+  { server: false },
+)
+
 definePageMeta({
   title: 'Launch Week 8 Hackathon',
   layout: 'blank',
@@ -67,11 +81,14 @@ definePageMeta({
             Launch Week 8 Hackathon
           </h1>
 
-          <div class="py-6 md:text-xl">
-            <h2>{{ timeOriginal ? timePT : timeLocale }}</h2>
+          <div v-if="!isExpired" class="flex flex-col items-center">
+            <Countdown class="my-6" :date="dayjs('13 August 2023 11:59:59 PDT').toDate()" />
+            <div class="pb-6 md:text-lg">
+              <h2>{{ timeOriginal ? timePT : timeLocale }}</h2>
+            </div>
           </div>
 
-          <div class="flex gap-x-2 relative">
+          <div v-if="!isExpired" class="flex gap-x-2 relative">
             <UButton v-if="!user?.id" color="violet" class="!bg-violet-800 !text-white" label="Login to join!" to="/login?redirectTo=/hackathons/launch-week-8" />
             <UTooltip v-else-if="!isUserJoined" text="Join">
               <UButton :loading="isJoining" color="violet" class="!bg-violet-800 !text-white" label="Join Hackathon!" @click="joinHackathon" />
@@ -81,11 +98,15 @@ definePageMeta({
 
           <span v-if="!isUserJoined" class="text-xs mt-4 text-white/50">Join the hackathon to receive email reminder!</span>
 
+          <div v-if="projectSubmitted" class="text-xl md:text-3xl font-bold mt-6">
+            {{ projectSubmitted }} submissions
+          </div>
+
           <div class="h-[1px] w-32 bg-gray-400 my-8" />
 
-          <div>
-            <h2 style="font-family: 'Playball', cursive;" class="text-2xl md:text-3xl text-violet-400 mb-4">
-              Who's joining the Hackathon?
+          <div class="relative">
+            <h2 style="font-family: 'Playball', cursive;" class="text-2xl md:text-3xl text-violet-500 mb-4">
+              {{ !isExpired ? "Who's joining the Hackathon?" : 'Thanks for participating!' }}
             </h2>
             <template v-for="user in allUsers" :key="user.name">
               <UTooltip
@@ -100,7 +121,7 @@ definePageMeta({
           </div>
         </div>
 
-        <div v-if="isUserJoined && !isSubmitted" class="bg-gray-800/80 backdrop-blur-xl mt-12 relative w-full max-w-screen-sm text-left border border-gray-600 rounded-2xl p-8">
+        <div v-if="isUserJoined && !isSubmitted && !isExpired" class="bg-gray-800/80 backdrop-blur-xl mt-12 relative w-full max-w-screen-sm text-left border border-gray-600 rounded-2xl p-8">
           <h2 class="text-center text-2xl md:text-4xl text-gray-300 my-2 font-medium">
             Submission
           </h2>

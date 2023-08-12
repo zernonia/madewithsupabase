@@ -56,7 +56,7 @@ async function handleSubmit() {
         name="description"
         placeholder="Write some description about your project"
         validation="required"
-        rows="5"
+        :rows="5"
         autoresize
       />
 
