@@ -9,7 +9,7 @@ const toast = useToast()
 
 const timeOriginal = ref(false)
 const { timePT, timeLocale, isExpired } = useTime('4 August 2023 09:00:00 PDT',
-  '13 August 2023 11:59:59 PDT')
+  '13 August 2023 23:59:59 PDT')
 
 const { data, refresh } = useAsyncData('launch-week-hackathon-8', async () => {
   const { data } = await client.from('launch-week-hackathon-8').select('user_id, users(*)', { count: 'exact' })
@@ -82,7 +82,7 @@ definePageMeta({
           </h1>
 
           <div v-if="!isExpired" class="flex flex-col items-center">
-            <Countdown class="my-6" :date="dayjs('13 August 2023 11:59:59 PDT').toDate()" />
+            <Countdown class="my-6" :date="dayjs('13 August 2023 23:59:59 PDT').toDate()" />
             <div class="pb-6 md:text-lg">
               <h2>{{ timeOriginal ? timePT : timeLocale }}</h2>
             </div>
