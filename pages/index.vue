@@ -59,11 +59,11 @@ definePageMeta({
 <template>
   <div class="flex flex-col">
     <NuxtLink
-      to="/hackathons/launch-week-8"
-      class="mt-6 group h-48 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-500 rounded-2xl relative border border-violet-950 hover:border-violet-800 overflow-hidden"
+      to="https://supabase.com/launch-week"
+      class="mt-6 group h-48 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-500 rounded-2xl relative border border-gray-600 hover:border-gray-700 overflow-hidden"
     >
       <img
-        src="~~/assets/launch-week-8.webp" alt="Supabase Flutter Hackathon Winners"
+        src="~~/assets/lwx-og.jpg" alt="Supabase Flutter Hackathon Winners"
         class="w-full h-full object-cover transition duration-500 scale-100 group-hover:scale-[1.02]"
       >
     </NuxtLink>
