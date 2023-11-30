@@ -12,5 +12,5 @@ const markedText = computed(() => marked(props.text))
 </script>
 
 <template>
-  <div class="prose-sm md:prose dark:prose-invert prose-headings:text-gray-100 prose-strong:text-gray-100  break-words max-w-6xl" v-html="markedText" />
+  <div class="prose-sm md:prose !prose-invert prose-headings:text-gray-100 prose-strong:text-gray-100  break-words max-w-6xl" v-html="markedText" />
 </template>
