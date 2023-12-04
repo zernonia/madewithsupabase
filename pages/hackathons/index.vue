@@ -8,6 +8,13 @@ dayjs.extend(timezone)
 
 const hackathons = [
   {
+    title: 'Launch Week X',
+    path: '/hackathons/launch-week-x',
+    banner: 'lwx-og.jpg',
+    start: '8 December 2023 09:00:00 PDT',
+    end: '17 December 2023 23:59:59 PDT',
+  },
+  {
     title: 'Launch Week 8',
     path: '/hackathons/launch-week-8',
     banner: 'launch-week-8.webp',

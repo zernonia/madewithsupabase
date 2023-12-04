@@ -44,6 +44,30 @@ export interface Database {
           {
             foreignKeyName: "launch-week-hackathon-8_user_id_fkey"
             columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      "launch-week-hackathon-x": {
+        Row: {
+          allowed_email: boolean | null
+          user_id: string
+        }
+        Insert: {
+          allowed_email?: boolean | null
+          user_id: string
+        }
+        Update: {
+          allowed_email?: boolean | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "launch-week-hackathon-x_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -132,6 +156,7 @@ export interface Database {
           {
             foreignKeyName: "users_id_fkey"
             columns: ["id"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -160,60 +185,70 @@ export interface Database {
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "views_product_id_fkey"
-            columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "bring_the_func_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "flutter_hackathon_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "hackathon_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "hacktoberfest_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "holiday_hackdays_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "launch_week_5_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "launch_week_6_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "launch_week_7_view"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "views_product_id_fkey"
             columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "views_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
             referencedRelation: "products_view"
             referencedColumns: ["id"]
           }
@@ -427,7 +462,7 @@ export interface Database {
       get_monthly:
         | {
             Args: {
-              month_string: string
+              month_number: number
             }
             Returns: {
               approved: boolean | null
@@ -449,7 +484,7 @@ export interface Database {
           }
         | {
             Args: {
-              month_number: number
+              month_string: string
             }
             Returns: {
               approved: boolean | null
@@ -598,3 +633,83 @@ export interface Database {
     }
   }
 }
+
+export type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+        Database[PublicTableNameOrOptions["schema"]]["Views"])
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
+      Database["public"]["Views"])
+  ? (Database["public"]["Tables"] &
+      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : never
+
+export type TablesInsert<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : never
+
+export type TablesUpdate<
+  PublicTableNameOrOptions extends
+    | keyof Database["public"]["Tables"]
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+    : never = never
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
+  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : never
+
+export type Enums<
+  PublicEnumNameOrOptions extends
+    | keyof Database["public"]["Enums"]
+    | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+    : never = never
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
+  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
+  : never
