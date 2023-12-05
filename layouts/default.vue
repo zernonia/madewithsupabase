@@ -41,13 +41,7 @@ onMounted(() => {
           </h2>
         </div>
 
-        <NuxtLink v-if="path === '/'" to="https://github.com/zernonia/madewithsupabase/releases" target="_blank" class="inline-flex text-sm space-x-2 items-center px-6 py-2.5 text-gray-100 my-4 rounded-full border border-primary-700 bg-primary-700 bg-opacity-20 hover:bg-opacity-40 transition-all duration-500">
-          <UIcon name="i-lucide-sparkles" class="text-base" />
-          <span>New Changes!</span>
-          <UIcon name="i-lucide-arrow-right" class="text-base" />
-        </NuxtLink>
-
-        <h1 class="font-medium text-center transition-all duration-500 ease-in-out" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
+        <h1 class="font-medium text-center transition-all duration-500 ease-in-out mt-4" :class="[meta.title ? 'text-lg md:text-2xl ' : 'text-xl md:text-3xl ']">
           Made with Supabase
         </h1>
       </div>
