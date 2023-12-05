@@ -70,7 +70,7 @@ definePageMeta({
 
 <template>
   <div class="flex flex-col -mt-8">
-    <img class="pointer-events-none fixed left-0 top-0 h-screen w-auto object-cover" src="~~/assets/lwx-og.jpg">
+    <img class="pointer-events-none fixed left-0 top-0 h-screen w-auto object-cover" src="~~/assets/launch-week-x-hackathon.webp">
 
     <SideMenu class="bg-opacity-50 backdrop-blur-lg" />
 
@@ -95,7 +95,7 @@ definePageMeta({
             <UTooltip v-else-if="!isUserJoined" text="Join">
               <UButton :loading="isJoining" color="gray" class="!bg-gray-800 !text-white" label="Join Hackathon!" @click="joinHackathon" />
             </UTooltip>
-            <UButton target="_blank" to="https://supabase.com/blog/supabase-lwx-hackathon" color="black" variant="solid" label="Read more" />
+            <UButton target="_blank" to="https://supabase.com/blog/supabase-hackathon-lwx" color="black" variant="solid" label="Read more" />
           </div>
 
           <span v-if="!isUserJoined" class="text-xs mt-4 text-white/50">Join the hackathon to receive email reminder!</span>
