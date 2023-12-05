@@ -8,7 +8,7 @@ const user = useSupabaseUser()
 const toast = useToast()
 
 const timeOriginal = ref(false)
-const { timePT, timeLocale, isExpired } = useTime('8 December 2023 09:00:00 PDT',
+const { timePT, timeLocale, isExpired, isStarted } = useTime('8 December 2023 09:00:00 PDT',
   '17 December 2023 23:59:59 PDT')
 
 const { data, refresh } = useAsyncData('launch-week-hackathon-x', async () => {
@@ -70,11 +70,14 @@ definePageMeta({
 
 <template>
   <div class="flex flex-col -mt-8">
-    <img class="pointer-events-none fixed left-0 top-0 h-screen w-auto object-cover" src="~~/assets/launch-week-x-hackathon.webp">
+    <img class="pointer-events-none fixed left-0 top-0 h-screen w-screen md:w-full object-cover" src="~~/assets/launch-week-x-hackathon.webp">
 
     <SideMenu class="bg-opacity-50 backdrop-blur-lg" />
+    <div v-if="!isStarted" class="fixed top-1/2 left-1/2 translate-y-24 -translate-x-1/2">
+      <UButton target="_blank" to="https://supabase.com/blog/supabase-hackathon-lwx" color="black" variant="solid" label="Read more" />
+    </div>
 
-    <div class="z-10 ml-0 md:ml-[4.5rem]">
+    <div v-else class="z-10 ml-0 md:ml-[4.5rem]">
       <div class="flex flex-col justify-center items-center min-h-screen text-center py-16 sm:py-32">
         <div class="w-full relative  max-w-screen-sm p-8 md:p-12 rounded-2xl flex flex-col  items-center border border-gray-900 hover:border-gray-800 backdrop-blur-xl from-gray-900/60 to-gray-950/40 bg-gradient-to-br">
           <h1 class="font-semibold text-2xl  md:text-4xl">

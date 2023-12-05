@@ -39,11 +39,22 @@ export function useTime(start_date: string, end_date: string) {
     }
   })
 
+  const isStarted = computed(() => {
+    if (dayjs) {
+      dayjs.extend(isSameOrAfter)
+      return dayjs(Date.now()).isSameOrAfter(startDate)
+    }
+    else {
+      return false
+    }
+  })
+
   return {
     startDate,
     endDate,
     timePT,
     timeLocale,
     isExpired,
+    isStarted,
   }
 }
