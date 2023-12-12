@@ -29,12 +29,12 @@ async function handleSubmit(ev: Project | null) {
 <template>
   <div>
     <div class="mt-8 flex justify-center ">
-      <div class="bg-indigo-900/10 rounded-xl  border px-8 py-4 bg-opacity-40 text-sm border-indigo-400 flex items-center justify-between w-full max-w-[28rem] mx-auto">
+      <div class="bg-black rounded-xl border px-8 py-4 bg-opacity-50 text-sm border-gray-700 flex items-center justify-between w-full max-w-[28rem] mx-auto">
         <div>
           For Hackathon Submission
         </div>
 
-        <UButton label="Click here" color="indigo" to="/hackathons/launch-week-8" class="ml-4" trailing-icon="i-lucide-arrow-right" />
+        <UButton label="Click here" color="gray" to="/hackathons/launch-week-x" class="ml-4" trailing-icon="i-lucide-arrow-right" />
       </div>
     </div>
 
