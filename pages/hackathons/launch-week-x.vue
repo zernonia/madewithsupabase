@@ -8,8 +8,10 @@ const user = useSupabaseUser()
 const toast = useToast()
 
 const timeOriginal = ref(false)
-const { timePT, timeLocale, isExpired, isStarted } = useTime('8 December 2023 09:00:00 PDT',
-  '17 December 2023 23:59:59 PDT')
+
+const START_TIME = '2023-12-08T09:00:00.0-08:00'
+const END_TIME = '2023-12-17T23:59:59.999-08:00'
+const { timePT, timeLocale, isExpired, isStarted } = useTime(START_TIME, END_TIME)
 
 const { data, refresh } = useAsyncData('launch-week-hackathon-x', async () => {
   const { data } = await client.from('launch-week-hackathon-x').select('user_id, users(*)', { count: 'exact' })
@@ -86,7 +88,7 @@ definePageMeta({
 
           <div v-if="!isExpired" class="flex flex-col items-center">
             <ClientOnly>
-              <Countdown class="my-6" :date="dayjs('17 December 2023 23:59:59 PDT').toDate()" />
+              <Countdown class="my-6" :date="dayjs(END_TIME).toDate()" />
               <div class="pb-6 md:text-lg">
                 <h2>{{ timeOriginal ? timePT : timeLocale }}</h2>
               </div>
