@@ -8,6 +8,7 @@ const props = withDefaults(defineProps<{
   item?: Project
   showModal?: boolean
   path?: string
+  isAdmin?: boolean
 }>(), {
   item: undefined,
   showModal: true,
@@ -33,6 +34,7 @@ function handleUserClick(ev: Event) {
     routeModal.value = {
       isOpen: true,
       path: `/p/${props.item?.slug}`,
+      isAdmin: props.isAdmin,
     }
   }
 }

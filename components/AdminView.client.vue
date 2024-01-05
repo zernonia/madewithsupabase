@@ -58,7 +58,7 @@ async function downloadCSV() {
     <div class="mt-6">
       <Loading v-if="pending" :loading="pending" />
       <div v-else-if="data?.length" class=" card-grid">
-        <Card v-for="item in data" :key="item.id!" :item="item" />
+        <Card v-for="item in data" :key="item.id!" :item="item" :is-admin="true" />
       </div>
     </div>
   </div>
