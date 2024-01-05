@@ -15,3 +15,5 @@ export type NonNullableProjectForm = {
     email: string
   }[]
 }
+
+export type ProjectTable = Database['public']['Tables']['products']['Row']

@@ -4,6 +4,7 @@ import type { Project } from '@/types'
 const props = defineProps<{
   data: Project
   isModal?: boolean
+  isAdmin?: boolean
 }>()
 const { data } = toRefs(props)
 
@@ -84,6 +85,8 @@ onMounted(() => {
         <UButton :to="computedUrl" size="md" target="_blank" label="Visit Website" />
       </div>
     </div>
+
+    <AdminButtons v-if="isAdmin" :data="data" />
 
     <div class="mt-6 md:mt-12 w-full flex flex-col placeholder-rose-50">
       <Marked
