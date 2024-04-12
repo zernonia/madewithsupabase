@@ -59,7 +59,7 @@ definePageMeta({
 <template>
   <div class="flex flex-col">
     <NuxtLink
-      to="/hackathons/open-source"
+      to="/hackathons/open-source-2024"
       class="mt-6 group h-48 sm:h-[24rem] lg:h-[32rem] w-full flex flex-col justify-center items-center transition-all duration-500 rounded-2xl relative border border-gray-600 hover:border-gray-700 overflow-hidden"
     >
       <img
