@@ -8,6 +8,13 @@ dayjs.extend(timezone)
 
 const hackathons = [
   {
+    title: 'Open Sounce',
+    path: '/hackathons/open-source-2024',
+    banner: 'open-source-hackathan.webp',
+    start: '12 April 2024 09:00:00 PDT',
+    end: '21 April 2024 23:59:59 PDT',
+  },
+  {
     title: 'Launch Week X',
     path: '/hackathons/launch-week-x',
     banner: 'lwx-og.jpg',
