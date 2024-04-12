@@ -75,11 +75,11 @@ definePageMeta({
     <!-- <img class="pointer-events-none fixed left-0 top-0 h-screen w-screen md:w-full object-cover" src="~~/assets/open-source-hackathon.webp"> -->
 
     <SideMenu class="bg-opacity-50 backdrop-blur-lg" />
-    <div v-if="!isStarted" class="fixed top-1/2 left-1/2 -translate-x-1/2">
+    <!-- <div v-if="!isStarted" class="fixed top-1/2 left-1/2 -translate-x-1/2">
       <UButton target="_blank" to="https://supabase.com/blog/supabase-oss-hackathon" color="black" variant="solid" label="Stay tuned" />
-    </div>
+    </div> -->
 
-    <div v-else class="z-10 ml-0 md:ml-[4.5rem]">
+    <div class="z-10 ml-0 md:ml-[4.5rem]">
       <div class="flex flex-col justify-center items-center min-h-screen text-center py-16 sm:py-32">
         <div class="w-full relative  max-w-screen-sm p-8 md:p-12 rounded-2xl flex flex-col  items-center border border-gray-900 hover:border-gray-800 backdrop-blur-xl from-gray-900/60 to-gray-950/40 bg-gradient-to-br">
           <h1 class="font-semibold text-2xl  md:text-4xl">
