@@ -10,6 +10,7 @@ const hackathonOptions = [
   'Launch Week 8',
   'Flutter Hackathon',
   'Launch Week 7',
+  'Open Source Hackathon',
 ]
 
 const { data, pending } = useLazyAsyncData(hackathon.value, async () => {
