@@ -1,8 +1,9 @@
+import { getRouterParam } from 'h3'
 import { useSupabaseServer } from '~~/composables/supabase'
 
 export default defineEventHandler(async (event) => {
   const client = useSupabaseServer()
-  const name = event.context.params?.name
+  const name = decodeURI(getRouterParam(event, 'name'))
 
   let rpc: 'get_tags' | 'get_supabase_tags' = 'get_tags'
   if (name?.toString().toLowerCase().startsWith('Supabase'))
